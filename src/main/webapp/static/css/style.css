@@ -7908,8 +7908,6 @@ a.navbar-brand img {
   line-height: 45px;
 }
 
-/*--------- index-three -----------*/
-
 .search-three {
   display: flex;
   z-index: 11111;
@@ -7988,7 +7986,7 @@ a.navbar-brand img {
   }
 }
 .row > h2 {
-  color: #008080;
+  color: #4285f4;
 }
 .login_form {
   background-color: #fff;
@@ -8012,7 +8010,7 @@ form {
   transition: all 0.5s ease;
 }
 .form__input:focus {
-  border-bottom-color: #008080;
+  border-bottom-color: #4285f4;
   box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
   border-radius: 4px;
 }
@@ -8030,5 +8028,5 @@ form {
 .btn:hover,
 .btn:focus {
   background-color: #008080;
-  color: #fff;
+  color: #4285f4;
 }
