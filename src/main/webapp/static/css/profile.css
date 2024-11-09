@@ -13,3 +13,25 @@
     width: 100%;
     margin-top: 10px;
 }
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between; /* Đảm bảo khoảng cách giữa các phần tử */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.d-flex p {
+    margin: 0; /* Loại bỏ margin mặc định để căn chính xác */
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
