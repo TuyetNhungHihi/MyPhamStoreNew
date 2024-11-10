@@ -12,6 +12,8 @@
   font-weight: 600;
   text-transform: capitalize;
   margin: 0 0 25px;
+  text-align: center;
+  position: relative;
 }
 .form-container .title:after {
   content: "";
