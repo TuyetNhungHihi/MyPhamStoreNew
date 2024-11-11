@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Chart.js Line Chart Initialization
     const combinedCtx = document.getElementById('combinedRevenueChart');
     if (combinedCtx) {
         new Chart(combinedCtx.getContext('2d'), {
             type: 'line',
+            height: 250,
+            width: 250,
             data: {
                 labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
                 datasets: [
@@ -13,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 2,
                         fill: true,
-                        tension: 0.6
+                        tension: 0.4
                     },
                     {
                         label: 'Doanh thu dự kiến',
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderWidth: 2,
                         borderDash: [5, 5],
                         fill: false,
-                        tension: 0.6
+                        tension: 0.4
                     }
                 ]
             },
@@ -48,17 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     legend: {
                         display: true,
                         position: 'top'
-                    },
-                    tooltip: {
-                        enabled: true
                     }
                 }
             }
         });
     }
-});
 
-window.onload = function () {
+    // CanvasJS Pie Chart Initialization
     var pieChart = new CanvasJS.Chart("pieChart", {
         exportEnabled: true,
         animationEnabled: true,
@@ -89,25 +88,15 @@ window.onload = function () {
         }]
     });
     pieChart.render();
-    
+
+    // CanvasJS Column Chart Initialization
     var columnChart = new CanvasJS.Chart("columChart", {
         animationEnabled: true,
-        title:{
-            text: "Crude Oil Reserves vs Production, 2016"
-        },
-        axisY: {
-            title: "Billions of Barrels",
-            titleFontColor: "#4F81BC",
-            lineColor: "#4F81BC",
-            labelFontColor: "#4F81BC",
-            tickColor: "#4F81BC"
-        },
-        axisY2: {
-            title: "Millions of Barrels/day",
-            titleFontColor: "#C0504E",
-            lineColor: "#C0504E",
-            labelFontColor: "#C0504E",
-            tickColor: "#C0504E"
+        title: {
+            text: "Khách hàng Cũ - Mới",
+            fontFamily: "Arial, sans-serif",
+            fontSize: 15,
+            fontWeight: "bold",
         },
         toolTip: {
             shared: true
@@ -116,54 +105,39 @@ window.onload = function () {
             cursor: "pointer",
             itemclick: toggleDataSeries
         },
-        data: [{
-            type: "column",
-            name: "Proven Oil Reserves (bn)",
-            legendText: "Proven Oil Reserves",
-            showInLegend: true, 
-            dataPoints:[
-                { label: "Saudi", y: 266.21 },
-                { label: "Venezuela", y: 302.25 },
-                { label: "Iran", y: 157.20 },
-                { label: "Iraq", y: 148.77 },
-                { label: "Kuwait", y: 101.50 },
-                { label: "UAE", y: 97.8 }
-            ]
-        },
-        {
-            type: "column",	
-            name: "Oil Production (million/day)",
-            legendText: "Oil Production",
-            axisYType: "secondary",
-            showInLegend: true,
-            dataPoints:[
-                { label: "Saudi", y: 10.46 },
-                { label: "Venezuela", y: 2.27 },
-                { label: "Iran", y: 3.99 },
-                { label: "Iraq", y: 4.45 },
-                { label: "Kuwait", y: 2.92 },
-                { label: "UAE", y: 3.1 }
-            ]
-        }]
+        data: [
+            {
+                type: "column",
+                name: "Khách hàng cũ",
+                showInLegend: true, 
+                dataPoints: [
+                    { y: 266.21 }, { y: 302.25 }, { y: 157.20 }, 
+                    { y: 148.77 }, { y: 101.50 }, { y: 97.8 }
+                ]
+            },
+            {
+                type: "column",    
+                name: "Khách hàng mới",
+                axisYType: "secondary",
+                showInLegend: true,
+                dataPoints: [
+                    { y: 10.46 }, { y: 2.27 }, { y: 3.99 },
+                    { y: 4.45 }, { y: 2.92 }, { y: 3.1 }
+                ]
+            }
+        ]
     });
     columnChart.render();
-};
+});
 
+// Explode Pie Chart Segment on Click
 function explodePie(e) {
-    if (typeof(e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-        e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-    } else {
-        e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
-    }
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = !e.dataSeries.dataPoints[e.dataPointIndex].exploded;
     e.chart.render();
 }
 
+// Toggle Data Series for Column Chart on Legend Click
 function toggleDataSeries(e) {
-    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-        e.dataSeries.visible = false;
-    }
-    else {
-        e.dataSeries.visible = true;
-    }
-    chart.render();
+    e.dataSeries.visible = !e.dataSeries.visible;
+    e.chart.render();
 }

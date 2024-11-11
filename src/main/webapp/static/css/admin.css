@@ -12,10 +12,56 @@ body {
     color: #333;
 }
 
+.dashboard {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    flex: 0 0 200px; /* Fixed width for sidebar */
+    color: #000000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content {
+    flex: 0.9; /* Takes up remaining space */
+    padding: 20px;
+
+}
+
+.rightbar {
+    /* flex: 0 0 200px; */
+    /* width: 200px; Keep width fixed for right bar */
+    color: #000000;
+    padding: 20px;
+    margin-bottom: auto;
+    /* display: flex; */
+    flex-direction: column;
+    /* align-items: center; */
+    overflow: hidden;
+}
+
+.statistical, #columChart, #pieChart {
+    width: 100%; /* Full width of right bar */
+    height: 100%;
+    /* max-width: 200px; /* Limit max width */
+    /* height: 200px; Adjust height to fit */ 
+    margin-bottom: 10px; /*Add spacing between charts */
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 .stat-box {
     flex: 1;
-    background-color: rgba(255, 255, 255, 0.8); /* Lighter background */
-    color: #333; /* Darker text color for contrast */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
     padding: 20px;
     margin: 0 10px;
     text-align: center;
@@ -26,33 +72,11 @@ body {
     transition: transform 0.3s;
 }
 
-
-.dashboard {
-    display: flex;
-    width: 100%;
+.stat-box:hover {
+    transform: translateY(-5px);
 }
 
-.sidebar {
-    width: 100%;
-    color: #000000;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;  /* Ngăn chặn phần nội dung bị tràn ra ngoài */
-}
-
-.statistical, #columChart, #pieChart {
-    width: 100%;  /* Đảm bảo rằng các biểu đồ không vượt quá chiều rộng */
-    max-width: 100%;  /* Giới hạn chiều rộng của biểu đồ */
-    height: 250px;  /* Điều chỉnh chiều cao của biểu đồ để vừa vặn */
-}
-
-#columChart, #pieChart {
-    margin-top: 20px;  /* Thêm khoảng cách giữa các biểu đồ */
-}
-
-
+/* Profile styling */
 .profile .avatar {
     width: 80px;
     height: 80px;
@@ -73,6 +97,7 @@ body {
     margin-top: 10px;
 }
 
+/* Menu styling */
 .menu {
     margin-top: 20px;
     width: 100%;
@@ -89,38 +114,10 @@ body {
 }
 
 .menu a:hover {
-    /* background-color: #555; */
     transform: translateX(5px);
 }
 
-.main-content {
-    flex: 1;
-    padding: 20px;
-}
-
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.stat-box {
-    flex: 1;
-    background-color: #00000012;
-    padding: 20px;
-    margin: 0 10px;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-}
-
-.stat-box:hover {
-    transform: translateY(-5px);
-}
-
+/* Additional styling for elements */
 .employee-avatars {
     display: flex;
     align-items: center;
@@ -164,15 +161,14 @@ body {
 }
 
 .recent-orders {
-    /* background-color: #00000045; */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: auto;
 }
 
 table {
-    width: 80%;
-    height:50px;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
 }
@@ -194,4 +190,12 @@ table th, table td {
     height: 20px;
     background-color: #4caf50;
     text-align: center;
+}
+/* Background for chart containers */
+.chart-container {
+    background-color: rgba(29, 28, 28, 0.532); /* Adjust background color */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    margin-top: 10px;
 }
