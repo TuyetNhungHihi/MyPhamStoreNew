@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../static/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body sytle="background-color: #a0d2eb">
+
     <div class="dashboard">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -65,6 +66,13 @@
                 </div>
             </div>
             <section class="recent-orders">
+                <div class="stat-box">
+                    <p>Doanh thu</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;">75%</div>
+                    </div>
+                    <canvas id="weeklyRevenueChart" width="400" height="200"></canvas>
+                </div>
                 <h2>Đơn hàng gần đây</h2>
                 <table>
                     <tr><th>Mã đơn hàng</th><th>Khách hàng</th><th>Trạng thái</th><th>Ngày</th><th>Tổng tiền</th></tr>
@@ -75,17 +83,11 @@
         </main>
 
         <!-- Revenue Section -->
-        <aside class="sidebar">
+        <!-- <aside class="sidebar">
             <div class="statistical">
-                <div class="stat-box">
-                    <p>Doanh thu</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 75%;">75%</div>
-                    </div>
-                    <canvas id="weeklyRevenueChart" width="400" height="200"></canvas>
-                </div>
+                
             </div>
-        </aside>
+        </aside> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
