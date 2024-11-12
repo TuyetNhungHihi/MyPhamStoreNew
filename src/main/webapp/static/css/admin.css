@@ -1,14 +1,16 @@
-* {
+* { 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     display: flex;
     height: 100vh;
-    background-color: #f3f4f6;
+    background-color: #ffffff;
+    /* background: linear-gradient(to right, #bec9f9, #d4b5f5, #efc5cf, #e5eaf5, #e0c2f1, #8bd1f3); */
+    color: #333;
 }
 
 .dashboard {
@@ -17,25 +19,72 @@ body {
 }
 
 .sidebar {
-    width: 250px;
-    background-color: #333;
-    color: #fff;
+    flex: 0 0 200px; /* Fixed width for sidebar */
+    color: #000000;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.main-content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 20px;
+    max-width: 100%; /* Tùy chỉnh độ rộng */
+    margin: 0 auto;
+}
+
+.rightbar {
+    /* flex: 0 0 200px; */
+    /* width: 200px; Keep width fixed for right bar */
+    color: #000000;
+    padding: 20px;
+    margin-bottom: auto;
+    /* display: flex; */
+    flex-direction: column;
+    /* align-items: center; */
+    overflow: hidden;
+}
+
+.statistical, #columChart, #pieChart {
+    width: 100%; /* Full width of right bar */
+    height: 100%;
+    /* max-width: 200px; /* Limit max width */
+    /* height: 200px; Adjust height to fit */ 
+    margin-bottom: 10px; /*Add spacing between charts */
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000000;
+    padding: 20px;
+    margin: 0 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Profile styling */
 .profile .avatar {
     width: 80px;
     height: 80px;
-    background-color: #777;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .profile img {
@@ -50,6 +99,7 @@ body {
     margin-top: 10px;
 }
 
+/* Menu styling */
 .menu {
     margin-top: 20px;
     width: 100%;
@@ -57,42 +107,19 @@ body {
 
 .menu a {
     display: block;
-    color: #fff;
+    color: #000000;
     text-decoration: none;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
 .menu a:hover {
-    background-color: #444;
+    transform: translateX(5px);
 }
 
-.main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-}
-
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.stat-box {
-    flex: 1;
-    background-color: #ddd;
-    padding: 20px;
-    margin: 0 10px;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* Additional styling for elements */
 .employee-avatars {
     display: flex;
     align-items: center;
@@ -136,19 +163,16 @@ body {
 }
 
 .recent-orders {
-    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.recent-orders h2 {
-    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px;
 }
 
 table th, table td {
@@ -157,20 +181,28 @@ table th, table td {
     text-align: left;
 }
 
-.statistical .stat-box {
-    width: 250px;
-}
-
 .progress-bar {
-    background-color: #ddd;
+    background-color: #f2c0c0;
     border-radius: 5px;
     margin-top: 10px;
     overflow: hidden;
 }
 
 .progress {
-    height: 8px;
+    height: 20px;
     background-color: #4caf50;
-    width: 75%;
     text-align: center;
+}
+/* Background for chart containers */
+.chart-container {
+    background-color: "transparent"; 
+    /* Adjust background color */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Khoảng cách giữa hai biểu đồ */
+    padding-right: 0;
 }
