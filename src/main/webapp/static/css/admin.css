@@ -8,7 +8,8 @@
 body {
     display: flex;
     height: 100vh;
-    background: linear-gradient(to right, #494d5f, #8458b3, #d08df4, #e5eaf5, #a0d2eb, #58bef1);
+    background-color: #ffffff;
+    /* background: linear-gradient(to right, #bec9f9, #d4b5f5, #efc5cf, #e5eaf5, #e0c2f1, #8bd1f3); */
     color: #333;
 }
 
@@ -61,8 +62,8 @@ body {
 
 .stat-box {
     flex: 1;
-    background-color: rgba(49, 45, 45, 0.8);
-    color: #fffefe;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000000;
     padding: 20px;
     margin: 0 10px;
     text-align: center;
@@ -194,7 +195,8 @@ table th, table td {
 }
 /* Background for chart containers */
 .chart-container {
-    background-color: rgba(29, 28, 28, 0.532); /* Adjust background color */
+    background-color: "transparent"; 
+    /* Adjust background color */
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */

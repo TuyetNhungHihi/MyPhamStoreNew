@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var pieChart = new CanvasJS.Chart("pieChart", {
         exportEnabled: true,
         animationEnabled: true,
+        backgroundColor: "transparent",
         title: {
             text: "Sản phẩm bán chạy",
             fontFamily: "Arial, sans-serif",
@@ -101,11 +102,13 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         }]
     });
+    // var pieChart = new CanvasJS.Chart("pieChart",{});
     pieChart.render();
 
     // CanvasJS Column Chart Initialization
     var columnChart = new CanvasJS.Chart("columChart", {
         animationEnabled: true,
+        backgroundColor: "transparent",
         title: {
             text: "Khách hàng Cũ - Mới",
             fontFamily: "Arial, sans-serif",
@@ -141,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         ]
     });
+    // var columnChart = new CanvasJS.Chart("columChart", {
     columnChart.render();
 });
 
