@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (combinedCtx) {
         new Chart(combinedCtx.getContext('2d'), {
             type: 'line',
-            height: 250,
-            width: 250,
+            height: 300,
+            width: 300,
             data: {
                 labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'],
                 datasets: [
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 2,
                         fill: true,
-                        tension: 0.4
+                        tension: 0.4,
                     },
                     {
                         label: 'Doanh thu dự kiến',
@@ -37,20 +37,34 @@ document.addEventListener('DOMContentLoaded', function () {
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Doanh thu (triệu đồng)'
+                            text: 'Doanh thu (triệu đồng)',
+                            color: 'white'
+                        },
+                        ticks: {
+                            color: 'white' 
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Ngày'
+                            text: 'Ngày',
+                            color: 'white'
+                        },
+                        ticks: {
+                            color: 'white' 
                         }
                     }
                 },
                 plugins: {
                     legend: {
-                        display: true,
-                        position: 'top'
+                        labels: {
+                            color: 'white' // Đổi màu chữ của chú thích thành màu trắng
+                        }
+                    },
+                    tooltip: {
+                        titleColor: 'white', // Màu tiêu đề tooltip
+                        bodyColor: 'white', // Màu nội dung tooltip
+                        footerColor: 'white' // Màu footer tooltip (nếu có)
                     }
                 }
             }
