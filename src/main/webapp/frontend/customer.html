@@ -1,138 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customer Management Dashboard</title>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-    body {
-        display: flex;
-        justify-content: center;
-        background-color: #f4f4f4;
-        padding: 20px;
-    }
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 20px;
-        width: 1000px;
-        background: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .sidebar {
-        background: #e0e0e0;
-        padding: 20px;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .sidebar .avatar {
-        width: 100px;
-        height: 100px;
-        background-color: black;
-        border-radius: 50%;
-    }
-    .sidebar .username {
-        margin: 10px 0;
-        font-weight: bold;
-        font-size: 16px;
-    }
-    .sidebar .functions {
-        margin-top: 20px;
-        font-size: 14px;
-        color: #555;
-        text-align: center;
-    }
-    .content {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        gap: 20px;
-    }
-    .header {
-        text-align: center;
-        font-weight: bold;
-        font-size: 24px;
-    }
-    .map-container {
-        background: #d3d3d3;
-        border-radius: 8px;
-        padding: 20px;
-        font-size: 16px;
-        color: #555;
-        text-align: center;
-    }
-    .stats {
-        display: flex;
-        gap: 10px;
-        font-size: 14px;
-    }
-    .stat-box {
-        flex: 1;
-        background: #f8f8f8;
-        border-radius: 8px;
-        padding: 15px;
-        text-align: center;
-    }
-    .stat-box .number {
-        color: #4CAF50;
-        font-weight: bold;
-        font-size: 20px;
-        margin-top: 10px;
-    }
-    .search-bar {
-        background: #e0e0e0;
-        padding: 10px;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .search-bar input {
-        border: none;
-        background: transparent;
-        outline: none;
-        font-size: 16px;
-        width: 100%;
-    }
-    .sort-btn {
-        background: #d3d3d3;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    .table {
-        width: 100%;
-        margin-top: 10px;
-    }
-    .table-header, .table-row {
-        display: grid;
-        grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
-        padding: 10px 0;
-        font-size: 14px;
-        border-bottom: 1px solid #e0e0e0;
-    }
-    .table-header {
-        font-weight: bold;
-    }
-    .table-footer {
-        margin-top: 20px;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px;
-        border-top: 1px solid #e0e0e0;
-    }
-</style>
+<link rel="stylesheet" href="../static/css/customer.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
 
@@ -150,19 +23,21 @@
         <div class="header">QUẢN LÝ KHÁCH HÀNG</div>
 
         <!-- Map and Stats -->
-        <div class="map-container">"Bản đồ hình Việt Nam, đánh dấu những vị trí có nhiều/ít khách hàng"</div>
-        <div class="stats">
-            <div class="stat-box">
-                <div>Tổng khách hàng</div>
-                <div class="number">15689</div>
-            </div>
-            <div class="stat-box">
-                <div>Khách hàng mới</div>
-                <div class="number">+240</div>
-            </div>
-            <div class="stat-box">
-                <div>Khách hàng đang đặt hàng</div>
-                <div class="number">+450</div>
+        <div class="map-stats-container">
+            <div class="map-container" id="map"></div>
+            <div class="stats">
+                <div class="stat-box">
+                    <div>Tổng khách hàng</div>
+                    <div class="number">15689</div>
+                </div>
+                <div class="stat-box">
+                    <div>Khách hàng mới</div>
+                    <div class="number">+240</div>
+                </div>
+                <div class="stat-box">
+                    <div>Khách hàng đang đặt hàng</div>
+                    <div class="number">+450</div>
+                </div>
             </div>
         </div>
 
@@ -171,7 +46,7 @@
             <input type="text" placeholder="\"Thanh tìm kiếm\"">
             <button class="sort-btn">"sắp xếp" <span>&lt;&gt;</span></button>
         </div>
-        
+
         <!-- Table -->
         <div class="table">
             <div class="table-header">
@@ -186,9 +61,8 @@
                 <div>User1</div>
                 <div>01-01-2023</div>
                 <div>Active</div>
-                <div>...</div>
+                <div>Xóa</div>
             </div>
-            <!-- Additional table rows can be added here -->
         </div>
 
         <!-- Footer Info -->
@@ -196,12 +70,11 @@
     </div>
 </div>
 
-<script>
-// JavaScript for additional functionalities
-document.querySelector('.sort-btn').addEventListener('click', function() {
-    alert('"Sắp xếp chức năng đã được kích hoạt"');
-});
-</script>
+<!-- Leaflet.js library -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="../static/js/counters.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </body>
 </html>
