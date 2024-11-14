@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,6 +6,8 @@
 <title>Customer Management Dashboard</title>
 <link rel="stylesheet" href="../static/css/customer.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="https://www.canvasxpress.org/dist/canvasXpress.css" type="text/css"/>
+<script src="https://www.canvasxpress.org/dist/canvasXpress.min.js"></script>
 </head>
 <body>
 
@@ -13,8 +15,8 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="avatar"></div>
-        <div class="username">"USERNAME ADMIN"</div>
-        <div class="functions">"Các chức năng sidebar"</div>
+        <div class="username">USERNAME ADMIN</div>
+        <div class="functions">Các chức năng sidebar</div>
     </div>
 
     <!-- Main Content -->
@@ -24,7 +26,45 @@
 
         <!-- Map and Stats -->
         <div class="map-stats-container">
-            <div class="map-container" id="map"></div>
+            <!-- Phần để vẽ biểu đồ -->
+            <div>
+                <canvas id="canvasId" width="600" height="600"></canvas>
+            </div>
+
+            <!-- Khởi tạo biểu đồ -->
+            <script>
+                // Dữ liệu về số huy chương cho các tỉnh trong Việt Nam
+                var data = {
+                    "y": {
+                        "data": [
+                            [5, 3, 2, 10],   // Số huy chương của tỉnh Hà Nội
+                            [2, 1, 0, 3],    // Số huy chương của tỉnh TP HCM
+                            [4, 2, 1, 7],    // Số huy chương của tỉnh Đà Nẵng
+                        ],
+                        "smps": ["Gold", "Silver", "Bronze", "Total"],
+                        "vars": ["Hanoi", "Ho Chi Minh", "Da Nang"]
+                    },
+                    "z": {
+                        "Province": ["Hà Nội", "TP HCM", "Đà Nẵng"]
+                    }
+                };
+
+                // Cấu hình biểu đồ
+                var config = {
+                    "colorBy": "Total",
+                    "graphType": "Map",
+                    "legendPosition": "bottom",
+                    "mapId": "medals",
+                    "theme": "tableau",
+                    "title": "Số lượng huy chương tại các tỉnh Việt Nam",
+                    // Đường dẫn tệp bản đồ Việt Nam
+                    "geojson": "../static/data/boundaryjson.geojson"
+                };
+
+                // Tạo biểu đồ với dữ liệu và cấu hình
+                var cX = new CanvasXpress("canvasId", data, config);
+            </script>
+
             <div class="stats">
                 <div class="stat-box">
                     <div>Tổng khách hàng</div>
@@ -43,18 +83,18 @@
 
         <!-- Search Bar and Table -->
         <div class="search-bar">
-            <input type="text" placeholder="\"Thanh tìm kiếm\"">
-            <button class="sort-btn">"sắp xếp" <span>&lt;&gt;</span></button>
+            <input type="text" placeholder="Thanh tìm kiếm">
+            <button class="sort-btn">sắp xếp <span>&lt;&gt;</span></button>
         </div>
 
         <!-- Table -->
         <div class="table">
             <div class="table-header">
                 <div>ID</div>
-                <div>user name</div>
-                <div>thời gian tạo tài khoản</div>
-                <div>trạng thái</div>
-                <div>tác vụ</div>
+                <div>User Name</div>
+                <div>Thời gian tạo tài khoản</div>
+                <div>Trạng thái</div>
+                <div>Tác vụ</div>
             </div>
             <div class="table-row">
                 <div>1</div>
@@ -66,15 +106,12 @@
         </div>
 
         <!-- Footer Info -->
-        <div class="table-footer">"THÔNG TIN"</div>
+        <div class="table-footer">THÔNG TIN</div>
     </div>
 </div>
 
-<!-- Leaflet.js library -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="../static/js/counters.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 </body>
 </html>
