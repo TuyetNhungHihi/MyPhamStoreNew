@@ -109,25 +109,73 @@ body {
 .table {
     width: 100%;
     margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
 }
 .table-header, .table-row {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
     padding: 10px 0;
     font-size: 14px;
     border-bottom: 1px solid #e0e0e0;
+    align-items: center;
 }
 .table-header {
     font-weight: bold;
+    background: #f4f4f4;
 }
-.table-footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
+.table-body {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.table-row {
+    transition: background 0.3s ease;
+}
+.table-row:hover {
+    background: #f9f9f9;
+}
+.status {
     font-weight: bold;
-    padding: 10px;
-    border-top: 1px solid #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 12px;
 }
+.status.active {
+    background: #dff0d8;
+    color: #3c763d;
+}
+.status.inactive {
+    background: #f2dede;
+    color: #a94442;
+}
+.actions {
+    display: flex;
+    gap: 10px;
+}
+.actions button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #555;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.actions button:hover {
+    background: #f4f4f4;
+    color: #000;
+}
+.actions .pin-btn i {
+    color: #ffa500;
+}
+.actions .delete-btn i {
+    color: #ff0000;
+}
+
 .sidebar {
     background: linear-gradient(to bottom, #4caf50, #2e7d32);
     padding: 20px;
