@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category Management</title>
+    <link rel="stylesheet" href="../static/css/category-management.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="admin-info">
+          <div class="admin-avatar"></div>
+          <p>"USERNAME ADMIN"</p>
+        </div>
+        <nav>
+          <ul>
+            <li>“Các chức năng sidebar”</li>
+            <!-- Add sidebar links here -->
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <header>
+          <h1>Quản lý loại sản phẩm</h1>
+        </header>
+
+        <div class="stats-chart">
+          <div class="chart">
+            <p>Biểu đồ tròn hiển thị số sản phẩm ở mỗi loại</p>
+            <!-- Placeholder for pie chart -->
+          </div>
+          <div class="quick-stats">
+            <div class="stat-box">số lượng loại sản phẩm</div>
+            <div class="stat-box">Loại bán được nhiều nhất</div>
+            <div class="stat-box">Loại hàng lợi nhuận cao</div>
+          </div>
+        </div>
+
+        <div class="search-sort">
+          <input type="text" placeholder="Thanh tìm kiếm" class="search-bar" />
+          <button class="sort-button">Sắp xếp <span>&lt;&gt;</span></button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tên loại sản phẩm</th>
+              <th>Số lượng nhập hàng</th>
+              <th>Đơn giá</th>
+              <th>Trạng thái</th>
+              <th>Tác vụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Placeholder rows for the table -->
+            <tr>
+              <td>001</td>
+              <td>Loại 1</td>
+              <td>50</td>
+              <td>180,000 VND</td>
+              <td>Còn hàng</td>
+              <td><button class="action-button">Chỉnh sửa</button></td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
