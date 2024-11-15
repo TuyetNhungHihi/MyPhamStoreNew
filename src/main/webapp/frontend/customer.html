@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management Dashboard</title>
+    <link rel="stylesheet" href="../static/css/customer.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://www.canvasxpress.org/dist/canvasXpress.css" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="avatar"></div>
+            <div class="username">USERNAME ADMIN</div>
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Trang chủ</a></li>
+                <li><a href="#customers"><i class="fas fa-users"></i> Quản lý khách hàng</a></li>
+                <li><a href="#orders"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+                <li><a href="#revenue"><i class="fas fa-chart-line"></i> Báo cáo doanh thu</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Cài đặt tài khoản</a></li>
+                <li><a href="#logout" class="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Header -->
+            <div class="header">QUẢN LÝ KHÁCH HÀNG</div>
+
+            <!-- Map and Stats -->
+            <div class="map-stats-container">
+                <div class="map">
+                    <canvas id="canvasId" width="600" height="400"></canvas>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-title">
+                            <i class="fas fa-users"></i> Tổng khách hàng
+                        </div>
+                        <div class="stat-content">
+                            <div class="number">15,689</div>
+                            <div class="trend positive">
+                                <i class="fas fa-arrow-up"></i> +5%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">
+                            <i class="fas fa-user-plus"></i> Khách hàng mới
+                        </div>
+                        <div class="stat-content">
+                            <div class="number">+240</div>
+                            <div class="trend positive">
+                                <i class="fas fa-arrow-up"></i> +12%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">
+                            <i class="fas fa-shopping-cart"></i> Khách hàng đang đặt hàng
+                        </div>
+                        <div class="stat-content">
+                            <div class="number">+450</div>
+                            <div class="trend negative">
+                                <i class="fas fa-arrow-down"></i> -3%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for users..." />
+                </div>
+            </div>
+            
+            <div class="sort-container">
+                <div class="sort-dropdown">
+                    <button class="sort-btn">
+                        <i class="fas fa-sort"></i> Sort by <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <ul class="sort-options">
+                        <li data-sort="id">
+                            <i class="fas fa-id-card"></i> ID
+                        </li>
+                        <li data-sort="creation-time">
+                            <i class="fas fa-calendar-alt"></i> Creation Time
+                        </li>
+                        <li data-sort="status">
+                            <i class="fas fa-toggle-on"></i> Status
+                        </li>
+                    </ul>
+                </div>
+            </div>                      
+
+            <!-- Table -->
+            <div class="table">
+                <div class="table-header">
+                    <div>ID</div>
+                    <div>User Name</div>
+                    <div>Thời gian tạo tài khoản</div>
+                    <div>Trạng thái</div>
+                    <div>Tác vụ</div>
+                </div>
+                <div class="table-body">
+                    <div class="table-row">
+                        <div>1</div>
+                        <div>User1</div>
+                        <div>01-01-2023</div>
+                        <div><span class="status active">Active</span></div>
+                        <div class="actions">
+                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div>2</div>
+                        <div>User2</div>
+                        <div>10-02-2023</div>
+                        <div><span class="status inactive">Inactive</span></div>
+                        <div class="actions">
+                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div>2</div>
+                        <div>User2</div>
+                        <div>10-02-2023</div>
+                        <div><span class="status inactive">Inactive</span></div>
+                        <div class="actions">
+                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div>2</div>
+                        <div>User2</div>
+                        <div>10-02-2023</div>
+                        <div><span class="status inactive">Inactive</span></div>
+                        <div class="actions">
+                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div>2</div>
+                        <div>User2</div>
+                        <div>10-02-2023</div>
+                        <div><span class="status inactive">Inactive</span></div>
+                        <div class="actions">
+                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
+                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">THÔNG TIN</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://www.canvasxpress.org/dist/canvasXpress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Khởi tạo biểu đồ
+        const data = {
+            y: {
+                data: [[5, 3, 2, 10], [2, 1, 0, 3], [4, 2, 1, 7]],
+                smps: ["Gold", "Silver", "Bronze", "Total"],
+                vars: ["Hanoi", "Ho Chi Minh", "Da Nang"],
+            },
+            z: {
+                Province: ["Hà Nội", "TP HCM", "Đà Nẵng"],
+            },
+        };
+        const config = {
+            colorBy: "Total",
+            graphType: "Map",
+            legendPosition: "bottom",
+            mapId: "medals",
+            theme: "tableau",
+            title: "Số lượng huy chương tại các tỉnh Việt Nam",
+            geojson: "../static/data/boundaryjson.geojson",
+        };
+        const cX = new CanvasXpress("canvasId", data, config);
+    </script>
+    <script src="../static/js/customer.js"></script>
+</body>
+</html>
