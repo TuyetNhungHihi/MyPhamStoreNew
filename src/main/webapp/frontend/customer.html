@@ -14,9 +14,21 @@
 <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="avatar"></div>
-        <div class="username">USERNAME ADMIN</div>
-        <div class="functions">Các chức năng sidebar</div>
+        <div class="sidebar">
+            <div class="avatar"></div>
+            <div class="username">USERNAME ADMIN</div>
+            <div class="functions">
+                <ul class="sidebar-menu">
+                    <li><a href="#dashboard">Trang chủ</a></li>
+                    <li><a href="#customers">Quản lý khách hàng</a></li>
+                    <li><a href="#orders">Đơn hàng</a></li>
+                    <li><a href="#revenue">Báo cáo doanh thu</a></li>
+                    <li><a href="#settings">Cài đặt tài khoản</a></li>
+                    <li><a href="#logout" class="logout">Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+        
     </div>
 
     <!-- Main Content -->
@@ -111,7 +123,7 @@
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="../static/js/counters.js"></script>
+<script src="../static/js/customer.js"></script>
 
 </body>
 </html>
