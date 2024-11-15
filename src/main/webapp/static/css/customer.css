@@ -107,7 +107,7 @@ body {
     gap: 20px;
     padding: 20px;
     margin-left: 250px; /* Offset for fixed sidebar */
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -124,85 +124,75 @@ body {
 }
 
 /* Map and Stats */
+/* Map and Stats */
 .map-stats-container {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
+    align-items: flex-start;
 }
 
-.map-container {
-    flex: 2;
+.map {
+    width: 60%; /* Adjust width as necessary */
     height: 400px;
-    border-radius: 8px;
     background: #e0e0e0;
-    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stats {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .stat-box {
-    background: #f8f8f8;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .stat-box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .stat-title {
     font-size: 16px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #555;
+    color: #333;
 }
 
 .stat-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
 }
 
 .number {
     font-size: 24px;
     font-weight: bold;
-    color: #4caf50;
+    color: #333;
 }
 
 .trend {
-    display: flex;
-    align-items: center;
     font-size: 14px;
-    gap: 5px;
-    font-weight: bold;
-}
-
-.trend.positive {
-    color: #4caf50;
+    color: green;
 }
 
 .trend.negative {
-    color: #ff5252;
-}
-
-.trend i {
-    font-size: 16px;
+    color: red;
 }
 
 /* Search Bar */
 /* Container styles */
-.search-bar-container, .sort-container {
+/* Search Bar and Sort Container */
+/* Aligning search bar and sort button horizontally */
+.search-bar-container {
+    display: flex;
+    align-items: center; /* Vertical alignment */
+    gap: 10px; /* Spacing between search bar and sort button */
     margin: 20px auto;
     max-width: 600px;
     width: 100%;
@@ -211,12 +201,13 @@ body {
 /* Search bar styles */
 .search-bar {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     background: #ffffff;
     padding: 10px 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-size: 16px;
+    flex: 1; /* Take up available space */
 }
 
 .search-bar i {
@@ -238,13 +229,7 @@ body {
     color: #aaa;
 }
 
-/* Sort dropdown styles */
-.sort-dropdown {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
+/* Sort button styles */
 .sort-btn {
     background: #4caf50;
     color: #fff;
@@ -256,9 +241,10 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    width: 100%;
     text-align: left;
     transition: background 0.3s ease;
+    width: auto; /* Make the width auto-adjust to its content */
+    height: 40px; /* Optional: Set a fixed height for consistency */
 }
 
 .sort-btn i {
@@ -267,6 +253,13 @@ body {
 
 .sort-btn:hover {
     background: #45a049;
+}
+
+/* Sort dropdown styles */
+.sort-dropdown {
+    position: relative;
+    display: inline-block;
+    width: auto; /* Adjust width to the content */
 }
 
 .sort-options {
