@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f3f3f3;
+    padding: 20px;
+    text-align: center;
+}
+
+.admin-info {
+    margin-bottom: 20px;
+}
+
+.admin-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.admin-info p {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.stats-chart {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.chart {
+    width: 60%;
+    background-color: #e0e0e0;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-stats {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-box {
+    background-color: #cfcfcf;
+    padding: 15px;
+    text-align: center;
+}
+
+.search-sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    width: 70%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.sort-button {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #f5f5f5;
+}
+
+.action-button {
+    padding: 5px 10px;
+    font-size: 12px;
+}
