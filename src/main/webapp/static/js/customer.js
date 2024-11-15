@@ -41,3 +41,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+document.querySelectorAll('.sort-options li').forEach(option => {
+    option.addEventListener('click', () => {
+        const sortBy = option.getAttribute('data-sort');
+        console.log(`Sorting by: ${sortBy}`);
+        // Thực hiện sắp xếp dữ liệu tại đây
+    });
+});
