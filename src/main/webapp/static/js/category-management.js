@@ -1,4 +1,5 @@
-let bar = document.getElementById("menu-toggle");
+window.onload = () =>{
+  let bar = document.getElementById("menu-toggle");
 let sidebar = document.getElementById("sidebar");
 let bodylabel = document.getElementById("body-label");
 
@@ -13,3 +14,5 @@ bodylabel.addEventListener("click", (event) => {
 bar.addEventListener("click", (event) => {
   toggleBar();
 });
+
+}
