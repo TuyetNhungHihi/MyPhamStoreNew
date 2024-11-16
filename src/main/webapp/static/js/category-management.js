@@ -1,14 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const sortButton = document.querySelector(".sort-button");
+let bar = document.getElementById("menu-toggle");
+let sidebar = document.getElementById("sidebar");
+let bodylabel = document.getElementById("body-label");
 
-  // Sample functionality for sorting (toggle between ascending and descending)
-  let isAscending = true;
+let toggleBar = () => {
+  sidebar.classList.toggle("active");
+};
 
-  sortButton.addEventListener("click", () => {
-    // Here you could add sorting logic
-    isAscending = !isAscending;
-    sortButton.textContent = `Sắp xếp ${isAscending ? "▲" : "▼"}`;
-  });
+bodylabel.addEventListener("click", (event) => {
+  sidebar.classList.add("active");
+});
 
-  // Additional interactivity can be added here, such as search functionality or chart rendering
+bar.addEventListener("click", (event) => {
+  toggleBar();
 });
