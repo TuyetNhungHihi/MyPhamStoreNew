@@ -1,76 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Category Management</title>
-    <link rel="stylesheet" href="../static/css/category-management.css" />
-  </head>
-  <body>
-    <div class="container">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="admin-info">
-          <div class="admin-avatar"></div>
-          <p>"USERNAME ADMIN"</p>
-        </div>
-        <nav>
-          <ul>
-            <li>“Các chức năng sidebar”</li>
-            <!-- Add sidebar links here -->
-          </ul>
-        </nav>
-      </div>
 
-      <!-- Main Content -->
-      <div class="main-content">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--srart theme style -->
+	<link rel="stylesheet" type="text/css" href="../static/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/owl.theme.default.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/magnific-popup.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/dl-menu.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/camera.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
+	<!-- favicon links -->
+	<link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link rel="stylesheet" href="../static/css/category-management.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-flex">
+                <img src="https://i.pinimg.com/originals/c2/ac/53/c2ac53c54fb5eb42b67b02fefb61f6ab.png" class="img-logo"
+                    alt="logo">
+
+                <div class="brand-icons">
+                    <span class="las la-bell"></span>
+                    <span class="las la-user-circle"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="sidebar-menu">
+            <div class="sidebar-user">
+                <img src="https://randomuser.me/api/portraits/men/47.jpg" alt="">
+
+                <div>
+                    <h3>Reza Younesi</h3>
+                    <span>younesi.nima@gmail.com</span>
+                </div>
+            </div>
+
+
+            <div class="sidebar-menu">
+                <div class="menu-head">
+                    <span class="category">Dashboard</span>
+                    <ul>
+                        <li><a href="#"><span class="las la-balance-scale"></span>Finance</a></li>
+                        <li><a href="#"><span class="las la-chart-pie"></span>Analytics</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="menu-head">
+                    <span class="category">Application</span>
+                    <ul>
+                        <li><a href="#"><span class="las la-balance-scale"></span>Calender</a></li>
+                        <li><a href="#"><span class="las la-users"></span>Contacts</a></li>
+                        <li><a href="#"><span class="las la-shopping-cart"></span>Ecommerce</a></li>
+                        <li><a href="#"><span class="las la-envelope"></span>Mailbox</a></li>
+                        <li><a href="#"><span class="las la-check-circle"></span>Tasks</a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="main-content">
         <header>
-          <h1>Quản lý loại sản phẩm</h1>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <label class="bar-label" for="">
+                    <span class="bars las la-bars"></span>
+                </label>
+            </div>
+            <div class="header-icons">
+                <span class="las la-search"></span>
+                <span class="las la-bookmark"></span>
+                <span class="las la-sms "></span>
+            </div>
         </header>
 
-        <div class="stats-chart">
-          <div class="chart">
-            <p>Biểu đồ tròn hiển thị số sản phẩm ở mỗi loại</p>
-            <!-- Placeholder for pie chart -->
-          </div>
-          <div class="quick-stats">
-            <div class="stat-box">số lượng loại sản phẩm</div>
-            <div class="stat-box">Loại bán được nhiều nhất</div>
-            <div class="stat-box">Loại hàng lợi nhuận cao</div>
-          </div>
-        </div>
+        <main>
+            <div class="main">
+                <div class="page-header">
 
-        <div class="search-sort">
-          <input type="text" placeholder="Thanh tìm kiếm" class="search-bar" />
-          <button class="sort-button">Sắp xếp <span>&lt;&gt;</span></button>
-        </div>
+                    <div class="content">
+                        <h1>Analytic Dashboard</h1>
+                        <smal>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias soluta voluptatum saepe
+                            expedita accusa</smal>
+                    </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Tên loại sản phẩm</th>
-              <th>Số lượng nhập hàng</th>
-              <th>Đơn giá</th>
-              <th>Trạng thái</th>
-              <th>Tác vụ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Placeholder rows for the table -->
-            <tr>
-              <td>001</td>
-              <td>Loại 1</td>
-              <td>50</td>
-              <td>180,000 VND</td>
-              <td>Còn hàng</td>
-              <td><button class="action-button">Chỉnh sửa</button></td>
-            </tr>
-            <!-- Add more rows as needed -->
-          </tbody>
-        </table>
-      </div>
+                    <div class="header-actions">
+                        <button class="las la-file-export"> Export</button>
+                        <button class="las la-tools"> Setting</button>
+
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+                                <div class="card-head">
+                                    <span>Purchases</span>
+                                    <small>Number of purchases</small>
+                                </div>
+
+                                <p class="cost">17,633</p>
+                                <small>%2 less purchase</small>
+
+                            </div>
+
+                            <div class="card-chart">
+                                <span class="las la-chart-line"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+                                <div class="card-head">
+                                    <span>Unique Sales</span>
+                                    <small>Number of sales</small>
+                                </div>
+
+                                <p class="cost">57,633</p>
+                                <small>%12 less sales</small>
+
+                            </div>
+
+                            <div class="card-chart">
+                                <span class="green las la-chart-line"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+                                <div class="card-head">
+                                    <span>Value of refund</span>
+                                    <small>Number of refund</small>
+                                </div>
+
+                                <p class="cost">157,633</p>
+                                <small>%32 less refund</small>
+
+                            </div>
+                            <div class="card-chart">
+                                <span class="orange las la-chart-line"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="body">
+
+                <div class="action-needed">
+                    <div class="card">
+                        <div class="header">
+                            <div class="title">Action needed</div>
+                            <i class="more las la-ellipsis-h"></i>
+                        </div>
+
+                        <div class="content">
+                            <div class="progress-chart">
+                                <span>74%</span>
+                            </div>
+                            <div class="details">Lorem, ipibus asperiores libero expedita iusto accusamus numquam quae.
+                            </div>
+                            <input type="button" value="generate report">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="jobs">
+                    <div class="header">
+                        <h3>Jobs <span>see all jobs</span> <i class="las la-arrow-right"></i></h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div>Customer experiment</div>
+                                    </td>
+                                    <td>
+                                        <div>Design</div>
+                                    </td>
+                                    <td>
+                                        <div>Tokyo</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 6days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>8 application</button></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div> <span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Language experiment</div>
+                                    </td>
+                                    <td>
+                                        <div>Teacher</div>
+                                    </td>
+                                    <td>
+                                        <div>London</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 26days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>5 application</button></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div> Buy experiment</div>
+                                    </td>
+                                    <td>
+                                        <div> Business</div>
+                                    </td>
+                                    <td>
+                                        <div> New York</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button> 1 application</button></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div> Finance experiment</div>
+                                    </td>
+                                    <td>
+                                        <div>Programmer</div>
+                                    </td>
+                                    <td>
+                                        <div>Tehran</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 3days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>18 application</button></div>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Sales experiment</div>
+                                    </td>
+                                    <td>
+                                        <div>PHP</div>
+                                    </td>
+                                    <td>
+                                        <div>Rome</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 5days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>1 application</button></div>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Customer experiment</div>
+                                    </td>
+                                    <td>
+                                        <div>UX designer</div>
+                                    </td>
+                                    <td>
+                                        <div>Tornto</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>12 application</button> </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </main>
     </div>
-    <script src="script.js"></script>
-  </body>
+
+    <label for="sidebar" class="body-label" id="body-label"></label>
+    <script src="../static/js/category-management.js"></script>
+</body>
+
 </html>
