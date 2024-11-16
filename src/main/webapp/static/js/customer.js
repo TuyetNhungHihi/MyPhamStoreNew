@@ -64,8 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("customer-modal");
     const closeModal = document.querySelector(".close-btn");
     const detailButtons = document.querySelectorAll(".detail-btn");
-    console.log("Detail button clicked");
-    console.log("Customer data:", customerData);
 
     // Modal fields
     const modalName = document.getElementById("modal-name");
@@ -88,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const customer = JSON.parse(customerData);
+            const customer = JSON.parse(customerData.replace(/'/g, '"'));
 
             // Populate modal with data
             modalName.textContent = customer.name;

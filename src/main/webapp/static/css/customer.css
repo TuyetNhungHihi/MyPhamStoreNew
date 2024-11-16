@@ -385,6 +385,7 @@ body {
 .actions .delete-btn i {
     color: #ff0000;
 }
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -415,4 +416,21 @@ body {
 
 .close-btn:hover {
     color: #000;
+}
+
+/* Detail button */
+.detail-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.detail-btn:hover {
+    background-color: #0056b3;
 }

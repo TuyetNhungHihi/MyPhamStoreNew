@@ -103,30 +103,25 @@
                     <div>Tên tài khoản</div>
                     <div>Thời gian tạo tài khoản</div>
                     <div>Trạng thái</div>
-                    <div>Tác vụ</div>
                     <div>Xem chi tiết</div>
                 </div>
                 <div class="table-body">
-                    <div class="table-row" data-customer="{
-                        'id': '001',
-                        'name': 'Nguyễn Văn Tí',
-                        'dob': '01-01-1990',
-                        'phone': '0901234567',
-                        'email': 'nguyenvanti@example.com',
-                        'address': '123 Đường ABC, TP.HCM',
-                        'orders': '5',
-                        'created_at': '01-01-2023',
-                        'status': 'Đang giao hàng'
-                    }">
+                    <div class="table-row" data-customer='{
+                        "id": "001",
+                        "name": "Nguyễn Văn Tí",
+                        "dob": "01-01-1990",
+                        "phone": "0901234567",
+                        "email": "nguyenvanti@example.com",
+                        "address": "123 Đường ABC, TP.HCM",
+                        "orders": "5",
+                        "created_at": "01-01-2023",
+                        "status": "Đang giao hàng"
+                    }'>
                         <div>001</div>
                         <div>Nguyễn Văn Tí</div>
                         <div>01-01-2023</div>
                         <div><span class="status active">Đang giao hàng</span></div>
-                        <div class="actions">
-                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
-                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                        <div><button class="detail-btn">Chi tiết</button></div>
+                        <div><button class="detail-btn">Xem chi tiết</button></div>
                     </div>
                     <div class="table-row" data-customer='{
                         "id": "002",
@@ -143,41 +138,41 @@
                         <div>Lê Văn Tèo</div>
                         <div>10-02-2023</div>
                         <div><span class="status inactive">Từng đặt hàng</span></div>
-                        <div class="actions">
-                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
-                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                        <div><button class="detail-btn">Chi tiết</button></div>
-                    </div>                    
-                    <div class="table-row">
-                        <div>003</div>
-                        <div>Nguyễn Thị Hihi </div>
-                        <div>10-02-2023</div>
-                        <div><span class="status active">Đang chờ lấy hàng</span></div>
-                        <div class="actions">
-                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
-                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
+                        <div><button class="detail-btn">Xem chi tiết</button></div>
                     </div>
-                    <div class="table-row">
+                    <div class="table-row" data-customer='{
+                        "id": "003",
+                        "name": "Nguyễn Thị Hihi",
+                        "dob": "15-03-1992",
+                        "phone": "0934567890",
+                        "email": "nguyenhihi@example.com",
+                        "address": "789 Đường GHI, TP.HCM",
+                        "orders": "7",
+                        "created_at": "20-03-2023",
+                        "status": "Đang chờ lấy hàng"
+                    }'>
+                        <div>003</div>
+                        <div>Nguyễn Thị Hihi</div>
+                        <div>20-03-2023</div>
+                        <div><span class="status active">Đang chờ lấy hàng</span></div>
+                        <div><button class="detail-btn">Xem chi tiết</button></div>
+                    </div>
+                    <div class="table-row" data-customer='{
+                        "id": "004",
+                        "name": "Nguyễn Thị Hoho",
+                        "dob": "25-05-1990",
+                        "phone": "0976543210",
+                        "email": "nguyenhoho@example.com",
+                        "address": "321 Đường JKL, TP.HCM",
+                        "orders": "10",
+                        "created_at": "15-04-2023",
+                        "status": "Đang giao hàng"
+                    }'>
                         <div>004</div>
                         <div>Nguyễn Thị Hoho</div>
-                        <div>10-02-2023</div>
-                        <div><span class="status active">Đang giao hàng </span></div>
-                        <div class="actions">
-                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
-                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
-                    </div>
-                    <div class="table-row">
-                        <div>005</div>
-                        <div>Trịnh Trần Phương Tứn </div>
-                        <div>10-02-2023</div>
-                        <div><span class="status inactive">Chưa từng đặt hàng</span></div>
-                        <div class="actions">
-                            <button class="pin-btn"><i class="fas fa-thumbtack"></i> Ghim</button>
-                            <button class="delete-btn"><i class="fas fa-trash"></i> Xóa</button>
-                        </div>
+                        <div>15-04-2023</div>
+                        <div><span class="status active">Đang giao hàng</span></div>
+                        <div><button class="detail-btn">Xem chi tiết</button></div>
                     </div>
                 </div>
             </div>
@@ -194,7 +189,7 @@
                     <p><strong>Thời gian tạo tài khoản:</strong> <span id="modal-created-at"></span></p>
                     <p><strong>Trạng thái:</strong> <span id="modal-status"></span></p>
                 </div>
-            </div>
+            </div>            
             <!-- Footer -->
             <div class="footer">THÔNG TIN</div>
         </div>
