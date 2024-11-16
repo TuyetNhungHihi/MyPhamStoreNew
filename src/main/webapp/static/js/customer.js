@@ -59,4 +59,61 @@ document.addEventListener("DOMContentLoaded", function() {
     L.marker([10.8231, 106.6297]).addTo(map).bindPopup("TP. Hồ Chí Minh - Trung bình");
     L.marker([16.0471, 108.2068]).addTo(map).bindPopup("Đà Nẵng - Ít khách hàng");
 });
+// Lấy modal và các phần tử cần thiết
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("customer-modal");
+    const closeModal = document.querySelector(".close-btn");
+    const detailButtons = document.querySelectorAll(".detail-btn");
+    console.log("Detail button clicked");
+    console.log("Customer data:", customerData);
 
+    // Modal fields
+    const modalName = document.getElementById("modal-name");
+    const modalDob = document.getElementById("modal-dob");
+    const modalPhone = document.getElementById("modal-phone");
+    const modalEmail = document.getElementById("modal-email");
+    const modalAddress = document.getElementById("modal-address");
+    const modalOrders = document.getElementById("modal-orders");
+    const modalCreatedAt = document.getElementById("modal-created-at");
+    const modalStatus = document.getElementById("modal-status");
+
+    // Attach event listeners to detail buttons
+    detailButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const row = this.closest(".table-row");
+            const customerData = row.getAttribute("data-customer");
+
+            if (!customerData) {
+                alert("No customer data available!");
+                return;
+            }
+
+            const customer = JSON.parse(customerData);
+
+            // Populate modal with data
+            modalName.textContent = customer.name;
+            modalDob.textContent = customer.dob;
+            modalPhone.textContent = customer.phone;
+            modalEmail.textContent = customer.email;
+            modalAddress.textContent = customer.address;
+            modalOrders.textContent = customer.orders;
+            modalCreatedAt.textContent = customer.created_at;
+            modalStatus.textContent = customer.status;
+
+            // Show modal
+            modal.style.display = "flex";
+        });
+    });
+
+    // Close modal button
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+});
