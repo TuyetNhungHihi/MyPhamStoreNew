@@ -29,59 +29,16 @@
 </head>
 
 <body>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-brand">
-            <div class="brand-flex">
-                <img src="https://i.pinimg.com/originals/c2/ac/53/c2ac53c54fb5eb42b67b02fefb61f6ab.png" class="img-logo"
-                    alt="logo">
+   
 
-                <div class="brand-icons">
-                    <span class="las la-bell"></span>
-                    <span class="las la-user-circle"></span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="sidebar-menu">
-            <div class="sidebar-user">
-                <img src="https://randomuser.me/api/portraits/men/47.jpg" alt="">
-
-                <div>
-                    <h3>Reza Younesi</h3>
-                    <span>younesi.nima@gmail.com</span>
-                </div>
-            </div>
-
-
-            <div class="sidebar-menu">
-                <div class="menu-head">
-                    <span class="category">Dashboard</span>
-                    <ul>
-                        <li><a href="#"><span class="las la-balance-scale"></span>Finance</a></li>
-                        <li><a href="#"><span class="las la-chart-pie"></span>Analytics</a></li>
-
-                    </ul>
-                </div>
-
-                <div class="menu-head">
-                    <span class="category">Application</span>
-                    <ul>
-                        <li><a href="#"><span class="las la-balance-scale"></span>Calender</a></li>
-                        <li><a href="#"><span class="las la-users"></span>Contacts</a></li>
-                        <li><a href="#"><span class="las la-shopping-cart"></span>Ecommerce</a></li>
-                        <li><a href="#"><span class="las la-envelope"></span>Mailbox</a></li>
-                        <li><a href="#"><span class="las la-check-circle"></span>Tasks</a></li>
-
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
-
+     <!-- Sidebar -->
+     <div class="sidebar active" id="sidebar">
     </div>
+    <!-- end sidebar -->
+     <!-- start header -->
+    <div class="main-content" id="header" style="margin-left: 0;">
+    </div>
+    <!-- end header -->
 
     <div class="main-content">
         <header>
@@ -340,6 +297,25 @@
     </div>
 
     <label for="sidebar" class="body-label" id="body-label"></label>
+    <script>
+        const header = document.getElementById('header');
+        const sidebar1 = document.getElementById('sidebar');
+
+        fetch('components/admin-header.html')
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                header.innerHTML = data;
+            });
+        fetch('components/admin-sidebar.html')
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                sidebar1.innerHTML = data;
+            });
+    </script>
     <script src="../static/js/category-management.js"></script>
 </body>
 
