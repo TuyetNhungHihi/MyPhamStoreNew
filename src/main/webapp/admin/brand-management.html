@@ -1,103 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--srart theme style -->
     <link rel="stylesheet" type="text/css" href="../static/css/animate.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/font-awesome.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/owl.carousel.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/owl.theme.default.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/magnific-popup.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/owl.theme.default.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/magnific-popup.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/dl-menu.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/camera.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/responsive.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
     <!-- favicon links -->
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="../static/images/header/favicon.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
-    />
-    <link rel="stylesheet" href="../static/css/category-management.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/category-management.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Quản lý danh mục</title>
-  </head>
+</head>
 
-  <body>
+<body>
+
+
+
     <!-- Sidebar -->
-    <div class="sidebar" id="sidebar"></div>
+    <div class="sidebar " id="sidebar">
+    </div>
     <!-- end sidebar -->
     <!-- start header -->
-    <div class="main-content" id="header" style="margin-left: 0"></div>
+    <div class="main-content" id="header" style="margin-left: 0;">
+    </div>
     <!-- end header -->
     <div class="main-content">
-      <header>
-        <div class="menu-toggle" id="menu-toggle">
-          <label class="bar-label" for="">
-            <span class="bars las la-bars"></span>
-          </label>
-        </div>
-        <div class="header-icons">
-          <span class="las la-search"></span>
-          <span class="las la-bookmark"></span>
-          <span class="las la-sms"></span>
-        </div>
-      </header>
+
+        <header>
+
+            <div class="menu-toggle" id="menu-toggle">
+                <label class="bar-label" for="">
+                    <span class="bars las la-bars"></span>
+                </label>
+            </div>
+            <div class="header-icons">
+                <span class="las la-search"></span>
+                <span class="las la-bookmark"></span>
+                <span class="las la-sms "></span>
+            </div>
+        </header>
+
+        <main>
+            <div class="main">
+                <div class="page-header">
+
+                    <div class="content">
+                        <h1>Analytic Dashboard</h1>
+                        <smal>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias soluta voluptatum saepe
+                            expedita accusa</smal>
+                    </div>
+
+                    <div class="header-actions">
+                        <button class="las la-file-export"> Export</button>
+                        <button class="las la-tools"> Setting</button>
+
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+                                <div class="card-head">
+                                    <span>Danh mục sản phẩm nhập vào</span>
+                                    <small>Số lượng</small>
+                                </div>
+
+                                <p class="cost">17,633</p>
+                                <small>Ít hơn 2% so với tháng trước</small>
+
+                            </div>
+
+                            <div class="card-chart">
+                                <span class="las la-chart-line"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+                                <div class="card-head">
+                                    <span>Danh mục sản phẩm bán nhiều nhất</span>
+                                    <small>Số lượng</small>
+                                </div>
+
+                                <p class="cost">57,633</p>
+                                <small>Tăng 12% so với tháng trước</small>
+
+                            </div>
+
+                            <div class="card-chart">
+                                <span class="green las la-chart-line"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-single">
+                        <div class="card-flex">
+                            <div class="card-info">
+                                <div class="card-head">
+                                    <span>Danh mục sản phẩm còn lại</span>
+                                    <small>Số lượng</small>
+                                </div>
+
+                                <p class="cost">157,633</p>
+                                <small>Ít hơn 10% so với tháng trước</small>
+
+                            </div>
+                            <div class="card-chart">
+                                <span class="orange las la-chart-line"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="body">
+                <div class="jobs">
+                    <div class="header">
+                        <h3>Danh mục <i class="las la-arrow-right"></i></h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div>Chăm sóc da mặt</div>
+                                    </td>
+                                    <td>
+                                        <div>Design</div>
+                                    </td>
+                                    <td>
+                                        <div>Tokyo</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 6days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>Các nhãn hàng</button></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div> <span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Trang điểm</div>
+                                    </td>
+                                    <td>
+                                        <div>hi</div>
+                                    </td>
+                                    <td>
+                                        <div>London</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 26days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>Các nhãn hàng</button></div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div> Chăm sóc cơ thể</div>
+                                    </td>
+                                    <td>
+                                        <div> Business</div>
+                                    </td>
+                                    <td>
+                                        <div> New York</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button> Các nhãn hàng</button></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div> Chăm sóc tóc</div>
+                                    </td>
+                                    <td>
+                                        <div>Programmer</div>
+                                    </td>
+                                    <td>
+                                        <div>Tehran</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 3days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>Các nhãn hàng</button></div>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Chăm sóc móng</div>
+                                    </td>
+                                    <td>
+                                        <div>UX designer</div>
+                                    </td>
+                                    <td>
+                                        <div>Paris</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>Các nhãn hàng</button> </div>
+                                    </td>
+
+
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Nước hoa</div>
+                                    </td>
+                                    <td>
+                                        <div>UX designer</div>
+                                    </td>
+                                    <td>
+                                        <div>Tornto</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>Các nhãn hàng</button> </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div><span class="indicator"></span></div>
+                                    </td>
+                                    <td>
+                                        <div>Thực phẩm chức năng</div>
+                                    </td>
+                                    <td>
+                                        <div>UX designer</div>
+                                    </td>
+                                    <td>
+                                        <div>Tornto</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div>Sent 2days ago</div>
+                                    </td>
+                                    <td>
+                                        <div><button>Các nhãn hàng</button> </div>
+                                    </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+        </main>
     </div>
     <label for="sidebar" class="body-label" id="body-label"></label>
 
     <script>
-      const header = document.getElementById("header");
-      const sidebar1 = document.getElementById("sidebar");
+        const header = document.getElementById('header');
+        const sidebar1 = document.getElementById('sidebar');
 
-      fetch("components/admin-header.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          header.innerHTML = data;
-        });
-      fetch("components/admin-sidebar.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          sidebar1.innerHTML = data;
-        });
+        fetch('components/admin-header.html')
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                header.innerHTML = data;
+            });
+        fetch('components/admin-sidebar.html')
+            .then(response => {
+                return response.text()
+            })
+            .then(data => {
+                sidebar1.innerHTML = data;
+            });
     </script>
     <script src="../static/js/category-management.js"></script>
-  </body>
+
+</body>
+
 </html>
