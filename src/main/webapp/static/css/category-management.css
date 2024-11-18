@@ -225,6 +225,7 @@ body {
       grid-gap: 0.7em;
       justify-content: space-between;
       align-items: center;
+      padding-top: 5%;
       .card-single {
         flex: 0 0 32%;
         margin: 1% 0;
