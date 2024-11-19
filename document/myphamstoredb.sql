@@ -1,5 +1,4 @@
-create database myphamstoredb;
-use myphamstoredb;
+CREATE SCHEMA `user`;
 
 CREATE TABLE `user` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
@@ -82,8 +81,8 @@ CREATE TABLE `product` (
   `price` int NOT NULL,
   `stock` int NOT NULL,
   `sold_quantity` int NOT NULL,
-  `description` text ,
-  `attributes` json not null,
+  `description` text DEFAULT '',
+  `attributes` json NOT NULL,
   `is_available` boolean NOT NULL DEFAULT true,
   `thumbnail` text(500) NOT NULL,
   `brand_id` int,
@@ -97,7 +96,7 @@ CREATE TABLE `review` (
   `user_id` int,
   `product_id` int,
   `rating` int NOT NULL,
-  `comment` text,
+  `comment` text DEFAULT '',
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
