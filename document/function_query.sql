@@ -1,29 +1,40 @@
 use myphamstoredb;
 
 -- chức năng xem sản phẩm (kết hợp phân trang)-- 
--- DELIMITER //
--- CREATE PROCEDURE get_paginated_products(IN items_per_page INT, IN page_number INT)
--- BEGIN
---     DECLARE offset_value INT;
---     
---     -- Tính toán offset
---     SET offset_value = (page_number - 1 ) * items_per_page;
--- 	
---     -- Truy vấn để lấy sản phẩm phân trang
---     SELECT Product.id AS product_id, Product.name AS product_name, 
---            Product.price AS product_price, Product.stock AS product_stock,
---            Product.soldQuantity AS product_sold_quantity, 
---            Brand.name AS brand_name, Category.name AS category_name, 
---            Product.createdDate AS product_created_date
---     FROM Product
---     JOIN Brand ON Product.brandId = Brand.id
---     JOIN Category ON Product.categoryId = Category.id
---     ORDER BY Product.createdDate DESC
---     LIMIT items_per_page OFFSET offset_value;
--- END //
+DELIMITER //
 
--- DELIMITER ;
--- CALL get_paginated_products(3, 1);
+CREATE PROCEDURE get_paginated_products(IN items_per_page INT, IN page_number INT)
+BEGIN
+    DECLARE offset_value INT;
+    
+    -- Tính toán offset
+    SET offset_value = (page_number - 1) * items_per_page;
+
+    -- Truy vấn để lấy sản phẩm phân trang
+    SELECT 
+        p.id AS product_id, 
+        p.name AS product_name, 
+        p.price AS product_price, 
+        p.stock AS product_stock,
+        p.sold_quantity AS product_sold_quantity, 
+        b.name AS brand_name, 
+        c.name AS category_name, 
+        p.created_at AS product_created_date
+    FROM 
+        product p
+    JOIN 
+        brand b ON p.brand_id = b.id
+    JOIN 
+        category c ON p.category_id = c.id
+    ORDER BY 
+        p.created_at DESC
+    LIMIT items_per_page OFFSET offset_value;
+END //
+
+DELIMITER ;
+CALL get_paginated_products(3, 1); -- Lấy 3 sản phẩm đầu tiên từ trang 1
+CALL get_paginated_products(5, 2); -- Lấy 5 sản phẩm tiếp theo từ trang 2
+
 
     
  --    Chức năng tìm kiếm sản phẩm
