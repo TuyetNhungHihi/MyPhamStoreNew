@@ -312,7 +312,7 @@ body {
 
 .table-header, .table-row {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr 2fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
     padding: 10px 0;
     font-size: 14px;
     border-bottom: 1px solid #e0e0e0;
@@ -384,53 +384,4 @@ body {
 
 .actions .delete-btn i {
     color: #ff0000;
-}
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    text-align: left;
-}
-
-.close-btn {
-    float: right;
-    font-size: 18px;
-    cursor: pointer;
-    color: #555;
-}
-
-.close-btn:hover {
-    color: #000;
-}
-
-/* Detail button */
-.detail-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.detail-btn:hover {
-    background-color: #0056b3;
 }
