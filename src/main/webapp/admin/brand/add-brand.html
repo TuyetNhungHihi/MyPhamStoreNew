@@ -84,6 +84,147 @@
         style="margin-left: 0; height: fit-content"
       ></div>
       <!-- end header -->
+
+      <!-- Main Content -->
+      <main class="main-content row my-table-custom">
+        <!--style="display: flex; position: relative; height: min-content;"> -->
+        <div class=" " style="width: 100%">
+          <h1 class="text-center" style="margin-bottom: 20px">
+            Thêm Sản Phẩm Mới
+          </h1>
+          <form
+            class=""
+            action="#"
+            method="post"
+            style="padding: 0 100px 0 100px"
+          >
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"
+                    >Tên Sản Phẩm</span
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Tên sản phẩm..."
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Giá</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Giá sản phẩm..."
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"
+                    >Số Lượng</span
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Số lượng sản phẩm..."
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px">
+              <div class="col-lg-12">
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1">Mô Tả</span>
+                  <textarea
+                    class="form-control"
+                    placeholder="Mô tả sản phẩm..."
+                    aria-describedby="basic-addon1"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px">
+              <div class="col-lg-6 row">
+                <div class="col-lg-12">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"
+                      >Hình Ảnh</span
+                    >
+                    <input
+                      id="imageInput"
+                      type="file"
+                      class="form-control"
+                      placeholder="Hình ảnh sản phẩm..."
+                      aria-describedby="basic-addon1"
+                      accept="image/*"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12" style="margin-top: 20px">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"
+                      >Loại Sản Phẩm</span
+                    >
+                    <select
+                      class="form-control"
+                      aria-label="Default select example"
+                    >
+                      <option selected disabled>Chọn loại sản phẩm...</option>
+                      <option value="1">Kem chống nắng</option>
+                      <option value="2">Bông tẩy trang</option>
+                      <option value="3">Kem dưỡng</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="input-group" style="margin-top: 20px">
+                    <span class="input-group-addon" id="basic-addon1"
+                      >Nhãn Hàng</span
+                    >
+                    <select
+                      class="form-control"
+                      aria-label="Default select example"
+                    >
+                      <option selected disabled>Chọn nhãn hàng...</option>
+                      <option value="1">Care</option>
+                      <option value="2">Saigon</option>
+                      <option value="3">Tiger</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <img src="" alt="image" width="100%" id="output" hidden />
+              </div>
+            </div>
+            <div style="margin-top: 20px" class="text-center">
+              <button
+                class="btn-lg btn-danger"
+                style="width: 200px"
+                type="button"
+                onclick="history.back()"
+              >
+                Huỷ bỏ
+              </button>
+              <button
+                class="btn-lg btn-primary"
+                style="width: 200px"
+                type="submit"
+              >
+                Thêm Mới
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
       <label for="sidebar" class="body-label" id="body-label"></label>
     </div>
     <script>
