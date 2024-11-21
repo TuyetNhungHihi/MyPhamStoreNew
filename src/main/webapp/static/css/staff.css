@@ -10,11 +10,46 @@
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease; }
 
-body {
-  display: table;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  width: 100%; }
+  body {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff;
+    /* background: linear-gradient(to right, #bec9f9, #d4b5f5, #efc5cf, #e5eaf5, #e0c2f1, #8bd1f3); */
+    color: #333;
+}
+
+.dashboard {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    flex: 0 0 200px; /* Fixed width for sidebar */
+    color: #000000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content {
+    flex-grow: 1; /* Takes up remaining space */
+    padding: 20px;
+    max-width: 100%; /* Tùy chỉnh độ rộng */
+    margin: 0 auto;
+}
+
+.rightbar {
+    flex: 0 0 400px;
+    /* width: 200px; Keep width fixed for right bar */
+    color: #000000;
+    padding: 20px;
+    margin-bottom: auto;
+    /* display: flex; */
+    flex-direction: column;
+    /* align-items: center; */
+    overflow: hidden;
+}
 
 p {
   font-size: 16px;
