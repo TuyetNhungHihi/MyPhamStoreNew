@@ -41,19 +41,31 @@ body::-webkit-scrollbar-thumb {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
-/* .main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    overflow-y: auto;
-} */
 .main-content {
   display: flex;
+    flex-wrap: wrap; /* Cho phép nội dung xuống dòng khi không đủ chỗ */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Đặt chiều rộng tối đa để căn giữa */
+    margin: 0 auto; /* Căn giữa nội dung */
+    background-color: #f5f5f5;
+  /* display: flex;
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; */
+  
+}
+.top-content {
+  display: flex;
+  justify-content: space-between; /* Đặt các phần theo hàng ngang */
+  gap: 20px;
+}
+.bottom-content {
+  display: flex;
+  flex-direction: column; /* Nội dung theo cột */
+  gap: 20px; /* Khoảng cách giữa thanh tìm kiếm, nút, và bảng */
+  width: 100%; /* Đảm bảo chiếm đủ chiều rộng */
 }
 .left-col {
   flex: 2;
@@ -80,121 +92,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.sidebar {
-    width: 280px;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding: 1rem;
-    background: #232a3c;
-    color: #fff;
-    overflow: hidden;
-    transition: left 0.5s, width 0.5s;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    &.active {
-      width: 0px;
-      left: -100px;
-      margin-left: 0;
-    }
-  
-    &.active ~ .main-content {
-      margin-left: 0;
-    }
-  
-    & ~ .main-content header {
-      width: calc(100% - 280px);
-      left: 0px;
-      margin-left: 280px;
-    }
-  
-    &.active ~ .main-content header {
-      width: 100%;
-      margin-left: 0px;
-    }
-    ul {
-      margin-bottom: 2rem;
-    }
-  
-    .sidebar-brand {
-      height: 100px;
-      padding: 1rem 1.5rem;
-      .brand-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .img-logo {
-          width: 50px;
-          height: 50px;
-          object-fit: cover;
-          cursor: pointer;
-        }
-  
-        .brand-icons {
-          span {
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
-          }
-        }
-      }
-    }
-  
-    .sidebar-menu {
-      display: flex;
-      flex-direction: column;
-  
-      .sidebar-user {
-        margin: 0rem 0rem 1rem 0rem;
-        text-align: center;
-        font-size: 0.8rem;
-        img {
-          width: 110px;
-          height: 110px;
-  
-          margin: auto;
-          object-fit: cover;
-  
-          border-radius: 50%;
-          border-left: 2px solid transparent;
-          border-right: 2px solid #efefef;
-          border-top: 2px solid #efefef;
-          border-bottom: 2px solid #efefef;
-        }
-      }
-  
-      .sidebar-menu {
-        margin-top: 20px;
-  
-        .menu-head {
-          span.category {
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #8da2fb;
-          }
-  
-          ul {
-            li {
-              margin-top: 0.8rem;
-              a {
-                color: #efefef;
-                font-size: 0.9rem;
-                display: flex;
-                align-items: center;
-                span {
-                  font-size: 1.5rem;
-                  display: inline-block;
-                  margin-right: 0.8rem;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
   
 /* Map and Stats */
 /* Map and Stats */
@@ -313,9 +210,16 @@ body::-webkit-scrollbar-thumb {
 /* Search Bar and Sort Container */
 /* Aligning search bar and sort button horizontally */
 .search-bar-container {
-    display: flex;
+    /* display: flex;
     align-items: center; /* Vertical alignment */
-    gap: 10px; /* Spacing between search bar and sort button */
+    /* gap: 10px; /* Spacing between search bar and sort button */
+    /* margin: 20px auto;
+    max-width: 600px;
+    width: 100%;  */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    gap: 10px;
     margin: 20px auto;
     max-width: 600px;
     width: 100%;
@@ -386,18 +290,20 @@ body::-webkit-scrollbar-thumb {
 }
 
 .sort-options {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 5px;
-    list-style: none;
-    padding: 5px 0;
-    width: 100%;
-    display: none; /* Hide dropdown initially */
-    z-index: 1000;
+  position: absolute;
+  top: 110%; /* Đặt ngay bên dưới nút */
+  left: 0;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 5px;
+  list-style: none;
+  padding: 5px 0;
+  width: 150px; /* Điều chỉnh chiều rộng phù hợp */
+  visibility: hidden; /* Ẩn mặc định */
+  opacity: 0; /* Ẩn mờ */
+  transition: visibility 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
 }
 
 .sort-options li {
@@ -422,16 +328,27 @@ body::-webkit-scrollbar-thumb {
 
 /* Show dropdown on hover */
 .sort-dropdown:hover .sort-options {
-    display: block;
+    /* display: block; */
+    visibility: visible; /* Hiển thị khi hover */
+    opacity: 1; /* Hiển thị mờ dần */
 }
 
 /* Table Styles */
 .table {
+  flex: 1;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  overflow-x: auto; /* Chỉ cho phép cuộn ngang */
+  table-layout: fixed; /* Đảm bảo các cột không thay đổi kích thước */
+  word-wrap: break-word; /* Ngắt từ nếu quá dài */
+    /* flex: 1;
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: #fff;
-    overflow: hidden;
+    overflow: auto; */
 }
 
 .table-header, .table-row {
