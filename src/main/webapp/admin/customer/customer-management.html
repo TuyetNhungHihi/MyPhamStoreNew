@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management Dashboard</title>
+
+   <!--srart theme style -->
+   <link rel="stylesheet" type="text/css" href="../../static/css/animate.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/owl.carousel.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/owl.theme.default.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/magnific-popup.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/fonts.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/dl-menu.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/reset.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/camera.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/style.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/responsive.css" />
+   <link rel="stylesheet" type="text/css" href="../../static/css/sidebar.css" />
+   <!-- favicon links -->
+   <link rel="shortcut icon" type="image/png" href="../../static/images/header/favicon.png" />
+   <link rel="stylesheet"
+       href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+   <link rel="stylesheet" href="../../static/css/category-management.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../static/css/category-management.css">
+    <link rel="stylesheet" href="../../static/css/customer.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar"></div>
+
+        <!-- Header -->
+        <header class="main-content" id="header"></header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="top-content">
+                <div class="left-col">
+                    <div class="content">
+                        <h1>Thống kê khách hàng ở các khu vực</h1>
+                        <div class="simple-bar-chart">
+                            <div class="item" style="--clr: #5EB344; --val: 1;">
+                                <div class="label">Tây Bắc Bộ</div>
+                                <div class="value">1%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #FCB72A; --val: 3;">
+                                <div class="label">Đông Bắc Bộ</div>
+                                <div class="value">3%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #F8821A; --val: 6;">
+                                <div class="label">Đồng Bằng Sông Hồng</div>
+                                <div class="value">6%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #E0393E; --val: 5;">
+                                <div class="label">Bắc Trung Bộ</div>
+                                <div class="value">5%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #963D97; --val: 10;">
+                                <div class="label">Nam Trung Bộ</div>
+                                <div class="value">10%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #069CDB; --val: 5;">
+                                <div class="label">Tây Nguyên</div>
+                                <div class="value">5%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #06dba2; --val: 40;">
+                                <div class="label">Đông Nam Bộ</div>
+                                <div class="value">40%</div>
+                            </div>
+                            
+                            <div class="item" style="--clr: #a2db06; --val: 30;">
+                                <div class="label">Tây Nam Bộ</div>
+                                <div class="value">30%</div>
+                            </div>
+                        </div>        
+                    </div>
+                </div> 
+                <!-- Right Content -->
+                <div class="rightbar">
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-title">
+                               <i class="fas fa-users"></i> Tổng khách hàng
+                           </div>
+                           <div class="stat-content">
+                               <div class="number">15,689</div>
+                                   <div class="trend positive">
+                                       <i class="fas fa-arrow-up"></i> +5%
+                                   </div>
+                               </div>
+                           </div>
+                       <div class="stat-box">
+                           <div class="stat-title">
+                               <i class="fas fa-user-plus"></i> Khách hàng mới
+                           </div>
+                           <div class="stat-content">
+                               <div class="number">+240</div>
+                                   <div class="trend positive">
+                                       <i class="fas fa-arrow-up"></i> +12%
+                                   </div>
+                               </div>
+                           </div>
+                       <div class="stat-box">
+                           <div class="stat-title">
+                               <i class="fas fa-shopping-cart"></i> Khách hàng đang đặt hàng
+                           </div>
+                               <div class="stat-content">
+                                   <div class="number">+450</div>
+                                       <div class="trend negative">
+                                           <i class="fas fa-arrow-down"></i> -3%
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                </div>   
+            </div>
+            <div class="bottom-content">
+                <!-- Search Bar -->
+                <div class="search-bar-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Tìm kiếm khách hàng...">
+                    </div>
+                </div>
+                <div class="sort-btn">
+    
+                </div>
+                <!-- Table -->
+                <div class="table">
+                    <div class="table-header">
+                        <div>Mã khách hàng</div>
+                        <div>Tên tài khoản</div>
+                        <div>Thời gian tạo tài khoản</div>
+                        <div>Trạng thái</div>
+                        <div>Xem chi tiết</div>
+                    </div>
+                    <div class="table-body">
+                        <!-- Table Rows -->
+                        <div class="table-row" data-customer='{
+                            "id": "001",
+                            "name": "Nguyễn Văn Tí",
+                            "dob": "01-01-1990",
+                            "phone": "0901234567",
+                            "email": "nguyenvanti@example.com",
+                            "address": "123 Đường ABC, TP.HCM",
+                            "orders": "5",
+                            "created_at": "01-01-2023",
+                            "status": "Đang giao hàng"
+                        }'>
+                            <div>001</div>
+                            <div>Nguyễn Văn Tí</div>
+                            <div>01-01-2023</div>
+                            <div><span class="status active">Đang giao hàng</span></div>
+                            <div><button class="detail-btn">Xem chi tiết</button></div>
+                        </div>
+                        <div class="table-row" data-customer='{
+                            "id": "002",
+                            "name": "Lê Văn Tèo",
+                            "dob": "02-02-1995",
+                            "phone": "0908765432",
+                            "email": "levanteo@example.com",
+                            "address": "456 Đường DEF, TP.HCM",
+                            "orders": "2",
+                            "created_at": "10-02-2023",
+                            "status": "Từng đặt hàng"
+                        }'>
+                            <div>002</div>
+                            <div>Lê Văn Tèo</div>
+                            <div>10-02-2023</div>
+                            <div><span class="status inactive">Từng đặt hàng</span></div>
+                            <div><button class="detail-btn">Xem chi tiết</button></div>
+                        </div>
+                        <div class="table-row" data-customer='{
+                            "id": "003",
+                            "name": "Nguyễn Thị Hihi",
+                            "dob": "15-03-1992",
+                            "phone": "0934567890",
+                            "email": "nguyenhihi@example.com",
+                            "address": "789 Đường GHI, TP.HCM",
+                            "orders": "7",
+                            "created_at": "20-03-2023",
+                            "status": "Đang chờ lấy hàng"
+                        }'>
+                            <div>003</div>
+                            <div>Nguyễn Thị Hihi</div>
+                            <div>20-03-2023</div>
+                            <div><span class="status active">Đang chờ lấy hàng</span></div>
+                            <div><button class="detail-btn">Xem chi tiết</button></div>
+                        </div>
+                        <div class="table-row" data-customer='{
+                            "id": "004",
+                            "name": "Nguyễn Thị Hoho",
+                            "dob": "25-05-1990",
+                            "phone": "0976543210",
+                            "email": "nguyenhoho@example.com",
+                            "address": "321 Đường JKL, TP.HCM",
+                            "orders": "10",
+                            "created_at": "15-04-2023",
+                            "status": "Đang giao hàng"
+                        }'>
+                            <div>004</div>
+                            <div>Nguyễn Thị Hoho</div>
+                            <div>15-04-2023</div>
+                            <div><span class="status active">Đang giao hàng</span></div>
+                            <div><button class="detail-btn">Xem chi tiết</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="customer-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Thông tin chi tiết khách hàng</h3>
+            <p><strong>Họ tên:</strong> <span id="modal-name"></span></p>
+            <p><strong>Ngày sinh:</strong> <span id="modal-dob"></span></p>
+            <p><strong>Số điện thoại:</strong> <span id="modal-phone"></span></p>
+            <p><strong>Email:</strong> <span id="modal-email"></span></p>
+            <p><strong>Địa chỉ nhận hàng:</strong> <span id="modal-address"></span></p>
+            <p><strong>Số lần đặt hàng:</strong> <span id="modal-orders"></span></p>
+            <p><strong>Thời gian tạo tài khoản:</strong> <span id="modal-created-at"></span></p>
+            <p><strong>Trạng thái:</strong> <span id="modal-status"></span></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('header');
+            const sidebar = document.getElementById('sidebar');
+
+            fetch('../components/admin-header.html')
+                .then(response => response.text())
+                .then(data => (header.innerHTML = data));
+
+            fetch('../components/admin-sidebar.html')
+                .then(response => response.text())
+                .then(data => (sidebar.innerHTML = data));
+        });
+    </script>
+    <script src="../../static/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../static/js/admin.js"></script>
+    <script src="../../static/js/customer.js"></script>
+    <script src="../../static/js/category-management.js"></script>
+    
+</body>
+</html>
