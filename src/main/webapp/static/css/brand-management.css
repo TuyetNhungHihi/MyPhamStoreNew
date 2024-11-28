@@ -10,6 +10,12 @@
 body {
   overflow-x: hidden;
 }
+.my-table-custom {
+  width: 80%;
+  position: absolute;
+  height: 100%;
+  right: 140px;
+}
 
 .sidebar {
   width: 280px;
