@@ -66,7 +66,7 @@ body::-webkit-scrollbar-thumb {
 .left-col .content h1 {
   font-size: 24px;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -75,10 +75,8 @@ body::-webkit-scrollbar-thumb {
     flex: 1;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    gap: 20px;
-    padding: 20px;
-    /* margin-left: 250px; Offset for fixed sidebar */
-    /* background-color: #f4f4f4; */
+    gap: 10px;
+    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -258,7 +256,7 @@ body::-webkit-scrollbar-thumb {
     --line-count: 5;
     --line-color: currentcolor;
     --line-opacity: 1;
-    --item-gap: 1%;
+    --item-gap: 0.5%;
     --item-default-color: #060606;
     
     height: 10rem;
@@ -293,8 +291,14 @@ body::-webkit-scrollbar-thumb {
   @keyframes item-height { from { height: 0 } }
   
   .simple-bar-chart > .item > * { position: absolute; text-align: center }
-  .simple-bar-chart > .item > .label { inset: 100% 0 auto 0 }
-  .simple-bar-chart > .item > .value { inset: auto 0 100% 0 }
+  .simple-bar-chart > .item > .label {
+    position: absolute;
+    bottom: -2.5rem; /* Đặt tên miền dưới cùng cột */
+    font-size: 12px;
+    text-align: center;
+    color: #333;
+    white-space: normal;
+}  .simple-bar-chart > .item > .value { inset: auto 0 100% 0 }
 
 .stats {
     flex: 1;
