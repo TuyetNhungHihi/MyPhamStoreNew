@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Quản lý sản phẩm</title>
+    <title>Quản lý nhân viên</title>
     <link rel="stylesheet" href="../../static/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../static/css/category-management.css">
     <link rel="stylesheet" href="../../static/css/admin-management.css">
-z
+
 </head>
 
 <body>
@@ -38,170 +38,158 @@ z
         <!-- Main Content -->
         <main class="main-content row my-table-custom" ><!--style="display: flex; position: relative; height: min-content;"> -->
             <div class=" " style="width: 100%;">
-                <h1 class="text-center " style="margin-bottom: 20px;">Quản lý sản phẩm</h1>
+                <h1 class="text-center " style="margin-bottom: 20px;">Quản lý nhân viên</h1>
                 <div class="row" style="margin-bottom: 20px;">
                     <div class="col-lg-6">
                         <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                          <input type="text" class="form-control" placeholder="Tìm kiếm nhân viên...">
                           <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Tìm Kiếm</button>
                           </span>
                         </div><!-- /input-group -->
                       </div><!-- /.col-lg-6 -->
                       <div class="col-lg-6">
-                        <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 sản phẩm</span>
-                        <a href="./add-product.html" class="btn btn-primary" style="float: right;">Thêm sản phẩm</a>
+                        <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 nhân viên</span>
+                        <a href="./add-employee.html" class="btn btn-primary" style="float: right;">Thêm nhân viên</a>
                       </div>
                 </div>
                 <table class="table table-striped ">
                     <thead >
                         <tr>
                             <th  class="text-center">id</th>
-                            <th class="text-center">Tên sản phẩm</th>
-                            <th class="text-center">Giá</th>
-                            <th class="text-center">Còn lại</th>
-                            <th class="text-center">Đã bán</th>
-                            <th class="text-center">Đang bán</th>
+                            <th class="text-center">Tên nhân viên</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Điện thoại</th>
+                            <th class="text-center">Chức vụ</th>
+                            <th class="text-center">Còn hoạt động</th>
                             <th class="text-center">Hành Động</th>
-
                           </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="text-center">1</td>
-                            <td >Bông tẩy trang</td>
-                            <td class="text-center">120,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
+                            <td >Nguyễn Ngọc Hân</td>
+                            <td class="text-center">ngochandev@gmail.com</td>
+                            <td class="text-center">0123456789</td>
+                            <td class="text-center">Nhân viên</td>
                             <td class="text-center"  ><span class="active-product"></span></td>
                             <td class="text-center">
                                 <button class="btn btn-primary">Sửa</button>
                                 <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-warning">Ngừng bán</button>
-                                
+                                <button class="btn btn-warning" style="color: black;">Tạm khoá</button>
                             </td>
                           </tr>
-                          
                           <tr>
+                            <td class="text-center">2</td>
+                            <td >Lê Phước Hải</td>
+                            <td class="text-center">phuochaidev@gmail.com</td>
+                            <td class="text-center">0987654321</td>
+                            <td class="text-center">Nhân viên</td>
+                            <td class="text-center"  ><span class="active-product"></span></td>
+                            <td class="text-center">
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-warning" style="color: black;">Tạm khoá</button>
+                            </td>
+                          </tr><tr>
                             <td class="text-center">3</td>
-                            <td >Bông tẩy trang</td>
-                            <td class="text-center">120,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
+                            <td >Nguyễn Ngọc Hân</td>
+                            <td class="text-center">ngochandev@gmail.com</td>
+                            <td class="text-center">0123456789</td>
+                            <td class="text-center">Nhân viên</td>
                             <td class="text-center"  ><span class="active-product"></span></td>
                             <td class="text-center">
                                 <button class="btn btn-primary">Sửa</button>
                                 <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-warning">Ngừng bán</button>
-                                
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">5</td>
-                            <td >Bông tẩy trang</td>
-                            <td class="text-center">120,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
-                            <td class="text-center"  ><span class="active-product"></span></td>
-                            <td class="text-center">
-                              
-                                <button class="btn btn-primary">Sửa</button>
-                                <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-warning">Ngừng bán</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">7</td>
-                            <td >Bông tẩy trang</td>
-                            <td class="text-center">120,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
-                            <td class="text-center"  ><span class="active-product"></span></td>
-                            <td class="text-center">
-                                <button class="btn btn-primary">Sửa</button>
-                                <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-warning">Ngừng bán</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="text-center">9</td>
-                            <td >Bông tẩy trang</td>
-                            <td class="text-center">120,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
-                            <td class="text-center"  ><span class="active-product"></span></td>
-                            <td class="text-center">
-                                <button class="btn btn-primary">Sửa</button>
-                                <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-warning">Ngừng bán</button>
+                                <button class="btn btn-warning" style="color: black;">Tạm khoá</button>
                             </td>
                           </tr>
                           <tr>
                             <td class="text-center">4</td>
-                            <td >kem chống nắng</td>
-                            <td class="text-center">100,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
-                            <td class="text-center"  ><span class="unactive-product"></span></td>
+                            <td >Lê Phước Hải</td>
+                            <td class="text-center">phuochaidev@gmail.com</td>
+                            <td class="text-center">0987654321</td>
+                            <td class="text-center">Nhân viên</td>
+                            <td class="text-center"  ><span class="active-product"></span></td>
                             <td class="text-center">
-                              <button class="btn btn-primary">Sửa</button>
-                              <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-success">Bán</button>
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-warning" style="color: black;">Tạm khoá</button>
                             </td>
-                          </tr>
-                          
-                          <tr>
-                            <td class="text-center">2</td>
-                            <td >kem chống nắng</td>
-                            <td class="text-center">100,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
-                            <td class="text-center"  ><span class="unactive-product"></span></td>
+                          </tr><tr>
+                            <td class="text-center">5</td>
+                            <td >Nguyễn Ngọc Hân</td>
+                            <td class="text-center">ngochandev@gmail.com</td>
+                            <td class="text-center">0123456789</td>
+                            <td class="text-center">Nhân viên</td>
+                            <td class="text-center"  ><span class="active-product"></span></td>
                             <td class="text-center">
-                              <button class="btn btn-primary">Sửa</button>
-                              <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-success">Bán</button>
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-warning" style="color: black;">Tạm khoá</button>
                             </td>
                           </tr>
                           <tr>
                             <td class="text-center">6</td>
-                            <td >kem chống nắng</td>
-                            <td class="text-center">100,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
+                            <td >Lê Phước Hải</td>
+                            <td class="text-center">phuochaidev@gmail.com</td>
+                            <td class="text-center">0987654321</td>
+                            <td class="text-center">Nhân viên</td>
                             <td class="text-center"  ><span class="unactive-product"></span></td>
                             <td class="text-center">
-                              <button class="btn btn-primary">Sửa</button>
-                              <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-success">Bán</button>
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-success">Mở khoá</button>
+                            </td>
+                          </tr><tr>
+                            <td class="text-center">7</td>
+                            <td >Nguyễn Ngọc Hân</td>
+                            <td class="text-center">ngochandev@gmail.com</td>
+                            <td class="text-center">0123456789</td>
+                            <td class="text-center">Nhân viên</td>
+                            <td class="text-center"  ><span class="unactive-product"></span></td>
+                            <td class="text-center">
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-success">Mở khoá</button>
                             </td>
                           </tr>
-                          
-                         
                           <tr>
                             <td class="text-center">8</td>
-                            <td >kem chống nắng</td>
-                            <td class="text-center">100,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
+                            <td >Lê Phước Hải</td>
+                            <td class="text-center">phuochaidev@gmail.com</td>
+                            <td class="text-center">0987654321</td>
+                            <td class="text-center">Nhân viên</td>
                             <td class="text-center"  ><span class="unactive-product"></span></td>
                             <td class="text-center">
-                              <button class="btn btn-primary">Sửa</button>
-                              <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-success">Bán</button>
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-success">Mở khoá</button>
+                            </td>
+                          </tr><tr>
+                            <td class="text-center">9</td>
+                            <td >Nguyễn Ngọc Hân</td>
+                            <td class="text-center">ngochandev@gmail.com</td>
+                            <td class="text-center">0123456789</td>
+                            <td class="text-center">Nhân viên</td>
+                            <td class="text-center"  ><span class="unactive-product"></span></td>
+                            <td class="text-center">
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-success">Mở khoá</button>
                             </td>
                           </tr>
                           <tr>
                             <td class="text-center">10</td>
-                            <td >kem chống nắng</td>
-                            <td class="text-center">100,000đ</td>
-                            <td class="text-center">10</td>
-                            <td class="text-center">120</td>
+                            <td >Lê Phước Hải</td>
+                            <td class="text-center">phuochaidev@gmail.com</td>
+                            <td class="text-center">0987654321</td>
+                            <td class="text-center">Nhân viên</td>
                             <td class="text-center"  ><span class="unactive-product"></span></td>
                             <td class="text-center">
-                              <button class="btn btn-primary">Sửa</button>
-                              <button class="btn btn-danger">Xóa</button>
-                              <button class="btn btn-success">Bán</button>
+                                <button class="btn btn-primary">Sửa</button>
+                                <button class="btn btn-danger">Xóa</button>
+                                <button class="btn btn-success">Mở khoá</button>
                             </td>
                           </tr>
                     </tbody>
