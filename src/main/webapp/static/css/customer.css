@@ -60,7 +60,7 @@ body::-webkit-scrollbar-thumb {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px;
 }
 
 .left-col .content h1 {
@@ -195,65 +195,11 @@ body::-webkit-scrollbar-thumb {
     }
   }
   
-  /* .main-content {
-    position: relative;
-    margin-left: 280px;
-    transition: margin-left 0.5s, width 1s;
   
-    header {
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem;
-      background: #efefef;
-      width: 100%;
-      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
-        rgba(0, 0, 0, 0.23) 0px 6px 6px;
-      position: fixed;
-      z-index: 20;
-      transition: all 0.5s;
-      left: 280px;
-      top: 0;
-      width: calc(100% - 280px);
-      .bar-label {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-      }
-      .bars {
-        cursor: pointer;
-      }
-  
-      .bar-label:hover {
-        background: #fff;
-      }
-  
-      .header-icons {
-        span {
-          font-size: 1.5rem;
-          margin-left: 0.5rem;
-          cursor: pointer;
-          transition: all 0.4s;
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          &:hover {
-            font-weight: 800;
-            transform: translatey(-5px);
-            background: #fff;
-          }
-        }
-      }
-    }  
-  } */
 /* Map and Stats */
 /* Map and Stats */
 .simple-bar-chart{
-    --line-count: 5;
+    --line-count: 7;
     --line-color: currentcolor;
     --line-opacity: 1;
     --item-gap: 0.5%;
@@ -265,7 +211,7 @@ body::-webkit-scrollbar-thumb {
     gap: var(--item-gap);
     align-items: end;
     padding-inline: var(--item-gap);
-    --padding-block: 1.5rem; /*space for labels*/
+    --padding-block: 1rem; /*space for labels*/
     padding-block: var(--padding-block);
     position: relative;
     isolation: isolate;
@@ -283,21 +229,36 @@ body::-webkit-scrollbar-thumb {
     opacity: var(--line-opacity);
   }
   .simple-bar-chart > .item{
-    height: calc(1% * var(--val));
+    height: calc(2% * var(--val));
     background-color: var(--clr, var(--item-default-color));
     position: relative;
-    animation: item-height 1s ease forwards
+    /* margin-bottom: 50px; */
+    animation: item-height 1s ease forwards;
+    display: flex;
+    flex-direction: column; /* Xếp các phần tử dọc */
+    align-items: center;
   }
   @keyframes item-height { from { height: 0 } }
   
-  .simple-bar-chart > .item > * { position: absolute; text-align: center }
-  .simple-bar-chart > .item > .label {
-    position: absolute;
-    bottom: -2.5rem; /* Đặt tên miền dưới cùng cột */
-    font-size: 12px;
-    text-align: center;
-    color: #333;
-    white-space: normal;
+  .simple-bar-chart > .item > * { 
+    width: 100px; 
+    color:#000;
+    position: absolute; 
+    text-align: left; 
+}
+.simple-bar-chart > .item > .label {
+  position: absolute;
+  bottom: -35px; /* Đặt nhãn bên dưới cột */
+  left: 50%; /* Căn giữa nhãn theo chiều ngang */
+  transform: translateX(-50%);
+  max-width: 80px; /* Giới hạn chiều rộng lớn hơn */
+  text-align: left; /* Căn giữa nội dung nhãn */
+  font-size: 12px;
+  white-space: normal; /* Cho phép nhãn xuống dòng */
+  /* line-height: 1.2; Khoảng cách giữa các dòng */
+  text-overflow: ellipsis; /* Thêm "..." nếu nội dung quá dài */
+  overflow: hidden;
+
 }  .simple-bar-chart > .item > .value { inset: auto 0 100% 0 }
 
 .stats {
