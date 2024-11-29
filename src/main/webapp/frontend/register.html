@@ -49,18 +49,19 @@
               </div>
               <div class="form-group">
                 <label>Mật khẩu</label>
-                <input type="password" class="form-control" placeholder="Mật khẩu"
+                <input id="password" name="password" type="password" class="form-control" placeholder="Mật khẩu"
                   pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
                   title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ hoa, 1 chữ số và 1 ký tự đặc biệt (@$!%*?&)"
                   required />
               </div>
               <div class="form-group">
                 <label>Nhập lại mật khẩu</label>
-                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu"
+                <input type="password" id="re-password" name="re-password" class="form-control" placeholder="Nhập lại mật khẩu"
                   pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
                   title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ hoa, 1 chữ số và 1 ký tự đặc biệt (@$!%*?&)"
                   required />
               </div>
+              <div id="password-error-message" class="alert alert-danger" role="alert" style="font-size: medium;" hidden>mật khẩu không khớp!</div>
               <h4 class="sub-title">Thông tin cá nhân</h4>
               <div class="form-group">
                 <label>Số điện thoại</label>
@@ -97,6 +98,18 @@
   </div>
   <div id="footer"></div>
   <!-- Footer Wrapper End -->
+   <script>
+    const password = document.getElementById("password");
+    const rePassword = document.getElementById("re-password");
+    const passwordErrorMessage = document.getElementById("password-error-message");
+    rePassword.onkeyup = (e) => {
+      if (e.target.value !== password.value) {
+        passwordErrorMessage.hidden = false;
+      } else {
+        passwordErrorMessage.hidden = true;
+      }
+    };
+   </script>
   <script>
     const header = document.getElementById("header");
     const footer = document.getElementById("footer");
