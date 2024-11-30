@@ -1,4 +1,6 @@
-CREATE SCHEMA `user`;
+create database myphamstoredb;
+
+use myphamstoredb;
 
 CREATE TABLE `user` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
@@ -8,8 +10,9 @@ CREATE TABLE `user` (
   `phone` varchar(255) NOT NULL,
   `date_of_birth` date NOT NULL,
   `gender` ENUM ('MALE', 'FEMALE', 'OTHER') NOT NULL,
-  `avatar` text(500) DEFAULT null,
-  `is_active` boolean,
+  `avatar` varchar(500),
+  `status` ENUM ('NONE', 'ACTIVE', 'INACTIVE') not null,
+  `last_login` datetime,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
@@ -25,18 +28,6 @@ CREATE TABLE `role` (
 CREATE TABLE `user_has_role` (
   `user_id` int NOT NULL,
   `role_id` int NOT NULL
-);
-
-CREATE TABLE `permission` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `url` text(500) NOT NULL,
-  `created_at` datetime DEFAULT (now()),
-  `updated_at` datetime DEFAULT (now())
-);
-
-CREATE TABLE `role_has_permission` (
-  `role_id` int,
-  `permission_id` int
 );
 
 CREATE TABLE `address` (
@@ -56,7 +47,7 @@ CREATE TABLE `address` (
 CREATE TABLE `brand` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` nvarchar(255) NOT NULL,
-  `logo` text(500) NOT NULL,
+  `logo` varchar(500) NOT NULL,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
@@ -65,13 +56,14 @@ CREATE TABLE `category` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `parent_id` int DEFAULT null,
   `name` nvarchar(255) NOT NULL,
+  `description` varchar(500) null,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
 
 CREATE TABLE `product_image` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `url` text(500) NOT NULL,
+  `url` varchar(500) NOT NULL,
   `product_id` int
 );
 
@@ -79,12 +71,12 @@ CREATE TABLE `product` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` nvarchar(255) NOT NULL,
   `price` int NOT NULL,
+  `cost_price` int NOT NULL,
   `stock` int NOT NULL,
-  `sold_quantity` int NOT NULL,
-  `description` text DEFAULT '',
-  `attributes` json NOT NULL,
-  `is_available` boolean NOT NULL DEFAULT true,
-  `thumbnail` text(500) NOT NULL,
+  `sold_quantity` int default 0,
+  `description` text  null,
+  `is_available` boolean DEFAULT true,
+  `thumbnail` varchar(500) NOT NULL,
   `brand_id` int,
   `category_id` int,
   `created_at` datetime DEFAULT (now()),
@@ -96,22 +88,22 @@ CREATE TABLE `review` (
   `user_id` int,
   `product_id` int,
   `rating` int NOT NULL,
-  `comment` text DEFAULT '',
+  `comment` text null,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
 
 CREATE TABLE `order` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `order_date` datetime NOT NULL DEFAULT (now()),
   `address_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `status` ENUM ('PENDING', 'CONFIRMED', 'PREPARING', 'SHIPPING', 'DELIVERY_FAILED', 'DELIVERED', 'CANCELED', 'RETURNING', 'RETURNED') DEFAULT 'PENDING',
+  `status` ENUM ('PENDING', 'AWAITING_PAYMENT', 'CONFIRMED', 'PREPARING', 'SHIPPING', 'DELIVERY_FAILED', 'DELIVERED', 'CANCELED', 'RETURNING', 'RETURNED') DEFAULT 'PENDING',
   `payment_method` varchar(255),
-  `note` text(500),
+  `shipping_fee` int default 0,
+  `note` varchar(500) null,
   `total_price` int NOT NULL,
-  `created_at` datetime DEFAULT (now()),
-  `updated_at` datetime DEFAULT (now())
+  `order_date` datetime NOT NULL DEFAULT (now()),
+  `confirm_at` datetime DEFAULT (now())
 );
 
 CREATE TABLE `order_detail` (
@@ -124,23 +116,57 @@ CREATE TABLE `order_detail` (
 
 CREATE TABLE `slide` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `image` text(500) NOT NULL,
-  `url` text(500) NOT NULL
+  `image` varchar(500) NOT NULL,
+  `url` varchar(500) NOT NULL,
+  `created_at` datetime DEFAULT (now()),
+  `updated_at` datetime DEFAULT (now())
 );
 
-CREATE TABLE `feedback` (
+CREATE TABLE `contact` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `description` text NOT NULL,
-  `status` ENUM ('PENDING', 'DONE') NOT NULL DEFAULT 'PENDING'
+  `email` varchar(255) NOT NULL,
+  `title` nvarchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `status` ENUM ('PENDING', 'DONE') NOT NULL DEFAULT 'PENDING',
+  `created_at` datetime DEFAULT (now()),
+  `updated_at` datetime DEFAULT (now())
+);
+
+CREATE TABLE `payment` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `order_id` int,
+  `user_id` int,
+  `method` varchar(255) NOT NULL,
+  `status` ENUM ('PENDING', 'COMPLETED', 'FAILED', 'REFUNDED', 'CANCELLED') NOT NULL,
+  `amount` int NOT NULL,
+  `transaction_id` varchar(255),
+  `created_at` datetime DEFAULT (now()),
+  `updated_at` datetime DEFAULT (now())
+);
+
+CREATE TABLE `coupon` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `code` varchar(50) UNIQUE NOT NULL,
+  `min_order_value` int DEFAULT 0,
+  `discount_type` enum('PERCENTAGE','FIXED') NOT NULL,
+  `discount_value` int NOT NULL,
+  `start_date` datetime NOT NULL,
+  `end_date` datetime NOT NULL,
+  `current_usage` int DEFAULT 0,
+  `max_usage` int  null,
+  `created_at` datetime DEFAULT (now())
+);
+
+CREATE TABLE `wishlist` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int,
+  `product_id` int,
+  `created_at` datetime DEFAULT (now())
 );
 
 ALTER TABLE `user_has_role` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 ALTER TABLE `user_has_role` ADD FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
-
-ALTER TABLE `role_has_permission` ADD FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
-
-ALTER TABLE `role_has_permission` ADD FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`);
 
 ALTER TABLE `address` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
@@ -163,3 +189,11 @@ ALTER TABLE `order` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `order_detail` ADD FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
 
 ALTER TABLE `order_detail` ADD FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+
+ALTER TABLE `payment` ADD FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
+
+ALTER TABLE `payment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+ALTER TABLE `wishlist` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+ALTER TABLE `wishlist` ADD FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
