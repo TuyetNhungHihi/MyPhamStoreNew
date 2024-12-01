@@ -7947,6 +7947,7 @@ a.navbar-brand img {
   background-color: #111111;
 }
 .vertical-menu-three .list-group-item .dropdown-menu {
+  border-top: 5px solid #0091dc;
   border-left: 5px solid #0091dc;
   border-right: 5px solid #0091dc;
   border-bottom: 5px solid #0091dc;
