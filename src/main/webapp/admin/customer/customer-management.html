@@ -30,10 +30,14 @@
 <body>
     <div class="dashboard">
         <!-- Sidebar -->
-        <div class="sidebar" id="sidebar"></div>
-
-        <!-- Header -->
-        <header class="main-content" id="header"></header>
+      <div class="sidebar" id="sidebar"></div>
+      <!-- end sidebar -->
+      <!-- start header -->
+      <div
+        class="main-content"
+        id="header"
+      ></div>
+      <!-- end header -->
 
         <!-- Main Content -->
         <main class="main-content">
@@ -118,108 +122,109 @@
                    </div>
                </div>
             </div>
+            <main class="main-content">
+                <!-- Search Bar -->
+               <div class="search-bar-container">
+                   <div class="search-bar">
+                       <i class="fas fa-search"></i>
+                       <input type="text" placeholder="Tìm kiếm khách hàng...">
+                   </div>
+               </div>
+               <!-- sort -->
+               <div class="sort-dropdown">
+                   <button class="sort-btn">
+                     <i class="fas fa-sort"></i> Sắp xếp
+                   </button>
+                   <ul class="sort-options">
+                     <li><i class="fas fa-sort-alpha-up"></i> A-Z</li>
+                     <li><i class="fas fa-sort-alpha-down"></i> Z-A</li>
+                   </ul>
+               </div>              
+           </main>
+           <main class="main-content">
+               <div class="table">
+                   <div class="table-header">
+                       <div>Mã khách hàng</div>
+                       <div>Tên tài khoản</div>
+                       <div>Thời gian tạo tài khoản</div>
+                       <div>Trạng thái</div>
+                       <div>Xem chi tiết</div>
+                   </div>
+                   <div class="table-body">
+                       <!-- Table Rows -->
+                       <div class="table-row" data-customer='{
+                           "id": "001",
+                           "name": "Nguyễn Văn Tí",
+                           "dob": "01-01-1990",
+                           "phone": "0901234567",
+                           "email": "nguyenvanti@example.com",
+                           "address": "123 Đường ABC, TP.HCM",
+                           "orders": "5",
+                           "created_at": "01-01-2023",
+                           "status": "Đang giao hàng"
+                       }'>
+                           <div>001</div>
+                           <div>Nguyễn Văn Tí</div>
+                           <div>01-01-2023</div>
+                           <div><span class="status active">Đang giao hàng</span></div>
+                           <div><button class="detail-btn">Xem chi tiết</button></div>
+                       </div>
+                       <div class="table-row" data-customer='{
+                           "id": "002",
+                           "name": "Lê Văn Tèo",
+                           "dob": "02-02-1995",
+                           "phone": "0908765432",
+                           "email": "levanteo@example.com",
+                           "address": "456 Đường DEF, TP.HCM",
+                           "orders": "2",
+                           "created_at": "10-02-2023",
+                           "status": "Từng đặt hàng"
+                       }'>
+                           <div>002</div>
+                           <div>Lê Văn Tèo</div>
+                           <div>10-02-2023</div>
+                           <div><span class="status inactive">Từng đặt hàng</span></div>
+                           <div><button class="detail-btn">Xem chi tiết</button></div>
+                       </div>
+                       <div class="table-row" data-customer='{
+                           "id": "003",
+                           "name": "Nguyễn Thị Hihi",
+                           "dob": "15-03-1992",
+                           "phone": "0934567890",
+                           "email": "nguyenhihi@example.com",
+                           "address": "789 Đường GHI, TP.HCM",
+                           "orders": "7",
+                           "created_at": "20-03-2023",
+                           "status": "Đang chờ lấy hàng"
+                       }'>
+                           <div>003</div>
+                           <div>Nguyễn Thị Hihi</div>
+                           <div>20-03-2023</div>
+                           <div><span class="status active">Đang chờ lấy hàng</span></div>
+                           <div><button class="detail-btn">Xem chi tiết</button></div>
+                       </div>
+                       <div class="table-row" data-customer='{
+                           "id": "004",
+                           "name": "Nguyễn Thị Hoho",
+                           "dob": "25-05-1990",
+                           "phone": "0976543210",
+                           "email": "nguyenhoho@example.com",
+                           "address": "321 Đường JKL, TP.HCM",
+                           "orders": "10",
+                           "created_at": "15-04-2023",
+                           "status": "Đang giao hàng"
+                       }'>
+                           <div>004</div>
+                           <div>Nguyễn Thị Hoho</div>
+                           <div>15-04-2023</div>
+                           <div><span class="status active">Đang giao hàng</span></div>
+                           <div><button class="detail-btn">Xem chi tiết</button></div>
+                       </div>
+                   </div>
+               </div>
+           
         </main>
-        <main class="main-content">
-             <!-- Search Bar -->
-            <div class="search-bar-container">
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Tìm kiếm khách hàng...">
-                </div>
-            </div>
-            <!-- sort -->
-            <div class="sort-dropdown">
-                <button class="sort-btn">
-                  <i class="fas fa-sort"></i> Sắp xếp
-                </button>
-                <ul class="sort-options">
-                  <li><i class="fas fa-sort-alpha-up"></i> A-Z</li>
-                  <li><i class="fas fa-sort-alpha-down"></i> Z-A</li>
-                </ul>
-            </div>              
-        </main>
-        <main class="main-content">
-            <div class="table">
-                <div class="table-header">
-                    <div>Mã khách hàng</div>
-                    <div>Tên tài khoản</div>
-                    <div>Thời gian tạo tài khoản</div>
-                    <div>Trạng thái</div>
-                    <div>Xem chi tiết</div>
-                </div>
-                <div class="table-body">
-                    <!-- Table Rows -->
-                    <div class="table-row" data-customer='{
-                        "id": "001",
-                        "name": "Nguyễn Văn Tí",
-                        "dob": "01-01-1990",
-                        "phone": "0901234567",
-                        "email": "nguyenvanti@example.com",
-                        "address": "123 Đường ABC, TP.HCM",
-                        "orders": "5",
-                        "created_at": "01-01-2023",
-                        "status": "Đang giao hàng"
-                    }'>
-                        <div>001</div>
-                        <div>Nguyễn Văn Tí</div>
-                        <div>01-01-2023</div>
-                        <div><span class="status active">Đang giao hàng</span></div>
-                        <div><button class="detail-btn">Xem chi tiết</button></div>
-                    </div>
-                    <div class="table-row" data-customer='{
-                        "id": "002",
-                        "name": "Lê Văn Tèo",
-                        "dob": "02-02-1995",
-                        "phone": "0908765432",
-                        "email": "levanteo@example.com",
-                        "address": "456 Đường DEF, TP.HCM",
-                        "orders": "2",
-                        "created_at": "10-02-2023",
-                        "status": "Từng đặt hàng"
-                    }'>
-                        <div>002</div>
-                        <div>Lê Văn Tèo</div>
-                        <div>10-02-2023</div>
-                        <div><span class="status inactive">Từng đặt hàng</span></div>
-                        <div><button class="detail-btn">Xem chi tiết</button></div>
-                    </div>
-                    <div class="table-row" data-customer='{
-                        "id": "003",
-                        "name": "Nguyễn Thị Hihi",
-                        "dob": "15-03-1992",
-                        "phone": "0934567890",
-                        "email": "nguyenhihi@example.com",
-                        "address": "789 Đường GHI, TP.HCM",
-                        "orders": "7",
-                        "created_at": "20-03-2023",
-                        "status": "Đang chờ lấy hàng"
-                    }'>
-                        <div>003</div>
-                        <div>Nguyễn Thị Hihi</div>
-                        <div>20-03-2023</div>
-                        <div><span class="status active">Đang chờ lấy hàng</span></div>
-                        <div><button class="detail-btn">Xem chi tiết</button></div>
-                    </div>
-                    <div class="table-row" data-customer='{
-                        "id": "004",
-                        "name": "Nguyễn Thị Hoho",
-                        "dob": "25-05-1990",
-                        "phone": "0976543210",
-                        "email": "nguyenhoho@example.com",
-                        "address": "321 Đường JKL, TP.HCM",
-                        "orders": "10",
-                        "created_at": "15-04-2023",
-                        "status": "Đang giao hàng"
-                    }'>
-                        <div>004</div>
-                        <div>Nguyễn Thị Hoho</div>
-                        <div>15-04-2023</div>
-                        <div><span class="status active">Đang giao hàng</span></div>
-                        <div><button class="detail-btn">Xem chi tiết</button></div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
     <!-- Modal -->
     <div id="customer-modal" class="modal">
@@ -235,28 +240,29 @@
             <p><strong>Thời gian tạo tài khoản:</strong> <span id="modal-created-at"></span></p>
             <p><strong>Trạng thái:</strong> <span id="modal-status"></span></p>
         </div>
+        <label for="sidebar" class="body-label" id="body-label"></label>
     </div>
 
     <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
             const header = document.getElementById('header');
             const sidebar = document.getElementById('sidebar');
+            console.log(sidebar);
+            
 
             fetch("../components/admin-header.html")
                 .then(response => response.text())
-                .then(data => (header.innerHTML = data));
+                .then(data => {header.innerHTML = data});
 
             fetch("../components/admin-sidebar.html")
                 .then(response => response.text())
-                .then(data => (sidebar.innerHTML = data));
-        });
+                .then(data => {sidebar.innerHTML = data});
     </script>
-    <script src="../../static/js/bootstrap.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../static/js/admin.js"></script>
-    <script src="../../static/js/customer.js"></script>
-    <script src="../../static/js/category-management.js"></script>
+  <script src="../../static/js/bootstrap.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+  <script src="../../static/js/admin.js"></script>
+  <script src="../../static/js/category-management.js"></script>
     
 </body>
 </html>
