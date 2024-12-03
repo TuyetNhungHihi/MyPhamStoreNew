@@ -80,3 +80,17 @@ form {
   background-color: #008080;
   color: #4285f4;
 }
+.btn-otp {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+/* Thêm hiệu ứng hover cho nút OTP */
+.btn-otp:hover {
+  background-color: #45a049;
+}

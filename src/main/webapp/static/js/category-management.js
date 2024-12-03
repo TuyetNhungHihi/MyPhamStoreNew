@@ -1,18 +1,19 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   let bar = document.getElementById("menu-toggle");
-let sidebar = document.getElementById("sidebar");
-let bodylabel = document.getElementById("body-label");
+  let sidebar = document.getElementById("sidebar");
+  let bodylabel = document.getElementById("body-label");
 
-let toggleBar = () => {
-  sidebar.classList.toggle("active");
-};
+  let toggleBar = () => {
+    console.log("toggle bar");
 
-bodylabel.addEventListener("click", (event) => {
-  sidebar.classList.add("active");
-});
+    sidebar.classList.toggle("active");
+  };
 
-bar.addEventListener("click", (event) => {
-  toggleBar();
-});
+  bodylabel.addEventListener("click", (event) => {
+    sidebar.classList.add("active");
+  });
+
+  bar.addEventListener("click", (event) => {
+    toggleBar();
+  });
 });
