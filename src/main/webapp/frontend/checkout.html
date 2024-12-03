@@ -33,6 +33,7 @@ Purchase:
 	<link rel="stylesheet" type="text/css" href="../static/css/camera.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
@@ -309,16 +310,33 @@ Purchase:
                 <div class="btc_shop_single_prod_right_section related_pdt_shop_head checkout_heading">
                     <h1>Sản phẩm đã đặt hàng của bạn </h1>
                 </div>
-                <div class="title-box">
-                    <div class="col">SẢN PHẨM</div>
-                    <div class="col">GIÁ</div>
+                <!-- <div class="title-box row">
+                    <div class="col-md-4">SẢN PHẨM</div>
+                    <div class="col-md-4">GIÁ</div>
+                    <div class="col-md-4">Số lượng</div>
+
                 </div>
-                <ul>
-                    <li class="clearfix"><strong>Kem chống nắng Sun</strong><span>139. 000 đ</span></li>
-                    <li class="clearfix">Giá sản phẩm <span>139. 000 đ</span></li>
-                    <li class="clearfix">Vận chuyển <span class="Miễn phí">Miễn phí vận chuyển </span></li>
-                    <li class="clearfix">Tổng giá <span>139. 000 đ</span></li>
-                </ul>
+                <ul class="row">
+                    <li class="clearfix col-md-4"><strong>Kem chống nắng Sun</strong></li>
+                    <li class="clearfix">139. 000 đ</li>
+                     <li class="clearfixcol-md-4">Giá sản phẩm <span>139. 000 đ</span></li>
+                    <li class="clearfix col-md-4">Vận chuyển <span class="Miễn phí">Miễn phí vận chuyển </span></li>
+                </ul> -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- hiển thị các sản phẩm đã mua -->
+                    </tbody>
+                    <tfoot>
+                       <!-- hiển thị tổng -->
+                    </tfoot>
+                </table>
             </div>
             <!--End Order Box-->
 
@@ -367,7 +385,7 @@ Purchase:
                 <div class="lower-box text-right">
                     <div class="shop_btn_wrapper checkout_btn">
                         <ul>
-                            <li><a href="#">Đặt hàng </a>
+                            <li><a id="submit-order" href="#">Đặt hàng </a>
                             </li>
                         </ul>
                     </div>
@@ -478,6 +496,30 @@ Purchase:
 			});
 	</script>
 	<!--main js file end-->
+    <script src="../static/js/demo/checkout.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        document.getElementById("submit-order").addEventListener("click", ()=>{
+            console.log("submit order");
+            Toastify({
+                text: "Đặt hàng thành công \n Đơn hàng của bạn sẽ sớm được giao!",
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                //   background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+                onClick: function(){} // Callback after click
+              }).showToast();
+              setTimeout(()=>{
+                  window.location.href = "home.html";
+              }, 2000);
+        })
+    </script>
 </body>
 
 </html>

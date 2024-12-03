@@ -16,9 +16,12 @@ window.onload = () =>{
         
 
         if(email === userTest.email && password === userTest.password){
-            window.location.href = 'index.html';
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location.href = 'home.html';
         }else{
-            alert('Email hoặc mật khẩu không đúng');
+           const message = document.getElementById('message');
+           message.hidden = false;
+              message.innerHTML = 'Email hoặc mật khẩu không chính xác!';
         }
     });
     
