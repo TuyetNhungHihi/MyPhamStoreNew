@@ -64,6 +64,7 @@ form {
   box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
   border-radius: 4px;
 }
+
 .btn {
   transition: all 0.5s ease;
   width: 70%;
@@ -77,6 +78,22 @@ form {
 }
 .btn:hover,
 .btn:focus {
+  background-color: #008080;
+  color: #4285f4;
+}
+.social-login-btn {
+  transition: all 0.5s ease;
+  width: 70%;
+  border-radius: 30px;
+  color: #008080;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid #008080;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+.social-login-btn:hover,
+.social-login-btn:focus {
   background-color: #008080;
   color: #4285f4;
 }
