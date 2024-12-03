@@ -598,48 +598,15 @@ section.body {
 }
 .main-content {
   display: flex;
-  flex-wrap: wrap; /* Cho phép nội dung xuống dòng khi không đủ chỗ */
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px; /* Đặt chiều rộng tối đa để căn giữa */
-  margin: 0 auto; /* Căn giữa nội dung */
-  background-color: #f5f5f5;
-  margin-left: 280px;
-  /* display: flex;
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
-  background-color: #f5f5f5; */
-}
-.top-content {
-  display: flex;
-  justify-content: space-between; /* Đặt các phần theo hàng ngang */
-  gap: 20px;
-}
-.bottom-content {
-  display: flex;
-  flex-direction: column; /* Nội dung theo cột */
-  gap: 20px; /* Khoảng cách giữa thanh tìm kiếm, nút, và bảng */
-  width: 100%; /* Đảm bảo chiếm đủ chiều rộng */
-}
-.left-col {
-  flex: 2;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-}
-
-.left-col .content h1 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
+  background-color: #f5f5f5;
 }
 
 /* Content Section */
 .content {
-  flex: 1;
+  flex: 2;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 10px;
@@ -785,14 +752,15 @@ section.body {
   align-items: center;
   justify-content: center; /* Căn giữa theo chiều ngang */
   gap: 10px;
-  margin: 20px auto;
+  /* margin: 20px auto; */
+  margin-left: 100px;
   max-width: 600px;
   width: 100%;
 }
 
 /* Search bar styles */
 .search-bar {
-  display: flex;
+  /* display: flex; */
   /* align-items: center; */
   background: #ffffff;
   padding: 10px 15px;
@@ -823,6 +791,8 @@ section.body {
 
 /* Sort button styles */
 .sort-btn {
+  margin-right: 100px;
+  flex: 1;
   background: #4caf50;
   color: #fff;
   border: none;

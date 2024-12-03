@@ -1,12 +1,21 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-    const logoutButton = document.querySelector('.logout');
-    logoutButton.addEventListener('click', function () {
-        if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
-            window.location.href = "/logout"; // Thay bằng đường dẫn đăng xuất
-        }
-    });
-});
+document.addEventListener("DOMContentLoaded", () => {
+    let bar = document.getElementById("menu-toggle");
+  let sidebar = document.getElementById("sidebar");
+  let bodylabel = document.getElementById("body-label");
+  
+  let toggleBar = () => {
+    sidebar.classList.toggle("active");
+  };
+  
+  bodylabel.addEventListener("click", (event) => {
+    sidebar.classList.add("active");
+  });
+  
+  bar.addEventListener("click", (event) => {
+    toggleBar();
+  });
+  });
 document.addEventListener("DOMContentLoaded", function() {
     // Xử lý sự kiện Xóa
     document.querySelectorAll(".delete-btn").forEach((btn) => {
@@ -27,13 +36,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-document.querySelectorAll('.sort-options li').forEach(option => {
-    option.addEventListener('click', () => {
-        const sortBy = option.getAttribute('data-sort');
-        alert(`Sorting by: ${sortBy}`);
-        // Implement your sorting logic here
-    });
-});
+document.querySelector('.sort-btn').addEventListener('click', () => {
+    const dropdown = document.querySelector('.sort-options');
+    const isVisible = dropdown.style.visibility === 'visible';
+    
+    dropdown.style.visibility = isVisible ? 'hidden' : 'visible';
+    dropdown.style.opacity = isVisible ? '0' : '1';
+  });
+  
 // Lấy modal và các phần tử cần thiết
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("customer-modal");
