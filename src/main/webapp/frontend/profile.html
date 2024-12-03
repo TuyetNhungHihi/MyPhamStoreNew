@@ -26,146 +26,136 @@
         <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
         <link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
         <link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
+        <link rel="stylesheet" type="text/css" href="../static/css/profile.css" />
         <!-- favicon links -->
         <link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
     </head>
     <body>
-        <!-- preloader Start -->
-	<div id="preloader">
-		<div id="status">
-			<img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">
-		</div>
-	</div>
-	<!-- Top Scroll Start -->
-	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
-    <div id="nav"></div>
-    <div id="header"></div>
-    <!-- content -->
-     
-    <div class="container" >
-      <div style="height: 50px; background-color: white;z-index: 10;; width: 100vw;"></div>
-        <div class="container px-4 mt-4">
-            <!-- Account page navigation-->
-            <nav class="nav nav-borders">
-                <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
-                <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a>
-                <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
-                <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a>
-            </nav>
+      
+      <div id="preloader">
+        <div id="status">
+            <img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">
+        </div>
+      </div>
+      <!-- Top Scroll Start -->
+      <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+      <!-- Top Scroll End -->
+      <div id="nav"></div>
+      <!-- Header Wrapper Start -->
+      <div id="header"></div>
+      <div class="ss_inner_title_wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="ss_inner_title_cont_wrapper">
+                <ul>
+                  <li>
+                    <a href="#"><i class="fa fa-home"></i></a>&nbsp;&nbsp; >
+                  </li>
+                  <li>Thông tin cá nhân</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content -->
+      <div class="container" >
+        <div style="height: 50px; background-color: white;z-index: 10;; width: 100vw;"></div>
+          <div class="container px-4 mt-4">
+            <h1>Thông tin cá nhân </h1>
             <hr class="mt-0 mb-4">
-            <div class="container">
+              <hr class="container">
                 <div class="row d-flex">
-                    <!-- Profile picture section -->
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <div class="card-header">Ảnh đại diện</div>
-                            <div class="card-body text-center">
-                                <!-- Profile picture image-->
-                                <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                                <!-- Profile picture help block-->
-                                
-                                <div class="small font-italic text-muted mb-4"> 
-                                    <font color="red">Ngày thiết lập tài khoản: 18/08/2021</font>
-                                     
-                                </div>
-                                <!-- Profile picture upload button-->
-                                <input type="file" class="form-control" id="uploadProfilePicture" accept="image/png, image/jpeg">
-                                <div class="small font-italic text-muted mb-4">
-                                    Loại ảnh JPG hoặc PNG không lớn hơn 5 MB
-                                </div>
-                                <button class="btn btn-primary" type="button" style="background-color: blue;">
-                                    <font color="white"> Đăng xuất </font>
-                                </button>
-                            </div>
+                  <!-- Profile picture section -->
+                  <div class="col-md-4">
+                    <div class="card mb-4">
+                      <div class="card-header">Ảnh đại diện</div>
+                      <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        <!-- Profile picture help block-->
+                        <div class="small font-italic text-muted mb-4"> 
+                            <font color="red">Ngày thiết lập tài khoản: 18/08/2021</font>
                         </div>
+                        <!-- Profile picture upload button-->
+                        <input type="file" class="form-control" id="uploadProfilePicture" accept="image/png, image/jpeg">
+                        <div class="small font-italic text-muted mb-4">
+                            Loại ảnh JPG hoặc PNG không lớn hơn 5 MB
+                        </div>
+                        <button class="btn btn-primary" type="button" style="background-color: blue;">
+                            <font color="white"> Đăng xuất </font>
+                        </button>
+                      </div>
                     </div>
-            
-                    <!-- Account details section -->
-                    <div class="col-md-8">
-                        <div class="card mb-4">
-                            <div class="card-header">Chi tiết tài khoản</div>
-                            <div class="card-body">
-                                <form>
-                                    <!-- Username and Name -->
-                                    <div class="mb-3">
-                                        <label for="username">Biệt danh:</label>
-                                        <input type="text" name="username" id="username" value="HihiHoho" readonly class="form-control">
-                                        <label for="lastname">Họ và tên:</label>
-                                        <input type="text" placeholder="Nhập họ tên của bạn vào đây" name="lastname" id="lastname" value="Nguyen Van A" readonly class="form-control">
-                                    </div>
-            
-                                    <!-- Gender -->
-                                    <div class="mb-4">
-                                        <label for="gender" >Giới tính </label>
-                                        <select id="gender" name="gender" >
-                                        <option value="male">Nam</option>
-                                        <option value="female">Nữ</option>
-                                        <option value="other">Khác</option>
-                                        </select>
-                                    </div>
-                                    <!-- Address -->
-                                    <div class="mb-3">
-                                        <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng</label>
-                                        <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
-                                    </div>
-            
-                                    <!-- Email -->
-                                    <div class="mb-3">
-                                        <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email</label>
-                                        <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="22130xxx@st.hcmuaf.edu.vn" readonly required>
-                                    </div>
-            
-                                    <!-- Phone Number and Birthday -->
-                                    <div class="row gx-3 mb-3">
-                                        <div class="col-md-6">
-                                            <label class="small mb-1" for="inputPhone">Số điện thoại</label>
-                                            <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="0123456789" readonly required>                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="ngaysinh">Ngày sinh</label>
-                                            <input type="date" name="ngaysinh" id="ngaysinh" class="form-control" value="2000-11-20" readonly>
-                                        </div>
-                                    </div>
-                                    <!-- Existing "Edit Info" and new "Change Password" button -->
-                                        <div class="d-flex justify-content-end mb-3">
-                                        <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
-                                        <!-- Button to open modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                                        Đổi mật khẩu
-                                         </button>
-  
-                                         <!-- Modal -->
-                                        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="changePasswordModalLabel">Đổi mật khẩu </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label for="currentPassword" class="form-label">Current Password</label>
-                                                                <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label for="newPassword" class="form-label">New Password</label>
-                                                                <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </form>   
+                  </div>
+                  <!-- Account details section -->
+                  <div class="col-md-8">
+                    <div class="card mb-4">
+                      <div class="card-header">Chi tiết tài khoản</div>
+                      <div class="card-body">
+                        <form>
+                          <!-- Username and Name -->
+                          <div class="mb-3">
+                            <label for="username">Biệt danh:</label>
+                            <input type="text" name="username" id="username" value="HihiHoho" readonly class="form-control">
+                            <label for="lastname">Họ và tên:</label>
+                            <input type="text" placeholder="Nhập họ tên của bạn vào đây" name="lastname" id="lastname" value="Nguyen Van A" readonly class="form-control">
+                          </div>
+                          <!-- Gender -->
+                          <div class="mb-4">
+                            <div class="form-group">
+                              <label>Giới tính : </label>
+                              <span style="margin-left: 20px">
+                                <input type="radio" id="Nam" name="gender" value="Nam" disabled />
+                                <label for="Nam">Nam</label>
+                              </span>
+                          
+                              <span style="margin-left: 15px">
+                                <input type="radio" id="Nu" name="gender" value="Nữ" disabled checked />
+                                <label for="Nu">Nữ</label>
+                              </span>
                             </div>
-                        </div>
+                          </div>
+                          <!-- Address -->
+                          <div class="mb-3">
+                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng</label>
+                            <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
+                          </div>
+                          <!-- Email -->
+                          <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email</label>
+                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="22130xxx@st.hcmuaf.edu.vn" readonly required>
+                          </div>
+                          <!-- Phone Number and Birthday -->
+                          <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Số điện thoại</label>
+                                <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="0123456789" readonly required>                                        </div>
+                            <div class="col-md-6">
+                                <label for="ngaysinh">Ngày sinh</label>
+                                <input type="date" name="ngaysinh" id="ngaysinh" class="form-control" value="2000-11-20" readonly>
+                            </div>
+                          </div>        
+                          <!-- Existing "Edit Info" and new "Change Password" button -->
+                          <div class="d-flex justify-content-end mb-3">
+                            <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
+                            <!-- Button to open modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            Đổi mật khẩu
+                             </button>
+                          </div>
+                        </form>   
+                      </div>
                     </div>
                 </div>
-            </div>
-        
-    <!-- end content -->
-     <!-- Footer Wrapper End -->
+              </div>
+            </hr>
+          </div>
+        </div>
+      </div>
+      <!-- end content -->
+      <!-- Footer Wrapper End -->
       <div id="footer"></div>
      <script>
         const header = document.getElementById("header");
@@ -199,25 +189,25 @@
             
           })
           </script>
-    <script src="../static/js/jquery_min.js"></script>
-    <script src="../static/js/wow.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
-    <script src="../static/js/owl.carousel.js"></script>
-    <script src="../static/js/modernizr.js"></script>
-    <script src="../static/js/jquery.magnific-popup.js"></script>
-    <script src="../static/js/jquery.dlmenu.js"></script>
-    <script src="../static/js/jquery.sticky.js"></script>
-    <script src="../static/js/jquery.menu-aim.js"></script>
-    <script src="../static/js/camera.min.js"></script>
-    <script src="../static/js/jquery.easing.1.3.js"></script>
-    <script src="../static/js/jquery.inview.min.js"></script>
-    <script src="../static/js/custom.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Link to Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+          <script src="../static/js/jquery_min.js"></script>
+          <script src="../static/js/wow.js"></script>
+          <script src="../static/js/bootstrap.js"></script>
+          <script src="../static/js/owl.carousel.js"></script>
+          <script src="../static/js/modernizr.js"></script>
+          <script src="../static/js/jquery.magnific-popup.js"></script>
+          <script src="../static/js/jquery.dlmenu.js"></script>
+          <script src="../static/js/jquery.sticky.js"></script>
+          <script src="../static/js/jquery.menu-aim.js"></script>
+          <script src="../static/js/camera.min.js"></script>
+          <script src="../static/js/jquery.easing.1.3.js"></script>
+          <script src="../static/js/jquery.inview.min.js"></script>
+          <script src="../static/js/custom.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+          <!-- Link to Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Link to Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Link to Bootstrap JavaScript -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <script>
@@ -265,82 +255,55 @@
 					var timeinterval = setInterval(update_clock,1000);
 				}
 				run_clock('clockdiv',deadline);
-    </script>
-    <script>
+      </script>
+      <script>
         document.getElementById('editButton').addEventListener('click', function() {
-            const usernameInput = document.getElementById('username');
-            const lastnameInput = document.getElementById('lastname');
-            const locationInput = document.getElementById('inputLocation');
-            const emailInput = document.getElementById('inputEmailAddress');
-            const phoneInput = document.getElementById('inputPhone');
-            const birthdayInput = document.getElementById('ngaysinh');
+          const usernameInput = document.getElementById('username');
+    const lastnameInput = document.getElementById('lastname');
+    const locationInput = document.getElementById('inputLocation');
+    const emailInput = document.getElementById('inputEmailAddress');
+    const phoneInput = document.getElementById('inputPhone');
+    const birthdayInput = document.getElementById('ngaysinh');
+    const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender
 
-            const isReadonly = usernameInput.readOnly;
+    const isReadonly = usernameInput.readOnly;
 
-            if (isReadonly) {
-                // Enable editing
-                editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'
-                usernameInput.readOnly = false;
-                lastnameInput.readOnly = false;
-                locationInput.readOnly = false;
-                emailInput.readOnly = false;
-                phoneInput.readOnly = false;
-                birthdayInput.readOnly = false;
-                
-            } else {
-                // Save changes
-                usernameInput.readOnly = true;
-                lastnameInput.readOnly = true;
-                locationInput.readOnly = true;
-                emailInput.readOnly = true;
-                phoneInput.readOnly = true;
-                birthdayInput.readOnly = true;
-                editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'
-                // You can add logic to save the updated values here
-            }
+    if (isReadonly) {
+        // Enable editing
+        editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'
+        usernameInput.readOnly = false;
+        lastnameInput.readOnly = false;
+        locationInput.readOnly = false;
+        emailInput.readOnly = false;
+        phoneInput.readOnly = false;
+        birthdayInput.readOnly = false;
+
+        // Enable gender radio buttons
+        genderInputs.forEach((radio) => {
+            radio.disabled = false;
         });
-    </script>
-    <!-- Button to open modal -->
-    <button type="button" id="openModalBtn" class="btn btn-primary">Change Password</button>
 
-    <!-- Modal -->
-    <div id="changePasswordModal" class="modal" style="display:none;">
-      <div class="modal-content">
-        <span class="close-btn" id="closeModalBtn">&times;</span>
-        <h2>Change Password</h2>
-        <form>
-          <label for="currentPassword">Current Password:</label>
-          <input type="password" id="currentPassword" required><br>
-          <label for="newPassword">New Password:</label>
-          <input type="password" id="newPassword" required><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-    
-    <script>
-      const openModalBtn = document.getElementById('openModalBtn');
-      const modal = document.getElementById('changePasswordModal');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-    
-      // Mở modal khi nhấn vào button
-      openModalBtn.addEventListener('click', function() {
-        modal.style.display = 'block';
-      });
-    
-      // Đóng modal khi nhấn vào nút đóng (×)
-      closeModalBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-      });
-    
-      // Đóng modal khi click ngoài modal
-      window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
+    } else {
+        // Save changes
+        usernameInput.readOnly = true;
+        lastnameInput.readOnly = true;
+        locationInput.readOnly = true;
+        emailInput.readOnly = true;
+        phoneInput.readOnly = true;
+        birthdayInput.readOnly = true;
+        editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'
 
-    </script>
+        // Disable gender radio buttons
+        genderInputs.forEach((radio) => {
+            radio.disabled = true;
+        });
 
+        // You can add logic to save the updated values here
+        console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);
+    }
+});
+
+      </script>
+      
     </body>
 </html>
