@@ -1,14 +1,13 @@
+<%--
+Created by IntelliJ IDEA.
+User: cucsh
+Date: 12/7/2024
+Time: 10:10 AM
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
-<!-- 
-Template Name: big basket
-Version: 1.0.0
-Author: 
-Website: 
-Purchase: 
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
 
@@ -50,8 +49,8 @@ Purchase:
 	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
 	<!-- Top Scroll End -->
 	<!-- Header Wrapper Start -->
-	 <div id="nav"></div>
-	 <div id="header"></div>
+	 <%@include file="component/nav.jsp"%>
+	 <%@include file="component/header.jsp"%>
 	<!-- Header Wrapper End -->
 	
 
@@ -1760,36 +1759,7 @@ Purchase:
 		</div>
 	</div>
 	<!-- Brandlogo Wrapper End -->
-	
-	<div id="footer">
-
-	</div>
-	<script>
-			const header = document.getElementById("header");
-		const footer = document.getElementById("footer");
-		const nav = document.getElementById("nav");
-
-		fetch('./header.html')
-			.then(response => {
-				return response.text()
-			})
-			.then(data => {
-				header.innerHTML = data;
-			});
-		fetch('./footer.html')
-			.then(response => {
-				return response.text()
-			})
-			.then(data => {
-				footer.innerHTML = data;
-			});
-		fetch('./nav.html')
-			.then(response => {
-				return response.text()
-			}).then(data => {
-				nav.innerHTML = data;
-			});
-	</script>
+	<%@include file="component/footer.jsp"%>
 	<!--main js file start-->
 	<script src="../static/js/jquery_min.js"></script>
 	<script src="../static/js/wow.js"></script>

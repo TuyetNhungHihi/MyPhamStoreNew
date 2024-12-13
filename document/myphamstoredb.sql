@@ -7,7 +7,7 @@ CREATE TABLE `user` (
   `full_name` nvarchar(255) NOT NULL,
   `email` varchar(255) UNIQUE NOT NULL,
   `password` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
+  `phone` varchar(255) UNIQUE NOT NULL,
   `date_of_birth` date NOT NULL,
   `gender` ENUM ('MALE', 'FEMALE', 'OTHER') NOT NULL,
   `avatar` varchar(500),

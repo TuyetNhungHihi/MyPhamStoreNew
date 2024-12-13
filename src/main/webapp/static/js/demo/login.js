@@ -17,7 +17,7 @@ window.onload = () =>{
 
         if(email === userTest.email && password === userTest.password){
             localStorage.setItem('user', JSON.stringify(user));
-            window.location.href = 'home.html';
+            window.location.href = 'home.jsp';
         }else{
            const message = document.getElementById('message');
            message.hidden = false;

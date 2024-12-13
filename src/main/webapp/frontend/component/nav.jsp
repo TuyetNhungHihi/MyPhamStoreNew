@@ -1,7 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!-- Header Wrapper Start -->
 <div class="ss_middle_header_wrapper">
     <div class="ss_logo">
-        <a href="home.html">
+        <a href="home.jsp">
             <img src="../static/images/logo/logo.svg" alt="Logo" title="big basket" class="img-responsive">
         </a>
     </div>
@@ -23,7 +24,7 @@
                     <div id="dl-menu" class="xv-menuwrapper responsive-menu menu-three">
                         <div class="clearfix"></div>
                         <ul class="dl-menu">
-                            <li class="parent"><a href="./home.html">Trang Chủ </i></a>
+                            <li class="parent"><a href="home.jsp">Trang Chủ </i></a>
                             </li>
                             <li class="parent"><a href="./category.html">Tất cả sản phẩm </a>
                             </li>

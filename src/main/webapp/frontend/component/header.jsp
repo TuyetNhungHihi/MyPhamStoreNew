@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <div class="main-header-three">
 		<div class="ss_categories_box ss-box-two">
 			<nav>

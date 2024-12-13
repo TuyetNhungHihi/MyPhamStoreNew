@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!-- Newsletter Wrapper Start -->
 <div class="ss_newsletter_wrapper">
     <div class="container">
