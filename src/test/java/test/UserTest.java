@@ -1,49 +1,68 @@
 package test;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.userdetails.User;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
 import vn.edu.hcmuaf.fit.myphamstore.dao.UserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
+
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class UserTest {
-  private static EntityManagerFactory entityManagerFactory;
-    private static EntityManager entityManager;
     private static UserDAO userDAO;
 
     @BeforeAll
     static void setUp() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("MyPhamStore");
-        entityManager = entityManagerFactory.createEntityManager();
-        userDAO = new UserDAO(entityManager);
+        userDAO = new UserDAO();
     }
-    @AfterAll
-    static void destroy() {
-        entityManager.close();
-        entityManagerFactory.close();
+
+    @Test
+    void updateUser() {
+        UserModel user = UserModel.builder()
+                .id(10L)
+                .status(UserStatus.INACTIVE)
+                .build();
+
+        assertNotNull(userDAO.update(user));
     }
     @Test
-    void testCreateUser() {
-      UserModel user = UserModel.builder()
-              .fullName("Nguyen Van A")
-              .email("121133@gmail.comn")
-              .password("123")
-              .phone("1236789")
-              .dateOfBirth(LocalDate.of(2004, 6, 15))
-              .gender(Gender.MALE)
-              .status(UserStatus.NONE)
-              .build();
+    void saveUser() {
+        UserModel user = UserModel.builder()
+                .email("123@gmail.com")
+                .fullName("123")
+                .password("123")
+                .phone("123456789")
+                .dateOfBirth(LocalDate.of(2004, 12,12))
+                .gender(Gender.MALE)
+                .avatar(null)
+                .build();
+        Long id = userDAO.save(user);
+        assertNotNull(id);
+    }
+    @Test
+    void checkEmailExist() {
+        String email = "123@gmail.com";
+        boolean result = userDAO.checkEmailExist(email);
+        assertTrue(result);
+    }
 
-      UserModel user1 = userDAO.save(user);
-      System.out.println(user1);
-      assertTrue(user1.getId() > 0);
-  }
+    @Test
+    void listALlUser() {
+        List<UserModel> listUser = userDAO.findAll();
+        listUser.forEach(System.out::println);
+        assertNotNull(listUser);
+    }
+
+    @Test
+    void findUserById() {
+        Long id =  1L;
+        UserModel user = userDAO.findById(id);
+        System.out.println(user);
+        assertNotNull(user);
+    }
 }
