@@ -20,21 +20,27 @@ public class UserDAO extends GenericDAO<UserModel> {
      * @param pageSize
      * @return
      */
-    public List<UserModel> getUsersWithPaging(int currentPage, int pageSize, String orderBy) {
+    public List<UserModel> getUsersWithPagingAndSearch(String keyword,int currentPage, int pageSize, String orderBy) {
         //sàn lọc dữ liệu đầu vào
         if(currentPage < 1) currentPage = 1;
+
         // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
         List<String> allowedColumns = Arrays.asList("id", "email", "full_name", "phone", "date_of_birth", "gender", "status", "last_login", "created_at", "updated_at", "avatar");
         if (!allowedColumns.contains(orderBy)) {
-            throw new IllegalArgumentException("cột không hợp lệ");
+            orderBy = "id";
         }
 
-        // Tạo câu lệnh SQL
-        String sql = "SELECT * " +
-                "FROM user " +
-                "ORDER BY " + orderBy + " " +
+        // Xây dựng câu lệnh SQL
+        String sql = "SELECT * FROM user ";
+        // Nếu keyword trống, không thêm điều kiện WHERE
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            sql += "WHERE CONCAT(id, email, full_name, phone, date_of_birth, gender, status, last_login, created_at, updated_at, avatar) LIKE ? ";
+        }
+        sql += "ORDER BY " + orderBy + " " +
                 "LIMIT ? " +
                 "OFFSET ?";
+        System.out.println(sql);
+
         Connection conn = DBUtil.getConnection();
         Connection connection = DBUtil.getConnection();
         if(connection == null) return null;
@@ -44,8 +50,16 @@ public class UserDAO extends GenericDAO<UserModel> {
         List<UserModel> users = new ArrayList<>();
         try {
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, (pageSize));
-            ps.setInt(2, ((currentPage - 1) * pageSize));
+            // Nếu có từ khóa, gán giá trị cho điều kiện LIKE
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                ps.setString(1, "%" + keyword + "%");
+                ps.setInt(2, pageSize);
+                ps.setInt(3, (currentPage - 1) * pageSize);
+            } else {
+                // Nếu không có từ khóa, bỏ qua phần WHERE
+                ps.setInt(1, pageSize);
+                ps.setInt(2, (currentPage - 1) * pageSize);
+            }
             rs = ps.executeQuery();
             while(rs.next()) {
                 users.add(UserModel.builder()

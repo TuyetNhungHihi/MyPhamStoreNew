@@ -59,7 +59,7 @@ class UserTest {
     }
     @Test
     void pagingUser() {
-        List<UserModel> listUser = userDAO.getUsersWithPaging(1,5,"date_of_birth");
+        List<UserModel> listUser = userDAO.getUsersWithPagingAndSearch("Thi T",1,5,"date_of_birth");
         listUser.forEach(System.out::println);
         assertFalse(listUser.isEmpty());
     }
