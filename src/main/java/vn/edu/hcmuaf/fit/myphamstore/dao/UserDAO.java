@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao;
 
+import vn.edu.hcmuaf.fit.myphamstore.common.DBUtil;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.PasswordUtils;
 import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
@@ -15,7 +16,7 @@ public class UserDAO extends GenericDAO<UserModel> {
 
     public boolean checkEmailExist(String email){
         String sql = "SELECT COUNT(email) FROM user WHERE email = ?";
-        Connection connection = super.getConnection();
+        Connection connection = DBUtil.getConnection();
         if(connection == null) return false;
         //logic
         PreparedStatement ps = null;
@@ -31,7 +32,7 @@ public class UserDAO extends GenericDAO<UserModel> {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
-            super.close(connection, ps, rs);
+            DBUtil.close(connection, ps, rs);
         }
         return false;
     }
@@ -40,7 +41,7 @@ public class UserDAO extends GenericDAO<UserModel> {
     public Long save(UserModel entity) {
         String sql = "INSERT INTO user (email, full_name, phone, date_of_birth, gender, status, created_at, updated_at, avatar, password, last_login) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         //get connection
-        Connection connection = super.getConnection();
+        Connection connection = DBUtil.getConnection();
         if(connection == null) return null;
         //logic
         PreparedStatement ps = null;
@@ -53,8 +54,8 @@ public class UserDAO extends GenericDAO<UserModel> {
             ps.setString(2, entity.getFullName().trim());
             ps.setString(3, entity.getPhone().trim());
             ps.setDate(4, Date.valueOf(entity.getDateOfBirth()));
-            ps.setString(5, entity.getGender().toString().toUpperCase());
-            ps.setString(6, entity.getStatus().name());
+            ps.setString(5, entity.getGender() == null ? null : entity.getGender().name().toUpperCase());
+            ps.setString(6, entity.getStatus() == null ? UserStatus.NONE.toString() : entity.getStatus().toString().toUpperCase());
             ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
             ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
             ps.setString(9, entity.getAvatar());
@@ -79,7 +80,7 @@ public class UserDAO extends GenericDAO<UserModel> {
             }
             return null;
         }finally {
-            super.close(connection, ps, rs);
+            DBUtil.close(connection, ps, rs);
         }
 
         return null;
@@ -93,7 +94,7 @@ public class UserDAO extends GenericDAO<UserModel> {
 
         String sql = "UPDATE user SET email = ?, full_name = ?, phone = ?, date_of_birth = ?, gender = ?, status = ?, last_login = ?, avatar = ?, password = ? WHERE id = ?";
         //get connection
-        Connection connection = super.getConnection();
+        Connection connection = DBUtil.getConnection();
         if(connection == null) return null;
         //logic
         PreparedStatement ps = null;
@@ -124,7 +125,7 @@ public class UserDAO extends GenericDAO<UserModel> {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
-            super.close(connection, ps, null);
+            DBUtil.close(connection, ps, null);
         }
 
         return null;
@@ -140,7 +141,7 @@ public class UserDAO extends GenericDAO<UserModel> {
     public UserModel findById(Long id) {
         String sql = "SELECT * FROM user WHERE id = ?";
         //get connection
-        Connection connection = super.getConnection();
+        Connection connection = DBUtil.getConnection();
         if(connection == null) return null;
 
         //logic
@@ -170,7 +171,7 @@ public class UserDAO extends GenericDAO<UserModel> {
         }catch (SQLException e){
             return null;
         } finally {
-            super.close(connection, ps, rs);
+            DBUtil.close(connection, ps, rs);
         }
         return null;
     }
@@ -183,9 +184,9 @@ public class UserDAO extends GenericDAO<UserModel> {
     @Override
     public List<UserModel> findAll() {
         List<UserModel> result = new ArrayList<>();
-        String sql = "SELECT * FROM user WHERE id = ?";
+        String sql = "SELECT * FROM user";
         //get connection
-        Connection connection = super.getConnection();
+        Connection connection = DBUtil.getConnection();
         if (connection == null) {
             return result;
         }
@@ -216,7 +217,7 @@ public class UserDAO extends GenericDAO<UserModel> {
             e.printStackTrace();
             return null;
         } finally {
-            super.close(connection, ps, resultSet);
+            DBUtil.close(connection, ps, resultSet);
         }
 
         return result;

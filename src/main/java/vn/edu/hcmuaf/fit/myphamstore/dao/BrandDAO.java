@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao;
 
+import vn.edu.hcmuaf.fit.myphamstore.common.DBUtil;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 
 import java.sql.Connection;
@@ -30,7 +31,9 @@ public class BrandDAO extends GenericDAO<BrandModel> {
         String sql = "SELECT * FROM brand WHERE id = ?";
 
         //Bước 2: get connection
-        Connection connection = super.getConnection();
+        Connection connection = DBUtil.getConnection()
+
+;
         if (connection == null) return null;
         //Code logic
         PreparedStatement ps = null;
@@ -52,7 +55,7 @@ public class BrandDAO extends GenericDAO<BrandModel> {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
-            super.close(connection, ps, rs);
+            DBUtil.close(connection, ps, rs);
         }
         return null;
     }
