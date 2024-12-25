@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UserDAO extends GenericDAO<UserModel> {
+public class UserDAO implements GenericDAO<UserModel> {
 
     /**
      * phương thức phân tranguser
@@ -20,7 +20,8 @@ public class UserDAO extends GenericDAO<UserModel> {
      * @param pageSize
      * @return
      */
-    public List<UserModel> getUsersWithPagingAndSearch(String keyword,int currentPage, int pageSize, String orderBy) {
+    @Override
+    public List<UserModel> findAll(String keyword,int currentPage, int pageSize, String orderBy) {
         //sàn lọc dữ liệu đầu vào
         if(currentPage < 1) currentPage = 1;
 
@@ -39,7 +40,6 @@ public class UserDAO extends GenericDAO<UserModel> {
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT ? " +
                 "OFFSET ?";
-        System.out.println(sql);
 
         Connection conn = DBUtil.getConnection();
         Connection connection = DBUtil.getConnection();
@@ -207,7 +207,6 @@ public class UserDAO extends GenericDAO<UserModel> {
         update(entity);
     }
 
-    @Override
     public UserModel findById(Long id) {
         String sql = "SELECT * FROM user WHERE id = ?";
         //get connection
@@ -244,53 +243,6 @@ public class UserDAO extends GenericDAO<UserModel> {
             DBUtil.close(connection, ps, rs);
         }
         return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public List<UserModel> findAll() {
-        List<UserModel> result = new ArrayList<>();
-        String sql = "SELECT * FROM user";
-        //get connection
-        Connection connection = DBUtil.getConnection();
-        if (connection == null) {
-            return result;
-        }
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
-        try {
-             ps = connection.prepareStatement(sql);
-             resultSet = ps.executeQuery();
-
-            while(resultSet.next()){
-                UserModel user = UserModel.builder()
-                        .id(resultSet.getLong("id"))
-                        .email(resultSet.getString("email"))
-                        .fullName(resultSet.getString("full_name"))
-                        .phone(resultSet.getString("phone"))
-                        .dateOfBirth(resultSet.getDate("date_of_birth").toLocalDate())
-                        .gender(Gender.valueOf(resultSet.getString("gender")))
-                        .status(UserStatus.valueOf(resultSet.getString("status")))
-                        .lastLogin(resultSet.getTimestamp("last_login").toLocalDateTime())
-                        .createdAt(resultSet.getTimestamp("created_at").toLocalDateTime())
-                        .updatedAt(resultSet.getTimestamp("updated_at").toLocalDateTime())
-                        .avatar(resultSet.getString("avatar"))
-                        .build();
-                result.add(user);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            DBUtil.close(connection, ps, resultSet);
-        }
-
-        return result;
     }
 
     /**

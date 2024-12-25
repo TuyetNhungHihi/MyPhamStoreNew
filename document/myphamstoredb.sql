@@ -40,6 +40,7 @@ CREATE TABLE `address` (
   `ward` nvarchar(255) NOT NULL,
   `note` nvarchar(255),
   `is_default` boolean DEFAULT false,
+  `is_active` boolean DEFAULT true,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );

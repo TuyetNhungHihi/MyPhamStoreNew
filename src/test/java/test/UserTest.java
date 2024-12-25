@@ -52,14 +52,8 @@ class UserTest {
     }
 
     @Test
-    void listALlUser() {
-        List<UserModel> listUser = userDAO.findAll();
-        listUser.forEach(System.out::println);
-        assertNotNull(listUser);
-    }
-    @Test
     void pagingUser() {
-        List<UserModel> listUser = userDAO.getUsersWithPagingAndSearch("Thi T",1,5,"date_of_birth");
+        List<UserModel> listUser = userDAO.findAll("Thi T",1,5,"date_of_birth");
         listUser.forEach(System.out::println);
         assertFalse(listUser.isEmpty());
     }

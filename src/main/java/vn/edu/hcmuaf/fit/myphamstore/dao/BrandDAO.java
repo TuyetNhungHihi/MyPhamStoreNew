@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BrandDAO extends GenericDAO<BrandModel> {
+public class BrandDAO implements GenericDAO<BrandModel> {
     @Override
     public Long save(BrandModel entity) {
         return 0L;
@@ -24,8 +24,6 @@ public class BrandDAO extends GenericDAO<BrandModel> {
     public void delete(BrandModel entity) {
 
     }
-
-    @Override
     public BrandModel findById(Long id) {
         //Buoc 1: tạo câu lệnh sql
         String sql = "SELECT * FROM brand WHERE id = ?";
@@ -61,12 +59,7 @@ public class BrandDAO extends GenericDAO<BrandModel> {
     }
 
     @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public List<BrandModel> findAll() {
+    public List<BrandModel> findAll(String keyword,int currentPage, int pageSize, String orderBy) {
         return List.of();
     }
 }

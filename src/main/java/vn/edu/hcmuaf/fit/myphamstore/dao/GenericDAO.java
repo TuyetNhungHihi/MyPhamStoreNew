@@ -3,12 +3,10 @@ package vn.edu.hcmuaf.fit.myphamstore.dao;
 import java.sql.*;
 import java.util.List;
 
-public abstract class GenericDAO <T>{
+public interface GenericDAO <T>{
     //CRUD (Create, Read, Update, Delete)
-    abstract public Long save(T entity);
-    abstract public T update(T entity);
-    abstract public void delete(T entity);
-    abstract public T findById(Long id);
-    abstract public long count();
-    abstract public List<T> findAll();
+     Long save(T entity);
+     T update(T entity);
+     void delete(T entity);
+     List<T> findAll(String keyword,int currentPage, int pageSize, String orderBy);
 }
