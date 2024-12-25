@@ -9,10 +9,66 @@ import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserDAO extends GenericDAO<UserModel> {
 
+    /**
+     * phương thức phân tranguser
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    public List<UserModel> getUsersWithPaging(int currentPage, int pageSize, String orderBy) {
+        //sàn lọc dữ liệu đầu vào
+        if(currentPage < 1) currentPage = 1;
+        // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
+        List<String> allowedColumns = Arrays.asList("id", "email", "full_name", "phone", "date_of_birth", "gender", "status", "last_login", "created_at", "updated_at", "avatar");
+        if (!allowedColumns.contains(orderBy)) {
+            throw new IllegalArgumentException("cột không hợp lệ");
+        }
+
+        // Tạo câu lệnh SQL
+        String sql = "SELECT * " +
+                "FROM user " +
+                "ORDER BY " + orderBy + " " +
+                "LIMIT ? " +
+                "OFFSET ?";
+        Connection conn = DBUtil.getConnection();
+        Connection connection = DBUtil.getConnection();
+        if(connection == null) return null;
+        //logic
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<UserModel> users = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (pageSize));
+            ps.setInt(2, ((currentPage - 1) * pageSize));
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                users.add(UserModel.builder()
+                        .id(rs.getLong("id"))
+                        .email(rs.getString("email"))
+                        .fullName(rs.getString("full_name"))
+                        .phone(rs.getString("phone"))
+                        .dateOfBirth(rs.getDate("date_of_birth").toLocalDate())
+                        .gender(Gender.valueOf(rs.getString("gender")))
+                        .status(UserStatus.valueOf(rs.getString("status")))
+                        .lastLogin(rs.getTimestamp("last_login").toLocalDateTime())
+                        .createdAt(rs.getTimestamp("created_at").toLocalDateTime())
+                        .updatedAt(rs.getTimestamp("updated_at").toLocalDateTime())
+                        .avatar(rs.getString("avatar"))
+                        .build());
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(connection, ps, rs);
+        }
+        return users;
+    }
 
     public boolean checkEmailExist(String email){
         String sql = "SELECT COUNT(email) FROM user WHERE email = ?";
@@ -221,5 +277,36 @@ public class UserDAO extends GenericDAO<UserModel> {
         }
 
         return result;
+    }
+
+    /**
+     * Lấy số lượng page dựa trên số lượng item cần hiển thị
+     * @param numOfItems
+     * @return
+     */
+    public Long getTotalPage(int numOfItems) {
+        String query = "SELECT COUNT(*) FROM user";
+        Connection connection = DBUtil.getConnection();
+        if(connection == null) return null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try{
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                int totalUser = rs.getInt(1);
+                Long countPage = (long) (totalUser / numOfItems);
+                if(totalUser % numOfItems != 0){
+                    countPage++;
+                }
+                return countPage;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            DBUtil.close(connection, ps, rs);
+        }
+        return null;
     }
 }
