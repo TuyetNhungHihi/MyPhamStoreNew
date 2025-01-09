@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Setter
 @Getter
 public class BaseModel implements Serializable {
     protected Long id;

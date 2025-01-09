@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DBUtil {
+public class HikariConnection {
     private static HikariConfig config = new HikariConfig();
     private static HikariDataSource ds;
+
 
     static {
         config.setJdbcUrl(DBConfig.DB_URL);
@@ -25,6 +26,10 @@ public class DBUtil {
         config.setConnectionTimeout(30000);
 
         ds = new HikariDataSource(config);
+    }
+
+    public static HikariDataSource getDataSource() {
+        return ds;
     }
     public static Connection getConnection()  {
         try{
