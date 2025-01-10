@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@include file="/common/tablib.jsp"%>
+
 <header>
     <div class="menu-toggle" id="menu-toggle">
         <label class="bar-label" for="">

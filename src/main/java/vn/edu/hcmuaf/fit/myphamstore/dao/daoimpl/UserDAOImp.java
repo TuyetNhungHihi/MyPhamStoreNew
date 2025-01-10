@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
 import vn.edu.hcmuaf.fit.myphamstore.common.*;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
@@ -12,6 +13,7 @@ import java.util.List;
 
 
 @Slf4j
+@ApplicationScoped
 public class UserDAOImp implements IUserDAO {
 
     @Override

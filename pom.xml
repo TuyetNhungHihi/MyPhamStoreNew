@@ -34,6 +34,14 @@
           <artifactId>jdbi3-core</artifactId>
           <version>3.47.0</version>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet -->
+
+      <dependency>
+          <groupId>org.jboss.weld.servlet</groupId>
+          <artifactId>weld-servlet-shaded</artifactId>
+          <version>4.0.3.Final</version> <!-- Kiểm tra phiên bản mới nhất -->
+      </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
       <dependency>
           <groupId>org.springframework.security</groupId>

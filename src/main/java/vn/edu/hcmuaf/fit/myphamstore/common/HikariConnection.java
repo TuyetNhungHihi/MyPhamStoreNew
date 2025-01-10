@@ -20,51 +20,22 @@ public class HikariConnection {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        config.setDriverClassName(DBConfig.DB_DRIVER);
         config.setMaximumPoolSize(100);
         config.setMinimumIdle(10);
         config.setIdleTimeout(30000);
         config.setConnectionTimeout(30000);
 
+        try {
+            Class.forName(DBConfig.DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Không tìm thấy driver JDBC", e);
+        }
         ds = new HikariDataSource(config);
     }
 
     public static HikariDataSource getDataSource() {
         return ds;
-    }
-    public static Connection getConnection()  {
-        try{
-            return ds.getConnection();
-        }catch(SQLException e){
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public static void closePool() {
-        if (ds != null && !ds.isClosed()) {
-            ds.close();
-        }
-    }
-    public static void close(Connection connection, PreparedStatement ps, ResultSet rs) {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (ps != null) {
-            try {
-                ps.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

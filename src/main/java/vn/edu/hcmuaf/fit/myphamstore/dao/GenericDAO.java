@@ -9,4 +9,5 @@ public interface GenericDAO <T>{
      T update(T entity);
      void delete(T entity);
      List<T> findAll(String keyword,int currentPage, int pageSize, String orderBy);
+    Long getTotalPage(int numOfItems);
 }
