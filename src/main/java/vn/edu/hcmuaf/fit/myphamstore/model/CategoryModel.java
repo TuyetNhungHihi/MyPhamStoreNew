@@ -14,4 +14,5 @@ public class CategoryModel extends BaseModel{
     private String name;
     private String description;
     private Boolean isAvailable; //wrapper class -> Boolean
+
 }
