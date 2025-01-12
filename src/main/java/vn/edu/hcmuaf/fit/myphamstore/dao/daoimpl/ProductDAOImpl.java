@@ -4,7 +4,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +34,13 @@ public class ProductDAOImpl implements IProductDAO {
     public void delete(ProductModel entity) {
 
     }
-
+    @Override
+    public List<ProductModel> getAllProducts() {
+        String sql = "SELECT * FROM product";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql).mapToBean(ProductModel.class).list()
+        );
+    }
     @Override
     public List<ProductModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào

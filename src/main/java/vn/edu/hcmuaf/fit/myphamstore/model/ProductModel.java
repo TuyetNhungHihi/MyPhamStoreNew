@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Getter
 public class ProductModel extends BaseModel{
+
     private String name;
     private Long price;
     private Long costPrice;
@@ -20,4 +21,6 @@ public class ProductModel extends BaseModel{
     private String thumbnail;
     private Long categoryId;
     private Long brandId;
+
+
 }
