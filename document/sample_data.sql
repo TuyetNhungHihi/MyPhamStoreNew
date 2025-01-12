@@ -137,6 +137,49 @@ INSERT INTO `product` (`id`, `name`, `price`, `cost_price`, `stock`, `sold_quant
 (19, 'Benefit Hair Serum', 550000, 450000, 100, 45, 'Silky hair serum', true, 'benefit_hair_serum.png', 13, 7, NOW(), NOW()),
 (20, 'MAC Compact Powder', 500000, 400000, 150, 60, 'Smooth compact powder', true, 'mac_compact_powder.png', 3, 4, NOW(), NOW());
 
+INSERT INTO `product_variant` (`id`, `product_id`, `name`, `price`, `stock`, `sold_quantity`, `thumbnail`, `is_available`, `created_at`, `updated_at`)
+VALUES
+-- Variants for Oreal Face Wash
+(1, 1, 'Travel Size 50ml', 180000, 150, 40, 'loreal_face_wash_50ml.png', true, NOW(), NOW()),
+(2, 1, 'Standard 150ml', 200000, 300, 60, 'loreal_face_wash_150ml.png', true, NOW(), NOW()),
+(3, 1, 'Family Pack 300ml', 350000, 50, 20, 'loreal_face_wash_300ml.png', true, NOW(), NOW()),
+
+-- Variants for Maybelline Lipstick
+(4, 2, 'Shade Ruby Red', 310000, 100, 30, 'maybelline_lipstick_ruby_red.png', true, NOW(), NOW()),
+(5, 2, 'Shade Coral Pink', 320000, 100, 30, 'maybelline_lipstick_coral_pink.png', true, NOW(), NOW()),
+(6, 2, 'Shade Nude Brown', 300000, 100, 30, 'maybelline_lipstick_nude_brown.png', true, NOW(), NOW()),
+
+-- Variants for MAC Foundation
+(7, 3, 'Shade Light', 620000, 40, 15, 'mac_foundation_light.png', true, NOW(), NOW()),
+(8, 3, 'Shade Medium', 600000, 40, 15, 'mac_foundation_medium.png', true, NOW(), NOW()),
+(9, 3, 'Shade Dark', 600000, 20, 15, 'mac_foundation_dark.png', true, NOW(), NOW()),
+
+-- Variants for Dior Perfume - Women
+(10, 4, '50ml Bottle', 1200000, 30, 10, 'dior_perfume_women_50ml.png', true, NOW(), NOW()),
+(11, 4, '75ml Bottle', 1500000, 15, 10, 'dior_perfume_women_75ml.png', true, NOW(), NOW()),
+(12, 4, '100ml Bottle', 1800000, 5, 10, 'dior_perfume_women_100ml.png', true, NOW(), NOW()),
+
+-- Variants for Chanel Perfume - Men
+(13, 5, '50ml Bottle', 1300000, 20, 5, 'chanel_perfume_men_50ml.png', true, NOW(), NOW()),
+(14, 5, '75ml Bottle', 1600000, 15, 5, 'chanel_perfume_men_75ml.png', true, NOW(), NOW()),
+(15, 5, '100ml Bottle', 2000000, 5, 5, 'chanel_perfume_men_100ml.png', true, NOW(), NOW()),
+
+-- Variants for Lancome Moisturizer
+(16, 6, '50ml Jar', 500000, 100, 20, 'lancome_moisturizer_50ml.png', true, NOW(), NOW()),
+(17, 6, '100ml Jar', 800000, 80, 30, 'lancome_moisturizer_100ml.png', true, NOW(), NOW()),
+(18, 6, '150ml Jar', 1100000, 20, 30, 'lancome_moisturizer_150ml.png', true, NOW(), NOW()),
+
+-- Variants for Clinique Shampoo
+(19, 7, '250ml Bottle', 300000, 80, 30, 'clinique_shampoo_250ml.png', true, NOW(), NOW()),
+(20, 7, '500ml Bottle', 500000, 50, 20, 'clinique_shampoo_500ml.png', true, NOW(), NOW()),
+(21, 7, '1000ml Bottle', 900000, 20, 10, 'clinique_shampoo_1000ml.png', true, NOW(), NOW()),
+
+-- Variants for Bobbi Brown Brushes
+(22, 8, 'Travel Set', 350000, 100, 30, 'bobbi_brown_brushes_travel_set.png', true, NOW(), NOW()),
+(23, 8, 'Professional Set', 450000, 80, 30, 'bobbi_brown_brushes_professional_set.png', true, NOW(), NOW()),
+(24, 8, 'Limited Edition Set', 550000, 20, 15, 'bobbi_brown_brushes_limited.png', true, NOW(), NOW());
+
+
 INSERT INTO `review` (`id`, `user_id`, `product_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 5, 'Good quality!', NOW(), NOW()),
 (2, 2, 2, 4, 'Nice product.', NOW(), NOW()),

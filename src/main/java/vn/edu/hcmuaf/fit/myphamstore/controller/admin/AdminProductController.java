@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "Product-Management", value = "/admin-products")
+@WebServlet(name = "Product-Management", value = "/admin/products")
 public class AdminProductController extends HttpServlet {
     @Inject
     private IProductService productService;

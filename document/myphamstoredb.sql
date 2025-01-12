@@ -83,6 +83,19 @@ CREATE TABLE `product` (
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
+CREATE TABLE product_variant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    name NVARCHAR(255) DEFAULT NULL, -- Tên phiên bản (VD: "Màu đỏ", "500ml")
+    price INT NOT NULL,
+    stock INT DEFAULT 0,
+    sold_quantity INT DEFAULT 0,
+    thumbnail TEXT(500) DEFAULT NULL, -- Ảnh riêng cho phiên bản
+    is_available BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME DEFAULT NOW(),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+);
 
 CREATE TABLE `review` (
   `id` int PRIMARY KEY AUTO_INCREMENT,

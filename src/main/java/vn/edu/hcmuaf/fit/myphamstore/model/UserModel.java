@@ -24,5 +24,5 @@ public class UserModel extends BaseModel{
     private String avatar;
     private UserStatus status;
     private LocalDateTime lastLogin;
-
+    private String role;
 }
