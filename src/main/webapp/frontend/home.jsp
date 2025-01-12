@@ -124,7 +124,8 @@ To change this template use File | Settings | File Templates.
 <%--										<div class="ss_feat_prod_cont_heading_wrapper">--%>
 <%--											<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>--%>
 <%--											<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>--%>
-<%--										</div>--%>
+<%--
+</div>--%>
 											<tbody>
 											<c:forEach var="product" items="${products}">
 												<tr>
@@ -197,512 +198,168 @@ To change this template use File | Settings | File Templates.
 	</div>
 	<!-- Service Wrapper End -->
 	<!-- Featured Products Wrapper Start -->
-	<div class="ss_featured_products_wrapper" style="padding-top: 0;">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="ss_featured_products_tab">
-						<div class="ss_heading">
-							<h3>Danh Mục Hot</h3>
-						</div>
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Tẩy Trang</a>
-							</li>
-							<li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Chống Nắng</a>
-							</li>
-							<li role="presentation"><a href="#trand" aria-controls="trand" role="tab" data-toggle="tab">Sửa Rửa Mặt</a>
-							</li>
-						</ul>
-					</div>
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="best">
-							<div class="ss_featured_products">
-								<div class="owl-carousel owl-theme">
-									<c:forEach var="product" items="${products}">
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">
-												<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="${product.thumbnail}" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">${product.name}</a></h4>
-												<p>${product.description}</p>
-												<del>${product.price}</del> <ins>${product.price}</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									</c:forEach>
-								</div>
+		<div class="ss_featured_products_wrapper" style="padding-top: 0;">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="ss_featured_products_tab">
+							<div class="ss_heading">
+								<h3>Danh Mục Hot</h3>
 							</div>
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Tẩy Trang</a></li>
+								<li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Chống Nắng</a></li>
+								<li role="presentation"><a href="#trand" aria-controls="trand" role="tab" data-toggle="tab">Sữa Rửa Mặt</a></li>
+							</ul>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="hot">
-							<div class="ss_featured_products">
-								<div class="owl-carousel owl-theme">
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/0/3025302.png" alt="Product" class="img-responsive">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade in active" id="best">
+								<div class="ss_featured_products">
+									<div class="owl-carousel owl-theme">
+										<c:forEach var="product" items="${tayTrangProducts}">
+											<div class="item">
+												<div class="ss_featured_products_box">
+													<div class="ss_featured_products_box_img">
+														<span class="ss_tag">mới</span>
+														<span class="ss_offer">giảm 20%</span>
+														<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+													</div>
+													<div class="ss_feat_prod_cont_heading_wrapper">
+														<h4><a href="product_detail.jsp">${product.name}</a></h4>
+														<p>${product.description}</p>
+														<del>${product.price}</del> <ins>${product.price}</ins>
+													</div>
+													<div class="ss_featured_products_box_footer">
+														<fieldset class="rating">
+															<input type="radio" name="rating" value="5" />
+															<label class="full" title="5 stars"></label>
+															<input type="radio" name="rating" value="4 and a half" />
+															<label class="half" title="4.5 stars"></label>
+															<input type="radio" name="rating" value="4" />
+															<label class="full" title="4 stars"></label>
+															<input type="radio" name="rating" value="3 and a half" />
+															<label class="half" title="3.5 stars"></label>
+															<input type="radio" name="rating" value="3" />
+															<label class="full" title="3 stars"></label>
+															<input type="radio" name="rating" value="2 and a half" />
+															<label class="half" title="2.5 stars"></label>
+															<input type="radio" name="rating" value="2" />
+															<label class="full" title="2 stars"></label>
+															<input type="radio" name="rating" value="1 and a half" />
+															<label class="half" title="1.5 stars"></label>
+															<input type="radio" name="rating" value="1" />
+															<label class="full" title="1 star"></label>
+															<input type="radio" name="rating" value="half" />
+															<label class="half" title="0.5 stars"></label>
+														</fieldset>
+														<ul>
+															<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+															<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+														</ul>
+													</div>
+												</div>
 											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Gel Chống Nắng Dưỡng Sáng Nâng Tông Anessa Brightening Uv Spf50+ Pa++++ 90Gr</a></h4>
-												<p>Anessa</p>	<del>600,000đ</del>  <ins>575,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/0/3025302.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Gel Chống Nắng Dưỡng Sáng Nâng Tông Anessa Brightening Uv Spf50+ Pa++++ 90Gr</a></h4>
-												<p>Anessa</p>	<del>600,000đ</del>  <ins>575,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/0/3025302.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Gel Chống Nắng Dưỡng Sáng Nâng Tông Anessa Brightening Uv Spf50+ Pa++++ 90Gr</a></h4>
-												<p>Anessa</p>	<del>600,000đ</del>  <ins>575,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/0/3025302.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Gel Chống Nắng Dưỡng Sáng Nâng Tông Anessa Brightening Uv Spf50+ Pa++++ 90Gr</a></h4>
-												<p>Anessa</p>	<del>600,000đ</del>  <ins>575,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/0/3025302.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Gel Chống Nắng Dưỡng Sáng Nâng Tông Anessa Brightening Uv Spf50+ Pa++++ 90Gr</a></h4>
-												<p>Anessa</p>	<del>600,000đ</del>  <ins>575,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="trand">
-							<div class="ss_featured_products">
-								<div class="owl-carousel owl-theme">
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/4/3499320013055_6a53cc50c01146b28767171295547b99_dqhaxsyezj0dobso.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Sữa Rửa Mặt Dịu Nhẹ Gentle Skin Cleanser Cetaphil 125Ml</a></h4>
-												<p>CETAPHIL</p>	<del>200,000đ</del>  <ins>139,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
+							<div role="tabpanel" class="tab-pane fade" id="hot">
+								<div class="ss_featured_products">
+									<div class="owl-carousel owl-theme">
+										<c:forEach var="product" items="${chongNangProducts}">
+										<div class="item">
+											<div class="ss_featured_products_box">
+												<div class="ss_featured_products_box_img">
+													<span class="ss_tag">mới</span>
+													<span class="ss_offer">giảm 20%</span>
+													<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+												</div>
+												<div class="ss_feat_prod_cont_heading_wrapper">
+													<h4><a href="product_detail.jsp">${product.name}</a></h4>
+													<p>${product.description}</p>
+													<del>${product.price}</del> <ins>${product.price}</ins>
+												</div>
+												<div class="ss_featured_products_box_footer">
+													<fieldset class="rating">
+														<input type="radio" name="rating" value="5" />
+														<label class="full" title="5 stars"></label>
+														<input type="radio" name="rating" value="4 and a half" />
+														<label class="half" title="4.5 stars"></label>
+														<input type="radio" name="rating" value="4" />
+														<label class="full" title="4 stars"></label>
+														<input type="radio" name="rating" value="3 and a half" />
+														<label class="half" title="3.5 stars"></label>
+														<input type="radio" name="rating" value="3" />
+														<label class="full" title="3 stars"></label>
+														<input type="radio" name="rating" value="2 and a half" />
+														<label class="half" title="2.5 stars"></label>
+														<input type="radio" name="rating" value="2" />
+														<label class="full" title="2 stars"></label>
+														<input type="radio" name="rating" value="1 and a half" />
+														<label class="half" title="1.5 stars"></label>
+														<input type="radio" name="rating" value="1" />
+														<label class="full" title="1 star"></label>
+														<input type="radio" name="rating" value="half" />
+														<label class="half" title="0.5 stars"></label>
+													</fieldset>
+													<ul>
+														<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+														<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
 											</div>
 										</div>
+										</c:forEach>
 									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/4/3499320013055_6a53cc50c01146b28767171295547b99_dqhaxsyezj0dobso.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Sữa Rửa Mặt Dịu Nhẹ Gentle Skin Cleanser Cetaphil 125Ml</a></h4>
-												<p>CETAPHIL</p>	<del>200,000đ</del>  <ins>139,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/4/3499320013055_6a53cc50c01146b28767171295547b99_dqhaxsyezj0dobso.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Sữa Rửa Mặt Dịu Nhẹ Gentle Skin Cleanser Cetaphil 125Ml</a></h4>
-												<p>CETAPHIL</p>	<del>200,000đ</del>  <ins>139,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="trand">
+								<div class="ss_featured_products">
+									<div class="owl-carousel owl-theme">
+										<c:forEach var="product" items="${suaRuaMatProducts}">
+										<div class="item">
+											<div class="ss_featured_products_box">
+												<div class="ss_featured_products_box_img">
+													<span class="ss_tag">mới</span>
+													<span class="ss_offer">giảm 20%</span>
+													<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+												</div>
+												<div class="ss_feat_prod_cont_heading_wrapper">
+													<h4><a href="product_detail.jsp">${product.name}</a></h4>
+													<p>${product.description}</p>
+													<del>${product.price}</del> <ins>${product.price}</ins>
+												</div>
+												<div class="ss_featured_products_box_footer">
+													<fieldset class="rating">
+														<input type="radio" name="rating" value="5" />
+														<label class="full" title="5 stars"></label>
+														<input type="radio" name="rating" value="4 and a half" />
+														<label class="half" title="4.5 stars"></label>
+														<input type="radio" name="rating" value="4" />
+														<label class="full" title="4 stars"></label>
+														<input type="radio" name="rating" value="3 and a half" />
+														<label class="half" title="3.5 stars"></label>
+														<input type="radio" name="rating" value="3" />
+														<label class="full" title="3 stars"></label>
+														<input type="radio" name="rating" value="2 and a half" />
+														<label class="half" title="2.5 stars"></label>
+														<input type="radio" name="rating" value="2" />
+														<label class="full" title="2 stars"></label>
+														<input type="radio" name="rating" value="1 and a half" />
+														<label class="half" title="1.5 stars"></label>
+														<input type="radio" name="rating" value="1" />
+														<label class="full" title="1 star"></label>
+														<input type="radio" name="rating" value="half" />
+														<label class="half" title="0.5 stars"></label>
+													</fieldset>
+													<ul>
+														<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+														<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+													</ul>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/4/3499320013055_6a53cc50c01146b28767171295547b99_dqhaxsyezj0dobso.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Sữa Rửa Mặt Dịu Nhẹ Gentle Skin Cleanser Cetaphil 125Ml</a></h4>
-												<p>CETAPHIL</p>	<del>200,000đ</del>  <ins>139,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/3/4/3499320013055_6a53cc50c01146b28767171295547b99_dqhaxsyezj0dobso.png" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Sữa Rửa Mặt Dịu Nhẹ Gentle Skin Cleanser Cetaphil 125Ml</a></h4>
-												<p>CETAPHIL</p>	<del>200,000đ</del>  <ins>139,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -711,447 +368,157 @@ To change this template use File | Settings | File Templates.
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- Featured Products Wrapper End -->
-	
-	<!-- Latest Products Wrapper Start -->
-	<div class="ss_latest_products_wrapper" style="padding-bottom: 0;">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="ss_featured_products_tab">
-						<div class="ss_heading">
-							<h3>Sản Phẩm Mới Ra Mắt</h3>
+
+		<div class="ss_latest_products_wrapper" style="padding-bottom: 0;">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="ss_featured_products_tab">
+							<div class="ss_heading">
+								<h3>Sản Phẩm Mới Ra Mắt</h3>
+							</div>
 						</div>
-					</div>
-					<div class="ss_latest_products">
-						<div class="owl-carousel owl-theme">
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
+						<div class="ss_latest_products">
+							<div class="owl-carousel owl-theme">
+								<c:forEach var="product" items="${latestTayTrangProducts}">
+								<div class="item">
+									<div class="ss_featured_products_box">
+										<div class="ss_featured_products_box_img">
+											<span class="ss_tag">mới</span>
+											<span class="ss_offer">giảm 20%</span>
+											<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+										</div>
+										<div class="ss_feat_prod_cont_heading_wrapper">
+											<h4><a href="product_detail.jsp">${product.name}</a></h4>
+											<p>${product.description}</p>
+											<del>${product.price}</del> <ins>${product.price}</ins>
+										</div>
+										<div class="ss_featured_products_box_footer">
+											<fieldset class="rating">
+												<input type="radio" name="rating" value="5" />
+												<label class="full" title="5 stars"></label>
+												<input type="radio" name="rating" value="4 and a half" />
+												<label class="half" title="4.5 stars"></label>
+												<input type="radio" name="rating" value="4" />
+												<label class="full" title="4 stars"></label>
+												<input type="radio" name="rating" value="3 and a half" />
+												<label class="half" title="3.5 stars"></label>
+												<input type="radio" name="rating" value="3" />
+												<label class="full" title="3 stars"></label>
+												<input type="radio" name="rating" value="2 and a half" />
+												<label class="half" title="2.5 stars"></label>
+												<input type="radio" name="rating" value="2" />
+												<label class="full" title="2 stars"></label>
+												<input type="radio" name="rating" value="1 and a half" />
+												<label class="half" title="1.5 stars"></label>
+												<input type="radio" name="rating" value="1" />
+												<label class="full" title="1 star"></label>
+												<input type="radio" name="rating" value="half" />
+												<label class="half" title="0.5 stars"></label>
+											</fieldset>
+											<ul>
+												<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+												<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
+								</c:forEach>
+								<c:forEach var="product" items="${latestChongNangProducts}">
+								<div class="item">
+									<div class="ss_featured_products_box">
+										<div class="ss_featured_products_box_img">
+											<span class="ss_tag">mới</span>
+											<span class="ss_offer">giảm 20%</span>
+											<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+										</div>
+										<div class="ss_feat_prod_cont_heading_wrapper">
+											<h4><a href="product_detail.jsp">${product.name}</a></h4>
+											<p>${product.description}</p>
+											<del>${product.price}</del> <ins>${product.price}</ins>
+										</div>
+										<div class="ss_featured_products_box_footer">
+											<fieldset class="rating">
+												<input type="radio" name="rating" value="5" />
+												<label class="full" title="5 stars"></label>
+												<input type="radio" name="rating" value="4 and a half" />
+												<label class="half" title="4.5 stars"></label>
+												<input type="radio" name="rating" value="4" />
+												<label class="full" title="4 stars"></label>
+												<input type="radio" name="rating" value="3 and a half" />
+												<label class="half" title="3.5 stars"></label>
+												<input type="radio" name="rating" value="3" />
+												<label class="full" title="3 stars"></label>
+												<input type="radio" name="rating" value="2 and a half" />
+												<label class="half" title="2.5 stars"></label>
+												<input type="radio" name="rating" value="2" />
+												<label class="full" title="2 stars"></label>
+												<input type="radio" name="rating" value="1 and a half" />
+												<label class="half" title="1.5 stars"></label>
+												<input type="radio" name="rating" value="1" />
+												<label class="full" title="1 star"></label>
+												<input type="radio" name="rating" value="half" />
+												<label class="half" title="0.5 stars"></label>
+											</fieldset>
+											<ul>
+												<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+												<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
+								</c:forEach>
+								<c:forEach var="product" items="${latestSuaRuaMatProducts}">
+								<div class="item">
+									<div class="ss_featured_products_box">
+										<div class="ss_featured_products_box_img">
+											<span class="ss_tag">mới</span>
+											<span class="ss_offer">giảm 20%</span>
+											<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+										</div>
+										<div class="ss_feat_prod_cont_heading_wrapper">
+											<h4><a href="product_detail.jsp">${product.name}</a></h4>
+											<p>${product.description}</p>
+											<del>${product.price}</del> <ins>${product.price}</ins>
+										</div>
+										<div class="ss_featured_products_box_footer">
+											<fieldset class="rating">
+												<input type="radio" name="rating" value="5" />
+												<label class="full" title="5 stars"></label>
+												<input type="radio" name="rating" value="4 and a half" />
+												<label class="half" title="4.5 stars"></label>
+												<input type="radio" name="rating" value="4" />
+												<label class="full" title="4 stars"></label>
+												<input type="radio" name="rating" value="3 and a half" />
+												<label class="half" title="3.5 stars"></label>
+												<input type="radio" name="rating" value="3" />
+												<label class="full" title="3 stars"></label>
+												<input type="radio" name="rating" value="2 and a half" />
+												<label class="half" title="2.5 stars"></label>
+												<input type="radio" name="rating" value="2" />
+												<label class="full" title="2 stars"></label>
+												<input type="radio" name="rating" value="1 and a half" />
+												<label class="half" title="1.5 stars"></label>
+												<input type="radio" name="rating" value="1" />
+												<label class="full" title="1 star"></label>
+												<input type="radio" name="rating" value="half" />
+												<label class="half" title="0.5 stars"></label>
+											</fieldset>
+											<ul>
+												<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+												<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="ss_featured_products_box">
-									<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-										<span class="ss_offer">giảm 20%</span>
-										<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/t/h/thumbnail_3025540_utgcfi0ci5oahdvs.jpg" alt="Product" class="img-responsive">
-									</div>
-									<div class="ss_feat_prod_cont_heading_wrapper">
-										<h4><a href="product_detail.jsp">Sữa Tắm Dạng Kem Dưỡng Ẩm Guardian Essential Almond Milk Moisturising Shower Cream Sữa Hạnh Nhân 1000Ml</a></h4>
-										<p>GUARDIAN</p>	<del>100,000đ</del>  <ins>85,000đ</ins>
-									</div>
-									<div class="ss_featured_products_box_footer">
-										<fieldset class="rating">
-											<input type="radio" name="rating" value="5" />
-											<label class="full" title="5 stars"></label>
-											<input type="radio" name="rating" value="4 and a half" />
-											<label class="half" title="4.5 stars"></label>
-											<input type="radio" name="rating" value="4" />
-											<label class="full" title="4 stars"></label>
-											<input type="radio" name="rating" value="3 and a half" />
-											<label class="half" title="3.5 stars"></label>
-											<input type="radio" name="rating" value="3" />
-											<label class="full" title="3 stars"></label>
-											<input type="radio" name="rating" value="2 and a half" />
-											<label class="half" title="2.5 stars"></label>
-											<input type="radio" name="rating" value="2" />
-											<label class="full" title="2 stars"></label>
-											<input type="radio" name="rating" value="1 and a half" />
-											<label class="half" title="1.5 stars"></label>
-											<input type="radio" name="rating" value="1" />
-											<label class="full" title="1 star"></label>
-											<input type="radio" name="rating" value="half" />
-											<label class="half" title="0.5 stars"></label>
-										</fieldset>
-										<ul>
-											<li>
-												<button class="ss_btn">Thêm vào giỏ hàng</button>
-											</li>
-											<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-											</li>
-										</ul>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
 	<!-- Latest Products Wrapper End -->
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IProductDAO extends GenericDAO<ProductModel> {
     ProductModel getProductDetail(Long id);
-
+    List<ProductModel> getProductsByCategory(Long categoryId);
+    List<ProductModel> getLatestProductsByCategory(Long categoryId, int limit);
     List<ProductModel> getAllProducts();
 }

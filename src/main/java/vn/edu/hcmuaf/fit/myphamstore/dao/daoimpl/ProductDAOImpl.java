@@ -21,6 +21,29 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public List<ProductModel> getProductsByCategory(Long categoryId) {
+        String sql = "SELECT * FROM product WHERE category_id = :categoryId";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
+    @Override
+    public List<ProductModel> getLatestProductsByCategory(Long categoryId, int limit) {
+        String sql = "SELECT * FROM product WHERE category_id = :categoryId ORDER BY created_at DESC LIMIT :limit";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .bind("limit", limit)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
+    @Override
     public Long save(ProductModel entity) {
         return 0L;
     }
