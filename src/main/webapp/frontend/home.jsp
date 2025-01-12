@@ -138,6 +138,7 @@ To change this template use File | Settings | File Templates.
 											</tbody>
 
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
@@ -173,24 +174,7 @@ To change this template use File | Settings | File Templates.
 								</div>
 							</div>
 						</div>
-						<!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="ss_services_box">	<span><i class="fa fa-truck" aria-hidden="true"></i></span>
-								<h4>Free Shipping & Return</h4>
-								<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitu version of Lorem.</p>	<a href="#">read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="ss_services_box ss_services_box2">	<span><i class="fa fa-shield" aria-hidden="true"></i></span>
-								<h4>100% Secure Payments</h4>
-								<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitu version of Lorem.</p>	<a href="#">read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="ss_services_box ss_services_box3">	<span><i class="fa fa-headphones" aria-hidden="true"></i></span>
-								<h4>27/7 Support</h4>
-								<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitu version of Lorem.</p>	<a href="#">read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-							</div>
-						</div> -->
+
 					</div>
 				</div>
 			</div>
@@ -230,6 +214,7 @@ To change this template use File | Settings | File Templates.
 														<del>${product.price}</del> <ins>${product.price}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
+														<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 														<fieldset class="rating">
 															<input type="radio" name="rating" value="5" />
 															<label class="full" title="5 stars"></label>
@@ -280,6 +265,7 @@ To change this template use File | Settings | File Templates.
 													<del>${product.price}</del> <ins>${product.price}</ins>
 												</div>
 												<div class="ss_featured_products_box_footer">
+													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 													<fieldset class="rating">
 														<input type="radio" name="rating" value="5" />
 														<label class="full" title="5 stars"></label>
@@ -330,6 +316,7 @@ To change this template use File | Settings | File Templates.
 													<del>${product.price}</del> <ins>${product.price}</ins>
 												</div>
 												<div class="ss_featured_products_box_footer">
+													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 													<fieldset class="rating">
 														<input type="radio" name="rating" value="5" />
 														<label class="full" title="5 stars"></label>
@@ -394,6 +381,7 @@ To change this template use File | Settings | File Templates.
 											<del>${product.price}</del> <ins>${product.price}</ins>
 										</div>
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
@@ -438,6 +426,7 @@ To change this template use File | Settings | File Templates.
 											<del>${product.price}</del> <ins>${product.price}</ins>
 										</div>
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
@@ -482,6 +471,7 @@ To change this template use File | Settings | File Templates.
 											<del>${product.price}</del> <ins>${product.price}</ins>
 										</div>
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
