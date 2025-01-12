@@ -115,82 +115,59 @@ To change this template use File | Settings | File Templates.
 					<div class="row">
 						<div class="ss_latest_products product-three-service">
 							<div class="owl-carousel owl-theme">
-								<div class="item">
-									<div class="ss_featured_products_box">
-										<div class="ss_featured_products_box_img">	<span class="ss_tag">Mới</span>
-											<span class="ss_offer">Giảm 20%</span>
-											<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-<%--										</div>--%>
-<%--										<div class="ss_feat_prod_cont_heading_wrapper">--%>
-<%--											<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>--%>
-<%--											<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>--%>
-<%--
-</div>--%>
-											<tbody>
-											<c:forEach var="product" items="${products}">
-												<tr>
-													<td>${product.id}</td>
-													<td>${product.name}</td>
-													<td>${product.description}</td>
-													<td>${product.price}</td>
-												</tr>
-											</c:forEach>
-											</tbody>
+								<c:forEach var="product" items="${products}">
+									<div class="item">
+										<div class="ss_featured_products_box">
+											<div class="ss_featured_products_box_img">
+												<span class="ss_tag">mới</span>
+												<span class="ss_offer">giảm 20%</span>
+												<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+											</div>
+											<div class="ss_feat_prod_cont_heading_wrapper">
+												<h4><a href="product_detail.jsp">${product.name}</a></h4>
+												<p>${product.description}</p>
+												<del>${product.price}</del> <ins>${product.price}</ins>
+											</div>
+											<div class="ss_featured_products_box_footer">
+												<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
+												<fieldset class="rating">
+													<input type="radio" name="rating" value="5" />
+													<label class="full" title="5 stars"></label>
+													<input type="radio" name="rating" value="4 and a half" />
+													<label class="half" title="4.5 stars"></label>
+													<input type="radio" name="rating" value="4" />
+													<label class="full" title="4 stars"></label>
+													<input type="radio" name="rating" value="3 and a half" />
+													<label class="half" title="3.5 stars"></label>
+													<input type="radio" name="rating" value="3" />
+													<label class="full" title="3 stars"></label>
+													<input type="radio" name="rating" value="2 and a half" />
+													<label class="half" title="2.5 stars"></label>
+													<input type="radio" name="rating" value="2" />
+													<label class="full" title="2 stars"></label>
+													<input type="radio" name="rating" value="1 and a half" />
+													<label class="half" title="1.5 stars"></label>
+													<input type="radio" name="rating" value="1" />
+													<label class="full" title="1 star"></label>
+													<input type="radio" name="rating" value="half" />
+													<label class="half" title="0.5 stars"></label>
+												</fieldset>
+												<ul>
+													<li>
+														<button class="ss_btn">Thêm vào giỏ</button>
+													</li>
+													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+													</li>
+												</ul>
+											</div>
 
-										<div class="ss_featured_products_box_footer">
-											<fieldset class="rating">
-												<input type="radio" name="rating" value="5" />
-												<label class="full" title="5 stars"></label>
-												<input type="radio" name="rating" value="4 and a half" />
-												<label class="half" title="4.5 stars"></label>
-												<input type="radio" name="rating" value="4" />
-												<label class="full" title="4 stars"></label>
-												<input type="radio" name="rating" value="3 and a half" />
-												<label class="half" title="3.5 stars"></label>
-												<input type="radio" name="rating" value="3" />
-												<label class="full" title="3 stars"></label>
-												<input type="radio" name="rating" value="2 and a half" />
-												<label class="half" title="2.5 stars"></label>
-												<input type="radio" name="rating" value="2" />
-												<label class="full" title="2 stars"></label>
-												<input type="radio" name="rating" value="1 and a half" />
-												<label class="half" title="1.5 stars"></label>
-												<input type="radio" name="rating" value="1" />
-												<label class="full" title="1 star"></label>
-												<input type="radio" name="rating" value="half" />
-												<label class="half" title="0.5 stars"></label>
-											</fieldset>
-											<ul>
-												<li>
-													<button class="ss_btn">Thêm vào giỏ</button>
-												</li>
-												<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-												</li>
-											</ul>
 										</div>
 									</div>
 
-								</div>
+								</c:forEach>
 							</div>
 						</div>
-						<!-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="ss_services_box">	<span><i class="fa fa-truck" aria-hidden="true"></i></span>
-								<h4>Free Shipping & Return</h4>
-								<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitu version of Lorem.</p>	<a href="#">read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="ss_services_box ss_services_box2">	<span><i class="fa fa-shield" aria-hidden="true"></i></span>
-								<h4>100% Secure Payments</h4>
-								<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitu version of Lorem.</p>	<a href="#">read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="ss_services_box ss_services_box3">	<span><i class="fa fa-headphones" aria-hidden="true"></i></span>
-								<h4>27/7 Support</h4>
-								<p>Proin gravida nibh vel velit auctor aliquet aenean sollicitu version of Lorem.</p>	<a href="#">read more <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-							</div>
-						</div> -->
+
 					</div>
 				</div>
 			</div>
@@ -230,6 +207,7 @@ To change this template use File | Settings | File Templates.
 														<del>${product.price}</del> <ins>${product.price}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
+														<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 														<fieldset class="rating">
 															<input type="radio" name="rating" value="5" />
 															<label class="full" title="5 stars"></label>
@@ -280,6 +258,7 @@ To change this template use File | Settings | File Templates.
 													<del>${product.price}</del> <ins>${product.price}</ins>
 												</div>
 												<div class="ss_featured_products_box_footer">
+													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 													<fieldset class="rating">
 														<input type="radio" name="rating" value="5" />
 														<label class="full" title="5 stars"></label>
@@ -330,6 +309,7 @@ To change this template use File | Settings | File Templates.
 													<del>${product.price}</del> <ins>${product.price}</ins>
 												</div>
 												<div class="ss_featured_products_box_footer">
+													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 													<fieldset class="rating">
 														<input type="radio" name="rating" value="5" />
 														<label class="full" title="5 stars"></label>
@@ -394,6 +374,7 @@ To change this template use File | Settings | File Templates.
 											<del>${product.price}</del> <ins>${product.price}</ins>
 										</div>
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
@@ -438,6 +419,7 @@ To change this template use File | Settings | File Templates.
 											<del>${product.price}</del> <ins>${product.price}</ins>
 										</div>
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
@@ -482,6 +464,7 @@ To change this template use File | Settings | File Templates.
 											<del>${product.price}</del> <ins>${product.price}</ins>
 										</div>
 										<div class="ss_featured_products_box_footer">
+											<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
 											<fieldset class="rating">
 												<input type="radio" name="rating" value="5" />
 												<label class="full" title="5 stars"></label>
@@ -611,5 +594,4 @@ To change this template use File | Settings | File Templates.
 	<!-- demo feature -->
 	 <script src="../static/js/demo/login-label.js"></script>
 </body>
-
 </html>
