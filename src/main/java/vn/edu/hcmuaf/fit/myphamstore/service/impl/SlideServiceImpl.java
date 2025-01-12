@@ -3,11 +3,11 @@ package vn.edu.hcmuaf.fit.myphamstore.service.impl;
 import jakarta.inject.Inject;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ISlideDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.SlideModel;
-import vn.edu.hcmuaf.fit.myphamstore.service.ISildeService;
+import vn.edu.hcmuaf.fit.myphamstore.service.ISlideService;
 
 import java.util.List;
 
-public class SlideServiceImpl implements ISildeService {
+public class SlideServiceImpl implements ISlideService {
     @Inject
     private ISlideDAO slideDAO;
     @Override
