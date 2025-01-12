@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 import jakarta.enterprise.context.ApplicationScoped;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
+import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
 import java.util.Arrays;
@@ -130,5 +131,10 @@ public class ProductDAOImpl implements IProductDAO {
         }
 
         return null;
+    }
+
+    @Override
+    public List<CategoryModel> getAllCategories() {
+        return List.of();
     }
 }
