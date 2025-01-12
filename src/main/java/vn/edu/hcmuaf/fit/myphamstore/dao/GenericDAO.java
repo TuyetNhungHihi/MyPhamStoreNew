@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao;
 
-import java.sql.*;
 import java.util.List;
 
 public interface GenericDAO <T>{

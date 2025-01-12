@@ -4,7 +4,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
 import java.util.Arrays;
 import java.util.List;

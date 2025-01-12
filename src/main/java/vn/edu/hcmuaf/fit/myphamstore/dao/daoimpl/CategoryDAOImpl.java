@@ -2,11 +2,12 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
+import vn.edu.hcmuaf.fit.myphamstore.common.ContactStatus;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ICategoryDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,18 +34,83 @@ public class CategoryDAOImpl implements ICategoryDAO {
 
     @Override
     public Long save(CategoryModel entity) {
-        return 0L;
-    }
 
+        String sql = "INSERT INTO category ( parent_id, name, is_available, created_at, updated_at) " +
+            "VALUES (:parent_id, :name, :is_available, :createdAt, :updatedAt)";
+            try {
+            return JDBIConnector.getJdbi().withHandle(handle -> {
+            // Thực hiện câu lệnh INSERT và lấy id tự động sinh
+            return handle.createUpdate(sql)
+                    .bind("parent_id", entity.getParentId())
+                    .bind("name", entity.getName().trim())
+                    .bind("is_available", entity.getIsAvailable())
+                    .bind("createdAt", LocalDateTime.now())
+                    .bind("updatedAt", LocalDateTime.now())
+                    .executeAndReturnGeneratedKeys("id") // Lấy giá trị khóa chính tự động sinh
+                    .mapTo(Long.class) // Ánh xạ giá trị trả về thành Long
+                    .one();
+                });
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                return null;}
+    }
     @Override
     public CategoryModel update(CategoryModel entity) {
+    CategoryModel categoryExisted = findCategoryById(entity.getId());
+        if (categoryExisted == null) {
+        log("Contact not found");
+            return null;
+    }
+        System.out.println(categoryExisted);
+
+    String sql = "UPDATE category SET parent_id = :parent_id, name = :name, is_available = :is_available , updated_at = :updatedAt WHERE id = :id";
+        try {
+        int result = JDBIConnector.getJdbi().withHandle(handle -> {
+            return handle.createUpdate(sql)
+                    .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : categoryExisted.getParentId())
+                    .bind("name", entity.getName() == null ? categoryExisted.getName() : categoryExisted.getName().trim())
+                    .bind("is_available", entity.getIsAvailable() == null ? categoryExisted.getIsAvailable() : categoryExisted.getIsAvailable())
+                    .bind("updatedAt", LocalDateTime.now())
+                    .bind("id", entity.getId())
+                    .execute();
+        });
+
+        if(result > 0){
+            return entity;
+        }
+    } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void delete(CategoryModel entity) {
+        CategoryModel categoryExisted = findCategoryById(entity.getId());
+        if (categoryExisted == null) {
+            log("Contact not found");
+            return ;
+        }
+        System.out.println(categoryExisted);
 
+        String sql = "UPDATE category SET parent_id = :parent_id, name = :name, is_available = :is_available , updated_at = :updatedAt WHERE id = :id";
+        try {
+            JDBIConnector.getJdbi().useHandle(handle -> {
+                handle.createUpdate(sql)
+                        .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : categoryExisted.getParentId())
+                        .bind("name", entity.getName() == null ? categoryExisted.getName() : categoryExisted.getName().trim())
+                        .bind("is_available", Boolean.FALSE)
+                        .bind("updatedAt", LocalDateTime.now())
+                        .bind("id", entity.getId())
+                        .execute();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     @Override
     public List<CategoryModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
