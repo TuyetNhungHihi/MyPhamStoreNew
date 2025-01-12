@@ -67,7 +67,8 @@ public class CategoryDAOImpl implements ICategoryDAO {
             }
             catch (Exception e) {
                 e.printStackTrace();
-                return null;}
+                return null;
+            }
     }
     @Override
     public CategoryModel update(CategoryModel entity) {
@@ -82,9 +83,9 @@ public class CategoryDAOImpl implements ICategoryDAO {
         try {
         int result = JDBIConnector.getJdbi().withHandle(handle -> {
             return handle.createUpdate(sql)
-                    .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : categoryExisted.getParentId())
-                    .bind("name", entity.getName() == null ? categoryExisted.getName() : categoryExisted.getName().trim())
-                    .bind("is_available", entity.getIsAvailable() == null ? categoryExisted.getIsAvailable() : categoryExisted.getIsAvailable())
+                    .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : entity.getParentId())
+                    .bind("name", entity.getName() == null ? categoryExisted.getName() : entity.getName().trim())
+                    .bind("is_available", entity.getIsAvailable() == null ? categoryExisted.getIsAvailable() : entity.getIsAvailable())
                     .bind("updatedAt", LocalDateTime.now())
                     .bind("id", entity.getId())
                     .execute();
@@ -112,8 +113,8 @@ public class CategoryDAOImpl implements ICategoryDAO {
         try {
             JDBIConnector.getJdbi().useHandle(handle -> {
                 handle.createUpdate(sql)
-                        .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : categoryExisted.getParentId())
-                        .bind("name", entity.getName() == null ? categoryExisted.getName() : categoryExisted.getName().trim())
+                        .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : entity.getParentId())
+                        .bind("name", entity.getName() == null ? categoryExisted.getName() : entity.getName().trim())
                         .bind("is_available", Boolean.FALSE)
                         .bind("updatedAt", LocalDateTime.now())
                         .bind("id", entity.getId())
