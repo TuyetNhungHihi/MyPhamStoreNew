@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -6,8 +8,8 @@ Author:
 Website: 
 Purchase: 
 -->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="UTF-8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="UTF-8"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en" style="scroll-behavior: smooth;">
 <!--<![endif]-->
@@ -50,8 +52,8 @@ Purchase:
   <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
   <!-- Top Scroll End -->
   <!-- Header Wrapper Start -->
-  <div id="nav"></div>
-  <div id="header"></div>
+  <%@include file="component/nav.jsp"%>
+  <%@include file="component/header.jsp"%>
   <!-- Header Wrapper End -->
   <!-- Slider Wrapper Start -->
   <!-- Slider Wrapper End -->
@@ -680,7 +682,7 @@ Da tổn thương sau mụn, Da nhạy cảm - kích ứng
   </div>
   <!-- accordion section end -->
   <!-- Footer Wrapper Start -->
-  <div id="footer"></div>
+  <%@include file="component/footer.jsp"%>
   <!-- Footer Wrapper End -->
   <!--main js file start-->
   <script>

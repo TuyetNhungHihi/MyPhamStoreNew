@@ -21,6 +21,29 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public List<ProductModel> getProductsByCategory(Long categoryId) {
+        String sql = "SELECT * FROM product WHERE category_id = :categoryId";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
+    @Override
+    public List<ProductModel> getLatestProductsByCategory(Long categoryId, int limit) {
+        String sql = "SELECT * FROM product WHERE category_id = :categoryId ORDER BY created_at DESC LIMIT :limit";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("categoryId", categoryId)
+                        .bind("limit", limit)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
+    @Override
     public Long save(ProductModel entity) {
         return 0L;
     }
@@ -34,7 +57,13 @@ public class ProductDAOImpl implements IProductDAO {
     public void delete(ProductModel entity) {
 
     }
-
+    @Override
+    public List<ProductModel> getAllProducts() {
+        String sql = "SELECT * FROM product";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql).mapToBean(ProductModel.class).list()
+        );
+    }
     @Override
     public List<ProductModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào
