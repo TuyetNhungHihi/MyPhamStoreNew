@@ -168,7 +168,7 @@ To change this template use File | Settings | File Templates.
 											</ul>
 										</div>
 									</div>
-									
+
 								</div>
 							</div>
 						</div>
@@ -218,15 +218,18 @@ To change this template use File | Settings | File Templates.
 						<div role="tabpanel" class="tab-pane fade in active" id="best">
 							<div class="ss_featured_products">
 								<div class="owl-carousel owl-theme">
+									<c:forEach var="product" items="${products}">
 									<div class="item">
 										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
+											<div class="ss_featured_products_box_img">
+												<span class="ss_tag">mới</span>
 												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
+												<img src="${product.thumbnail}" alt="Product" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-												<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
+												<h4><a href="product_detail.jsp">${product.name}</a></h4>
+												<p>${product.description}</p>
+												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
 												<fieldset class="rating">
@@ -252,187 +255,13 @@ To change this template use File | Settings | File Templates.
 													<label class="half" title="0.5 stars"></label>
 												</fieldset>
 												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
+													<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
+													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-												<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-												<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-												<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<div class="item">
-										<div class="ss_featured_products_box">
-											<div class="ss_featured_products_box_img">	<span class="ss_tag">mới</span>
-												<span class="ss_offer">giảm 20%</span>
-												<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-											</div>
-											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-												<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
-											</div>
-											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ hàng</button>
-													</li>
-													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
