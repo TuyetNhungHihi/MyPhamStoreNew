@@ -8,6 +8,7 @@ import vn.edu.hcmuaf.fit.myphamstore.dao.ICategoryDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +17,19 @@ import static java.rmi.server.LogStream.log;
 @Slf4j
 @ApplicationScoped
 public class CategoryDAOImpl implements ICategoryDAO {
+    @Override
+    public List<CategoryModel> getAllCategories() {
+        String sql = "SELECT * FROM category";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql).mapToBean(CategoryModel.class).list()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
     @Override
     public CategoryModel findCategoryById(Long id) {
         String query = "SELECT * FROM category WHERE id = :id";

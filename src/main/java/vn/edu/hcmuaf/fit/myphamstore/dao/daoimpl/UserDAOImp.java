@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
 import vn.edu.hcmuaf.fit.myphamstore.common.*;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
+import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
 import java.sql.*;
@@ -220,6 +221,11 @@ public class UserDAOImp implements IUserDAO {
         }
 
         return null;
+    }
+
+    @Override
+    public List<CategoryModel> getAllCategories() {
+        return List.of();
     }
 
 }

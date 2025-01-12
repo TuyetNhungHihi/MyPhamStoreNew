@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<!-- 
-Template Name: big basket
-Version: 1.0.0
-Author: 
-Website: 
-Purchase: 
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8">
 	<title>Thể loại</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta name="description" content="big basket" />
@@ -77,48 +68,25 @@ Purchase:
 	<div class="cc_pc_accordion_main_wrapper">
 		<div class="container">
 			<div class="row">
-				
 				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 					<div class="cc_pc_first_accordion_wrapper cc_pc_second_accordion_wrapper2">
 						<div class="cc_pc_accordion">
 							<ul id="accordion8" class="accordion">
 								<li class="default open">
-									<div class="link cc_product_heading">Loại sản phẩm<i class="fa fa-chevron-down"></i>
-									</div>
+									<div class="link cc_product_heading">Loại sản phẩm<i class="fa fa-chevron-down"></i></div>
 									<ul class="submenu">
-										<li>
-											<div class="content">
-												<div class="box">
-													<p class="cc_pc_color1">
-														<input type="checkbox" id="c201" name="cb">
-														<label for="c201">Sữa rữa mặt (55)</label>
-														<p class="cc_pc_color2">
-															<input type="checkbox" id="c202" name="cb">
-															<label for="c202">Kem dưỡng ẩm (245)</label>
+										<c:forEach var="category" items="${categories}">
+											<li>
+												<div class="content">
+													<div class="box">
+														<p class="cc_pc_color1">
+															<input type="checkbox" id="c${category.id}" name="cb">
+															<label for="c${category.id}">${category.name} (${category.productCount})</label>
 														</p>
-														<p class="cc_pc_color3">
-															<input type="checkbox" id="c203" name="cb">
-															<label for="c203">Tẩy trang</label>
-														</p>
-														<p class="cc_pc_color4">
-															<input type="checkbox" id="c204" name="cb">
-															<label for="c204">Son môi</label>
-														</p>
-														<p class="cc_pc_color5">
-															<input type="checkbox" id="c205" name="cb">
-															<label for="c205">Chống nắng (36)</label>
-														</p>
-														<p class="cc_pc_color6">
-															<input type="checkbox" id="c206" name="cb">
-															<label for="c206">Sữa tắm (23)</label>
-														</p>
-														<p class="cc_pc_color6">
-															<input type="checkbox" id="c207" name="cb">
-															<label for="c207">Xà phòng (124)</label>
-														</p>
+													</div>
 												</div>
-											</div>
-										</li>
+											</li>
+										</c:forEach>
 									</ul>
 								</li>
 							</ul>
