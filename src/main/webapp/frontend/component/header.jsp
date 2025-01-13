@@ -386,7 +386,7 @@
 								<!-- .cd-secondary-dropdown -->
 							</li>
 							<!-- .has-children -->
-							<li>	<a href="contact.html">More Category</a>
+							<li>	<a href="../contact.jsp">More Category</a>
 							</li>
 						</ul>
 						<!-- .cd-dropdown-content -->
@@ -547,7 +547,7 @@
 										</li>
 									</ul>
 								</li>
-								<li class="parent"><a href="contact.html">Contact</a>
+								<li class="parent"><a href="../contact.jsp">Contact</a>
 								</li>
 								<li class="parent visible-xs"><a href="#">Cart &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="lg-submenu">
