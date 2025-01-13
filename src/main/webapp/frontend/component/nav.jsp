@@ -28,7 +28,7 @@
                             </li>
                             <li class="parent"><a href="../category.jsp">Tất cả sản phẩm </a>
                             </li>
-                            <li class="parent"><a href="./brand.html">Thương hiệu</a>
+                            <li class="parent"><a href="../brand.jsp">Thương hiệu</a>
                             </li>
                             <li class="parent"><a href="./contact.html">Liên hệ</a>
                             </li>
