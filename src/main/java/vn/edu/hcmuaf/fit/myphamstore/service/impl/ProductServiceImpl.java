@@ -28,7 +28,16 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void stopBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public List<ProductModel> getProductsByCategory(long l) {
+        return productDAO.getProductsByCategory(l);
+    }
+
+    @Override
+    public List<ProductModel> getLatestProducts() {
+        return productDAO.getLatestProducts();
+    }
+    @Override
+  public void stopBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         //tến hành cập nhật trạng thái sản phẩm
         ProductModel productModel = ProductModel.builder().id(id).build();
@@ -93,6 +102,3 @@ public class ProductServiceImpl implements IProductService {
         request.setAttribute("product", product);
         dispatcher.forward(request, response);
     }
-
-
-}
