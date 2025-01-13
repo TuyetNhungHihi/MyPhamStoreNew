@@ -79,7 +79,7 @@
             </li>
             <li id="login-label" style="height: 82px;
                 display: flex;align-items: center;">
-                <!-- <div class="ss_login_box">	<a href="./login.html"><span>Đăng nhập/Đăng ký</span> <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive"></a>
+                <!-- <div class="ss_login_box">	<a href="./login.jsp"><span>Đăng nhập/Đăng ký</span> <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive"></a>
                 </div> -->
                 <!-- <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

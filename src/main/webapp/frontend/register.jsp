@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -180,7 +181,7 @@ Purchase:
                 </div>
                 <span class="signin-link"
                   >Đã có tài khoản? Nhấn vào đây để
-                  <a href="./login.html">Đăng nhập</a></span
+                  <a href="login.jsp">Đăng nhập</a></span
                 >
                 <button class="btn signup">Tạo tài khoản</button>
               </form>
@@ -197,14 +198,14 @@ Purchase:
       const footer = document.getElementById("footer");
       const nav = document.getElementById("nav");
 
-      fetch("./footer.html")
+      fetch("./footer.jsp")
         .then((response) => {
           return response.text();
         })
         .then((data) => {
           footer.innerHTML = data;
         });
-      fetch("./nav.html")
+      fetch("./nav.jsp")
         .then((response) => {
           return response.text();
         })
