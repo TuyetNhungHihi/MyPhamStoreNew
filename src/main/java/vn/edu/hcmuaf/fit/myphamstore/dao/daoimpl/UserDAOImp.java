@@ -142,8 +142,22 @@ public class UserDAOImp implements IUserDAO {
     }
 
     @Override
-    public boolean login(String username, String password) {
-        return false;
+    public boolean login(String email, String password) {
+        String sql = "SELECT password FROM user WHERE email = :email AND status != 'NONE'";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle -> {
+                String hashedPassword = handle.createQuery(sql)
+                        .bind("email", email.trim())
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse(null);
+
+                return hashedPassword != null && PasswordUtils.verifyPassword(password, hashedPassword);
+            });
+        } catch (Exception e) {
+            log.error("Error during login", e);
+            return false;
+        }
     }
 
     @Override

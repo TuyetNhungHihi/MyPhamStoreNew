@@ -513,7 +513,7 @@ To change this template use File | Settings | File Templates.
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="ss_heading_box">
 						<div class="ss_heading">
-							<h3>Các Thương Hiệu</h3>
+							<h3>Các Thương HiệuThương Hiệu</h3>
 						</div>
 					</div>
 					<div class="ss_brandlogo_slider">
