@@ -2,7 +2,6 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
-import vn.edu.hcmuaf.fit.myphamstore.common.ContactStatus;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ICategoryDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
@@ -29,7 +28,18 @@ public class CategoryDAOImpl implements ICategoryDAO {
             return new ArrayList<>();
         }
     }
-
+    @Override
+    public List<CategoryModel>getNameCategories() {
+        String sql = "SELECT name FROM category";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql).mapToBean(CategoryModel.class).list()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
     @Override
     public CategoryModel findCategoryById(Long id) {
         String query = "SELECT * FROM category WHERE id = :id";
