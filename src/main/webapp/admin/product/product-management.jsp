@@ -88,14 +88,13 @@
                                 </c:choose>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-primary">Sửa</button>
-                                <button class="btn btn-danger">Xóa</button>
+                                <a href="<c:url value="/admin/products?action=editProduct&id=${p.id}"/>" class="btn btn-primary">Sửa</a>
                                 <c:choose>
                                     <c:when test="${p.isAvailable}">
-                                        <a href="<c:url value="/admin/products?action=stopBuying&id=${p.id}"/>" class="btn btn-warning">Ngưng Bán</a>
+                                        <a href="<c:url value="/admin/products?action=stopBuying&id=${p.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Bán</a>
                                     </c:when>
                                     <c:otherwise>
-                                        <button class="btn btn-success">Bán</button>
+                                        <a href="<c:url value="/admin/products?action=startBuying&id=${p.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Bán</a>
                                     </c:otherwise>
                                 </c:choose>
                             </td>

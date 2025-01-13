@@ -12,5 +12,8 @@ public interface IProductService {
     Long getTotalPage(int numOfItems);
     List<ProductModel> getPagingProduct(String keyword,int currentPage, int pageSize, String orderBy);
     void stopBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void startBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void displayProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

@@ -29,11 +29,33 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void stopBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        Long id = Long.parseLong(request.getParameter("id"));
+        //tến hành cập nhật trạng thái sản phẩm
+        ProductModel productModel = ProductModel.builder().id(id).build();
+        productModel.setIsAvailable(false);
 
+        ProductModel isSuccess = productDAO.update(productModel);
+        if(isSuccess == null) {
+            request.setAttribute("message", "Có lỗi xảy ra");
+        }else{
+            request.setAttribute("message", "Cập nhật thành công id: " + id);
+            this.displayProduct(request, response);
+        }
+    }
+    @Override
+    public void startBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        //tến hành cập nhật trạng thái sản phẩm
+        ProductModel productModel = ProductModel.builder().id(id).build();
+        productModel.setIsAvailable(true);
 
-
-        request.getRequestDispatcher("/admin/product/product-management.jsp").forward(request, response);
+        ProductModel isSuccess = productDAO.update(productModel);
+        if(isSuccess == null) {
+            request.setAttribute("message", "Có lỗi xảy ra");
+        }else{
+            request.setAttribute("message", "Cập nhật thành công id: " + id);
+            this.displayProduct(request, response);
+        }
     }
 
     @Override
@@ -50,9 +72,25 @@ public class ProductServiceImpl implements IProductService {
         request.setAttribute("products", products);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", currentPage);
+        System.out.println("currentPage: " + currentPage);
         request.setAttribute("pageSize", pageSize);
         request.setAttribute("keyword", keyword);
         request.setAttribute("orderBy", orderBy);
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    public void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher= request.getRequestDispatcher("/admin/product/add-product.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    public void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher= request.getRequestDispatcher("/admin/product/add-product.jsp");
+        Long id = Long.parseLong(request.getParameter("id"));
+        ProductModel product = productDAO.getProductDetail(id);
+        request.setAttribute("product", product);
         dispatcher.forward(request, response);
     }
 
