@@ -153,8 +153,5 @@ public class BrandDAO implements IBrandDAO {
         return null;
     }
 
-    @Override
-    public List<CategoryModel> getAllCategories() {
-        return List.of();
-    }
+
 }

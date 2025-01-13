@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ISlideDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
+
 import vn.edu.hcmuaf.fit.myphamstore.model.SlideModel;
 
 import java.time.LocalDateTime;
