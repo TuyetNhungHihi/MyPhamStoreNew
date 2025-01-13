@@ -8,5 +8,5 @@ public interface IUserDAO extends GenericDAO<UserModel> {
     boolean checkPhoneExist(String phone);
     UserModel getUserByEmail(String email);
     UserModel getUserById(Long id);
-
+    boolean updateUserPassword(UserModel user);
 }

@@ -203,6 +203,23 @@ public class UserDAOImp implements IUserDAO {
         }
     }
 
+    @Override
+    public boolean updateUserPassword(UserModel user) {
+        String sql = "UPDATE users SET password = ? WHERE id = ?";
+        try {
+            int result = JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind(0, user.getPassword())
+                            .bind(1, user.getId())
+                            .execute()
+            );
+            return result > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     /**
      * Lấy số lượng page dựa trên số lượng item cần hiển thị
