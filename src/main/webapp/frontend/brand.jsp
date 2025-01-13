@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -69,45 +72,13 @@ Purchase:
 
                         </ul>
                         <div class="row" style="margin-top: 50px;">
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/anessa_6d29bec40be64192ae2b9bb7f009439a.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/beldora_44bdce66f4ad46caa8ab7c6abdcc5895.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/bbia_346ed87ff9444d6da17a705e753ba510.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/9_whishes_2049ef43618f45ed9aac04423cc8a2a0.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/9_whishes_2049ef43618f45ed9aac04423cc8a2a0.jpg" alt="Brand" class="img-responsive">
-                            </a>
-                            <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
-                                <img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-                            </a>
+                            <div class="row" style="margin-top: 50px;">
+                                <c:forEach var="brand" items="${brands}">
+                                    <a class="col-md-2 col-sm-3 col-xs-4" href="#" style="margin-top: 20px;">
+                                        <img src="${brand.logo}" alt="${brand.name}" class="img-responsive">
+                                    </a>
+                                </c:forEach>
+                            </div>
 
                         </div>
                     </div>
@@ -131,21 +102,21 @@ Purchase:
         const footer = document.getElementById("footer");
         const nav = document.getElementById("nav");
 
-        fetch('./header.html')
+        fetch('./header.jsp')
             .then(response => {
                 return response.text()
             })
             .then(data => {
                 header.innerHTML = data;
             });
-        fetch('./footer.html')
+        fetch('./footer.jsp')
             .then(response => {
                 return response.text()
             })
             .then(data => {
                 footer.innerHTML = data;
             });
-        fetch('./nav.html')
+        fetch('./nav.jsp')
             .then(response => {
                 return response.text()
             }).then(data => {

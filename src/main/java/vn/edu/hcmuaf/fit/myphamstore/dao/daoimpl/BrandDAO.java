@@ -27,7 +27,20 @@ public class BrandDAO implements IBrandDAO {
         }
         return null;
     }
-    
+
+    @Override
+    public List<BrandModel> getAllBrands() {
+        String sql = "SELECT * FROM brand";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql).mapToBean(BrandModel.class).list()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     public Long save(BrandModel entity) {
         String sql = "INSERT INTO brand (  name, logo, created_at, updated_at) " +
