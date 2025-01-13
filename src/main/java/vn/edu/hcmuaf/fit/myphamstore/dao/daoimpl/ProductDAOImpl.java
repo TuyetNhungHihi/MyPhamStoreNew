@@ -133,8 +133,4 @@ public class ProductDAOImpl implements IProductDAO {
         return null;
     }
 
-    @Override
-    public List<CategoryModel> getAllCategories() {
-        return List.of();
-    }
 }
