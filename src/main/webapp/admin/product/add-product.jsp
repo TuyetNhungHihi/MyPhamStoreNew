@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +31,12 @@
     <div class="dashboard">
         <!-- Sidebar -->
         <div class="sidebar " id="sidebar">
+            <%@include file="/admin/components/admin-sidebar.jsp"%>
         </div>
         <!-- end sidebar -->
         <!-- start header -->
         <div class="main-content" id="header" style="margin-left: 0; height: fit-content;">
+            <%@include file="/admin/components/admin-header.jsp"%>
         </div>
         <!-- end header -->
 
@@ -40,37 +44,42 @@
         <main class="main-content row my-table-custom">
             <!--style="display: flex; position: relative; height: min-content;"> -->
             <div class=" " style="width: 100%;">
-                <h1 class="text-center " style="margin-bottom: 20px;">Thêm Sản Phẩm Mới</h1>
+                <h1 class="text-center " style="margin-bottom: 20px;">
+                    <c:choose>
+                        <c:when test="${empty product}">Thêm mới sản phẩm</c:when>
+                        <c:otherwise>Sửa sản phẩm #${product.id}</c:otherwise>
+                    </c:choose>
+                </h1>
                 <form class="" action="#" method="post" style="padding: 0 100px 0 100px;">
                     <div class="row">
                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                             <div class="input-group">
                                 <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm</label>
                                 <input type="text" class="form-control" id="productName" name="productName" placeholder="Tên sản phẩm..."
-                                    aria-describedby="basic-addon1">
+                                    aria-describedby="basic-addon1" value="${product.name}">
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                             <div class="input-group">
                                 <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Số lượng</label>
                                 <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Số lượng..."
-                                    aria-describedby="basic-addon1">
+                                    aria-describedby="basic-addon1" value="${product.soldQuantity}">
                             </div>
                         </div>
                     </div>
                     <div class="row " >
                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                             <div class="input-group">
-                                <label class="input-group-addon" id="basic-addon1" for="costPrice">Giá nhập</label>
+                                <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá nhập</label>
                                 <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá nhập..."
-                                    aria-describedby="basic-addon1">
+                                    aria-describedby="basic-addon1" value="${product.costPrice}">
                             </div>
                         </div>
                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                             <div class="input-group" >
                                 <label for="price" class="input-group-addon" id="basic-addon1">Giá bán</label>
                                 <input type="text" id="price" name="price" class="form-control" placeholder="Giá bán..."
-                                    aria-describedby="basic-addon1">
+                                    aria-describedby="basic-addon1" value="${product.price}">
                             </div>
                         </div>
                     </div>
@@ -79,7 +88,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Mô Tả</span>
                                 <div id="description" class="form-control" placeholder="Mô tả sản phẩm..."
-                                    aria-describedby="basic-addon1"></div>
+                                    aria-describedby="basic-addon1">${product.description}</div>
                             </div>
                         </div>
                     </div>
@@ -134,7 +143,12 @@
                     </div>
                     <div style="margin-top: 20px;" class="text-center">
                         <button class="btn-lg btn-danger" style="width: 200px;" type="button" onclick="history.back()">Huỷ bỏ</button>
-                        <button class="btn-lg btn-primary" style="width: 200px;" type="submit">Thêm Mới</button>
+                        <button class="btn-lg btn-primary" style="width: 200px;" type="submit">
+                            <c:choose>
+                                <c:when test="${empty product}">Thêm sản phẩm</c:when>
+                                <c:otherwise>Lưu chỉnh sửa</c:otherwise>
+                            </c:choose>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -179,25 +193,7 @@
             }
         });
     </script>
-    <script>
-        const header = document.getElementById('header');
-        const sidebar1 = document.getElementById('sidebar');
 
-        fetch('../components/admin-header.html')
-            .then(response => {
-                return response.text()
-            })
-            .then(data => {
-                header.innerHTML = data;
-            });
-        fetch('../components/admin-sidebar.html')
-            .then(response => {
-                return response.text()
-            })
-            .then(data => {
-                sidebar1.innerHTML = data;
-            });
-    </script>
     <script>
         document.getElementById('imageInput').addEventListener('change', function (event) {
             const file = event.target.files[0]; // Lấy tệp được chọn
