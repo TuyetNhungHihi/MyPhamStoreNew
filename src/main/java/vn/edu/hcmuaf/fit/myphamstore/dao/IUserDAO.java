@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.dao;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
 public interface IUserDAO extends GenericDAO<UserModel> {
-    boolean login(String username, String password);
+    boolean checkLogin(String username, String password);
     boolean checkEmailExist(String email);
     boolean checkPhoneExist(String phone);
     UserModel getUserByEmail(String email);

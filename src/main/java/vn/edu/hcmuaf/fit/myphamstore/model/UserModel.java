@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -24,5 +25,5 @@ public class UserModel extends BaseModel{
     private String avatar;
     private UserStatus status;
     private LocalDateTime lastLogin;
-    private String role;
+    private List<RoleModel> roles;
 }

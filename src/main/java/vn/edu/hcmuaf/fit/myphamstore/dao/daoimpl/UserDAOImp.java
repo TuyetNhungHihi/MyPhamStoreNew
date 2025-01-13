@@ -142,7 +142,7 @@ public class UserDAOImp implements IUserDAO {
     }
 
     @Override
-    public boolean login(String email, String password) {
+    public boolean checkLogin(String email, String password) {
         String sql = "SELECT password FROM user WHERE email = :email AND status != 'NONE'";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
@@ -185,8 +185,20 @@ public class UserDAOImp implements IUserDAO {
 
     @Override
     public UserModel getUserByEmail(String email) {
-        return null;
+        String sql = "SELECT * FROM user WHERE email = :email";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("email", email)
+                            .mapToBean(UserModel.class)
+                            .one()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+
 
 
     @Override
