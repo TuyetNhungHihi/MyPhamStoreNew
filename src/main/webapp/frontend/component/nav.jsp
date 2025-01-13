@@ -30,7 +30,7 @@
                             </li>
                             <li class="parent"><a href="../brand.jsp">Thương hiệu</a>
                             </li>
-                            <li class="parent"><a href="./contact.html">Liên hệ</a>
+                            <li class="parent"><a href="../contact.jsp">Liên hệ</a>
                             </li>
                             <li class="parent visible-xs"><a href="./shopping_cart.html">Cart &nbsp;<i
                                         class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -87,7 +87,7 @@
                       <span class="caret"></span
                     </button>
                     <ul  class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121; text-decoration: none;">
-                      <li><a href="change-password.html" style="text-decoration: none;">Đổi mật khẩu</a></li>
+                      <li><a href="change-password.jsp" style="text-decoration: none;">Đổi mật khẩu</a></li>
                       <li><a href="../frontend/profile.html" style="text-decoration: none;">Thông tin cá nhân</a></li>
                       <li><a href="#" style="text-decoration: none;">Lịch sử đơn hàng</a></li>
                       <li role="separator" class="divider"></li>
