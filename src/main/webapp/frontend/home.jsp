@@ -184,7 +184,7 @@ To change this template use File | Settings | File Templates.
 								<h3>Danh Mục Hot</h3>
 							</div>
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Tẩy Trang</a></li>
+								<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Healthy and Beauty</a></li>
 								<li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Chống Nắng</a></li>
 								<li role="presentation"><a href="#trand" aria-controls="trand" role="tab" data-toggle="tab">Sữa Rửa Mặt</a></li>
 							</ul>
@@ -193,43 +193,26 @@ To change this template use File | Settings | File Templates.
 							<div role="tabpanel" class="tab-pane fade in active" id="best">
 								<div class="ss_featured_products">
 									<div class="owl-carousel owl-theme">
-										<c:forEach var="product" items="${tayTrangProducts}">
+										<c:if test="${empty healthBeautyProducts}">
+											<p>Không có sản phẩm nào để hiển thị trong danh mục này.</p>
+										</c:if>
+										<c:forEach var="product" items="${healthBeautyProducts}">
 											<div class="item">
 												<div class="ss_featured_products_box">
 													<div class="ss_featured_products_box_img">
-														<span class="ss_tag">mới</span>
-														<span class="ss_offer">giảm 20%</span>
-														<img src="${product.thumbnail}" alt="Product" class="img-responsive">
+														<span class="ss_tag">Mới</span>
+														<span class="ss_offer">Giảm 20%</span>
+														<img src="${product.thumbnail != null ? product.thumbnail : '/path/to/default/image.jpg'}"
+															 alt="Product" class="img-responsive">
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
-														<h4><a href="product_detail.jsp">${product.name}</a></h4>
+														<h4><a href="productDetail?id=${product.id}">${product.name}</a></h4>
 														<p>${product.description}</p>
-														<del>${product.price}</del> <ins>${product.price}</ins>
+														<del>${product.price}</del>
+														<ins>${product.price - (product.price * 0.2)}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
 														<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
-														<fieldset class="rating">
-															<input type="radio" name="rating" value="5" />
-															<label class="full" title="5 stars"></label>
-															<input type="radio" name="rating" value="4 and a half" />
-															<label class="half" title="4.5 stars"></label>
-															<input type="radio" name="rating" value="4" />
-															<label class="full" title="4 stars"></label>
-															<input type="radio" name="rating" value="3 and a half" />
-															<label class="half" title="3.5 stars"></label>
-															<input type="radio" name="rating" value="3" />
-															<label class="full" title="3 stars"></label>
-															<input type="radio" name="rating" value="2 and a half" />
-															<label class="half" title="2.5 stars"></label>
-															<input type="radio" name="rating" value="2" />
-															<label class="full" title="2 stars"></label>
-															<input type="radio" name="rating" value="1 and a half" />
-															<label class="half" title="1.5 stars"></label>
-															<input type="radio" name="rating" value="1" />
-															<label class="full" title="1 star"></label>
-															<input type="radio" name="rating" value="half" />
-															<label class="half" title="0.5 stars"></label>
-														</fieldset>
 														<ul>
 															<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
 															<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
@@ -244,102 +227,102 @@ To change this template use File | Settings | File Templates.
 							<div role="tabpanel" class="tab-pane fade" id="hot">
 								<div class="ss_featured_products">
 									<div class="owl-carousel owl-theme">
-										<c:forEach var="product" items="${chongNangProducts}">
-										<div class="item">
-											<div class="ss_featured_products_box">
-												<div class="ss_featured_products_box_img">
-													<span class="ss_tag">mới</span>
-													<span class="ss_offer">giảm 20%</span>
-													<img src="${product.thumbnail}" alt="Product" class="img-responsive">
-												</div>
-												<div class="ss_feat_prod_cont_heading_wrapper">
-													<h4><a href="product_detail.jsp">${product.name}</a></h4>
-													<p>${product.description}</p>
-													<del>${product.price}</del> <ins>${product.price}</ins>
-												</div>
-												<div class="ss_featured_products_box_footer">
-													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
-													<fieldset class="rating">
-														<input type="radio" name="rating" value="5" />
-														<label class="full" title="5 stars"></label>
-														<input type="radio" name="rating" value="4 and a half" />
-														<label class="half" title="4.5 stars"></label>
-														<input type="radio" name="rating" value="4" />
-														<label class="full" title="4 stars"></label>
-														<input type="radio" name="rating" value="3 and a half" />
-														<label class="half" title="3.5 stars"></label>
-														<input type="radio" name="rating" value="3" />
-														<label class="full" title="3 stars"></label>
-														<input type="radio" name="rating" value="2 and a half" />
-														<label class="half" title="2.5 stars"></label>
-														<input type="radio" name="rating" value="2" />
-														<label class="full" title="2 stars"></label>
-														<input type="radio" name="rating" value="1 and a half" />
-														<label class="half" title="1.5 stars"></label>
-														<input type="radio" name="rating" value="1" />
-														<label class="full" title="1 star"></label>
-														<input type="radio" name="rating" value="half" />
-														<label class="half" title="0.5 stars"></label>
-													</fieldset>
-													<ul>
-														<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
-														<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										</c:forEach>
+<%--										<c:forEach var="product" items="${chongNangProducts}">--%>
+<%--										<div class="item">--%>
+<%--											<div class="ss_featured_products_box">--%>
+<%--												<div class="ss_featured_products_box_img">--%>
+<%--													<span class="ss_tag">mới</span>--%>
+<%--													<span class="ss_offer">giảm 20%</span>--%>
+<%--													<img src="${product.thumbnail}" alt="Product" class="img-responsive">--%>
+<%--												</div>--%>
+<%--												<div class="ss_feat_prod_cont_heading_wrapper">--%>
+<%--													<h4><a href="product_detail.jsp">${product.name}</a></h4>--%>
+<%--													<p>${product.description}</p>--%>
+<%--													<del>${product.price}</del> <ins>${product.price}</ins>--%>
+<%--												</div>--%>
+<%--												<div class="ss_featured_products_box_footer">--%>
+<%--													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>--%>
+<%--													<fieldset class="rating">--%>
+<%--														<input type="radio" name="rating" value="5" />--%>
+<%--														<label class="full" title="5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="4 and a half" />--%>
+<%--														<label class="half" title="4.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="4" />--%>
+<%--														<label class="full" title="4 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="3 and a half" />--%>
+<%--														<label class="half" title="3.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="3" />--%>
+<%--														<label class="full" title="3 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="2 and a half" />--%>
+<%--														<label class="half" title="2.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="2" />--%>
+<%--														<label class="full" title="2 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="1 and a half" />--%>
+<%--														<label class="half" title="1.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="1" />--%>
+<%--														<label class="full" title="1 star"></label>--%>
+<%--														<input type="radio" name="rating" value="half" />--%>
+<%--														<label class="half" title="0.5 stars"></label>--%>
+<%--													</fieldset>--%>
+<%--													<ul>--%>
+<%--														<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>--%>
+<%--														<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>--%>
+<%--													</ul>--%>
+<%--												</div>--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--										</c:forEach>--%>
 									</div>
 								</div>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="trand">
 								<div class="ss_featured_products">
 									<div class="owl-carousel owl-theme">
-										<c:forEach var="product" items="${suaRuaMatProducts}">
-										<div class="item">
-											<div class="ss_featured_products_box">
-												<div class="ss_featured_products_box_img">
-													<span class="ss_tag">mới</span>
-													<span class="ss_offer">giảm 20%</span>
-													<img src="${product.thumbnail}" alt="Product" class="img-responsive">
-												</div>
-												<div class="ss_feat_prod_cont_heading_wrapper">
-													<h4><a href="product_detail.jsp">${product.name}</a></h4>
-													<p>${product.description}</p>
-													<del>${product.price}</del> <ins>${product.price}</ins>
-												</div>
-												<div class="ss_featured_products_box_footer">
-													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
-													<fieldset class="rating">
-														<input type="radio" name="rating" value="5" />
-														<label class="full" title="5 stars"></label>
-														<input type="radio" name="rating" value="4 and a half" />
-														<label class="half" title="4.5 stars"></label>
-														<input type="radio" name="rating" value="4" />
-														<label class="full" title="4 stars"></label>
-														<input type="radio" name="rating" value="3 and a half" />
-														<label class="half" title="3.5 stars"></label>
-														<input type="radio" name="rating" value="3" />
-														<label class="full" title="3 stars"></label>
-														<input type="radio" name="rating" value="2 and a half" />
-														<label class="half" title="2.5 stars"></label>
-														<input type="radio" name="rating" value="2" />
-														<label class="full" title="2 stars"></label>
-														<input type="radio" name="rating" value="1 and a half" />
-														<label class="half" title="1.5 stars"></label>
-														<input type="radio" name="rating" value="1" />
-														<label class="full" title="1 star"></label>
-														<input type="radio" name="rating" value="half" />
-														<label class="half" title="0.5 stars"></label>
-													</fieldset>
-													<ul>
-														<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
-														<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										</c:forEach>
+<%--										<c:forEach var="product" items="${suaRuaMatProducts}">--%>
+<%--										<div class="item">--%>
+<%--											<div class="ss_featured_products_box">--%>
+<%--												<div class="ss_featured_products_box_img">--%>
+<%--													<span class="ss_tag">mới</span>--%>
+<%--													<span class="ss_offer">giảm 20%</span>--%>
+<%--													<img src="${product.thumbnail}" alt="Product" class="img-responsive">--%>
+<%--												</div>--%>
+<%--												<div class="ss_feat_prod_cont_heading_wrapper">--%>
+<%--													<h4><a href="product_detail.jsp">${product.name}</a></h4>--%>
+<%--													<p>${product.description}</p>--%>
+<%--													<del>${product.price}</del> <ins>${product.price}</ins>--%>
+<%--												</div>--%>
+<%--												<div class="ss_featured_products_box_footer">--%>
+<%--													<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>--%>
+<%--													<fieldset class="rating">--%>
+<%--														<input type="radio" name="rating" value="5" />--%>
+<%--														<label class="full" title="5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="4 and a half" />--%>
+<%--														<label class="half" title="4.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="4" />--%>
+<%--														<label class="full" title="4 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="3 and a half" />--%>
+<%--														<label class="half" title="3.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="3" />--%>
+<%--														<label class="full" title="3 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="2 and a half" />--%>
+<%--														<label class="half" title="2.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="2" />--%>
+<%--														<label class="full" title="2 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="1 and a half" />--%>
+<%--														<label class="half" title="1.5 stars"></label>--%>
+<%--														<input type="radio" name="rating" value="1" />--%>
+<%--														<label class="full" title="1 star"></label>--%>
+<%--														<input type="radio" name="rating" value="half" />--%>
+<%--														<label class="half" title="0.5 stars"></label>--%>
+<%--													</fieldset>--%>
+<%--													<ul>--%>
+<%--														<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>--%>
+<%--														<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>--%>
+<%--													</ul>--%>
+<%--												</div>--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--										</c:forEach>--%>
 									</div>
 								</div>
 							</div>

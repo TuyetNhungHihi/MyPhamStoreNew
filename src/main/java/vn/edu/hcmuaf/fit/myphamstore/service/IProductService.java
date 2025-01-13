@@ -7,4 +7,8 @@ import java.util.List;
 public interface IProductService {
     Long getTotalPage(int numOfItems);
     List<ProductModel> getPagingProduct(String keyword,int currentPage, int pageSize, String orderBy);
+
+    List<ProductModel> getProductsByCategory(long l);
+
+    List<ProductModel> getLatestProductsByCategory(long l, int i);
 }

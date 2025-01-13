@@ -21,4 +21,14 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductModel> getPagingProduct(String keyword, int currentPage, int pageSize, String orderBy) {
         return productDAO.findAll(keyword, currentPage, pageSize, orderBy);
     }
+
+    @Override
+    public List<ProductModel> getProductsByCategory(long l) {
+        return productDAO.getProductsByCategory(l);
+    }
+
+    @Override
+    public List<ProductModel> getLatestProductsByCategory(long l, int i) {
+        return productDAO.getLatestProductsByCategory(l, i);
+    }
 }
