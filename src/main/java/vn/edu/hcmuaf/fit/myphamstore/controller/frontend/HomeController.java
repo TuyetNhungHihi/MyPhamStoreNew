@@ -7,7 +7,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.service.IBrandService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
@@ -17,6 +19,8 @@ import java.util.List;
 public class HomeController extends HttpServlet {
     @Inject
     private IProductService productService;
+    @Inject
+    private IBrandService brandService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +51,8 @@ public class HomeController extends HttpServlet {
             List<ProductModel> latestProducts = productService.getLatestProducts();
             request.setAttribute("latestProducts", latestProducts);
 
+            List<BrandModel> brands = brandService.getAllBrands();
+
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);
             request.setAttribute("totalPages", totalPages);
@@ -56,14 +62,19 @@ public class HomeController extends HttpServlet {
             request.setAttribute("orderBy", orderBy);
             request.setAttribute("healthBeautyProducts", healthBeautyProducts);
             request.setAttribute("latestProducts", latestProducts);
+            request.setAttribute("brands", brands);
             // Chuyển hướng đến trang JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/home.jsp");
             dispatcher.forward(request, response);
 
+        } catch (NoClassDefFoundError e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi khởi tạo lớp: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Đã xảy ra lỗi khi xử lý yêu cầu.");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi xử lý yêu cầu: " + e.getMessage());
         }
+
     }
 
     @Override

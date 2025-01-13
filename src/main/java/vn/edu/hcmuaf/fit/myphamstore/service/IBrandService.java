@@ -10,4 +10,5 @@ public interface IBrandService {
     List<BrandModel> pagingBrand(String keyword,int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
 
+    List<BrandModel> getAllBrands();
 }
