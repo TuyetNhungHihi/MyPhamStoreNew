@@ -53,7 +53,7 @@
                       </div><!-- /.col-lg-6 -->
                       <div class="col-lg-6">
                         <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 sản phẩm</span>
-                        <a href="./add-product.html" class="btn btn-primary" style="float: right;">Thêm sản phẩm</a>
+                        <a href="add-product.jsp" class="btn btn-primary" style="float: right;">Thêm sản phẩm</a>
                       </div>
                 </div>
                 <table class="table table-striped ">
@@ -92,7 +92,7 @@
                                 <button class="btn btn-danger">Xóa</button>
                                 <c:choose>
                                     <c:when test="${p.isAvailable}">
-                                        <button class="btn btn-warning">Ngưng Bán</button>
+                                        <a href="<c:url value="/admin/products?action=stopBuying&id=${p.id}"/>" class="btn btn-warning">Ngưng Bán</a>
                                     </c:when>
                                     <c:otherwise>
                                         <button class="btn btn-success">Bán</button>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -54,7 +55,7 @@
           <h1 style="color: #337ab7">Đăng nhập</h1>
         </div>
         <div class="row">
-          <form id="form-login" class="form-group" action="/login" method="post">
+          <form id="form-login" class="form-group" action=<c:url value="/login"> method="post">
             <div class="row">
               <input type="text" name="email" id="email" class="form__input" placeholder="Email" required />
             </div>

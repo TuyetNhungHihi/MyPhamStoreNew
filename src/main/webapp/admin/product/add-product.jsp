@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +31,12 @@
     <div class="dashboard">
         <!-- Sidebar -->
         <div class="sidebar " id="sidebar">
+            <%@include file="/admin/components/admin-sidebar.jsp"%>
         </div>
         <!-- end sidebar -->
         <!-- start header -->
         <div class="main-content" id="header" style="margin-left: 0; height: fit-content;">
+            <%@include file="/admin/components/admin-header.jsp"%>
         </div>
         <!-- end header -->
 
@@ -179,25 +183,7 @@
             }
         });
     </script>
-    <script>
-        const header = document.getElementById('header');
-        const sidebar1 = document.getElementById('sidebar');
 
-        fetch('../components/admin-header.html')
-            .then(response => {
-                return response.text()
-            })
-            .then(data => {
-                header.innerHTML = data;
-            });
-        fetch('../components/admin-sidebar.html')
-            .then(response => {
-                return response.text()
-            })
-            .then(data => {
-                sidebar1.innerHTML = data;
-            });
-    </script>
     <script>
         document.getElementById('imageInput').addEventListener('change', function (event) {
             const file = event.target.files[0]; // Lấy tệp được chọn
