@@ -10,5 +10,7 @@ public interface IProductService {
 
     List<ProductModel> getProductsByCategory(long l);
 
-    List<ProductModel> getLatestProductsByCategory(long l, int i);
+
+
+    List<ProductModel> getLatestProducts();
 }

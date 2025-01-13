@@ -65,6 +65,17 @@ public class ProductDAOImpl implements IProductDAO {
                 handle.createQuery(sql).mapToBean(ProductModel.class).list()
         );
     }
+
+    @Override
+    public List<ProductModel> getLatestProducts() {
+        String sql = "SELECT * FROM product ORDER BY created_at DESC LIMIT 5";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
     @Override
     public List<ProductModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào

@@ -44,8 +44,8 @@ public class HomeController extends HttpServlet {
             Long categoryId = 4L; // Health & Beauty
             List<ProductModel> healthBeautyProducts = productService.getProductsByCategory(categoryId);
 
-
-
+            List<ProductModel> latestProducts = productService.getLatestProducts();
+            request.setAttribute("latestProducts", latestProducts);
 
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);
@@ -55,7 +55,7 @@ public class HomeController extends HttpServlet {
             request.setAttribute("keyword", keyword);
             request.setAttribute("orderBy", orderBy);
             request.setAttribute("healthBeautyProducts", healthBeautyProducts);
-
+            request.setAttribute("latestProducts", latestProducts);
             // Chuyển hướng đến trang JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/home.jsp");
             dispatcher.forward(request, response);

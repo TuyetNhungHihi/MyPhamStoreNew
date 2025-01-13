@@ -28,7 +28,8 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<ProductModel> getLatestProductsByCategory(long l, int i) {
-        return productDAO.getLatestProductsByCategory(l, i);
+    public List<ProductModel> getLatestProducts() {
+        return productDAO.getLatestProducts();
     }
+
 }
