@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
-import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDao;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static java.rmi.server.LogStream.log;
 
-public class BrandDAO implements IBrandDao {
+public class BrandDAO implements IBrandDAO {
     @Override
     public BrandModel findBrandById(Long id) {
         String query = "SELECT * FROM brand WHERE id = :id";
