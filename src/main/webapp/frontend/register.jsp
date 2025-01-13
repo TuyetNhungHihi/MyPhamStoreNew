@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -14,7 +15,7 @@ Purchase:
 
   <head>
     <meta charset="utf-8" />
-    <title>Đăng nhập</title>
+    <title>Đăng kí</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="big basket" />
     <meta
@@ -57,7 +58,7 @@ Purchase:
       href="../static/css/responsive.css"
     />
     <link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
-    <link rel="stylesheet" type="text/css" href="../static/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/register.css" />
     <!-- favicon links -->
     <link
       rel="shortcut icon"
@@ -80,92 +81,110 @@ Purchase:
     <!-- Top Scroll Start -->
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
+    <!-- Header Wrapper Start -->
+    <div id="nav"></div>
     <!-- Main Content -->
-    <div class="container-fluid">
-      <div class="row main-content bg-success text-center">
-        <div class="col-md-4 text-center company__info">
-          <img
-            src="../static/images/logo/logo3.svg"
-            alt="Logo"
-            title="big basket"
-            class="img-responsive"
-          />
-        </div>
-        <div class="col-md-8 col-xs-12 col-sm-12 login_form">
-          <div class="container-fluid">
-            <div class="row">
-              <h1 style="color: #337ab7">Đăng nhập</h1>
-            </div>
-            <div class="row">
-              <form control="" id="form-login" class="form-group">
-                <div class="row">
+    <div class="form-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <div class="form-container">
+              <div class="col-md-4 text-center company__info">
+                <img
+                  src="../static/images/logo/logo3.svg"
+                  alt="Logo"
+                  title="big basket"
+                  class="img-responsive"
+                />
+              </div>
+              <h3 class="title">Đăng kí</h3>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label>Họ và tên</label>
                   <input
                     type="text"
-                    name="email"
-                    id="email"
-                    class="form__input"
-                    placeholder="Email"
+                    class="form-control"
+                    placeholder="Họ và tên"
                   />
                 </div>
-                <div class="row">
-                  <!-- <span class="fa fa-lock"></span> -->
+                <div class="form-group">
+                  <label>Email của bạn</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Địa chỉ email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Mật khẩu</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    placeholder="Mật khẩu"
+                    pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                    title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ hoa, 1 chữ số và 1 ký tự đặc biệt (@$!%*?&)"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Nhập lại mật khẩu</label>
                   <input
                     type="password"
-                    name="password"
-                    id="password"
-                    class="form__input"
-                    placeholder="Mật khẩu"
+                    id="re-password"
+                    name="re-password"
+                    class="form-control"
+                    placeholder="Nhập lại mật khẩu"
+                    pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                    title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ hoa, 1 chữ số và 1 ký tự đặc biệt (@$!%*?&)"
+                    required
                   />
                 </div>
                 <div
-                  id="message"
+                  id="password-error-message"
                   class="alert alert-danger"
                   role="alert"
+                  style="font-size: medium"
                   hidden
-                ></div>
-                <div class="row">
-                  <input
-                    type="checkbox"
-                    name="remember_me"
-                    id="remember_me"
-                    class=""
-                  />
-                  <label for="remember_me">Lưu đăng nhập</label>
-                </div>
-                <div class="row">
-                  <input type="submit" value="Đăng nhập" class="btn" />
-                </div>
-                <div class="row">
-                  <p style="margin: 0">Hoặc</p>
-                  <button
-                    onclick="facebookLogin()"
-                    class="social-login-btn"
-                    style="color: blue"
-                  >
-                    <i class="fa fa-facebook"></i> Đăng nhập bằng Facebook
-                  </button>
-                  <button
-                    onclick="googleLogin()"
-                    class="social-login-btn"
-                    style="color: red; margin-top: 0%"
-                  >
-                    <i class="fa fa-google"></i> Đăng nhập bằng Google
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            <div class="row">
-              <p>
-                Bạn quên mật khẩu?
-                <a style="color: #337ab7" href="./forgot-password.html"
-                  >Quên mật khẩu</a
                 >
-              </p>
-              <p>
-                Bạn không có tài khoản?
-                <a style="color: #337ab7" href="./register.html">Đăng kí</a>
-              </p>
+                  mật khẩu không khớp!
+                </div>
+                <h4 class="sub-title">Thông tin cá nhân</h4>
+                <div class="form-group">
+                  <label>Số điện thoại</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Số điện thoại"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Ngày sinh</label>
+                  <input type="date" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Giới tính : </label>
+                  <span style="margin-left: 20px">
+                    <input type="radio" id="Nam" name="gender" value="Nam" />
+                    <label for="Nam">Nam</label>
+                  </span>
+
+                  <span style="margin-left: 15px">
+                    <input type="radio" id="Nu" name="gender" value="Nữ" />
+                    <label for="Nu">Nữ</label>
+                  </span>
+                </div>
+                <div class="check-terms">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="check-label">Tôi đồng ý với các điều khoản</span>
+                </div>
+                <span class="signin-link"
+                  >Đã có tài khoản? Nhấn vào đây để
+                  <a href="login.jsp">Đăng nhập</a></span
+                >
+                <button class="btn signup">Tạo tài khoản</button>
+              </form>
             </div>
           </div>
         </div>
@@ -179,14 +198,14 @@ Purchase:
       const footer = document.getElementById("footer");
       const nav = document.getElementById("nav");
 
-      fetch("./footer.html")
+      fetch("./footer.jsp")
         .then((response) => {
           return response.text();
         })
         .then((data) => {
           footer.innerHTML = data;
         });
-      fetch("./nav.html")
+      fetch("./nav.jsp")
         .then((response) => {
           return response.text();
         })
@@ -208,8 +227,5 @@ Purchase:
     <script src="../static/js/jquery.easing.1.3.js"></script>
     <script src="../static/js/jquery.inview.min.js"></script>
     <script src="../static/js/custom.js"></script>
-
-    <!-- demo login feature -->
-    <script src="/src/main/webapp/static/js/demo/login.js"></script>
   </body>
 </html>

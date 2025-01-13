@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -14,7 +15,7 @@ Purchase:
 
   <head>
     <meta charset="utf-8" />
-    <title>Đổi mật khẩu</title>
+    <title>Quên mật khẩu</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="big basket" />
     <meta
@@ -84,59 +85,38 @@ Purchase:
     <!-- Top Scroll Start -->
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
-    <!-- Header Wrapper Start -->
     <div id="nav"></div>
-    <!-- Header Wrapper End -->
     <!-- Main Content -->
     <div class="container-fluid">
       <div class="row main-content bg-success text-center" style="width: 30%">
         <div class="col-md-12 col-xs-12 col-sm-12 login_form">
           <div class="container-fluid">
             <div class="row">
-              <h2>Đổi mật khẩu</h2>
+              <h2>Quên mật khẩu</h2>
             </div>
-            <div class="row">
-              <form control="" class="form-group">
-                <div class="row">
-                  <input
-                    type="text"
-                    name="password"
-                    id="password"
-                    class="form__input"
-                    placeholder="Mật khẩu cũ"
-                  />
-                </div>
-                <div class="row">
-                  <!-- <span class="fa fa-lock"></span> -->
-                  <input
-                    type="password"
-                    name="new-password"
-                    id="new-password"
-                    class="form__input"
-                    placeholder="Mật khẩu mới"
-                  />
-                </div>
-                <div class="row">
-                  <!-- <span class="fa fa-lock"></span> -->
-                  <input
-                    type="password"
-                    name="re-new-password"
-                    id="re-new-password"
-                    class="form__input"
-                    placeholder="Nhập lại mật khẩu mới"
-                  />
-                </div>
-                <div
-                  id="error-message"
-                  class="alert alert-danger"
-                  hidden
-                  role="alert"
-                ></div>
-                <div class="row">
-                  <input type="submit" value="Đổi mật khẩu" class="btn" />
-                </div>
-              </form>
-            </div>
+            <form action="forgot-password" method="post">
+              <div class="row">
+                <input type="email" name="email" id="email" class="form__input" placeholder="Nhập email của bạn" required />
+                <button type="button" class="btn-otp" onclick="getOtp()">Lấy mã OTP</button>
+              </div>
+              <div class="row">
+                <input type="text" name="otp" id="otp" class="form__input" placeholder="Nhập OTP" required />
+              </div>
+              <div class="row">
+                <input type="password" name="new-password" id="new-password" class="form__input" placeholder="Nhập mật khẩu mới" required />
+              </div>
+              <div id="error-message" class="alert alert-danger" hidden role="alert"></div>
+              <div class="row">
+                <input type="submit" value="Quên mật khẩu" class="btn" />
+              </div>
+            </form>
+
+            <c:if test="${not empty errorMessage}">
+              <div class="alert alert-danger">${errorMessage}</div>
+            </c:if>
+            <c:if test="${not empty successMessage}">
+              <div class="alert alert-success">${successMessage}</div>
+            </c:if>
           </div>
         </div>
       </div>
