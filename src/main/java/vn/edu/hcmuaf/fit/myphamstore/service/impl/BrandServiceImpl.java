@@ -16,7 +16,7 @@ public class BrandServiceImpl implements IBrandService {
 
     @Override
     public List<BrandModel> pagingBrand(String keyword, int currentPage, int pageSize, String orderBy) {
-        return List.of();
+        return brandDAO.findAll(keyword, currentPage, pageSize, orderBy);
     }
 
     @Override
