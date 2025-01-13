@@ -384,60 +384,21 @@ To change this template use File | Settings | File Templates.
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="ss_heading_box">
 						<div class="ss_heading">
-							<h3>Các Thương HiệuThương Hiệu</h3>
+							<h3>Các Thương Hiệu</h3>
 						</div>
 					</div>
 					<div class="ss_brandlogo_slider">
 						<div class="owl-carousel owl-theme">
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/benton_eea819cc476c4eb7b136a316d44dabeb.jpg" alt="Brand" class="img-responsive">
+							<c:forEach var="brand" items="${brands}">
+								<div class="item">
+									<div class="ss_featured_products_box">
+										<div class="ss_featured_products_box_img">
+											<span class="ss_tag">mới</span>
+											<img src="${brand.logo != null ? brand.logo : '/path/to/default/image.jpg'}" alt="Brand Logo"/>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/bbia_346ed87ff9444d6da17a705e753ba510.jpg" alt="Brand" class="img-responsive">
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/beldora_44bdce66f4ad46caa8ab7c6abdcc5895.jpg" alt="Brand" class="img-responsive">
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/anessa_6d29bec40be64192ae2b9bb7f009439a.jpg" alt="Brand" class="img-responsive">
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/acnes_35f9c39029b74737aacba4151ef9d6e7.jpg" alt="Brand" class="img-responsive">
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/9_whishes_2049ef43618f45ed9aac04423cc8a2a0.jpg" alt="Brand" class="img-responsive">
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ss_brandlogo_slider_box">
-									<div class="ss_brandlogo_slider_box_img">
-										<img src="https://file.hstatic.net/1000006063/file/a_bonne_9719107daa6748f89a88a7779a217aba.jpg" alt="Brand" class="img-responsive">
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

@@ -23,4 +23,9 @@ public class BrandServiceImpl implements IBrandService {
     public Long getTotalPage(int numOfItem) {
         return brandDAO.getTotalPage(numOfItem);
     }
+
+    @Override
+    public List<BrandModel> getAllBrands() {
+        return brandDAO.getAllBrands();
+    }
 }
