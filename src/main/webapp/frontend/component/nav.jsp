@@ -24,7 +24,7 @@
                     <div id="dl-menu" class="xv-menuwrapper responsive-menu menu-three">
                         <div class="clearfix"></div>
                         <ul class="dl-menu">
-                            <li class="parent"><a href="home.jsp">Trang Chủ </i></a>
+                            <li class="parent"><a href="home.jsp">Trang Chủ </a>
                             </li>
                             <li class="parent"><a href="../category.jsp">Tất cả sản phẩm </a>
                             </li>

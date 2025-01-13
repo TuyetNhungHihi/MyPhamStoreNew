@@ -102,21 +102,21 @@ Purchase:
         const footer = document.getElementById("footer");
         const nav = document.getElementById("nav");
 
-        fetch('./header.html')
+        fetch('./header.jsp')
             .then(response => {
                 return response.text()
             })
             .then(data => {
                 header.innerHTML = data;
             });
-        fetch('./footer.html')
+        fetch('./footer.jsp')
             .then(response => {
                 return response.text()
             })
             .then(data => {
                 footer.innerHTML = data;
             });
-        fetch('./nav.html')
+        fetch('./nav.jsp')
             .then(response => {
                 return response.text()
             }).then(data => {
