@@ -135,6 +135,10 @@ public class ProductDAOImpl implements IProductDAO {
 
     @Override
     public List<CategoryModel> getAllCategories() {
-        return List.of();
+        String sql = "SELECT category.name FROM product INNER JOIN category ON product.category_id = category";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql).mapToBean(CategoryModel.class).list()
+        );
+
     }
 }

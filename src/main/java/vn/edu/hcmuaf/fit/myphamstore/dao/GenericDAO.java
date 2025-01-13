@@ -12,5 +12,5 @@ public interface GenericDAO <T>{
      List<T> findAll(String keyword,int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItems);
 
-    List<CategoryModel> getAllCategories();
+
 }

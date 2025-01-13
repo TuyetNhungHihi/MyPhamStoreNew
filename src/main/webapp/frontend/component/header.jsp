@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="main-header-three">
 		<div class="ss_categories_box ss-box-two">
 			<nav>
@@ -26,20 +28,14 @@
 											</div>
 											<div class="row">
 												<div class="col-sm-12">
-													<div class="vc_column-inner ">
+													<div class="vc_column-inner">
 														<div class="wpb_wrapper">
-															<div class="wpb_text_column wpb_content_element ">
+															<div class="wpb_text_column wpb_content_element">
 																<div class="wpb_wrapper">
 																	<ul>
-																		<li class="nav-title">Chăm sóc da mặt</li>
-																		<li><a href="#">Tẩy trang-Làm sạch da</a>
-																		</li>
-																		<li><a href="#">Dưỡng da</a>
-																		</li>
-																		<li><a href="#">Chăm sóc da dầu mụn</a>
-																		</li>
-																		<li><a href="#">Chăm sóc da vùng mắt</a>
-																		</li>
+																		<c:forEach var="category" items="${categories}">
+																			<li class="nav-title">${category.name}</li>
+																		</c:forEach>
 																	</ul>
 																</div>
 															</div>
@@ -50,271 +46,6 @@
 										</div>
 									</li>
 								</ul>
-							</li>
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="Cameras, Audio &amp; Video" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-female" aria-hidden="true"></i>Trang điểm</a>
-								<ul role="menu" class=" dropdown-menu">
-									<li class="menu-item animate-dropdown menu-item-object-static_block">
-										<div class="yamm-content">
-											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_single_image wpb_content_element vc_align_left">
-																<figure class="wpb_wrapper vc_figure">
-																	<div class="vc_single_image-wrapper vc_box_border_grey">
-																		<img src="../static/images/content/woman.jpg" class="vc_single_image-img attachment-full" alt="">
-																	</div>
-																</figure>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_text_column wpb_content_element ">
-																<div class="wpb_wrapper">
-																	<ul>
-																		<li class="nav-title">Trang điểm</li>
-																		<li><a href="#">Mặt</a>
-																		</li>
-																		<li><a href="#">Mắt-Chì Mày</a>
-																		</li>
-																		<li><a href="#">Môi</a>
-																		</li>
-																		<li><a href="#">Phụ kiện trang điểm</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="Mobiles &amp; Tablets" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-bed" aria-hidden="true"></i> Chăm sóc cơ thể</a>
-								<ul role="menu" class=" dropdown-menu">
-									<li class="menu-item animate-dropdown menu-item-object-static_block">
-										<div class="yamm-content">
-											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_single_image wpb_content_element vc_align_left">
-																<figure class="wpb_wrapper vc_figure">
-																	<div class="vc_single_image-wrapper vc_box_border_grey">
-																		<img src="../static/images/content/furniture.jpg" class="vc_single_image-img attachment-full" alt="">
-																	</div>
-																</figure>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_text_column wpb_content_element ">
-																<div class="wpb_wrapper">
-																	<ul>
-																		<li class="nav-title">Chăm sóc cơ thể</li>
-																		<li><a href="#">Làm sạch cơ thể</a>
-																		</li>
-																		<li><a href="#">Tẩy lông-cạo râu</a>
-																		</li>
-																		<li><a href="#">Khử mùi</a>
-																		</li>
-																		<li><a href="#">Dưỡng da cơ thể</a>
-																		</li>
-																		<li><a href="#">Vệ sinh cá nhân</a>
-																		</li>
-																		<li><a href="#">Chăm sóc da tay, chân</a>
-																		</li>
-																		<li><a href="#">Chăm sóc móng</a>
-																		</li>
-																		<li><a href="#">Chăm sóc răng miệng</a>
-																		</li>
-																		<li><a href="#">Nước hoa</a>
-																		</li>
-																		<li><a href="#">Vật dụng cá nhân</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="Movies, Music &amp; Video Games" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-coffee" aria-hidden="true"></i> Chăm sóc sức khỏe</a>
-								<ul role="menu" class=" dropdown-menu">
-									<li class="menu-item animate-dropdown menu-item-object-static_block">
-										<div class="yamm-content">
-											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_single_image wpb_content_element vc_align_left">
-																<figure class="wpb_wrapper vc_figure">
-																	<div class="vc_single_image-wrapper vc_box_border_grey">
-																		<img src="../static/images/content/coockin.jpg" class="vc_single_image-img attachment-full" alt="">
-																	</div>
-																</figure>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_text_column wpb_content_element ">
-																<div class="wpb_wrapper">
-																	<ul>
-																		<li class="nav-title">Chăm sóc sức khỏe</li>
-																		<li><a href="#">Thực phẩm chức năng</a>
-																		</li>
-																		<li><a href="#">Thực phẩm chức năng hỗ trợ làm đẹp</a>
-																		</li>
-																		<li><a href="#">Sản phẩm từ thảo mộc</a>
-																		</li>
-																		<li><a href="#">Thực phẩm dinh dưỡng</a>
-																		</li>
-																		<li><a href="#">Thiết bị y tế</a>
-																		</li>
-																		<li><a href="#">Dụng cụ chăm sóc</a>
-																		</li>
-																		<li><a href="#">Kế hoạch gia đình</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="TV &amp; Audio" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-camera" aria-hidden="true"></i> Chăm sóc tóc</a>
-								<ul role="menu" class=" dropdown-menu">
-									<li class="menu-item animate-dropdown menu-item-object-static_block">
-										<div class="yamm-content">
-											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_single_image wpb_content_element vc_align_left">
-																<figure class="wpb_wrapper vc_figure">
-																	<div class="vc_single_image-wrapper vc_box_border_grey">
-																		<img src="../static/images/content/headp.jpg" class="vc_single_image-img attachment-full" alt="">
-																	</div>
-																</figure>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_text_column wpb_content_element ">
-																<div class="wpb_wrapper">
-																	<ul>
-																		<li class="nav-title">Chăm sóc tóc</li>
-																		<li><a href="#">Dầu gội</a>
-																		</li>
-																		<li><a href="#">Dầu xả</a>
-																		</li>
-																		<li><a href="#">Dưỡng tóc</a>
-																		</li>
-																		<li><a href="#">Nhuộm tóc</a>
-																		</li>
-																		<li><a href="#">Tạo kiểu tóc</a>
-																		</li>
-																		<li><a href="#">Phụ kiện tóc</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="Watches &amp; Eyewear" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-eye" aria-hidden="true"></i> Góc nam giới</a>
-								<ul role="menu" class=" dropdown-menu">
-									<li class="menu-item animate-dropdown menu-item-object-static_block">
-										<div class="yamm-content">
-											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_single_image wpb_content_element vc_align_left">
-																<figure class="wpb_wrapper vc_figure">
-																	<div class="vc_single_image-wrapper vc_box_border_grey">
-																		<img src="../static/images/content/sung.jpg" class="vc_single_image-img attachment-full" alt="">
-																	</div>
-																</figure>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_text_column wpb_content_element ">
-																<div class="wpb_wrapper">
-																	<ul>
-																		<li class="nav-title">Góc nam giới</li>
-																		<li><a href="#">Nước hoa dành cho nam</a>
-																		</li>
-																		<li><a href="#">Dao cạo dành cho nam</a>
-																		</li>
-																		<li><a href="#">Sữa tắm dành cho nam</a>
-																		</li>
-																		<li><a href="#">Khử mùi dành cho nam</a>
-																		</li>
-																		<li><a href="#">Dầu gội dành cho nam</a>
-																		</li>
-																		<li><a href="#">Dưỡng tóc dành cho nam</a>
-																		</li>
-																		<li><a href="#">Tạo kiểu tóc dành cho nam</a>
-																		</li>
-																		<li><a href="#">Gel bôi trơn</a>
-																		</li>
-																		<li><a href="#">Bao cao su</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="Car, Motorbike &amp; Industrial" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-plus" aria-hidden="true"></i>Thể loại khác</a>
 							</li>
 						</ul>
 					</li>
@@ -665,19 +396,26 @@
 				<div class="prs_menu_main_wrapper">
 					<div class="search-three">
 						<div class="ss_search_box search-box-three visible-xl visible-lg visible-md hidden-sm">
+							<!-- Dropdown danh sách loại sản phẩm -->
 							<select>
-								<option value="c1">Loại sản phẩm</option>
-								<option value="c2">Chăm sóc da mặt</option>
-								<option value="c3">Chăm sóc cơ thể</option>
-								<option value="c4">Chăm sóc răng miệng</option>
-								<option value="c5">Chăm sóc tóc</option>
-								<option value="c6">Vệ sinh phụ nữ</option>
-							</select>	<span>
-							<input type="text" placeholder="Tìm sản phẩm...">
-							<button><i class="fa fa-search" aria-hidden="true"></i></button>
-							</span>
+								<option value="">Loại sản phẩm</option>
+								<!-- Lặp qua danh sách categories -->
+								<c:forEach var="category" items="${categories}">
+									<option value="${category.id}">${category.name}</option>
+								</c:forEach>
+							</select>
+							<span>
+								<!-- Ô nhập liệu -->
+            					<input type="text" placeholder="Tìm sản phẩm...">
+								<!-- Nút tìm kiếm -->
+            					<button>
+               						 <i class="fa fa-search" aria-hidden="true"></i>
+            					</button>
+        					</span>
+
 						</div>
 					</div>
+
 					<nav class="navbar navbar-default hidden-xl hidden-lg hidden-md visible-sm">
 						<div id="dl-menu" class="xv-menuwrapper responsive-menu">
 							<div class="ss_menu_btn dl-trigger" id="menu_click">

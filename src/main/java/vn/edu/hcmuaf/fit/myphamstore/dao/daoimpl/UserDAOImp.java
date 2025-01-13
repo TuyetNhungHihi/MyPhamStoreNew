@@ -223,9 +223,6 @@ public class UserDAOImp implements IUserDAO {
         return null;
     }
 
-    @Override
-    public List<CategoryModel> getAllCategories() {
-        return List.of();
-    }
+
 
 }
