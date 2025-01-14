@@ -125,116 +125,122 @@ Purchase:
           <h1>Giỏ hàng của bạn</h1>
         </div>
       </div>
-      <div class="shop_cart_page_wrapper">
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-          <div class="table-responsive cart-calculations">
-            <table class="table" >
-              <thead class="cart_table_heading">
-              <tr>
-                <th>Sản phẩm</th>
+      <c:choose>
+        <c:when test="${not empty sessionScope.cart}">
+          <div class="shop_cart_page_wrapper">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+              <div class="table-responsive cart-calculations">
+                <table class="table" >
+                  <thead class="cart_table_heading">
+                  <tr>
+                    <th>Sản phẩm</th>
 
-                <th>Tên sản phẩm</th>
-                <th>&nbsp;</th>
-                <th>Giá</th>
+                    <th>Tên sản phẩm</th>
+                    <th>&nbsp;</th>
+                    <th>Giá</th>
 
-                <th>Số lượng</th>
+                    <th>Số lượng</th>
 
-                <th>Tổng cộng:</th>
-                <th>&nbsp;</th>
-              </tr>
-              </thead>
-              <tbody>
-              <c:forEach var="entry" items="${cart}">
-                <c:set var="product" value="${productService.findById(entry.key)}" />
-                <tr>
-                  <td>
-                    <div class="table_cart_img">
-                      <figure>
-                        <img src="${product.thumbnail}" alt="${product.name}" />
-                      </figure>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table_cart_cntnt">
-                      <h1>${product.name}</h1>
-                    </div>
-                  </td>
-                  <td class="cart_page_price">${product.price}đ</td>
-                  <td>
-                    <input value="${entry.value}" type="number" readonly />
-                  </td>
-                  <td class="cart_page_totl">${product.price * entry.value}đ</td>
-                  <td>
-                    <form method="post" action="/gio-hang">
-                      <input type="hidden" name="action" value="remove">
-                      <input type="hidden" name="productId" value="${entry.key}">
-                      <button type="submit" class="remove-btn"><i class="fa fa-trash"></i></button>
-                    </form>
-                  </td>
-                </tr>
-              </c:forEach>
-              <tr>
-                <td></td>
-                <td class="shop_btn_wrapper shop_car_btn_wrapper">
+                    <th>Tổng cộng:</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <c:forEach var="i" items="${listCartDisplay}">
+                    <tr>
+                      <td>
+                        <div class="table_cart_img">
+                          <figure>
+                            <img src="${i.product.thumbnail}" alt="${i.product.name}" />
+                          </figure>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="table_cart_cntnt">
+                          <h1>${i.product.name}</h1>
+                        </div>
+                      </td>
+                      <td class="cart_page_price">${i.product.price}đ</td>
+                      <td>
+                        <input value="123" type="number" readonly />
+                      </td>
+                      <td class="cart_page_totl">${i.product.price * i.quantity}đ</td>
+                      <td>
+                        <form method="post" action="/gio-hang">
+                          <input type="hidden" name="action" value="remove">
+                          <input type="hidden" name="productId" value="">
+                          <button type="submit" class="remove-btn"><i class="fa fa-trash"></i></button>
+                        </form>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                  <tr>
+                    <td></td>
+                    <td class="shop_btn_wrapper shop_car_btn_wrapper">
+                      <ul>
+                        <li><a href="/trang-chu">Tiếp tục mua sắm</a></li>
+                      </ul>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td class="cart_btn_cntnt">
+                      Tổng cộng: <span>${totalAmount}đ</span>
+                    </td>
+                    <td></td>
+                  </tr>
+                  </tbody>
+
+                </table>
+              </div>
+
+              <div
+                      class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_cntnt_2"
+              >
+                <div
+                        class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2"
+                >
+                  <h1>Nhập mã giảm giá tại đây:</h1>
+                  <div class="lr_nl_form_wrapper">
+                    <input type="text" placeholder="Nhập mã giảm giá của bạn" />
+                    <button type="submit">Xác nhận</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div class="shipping_Wrapper">
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <th>Tạm tính :</th>
+                    <td><span class="price">609,000đ</span></td>
+                  </tr>
+                  <tr>
+                    <th>Giảm giá :</th>
+                    <td><span class="price">-109,000đ</span></td>
+                  </tr>
+                  <tr>
+                    <th class="cart_btn_cntnt">Tạm tính :</th>
+                    <td>
+                      <span class="cart_btn_cntnt_clr">500,000đ </span>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="shop_btn_wrapper shop_btn_wrapper_shipping">
                   <ul>
-                    <li><a href="/trang-chu">Tiếp tục mua sắm</a></li>
+                    <li><a href="/src/main/webapp/frontend/checkout.html">Thanh toán</a></li>
                   </ul>
-                </td>
-                <td></td>
-                <td></td>
-                <td class="cart_btn_cntnt">
-                  Tổng cộng: <span>${totalAmount}đ</span>
-                </td>
-                <td></td>
-              </tr>
-              </tbody>
-
-            </table>
-          </div>
-
-          <div
-                  class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_cntnt_2"
-          >
-            <div
-                    class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2"
-            >
-              <h1>Nhập mã giảm giá tại đây:</h1>
-              <div class="lr_nl_form_wrapper">
-                <input type="text" placeholder="Nhập mã giảm giá của bạn" />
-                <button type="submit">Xác nhận</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-          <div class="shipping_Wrapper">
-            <table class="table">
-              <tbody>
-              <tr>
-                <th>Tạm tính :</th>
-                <td><span class="price">609,000đ</span></td>
-              </tr>
-              <tr>
-                <th>Giảm giá :</th>
-                <td><span class="price">-109,000đ</span></td>
-              </tr>
-              <tr>
-                <th class="cart_btn_cntnt">Tạm tính :</th>
-                <td>
-                  <span class="cart_btn_cntnt_clr">500,000đ </span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-            <div class="shop_btn_wrapper shop_btn_wrapper_shipping">
-              <ul>
-                <li><a href="/src/main/webapp/frontend/checkout.html">Thanh toán</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+        </c:when>
+        <c:otherwise>
+          <h1>Giỏ hàng của bạn đang trống!</h1>
+        </c:otherwise>
+      </c:choose>
     </div>
   </div>
 </div>

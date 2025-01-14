@@ -106,33 +106,33 @@
             </li>
             <li>
                 <div class="ss_cart_value dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <p>${cart.size()}</p>
-                        <a href="<c:url value='/gio-hang' />"><img src="../static/images/header/cart_icon.png" alt="Cart" title="Yêu thích">
-                            <span>Giỏ hàng: <ins style="text-transform: lowercase;">đ</ins></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <c:forEach var="entry" items="${cart}">
-                                <c:set var="product" value="${productService.findProductById(entry.key)}"/>
-                                <li>
-                                    <div class="ss_cart_inner_main_section ss_cart_inner_main_section2">
-                                        <div class="ss_cart_img_wrapper">
-                                            <img src="${product.thumbnail}" alt="${product.name}">
-                                        </div>
-                                        <div class="ss_cart_img_cont_wrapper">
-                                            <h3>${product.name}</h3>
-                                            <h4>${product.categoryName}</h4>
-                                            <span>x${entry.value}</span>
-                                            <ins>${product.price * entry.value} đ</ins>
-                                        </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
-                            <li>
-                                <a href="<c:url value='' />" class="ss_check_btn">Thanh Toán</a>
-                            </li>
-                        </ul>
-                    </a>
+<%--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">--%>
+<%--                        <p>${cart.size()}</p>--%>
+<%--                        <a href="<c:url value='/gio-hang' />"><img src="../static/images/header/cart_icon.png" alt="Cart" title="Yêu thích">--%>
+<%--                            <span>Giỏ hàng: <ins style="text-transform: lowercase;">đ</ins></span>--%>
+<%--                        </a>--%>
+<%--                        <ul class="dropdown-menu">--%>
+<%--                            <c:forEach var="entry" items="${cart}">--%>
+<%--                                <c:set var="product" value="${productService.findProductById(entry.key)}"/>--%>
+<%--                                <li>--%>
+<%--                                    <div class="ss_cart_inner_main_section ss_cart_inner_main_section2">--%>
+<%--                                        <div class="ss_cart_img_wrapper">--%>
+<%--                                            <img src="${product.thumbnail}" alt="${product.name}">--%>
+<%--                                        </div>--%>
+<%--                                        <div class="ss_cart_img_cont_wrapper">--%>
+<%--                                            <h3>${product.name}</h3>--%>
+<%--                                            <h4>${product.categoryName}</h4>--%>
+<%--                                            <span>x${entry.value}</span>--%>
+<%--                                            <ins>${product.price * entry.value} đ</ins>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                            </c:forEach>--%>
+<%--                            <li>--%>
+<%--                                <a href="<c:url value='' />" class="ss_check_btn">Thanh Toán</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </a>--%>
                 </div>
             </li>
         </ul>

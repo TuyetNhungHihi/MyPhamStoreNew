@@ -3,17 +3,23 @@ package vn.edu.hcmuaf.fit.myphamstore.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString
 @Setter
 @Getter
-public class CartModel {
-    private long parentId;
-    private long orderId;
-    private long productId;
-    private int quantity;
-    private int total_price;
+public class CartModel  implements Serializable {
+    private Long productId;
+    private Integer quantity;
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CartModel cartModel = (CartModel) o;
+        return Objects.equals(productId, cartModel.productId);
+    }
 }
