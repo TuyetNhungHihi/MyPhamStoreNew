@@ -103,7 +103,7 @@
                 <div class="input-group">
                   <label class="input-group-addon" for="productName" id="basic-addon1">Mã nhãn hàng</label>
                   <input type="text" class="form-control" id="productName" name="productName" placeholder="Mã nhãn hàng..."
-                         aria-describedby="basic-addon1" value="${coupon.brand_id}">
+                         aria-describedby="basic-addon1" value="${coupon.brandId}">
                 </div>
               </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
@@ -119,21 +119,21 @@
                 <div class="input-group">
                   <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá trị đơn hàng thấp nhất</label>
                   <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá trị đơn hàng thấp nhất..."
-                         aria-describedby="basic-addon1" value="${coupon.min_order_value}">
+                         aria-describedby="basic-addon1" value="${coupon.minOrderValue}">
                 </div>
               </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group" >
                   <label for="price" class="input-group-addon" id="basic-addon1">Loại giảm giá</label>
                   <input type="text" id="price" name="price" class="form-control" placeholder="Loại giảm giá..."
-                         aria-describedby="basic-addon1" value="${coupon.discount_type}">
+                         aria-describedby="basic-addon1" value="${coupon.discountType}">
                 </div>
               </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group" >
                   <label for="price" class="input-group-addon" id="basic-addon1">Giá trị giảm giá</label>
                   <input type="text" id="price" name="price" class="form-control" placeholder="Giá trị giảm giá..."
-                         aria-describedby="basic-addon1" value="${coupon.discount_value}">
+                         aria-describedby="basic-addon1" value="${coupon.discountValue}">
                 </div>
               </div>
             </div>
@@ -142,40 +142,40 @@
                 <div class="input-group">
                   <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá trị giảm giá tối đa</label>
                   <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá trị giảm giá tối đa..."
-                         aria-describedby="basic-addon1" value="${coupon.max_discount_value}">
+                         aria-describedby="basic-addon1" value="${coupon.maxDiscountValue}">
                 </div>
               </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group" >
                   <label for="price" class="input-group-addon" id="basic-addon1">Ngày bắt đầu</label>
                   <input type="text" id="price" name="price" class="form-control" placeholder="Ngày bắt đầu..."
-                         aria-describedby="basic-addon1" value="${coupon.start_date}">
+                         aria-describedby="basic-addon1" value="${coupon.startDate}">
                 </div>
               </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group" >
                   <label for="price" class="input-group-addon" id="basic-addon1">Ngày kết thúc</label>
                   <input type="text" id="price" name="price" class="form-control" placeholder="Ngày kết thúc..."
-                         aria-describedby="basic-addon1" value="${coupon.end_date}">
+                         aria-describedby="basic-addon1" value="${coupon.endDate}">
                 </div>
               </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group" >
                   <label for="price" class="input-group-addon" id="basic-addon1">Số lượng sử dụng</label>
                   <input type="text" id="price" name="price" class="form-control" placeholder="Số lượng sử dụng..."
-                         aria-describedby="basic-addon1" value="${coupon.current_usage}">
+                         aria-describedby="basic-addon1" value="${coupon.currentUsage}">
                 </div>
               </div>
                 <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                     <div class="input-group" >
                     <label for="price" class="input-group-addon" id="basic-addon1">Số lượng sử dụng tối đa</label>
                     <input type="text" id="price" name="price" class="form-control" placeholder="Số lượng sử dụng tối đa..."
-                             aria-describedby="basic-addon1" value="${coupon.max_usage}">
+                             aria-describedby="basic-addon1" value="${coupon.maxUsage}">
                     </div>
                 </div>
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group" >
-                  <label for="price" class="input-group-addon" id="basic-addon1">Còn hiệu lực</label>
+                  <label for="price" class="input-group-addon" id="basic-addon1">Hiệu lực</label>
                   <input type="text" id="price" name="price" class="form-control" placeholder="true or false..."
                          aria-describedby="basic-addon1" value="${coupon.isAvailable}">
                 </div>

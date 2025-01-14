@@ -70,7 +70,7 @@
                     <th class="text-center">Ngày kết thúc</th>
                     <th class="text-center">Số lần sử dụng</th>
                     <th class="text-center">Số lượng sử dụng tối đa</th>
-                    <th class="text-center">Còn hiệu lực</th>
+                    <th class="text-center">Hiệu lực</th>
                     <th class="text-center">Hành Động</th>
 
                 </tr>
@@ -79,16 +79,16 @@
                 <c:forEach var="coupon" items="${coupons}">
                     <tr>
                         <td class="text-center">${coupon.id}</td>
-                        <td class="text-center">${coupon.brand_id}</td>
+                        <td class="text-center">${coupon.brandId}</td>
                         <td class="text-center">${coupon.code}</td>
-                        <td class="text-center">${coupon.min_order_value}đ</td>
-                        <td class="text-center">${coupon.discount_type}</td>
-                        <td class="text-center">${coupon.discount_value}đ</td>
-                        <td class="text-center">${coupon.max_discount_value}đ</td>
-                        <td class="text-center">${coupon.start_date}</td>
-                        <td class="text-center">${coupon.end_date}</td>
-                        <td class="text-center">${coupon.current_usage}</td>
-                        <td class="text-center">${coupon.max_usage}</td>
+                        <td class="text-center">${coupon.minOrderValue}đ</td>
+                        <td class="text-center">${coupon.discountType}</td>
+                        <td class="text-center">${coupon.discountValue}đ</td>
+                        <td class="text-center">${coupon.maxDiscountValue}đ</td>
+                        <td class="text-center">${coupon.startDate}</td>
+                        <td class="text-center">${coupon.endDate}</td>
+                        <td class="text-center">${coupon.currentUsage}</td>
+                        <td class="text-center">${coupon.maxUsage}</td>
                         <td class="text-center">
                             <c:choose>
                                 <c:when test="${coupon.isAvailable}">
