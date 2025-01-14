@@ -49,6 +49,7 @@ CREATE TABLE `brand` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` nvarchar(255) NOT NULL,
   `logo` varchar(500) NOT NULL,
+  `is_available` boolean default true,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
