@@ -18,5 +18,6 @@ public interface IProductService {
     void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     List<ProductModel> getProductsByCategory(long l);
     List<ProductModel> getLatestProducts();
+    ProductModel findProductById(Long id);
 
 }

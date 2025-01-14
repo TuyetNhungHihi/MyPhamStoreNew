@@ -450,7 +450,7 @@
 									<ul class="lg-submenu">
 										<li><a href="404.html">404</a>
 										</li>
-										<li><a href="shopping_cart.html">Shopping-Cart</a>
+										<li><a href="../shopping_cart.jsp">Shopping-Cart</a>
 										</li>
 										<li><a href="checkout.html">Checkout</a>
 										</li>
