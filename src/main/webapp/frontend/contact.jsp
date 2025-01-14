@@ -1,4 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+Created by IntelliJ IDEA.
+User: cucsh
+Date: 12/7/2024
+Time: 10:10 AM
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -49,10 +57,10 @@ Purchase:
 	<!-- Top Scroll Start -->
 	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
 	<!-- Top Scroll End -->
-	<!-- Header Wrapper Start -->
-	 <div id="nav"></div>
-	 <div id="header"></div>
-	<!-- Header Wrapper End -->
+    <!-- Header Wrapper Start -->
+    <%@include file="component/nav.jsp"%>
+    <%@include file="component/header.jsp"%>
+    <!-- Header Wrapper End -->
     <div class="container" style="padding-bottom: 50px;">
         <h2 class="text-center" style="padding-top:250px;">Liên Hệ</h2>
         <p class="text-center">Nếu bạn có bất kỳ câu hỏi hoặc cần hỗ trợ, hãy liên hệ với chúng tôi qua biểu mẫu dưới đây.</p>
@@ -98,8 +106,8 @@ Purchase:
         </div>
     </div>
 <!-- Brandlogo Wrapper End -->
-	
-<div id="footer">
+
+    <%@include file="component/footer.jsp"%>
 
 </div>
 <script>

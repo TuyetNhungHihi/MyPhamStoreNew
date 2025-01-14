@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 import jakarta.inject.Inject;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,12 +13,13 @@ import java.io.IOException;
 @WebServlet(name = "ContactController", value = "/lien-he")
 public class ContactController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    @Inject
-    private IContactService contactService;
+
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().print(contactService.findContactById(7L).toString());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/contact.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
