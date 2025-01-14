@@ -84,7 +84,7 @@
                             </c:choose>
                         </td>
                         <td class="text-center">
-                            <a href="<c:url value="/admin/brand?action=editBrand&id=${brand.id}"/>" class="btn btn-primary">Sửa</a>
+                            <a href="<c:url value="/admin/brand?action=edit&id=${brand.id}"/>" class="btn btn-primary">Sửa</a>
                             <c:choose>
                                 <c:when test="${brand.isAvailable}">
                                     <a href="<c:url value="/admin/brand?action=stopBuying&id=${brand.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Bán</a>
