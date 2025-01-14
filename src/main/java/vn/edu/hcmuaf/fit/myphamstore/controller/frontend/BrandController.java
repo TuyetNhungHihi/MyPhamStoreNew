@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 
 import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
-import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.BrandDAO;
+import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.BrandDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 
 import jakarta.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "BrandController", value = "/thuong-hieu")
 public class BrandController extends HttpServlet {
-    private IBrandDAO brandDAO = new BrandDAO();
+    private IBrandDAO brandDAO = new BrandDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

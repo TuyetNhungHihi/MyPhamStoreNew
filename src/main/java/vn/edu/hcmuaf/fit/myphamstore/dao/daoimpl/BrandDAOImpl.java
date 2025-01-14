@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static java.rmi.server.LogStream.log;
 
-public class BrandDAO implements IBrandDAO {
+public class BrandDAOImpl implements IBrandDAO {
     @Override
     public BrandModel findBrandById(Long id) {
         String query = "SELECT * FROM brand WHERE id = :id";
@@ -29,6 +29,17 @@ public class BrandDAO implements IBrandDAO {
     }
 
     @Override
+    public BrandModel getBrandDetail(Long id) {
+        String sql = "select * from product where id=?";
+        try{
+            return JDBIConnector.getJdbi().withHandle(h-> h.select(sql, id).mapToBean(BrandModel.class).one());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<BrandModel> getAllBrands() {
         String sql = "SELECT * FROM brand";
         try {
@@ -43,14 +54,15 @@ public class BrandDAO implements IBrandDAO {
 
     @Override
     public Long save(BrandModel entity) {
-        String sql = "INSERT INTO brand (  name, logo, created_at, updated_at) " +
+        String sql = "INSERT INTO brand (  name, logo,is_available, created_at, updated_at) " +
                 "VALUES ( :name, :logo, :createdAt, :updatedAt)";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
                         .bind("name", entity.getName().trim())
-                        .bind("logo", entity.getLogo())
+                        .bind("logo", entity.getLogo().trim())
+                        .bind("is_available", entity.getIsAvailable())
                         .bind("createdAt", LocalDateTime.now())
                         .bind("updatedAt", LocalDateTime.now())
                         .executeAndReturnGeneratedKeys("id") // Lấy giá trị khóa chính tự động sinh
@@ -73,12 +85,13 @@ public class BrandDAO implements IBrandDAO {
         }
         System.out.println(brandExisted);
 
-        String sql = "UPDATE brand SET name = :name, logo = :logo , updated_at = :updatedAt WHERE id = :id";
+        String sql = "UPDATE brand SET name = :name, logo = :logo,is_available = :isAvailable , updated_at = :updatedAt WHERE id = :id";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
                         .bind("name", entity.getName() == null ? brandExisted.getName() : entity.getName().trim())
-                        .bind("is_available", entity.getLogo() == null ? brandExisted.getLogo() : entity.getLogo())
+                        .bind("logo", entity.getLogo() == null ? brandExisted.getLogo() : entity.getLogo())
+                        .bind("isAvailable", entity.getIsAvailable() == null ? brandExisted.getIsAvailable() : entity.getIsAvailable())
                         .bind("updatedAt", LocalDateTime.now())
                         .bind("id", entity.getId())
                         .execute();
@@ -104,7 +117,7 @@ public class BrandDAO implements IBrandDAO {
         if (currentPage < 1) currentPage = 1;
 
         // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
-        List<String> allowedColumns = Arrays.asList("id", "name", "logo","created_at", "updated_at");
+        List<String> allowedColumns = Arrays.asList("id", "name", "logo","is_available","created_at", "updated_at");
         if (!allowedColumns.contains(orderBy)) {
             orderBy = "id";
         }
@@ -112,7 +125,7 @@ public class BrandDAO implements IBrandDAO {
         // Xây dựng câu lệnh SQL
         String sql = "SELECT * FROM brand ";
         if (keyword != null && !keyword.trim().isEmpty()) {
-            sql += "WHERE CONCAT(id, name, logo, created_at, updated_at) LIKE :keyword ";
+            sql += "WHERE CONCAT(id, name, logo,is_available, created_at, updated_at) LIKE :keyword ";
         }
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT :limit " +

@@ -41,7 +41,7 @@
     <!-- Main Content -->
     <main class="main-content row my-table-custom" ><!--style="display: flex; position: relative; height: min-content;"> -->
         <div class=" " style="width: 100%;">
-            <h1 class="text-center " style="margin-bottom: 20px;">Quản lý sản phẩm</h1>
+            <h1 class="text-center " style="margin-bottom: 20px;">Quản lý Nhãn hàng</h1>
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-6">
                     <div class="input-group">
@@ -53,7 +53,7 @@
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
                     <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 nhãn hàng</span>
-                    <a href="./add-brand.html" class="btn btn-primary" style="float: right;">Thêm nhãn hàng</a>
+                    <a href="add-brand.jsp" class="btn btn-primary" style="float: right;">Thêm nhãn hàng</a>
                 </div>
             </div>
             <table class="table table-striped ">
@@ -62,6 +62,7 @@
                     <th  class="text-center">id</th>
                     <th class="text-center">Tên nhãn hàng</th>
                     <th class="text-center">Logo</th>
+                    <th class="text-center">Đang bán</th>
                     <th class="text-center">Hành Động</th>
 
                 </tr>
@@ -72,9 +73,26 @@
                         <td class="text-center">${brand.id}</td>
                         <td >${brand.name}</td>
                         <td class="text-center">${brand.logo}đ</td>
+                        <td class="text-center"  >
+                            <c:choose>
+                                <c:when test="${brand.isAvailable}">
+                                    <span class="active-product"></span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="unactive-product"></span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                         <td class="text-center">
-                            <button class="btn btn-primary">Sửa</button>
-                            <button class="btn btn-danger">Xóa</button>
+                            <a href="<c:url value="/admin/brand?action=editBrand&id=${brand.id}"/>" class="btn btn-primary">Sửa</a>
+                            <c:choose>
+                                <c:when test="${brand.isAvailable}">
+                                    <a href="<c:url value="/admin/brand?action=stopBuying&id=${brand.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Bán</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="<c:url value="/admin/brand?action=startBuying&id=${brand.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Bán</a>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </c:forEach>

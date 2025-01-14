@@ -12,4 +12,5 @@ import lombok.experimental.SuperBuilder;
 public class BrandModel extends  BaseModel{
     private String name;
     private String logo;
+    private Boolean isAvailable;
 }
