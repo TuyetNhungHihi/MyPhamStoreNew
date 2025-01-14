@@ -15,6 +15,17 @@ import static java.rmi.server.LogStream.log;
 public class CouponDAOImpl implements ICouponDAO {
 
     @Override
+    public CouponModel getCouponDetail(Long id) {
+        String sql = "select * from coupon where id=?";
+        try{
+            return JDBIConnector.getJdbi().withHandle(h-> h.select(sql, id).mapToBean(CouponModel.class).one());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public CouponModel findCouponById(Long id) {
         String query = "SELECT * FROM coupon WHERE id = :id";
         try {
@@ -38,16 +49,16 @@ public class CouponDAOImpl implements ICouponDAO {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
-                        .bind("brand_id", entity.getBrand_id())
+                        .bind("brand_id", entity.getBrandId())
                         .bind("code", entity.getCode().trim())
-                        .bind("min_order_value", entity.getMin_order_value())
-                        .bind("discount_type", entity.getDiscount_type().toString())
-                        .bind("discount_value", entity.getDiscount_value())
-                        .bind("max_discount_value", entity.getMax_discount_value())
-                        .bind("start_date", entity.getStart_date())
-                        .bind("end_date", entity.getEnd_date())
-                        .bind("current_usage", entity.getCurrent_usage())
-                        .bind("max_usage", entity.getMax_usage())
+                        .bind("min_order_value", entity.getMinOrderValue())
+                        .bind("discount_type", entity.getDiscountType().toString())
+                        .bind("discount_value", entity.getDiscountValue())
+                        .bind("max_discount_value", entity.getMaxDiscountValue())
+                        .bind("start_date", entity.getStartDate())
+                        .bind("end_date", entity.getEndDate())
+                        .bind("current_usage", entity.getCurrentUsage())
+                        .bind("max_usage", entity.getMaxUsage())
                         .bind("createdAt", LocalDateTime.now())
                         .executeAndReturnGeneratedKeys("id") // Lấy giá trị khóa chính tự động sinh
                         .mapTo(Long.class) // Ánh xạ giá trị trả về thành Long
@@ -67,7 +78,6 @@ public class CouponDAOImpl implements ICouponDAO {
             log("Coupon not found");
             return null;
         }
-        System.out.println(couponExisted);
 
         String sql = "UPDATE coupon SET brand_id = :brand_id, code = :code,min_order_value = :min_order_value,discount_type=:discount_type" +
                 ",discount_value=:discount_value,max_discount_value=:max_discount_value,start_date=:start_date,end_date=:end_date,current_usage=:current_usage" +
@@ -75,18 +85,18 @@ public class CouponDAOImpl implements ICouponDAO {
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
-                        .bind("brand_id", entity.getBrand_id())
-                        .bind("code", entity.getCode().trim())
-                        .bind("min_order_value", entity.getMin_order_value())
-                        .bind("discount_type", entity.getDiscount_type().toString())
-                        .bind("discount_value", entity.getDiscount_value())
-                        .bind("max_discount_value", entity.getMax_discount_value())
-                        .bind("start_date", entity.getStart_date())
-                        .bind("end_date", entity.getEnd_date())
-                        .bind("current_usage", entity.getCurrent_usage())
-                        .bind("max_usage", entity.getMax_usage())
-                        .bind("created_at", LocalDateTime.now())
-                        .bind("isAvailable", Boolean.TRUE)
+                        .bind("brand_id", entity.getBrandId() == null ? couponExisted.getBrandId() : entity.getBrandId())
+                        .bind("code", entity.getCode() == null ? couponExisted.getCode() : entity.getCode().trim())
+                        .bind("min_order_value", entity.getMinOrderValue() == null ? couponExisted.getMinOrderValue() : entity.getMinOrderValue())
+                        .bind("discount_type", entity.getDiscountType() == null ? couponExisted.getDiscountType().toString() : entity.getDiscountType().toString())
+                        .bind("discount_value", entity.getDiscountValue() == null ? couponExisted.getDiscountValue() : entity.getDiscountValue())
+                        .bind("max_discount_value", entity.getMaxDiscountValue() == null ? couponExisted.getMaxDiscountValue() : entity.getMaxDiscountValue())
+                        .bind("start_date", entity.getStartDate() == null ? couponExisted.getStartDate() : entity.getStartDate())
+                        .bind("end_date", entity.getEndDate() == null ? couponExisted.getEndDate() : entity.getEndDate())
+                        .bind("current_usage", entity.getCurrentUsage() == null ? couponExisted.getCurrentUsage() : entity.getCurrentUsage())
+                        .bind("max_usage", entity.getMaxUsage() == null ? couponExisted.getMaxUsage() : entity.getMaxUsage())
+                        .bind("created_at", couponExisted.getCreatedAt())
+                        .bind("isAvailable", entity.getIsAvailable() == null ? couponExisted.getIsAvailable() : entity.getIsAvailable())
                         .bind("id", entity.getId())
                         .execute();
             });

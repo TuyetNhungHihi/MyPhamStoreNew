@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Quản lý Nhãn hàng</title>
+    <title>Quản lý Mã Giảm Giá</title>
     <link rel="stylesheet" href="../../static/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -70,7 +70,7 @@
                     <th class="text-center">Ngày kết thúc</th>
                     <th class="text-center">Số lần sử dụng</th>
                     <th class="text-center">Số lượng sử dụng tối đa</th>
-                    <th class="text-center">Còn hiệu lực</th>
+                    <th class="text-center">Hiệu lực</th>
                     <th class="text-center">Hành Động</th>
 
                 </tr>
@@ -79,16 +79,16 @@
                 <c:forEach var="coupon" items="${coupons}">
                     <tr>
                         <td class="text-center">${coupon.id}</td>
-                        <td class="text-center">${coupon.brand_id}</td>
+                        <td class="text-center">${coupon.brandId}</td>
                         <td class="text-center">${coupon.code}</td>
-                        <td class="text-center">${coupon.min_order_value}đ</td>
-                        <td class="text-center">${coupon.discount_type}</td>
-                        <td class="text-center">${coupon.discount_value}đ</td>
-                        <td class="text-center">${coupon.max_discount_value}đ</td>
-                        <td class="text-center">${coupon.start_date}</td>
-                        <td class="text-center">${coupon.end_date}</td>
-                        <td class="text-center">${coupon.current_usage}</td>
-                        <td class="text-center">${coupon.max_usage}</td>
+                        <td class="text-center">${coupon.minOrderValue}đ</td>
+                        <td class="text-center">${coupon.discountType}</td>
+                        <td class="text-center">${coupon.discountValue}đ</td>
+                        <td class="text-center">${coupon.maxDiscountValue}đ</td>
+                        <td class="text-center">${coupon.startDate}</td>
+                        <td class="text-center">${coupon.endDate}</td>
+                        <td class="text-center">${coupon.currentUsage}</td>
+                        <td class="text-center">${coupon.maxUsage}</td>
                         <td class="text-center">
                             <c:choose>
                                 <c:when test="${coupon.isAvailable}">

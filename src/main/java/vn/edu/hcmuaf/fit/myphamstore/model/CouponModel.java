@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.myphamstore.model;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import vn.edu.hcmuaf.fit.myphamstore.common.Discount_Type;
+import vn.edu.hcmuaf.fit.myphamstore.common.DiscountType;
 
 import java.time.LocalDateTime;
 
@@ -13,15 +13,15 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CouponModel extends BaseModel{
-    private Long brand_id;
+    private Long brandId;
     private String code;
-    private Long min_order_value;
-    private Discount_Type discount_type;
-    private Long discount_value;
-    private Long max_discount_value;
-    private LocalDateTime start_date;
-    private LocalDateTime end_date;
-    private Long current_usage;
-    private Long max_usage;
+    private Long minOrderValue;
+    private DiscountType discountType;
+    private Long discountValue;
+    private Long maxDiscountValue;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private Long currentUsage;
+    private Long maxUsage;
     private Boolean isAvailable;
 }
