@@ -98,6 +98,14 @@
         </li>
         <li>
           <a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/coupon/coupon-management.html"
+          ><span class="fa fa-slide" style="font-size: medium"></span
+          >Quản lý Mã Giảm Giá</a
+          >
+        </li>
+        <li>
+          <a
             class="link-admin-header"
             href="/src/main/webapp/admin/slide/slide-management.html"
             ><span class="fa fa-slide" style="font-size: medium"></span

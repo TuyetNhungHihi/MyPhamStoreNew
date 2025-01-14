@@ -1,9 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import vn.edu.hcmuaf.fit.myphamstore.common.Discount_Type;
 
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Getter
+@Setter
 public class CouponModel extends BaseModel{
     private Long brand_id;
     private String code;
@@ -25,4 +23,5 @@ public class CouponModel extends BaseModel{
     private LocalDateTime end_date;
     private Long current_usage;
     private Long max_usage;
+    private Boolean isAvailable;
 }
