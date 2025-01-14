@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.common.action.AdminBrandAction;
 import vn.edu.hcmuaf.fit.myphamstore.common.action.AdminProductAction;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IBrandService;
@@ -22,15 +23,15 @@ public class BrandController extends HttpServlet {
     @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action == null || action.equalsIgnoreCase(AdminProductAction.DISPLAY_PRODUCT)) {
+        if (action == null || action.equalsIgnoreCase(AdminBrandAction.DISPLAY_BRAND)) {
             brandService.displayBrand(request, response);
-        } else if (action.equalsIgnoreCase(AdminProductAction.STOP_BUYING)) {
+        } else if (action.equalsIgnoreCase(AdminBrandAction.STOP_BUYING)) {
             brandService.stopBuying( request, response);
-        }else if (action.equalsIgnoreCase(AdminProductAction.START_BUYING)) {
+        }else if (action.equalsIgnoreCase(AdminBrandAction.START_BUYING)) {
             brandService.startBuying(request, response);
-        }else if (action.equalsIgnoreCase(AdminProductAction.ADD_PRODUCT)) {
+        }else if (action.equalsIgnoreCase(AdminBrandAction.ADD_BRAND)) {
             brandService.addBrand(request, response);
-        } else if (action.equalsIgnoreCase(AdminProductAction.EDIT_PRODUCT)) {
+        } else if (action.equalsIgnoreCase(AdminBrandAction.EDIT_BRAND)) {
             brandService.updateBrand(request, response);
         }
         }
