@@ -97,7 +97,7 @@
   </div>
 </div>
 
-<div id="footer"></div>
+  <%@include file="component/footer.jsp"%>
 <script>
   const footer = document.getElementById("footer");
   fetch("<%= request.getContextPath() %>/footer.jsp")
