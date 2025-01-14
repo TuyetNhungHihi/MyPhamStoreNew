@@ -9,7 +9,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.IContactService;
 
 import java.io.IOException;
 
-@WebServlet(name = "ContactController", value = "/contact")
+@WebServlet(name = "ContactController", value = "/lien-he")
 public class ContactController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Inject

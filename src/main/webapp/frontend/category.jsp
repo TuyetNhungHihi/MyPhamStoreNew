@@ -1,5 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+Created by IntelliJ IDEA.
+User: cucsh
+Date: 12/7/2024
+Time: 10:10 AM
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,13 +46,10 @@
 	</div>
 	<!-- Top Scroll Start -->
 	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
-	<!-- Top Scroll End -->
-	<div id="nav.jsp"></div>
 	<!-- Header Wrapper Start -->
-	<div id="header.jsp"></div>
+	<%@include file="component/nav.jsp"%>
+	<%@include file="component/header.jsp"%>
 	<!-- Header Wrapper End -->
-	<!-- Slider Wrapper Start -->
-	<!-- Slider Wrapper End -->
 	<!-- ss inner title Wrapper Start -->
 	<div class="ss_inner_title_wrapper">
 		<div class="container">
@@ -80,7 +84,10 @@
 												<div class="wpb_wrapper">
 													<ul>
 														<c:forEach var="category" items="${categories}">
-															<li class="nav-title">${category.name}</li>
+															<li>
+																<input type="checkbox" id="c${category.id}" name="cb">
+																<label for="c${category.id}">${category.name}</label>
+															</li>
 														</c:forEach>
 													</ul>
 												</div>
@@ -114,39 +121,13 @@
 									<div class="link cc_product_heading">Thương Hiệu<i class="fa fa-chevron-down"></i>
 									</div>
 									<ul class="submenu">
-										<li>
-											<div class="content">
-												<div class="box">
-													<p>
-														<input type="checkbox" id="c12" name="cb">
-														<label for="c12">16PLAIN</label>
-														<p>
-															<input type="checkbox" id="c13" name="cb">
-															<label for="c13">2080</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c14" name="cb">
-															<label for="c14">3CE</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c15" name="cb">
-															<label for="c15">9WHISHES</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c16" name="cb">
-															<label for="c16">ACNES</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c17" name="cb">
-															<label for="c17">ADOPT'</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c18" name="cb">
-															<label for="c18">AHC</label>
-														</p>
-												</div>
-											</div>
-										</li>
+										<c:forEach var="brand" items="${brands}">
+											<li>
+												<input type="checkbox" id="c${brand.id}" name="cb">
+												<label for="c${brand.id}">${brand.name}</label>
+											</li>
+										</c:forEach>
+
 									</ul>
 								</li>
 							</ul>
@@ -1280,7 +1261,10 @@
 	</div>
 	<!-- CC pc sidebar accordion End -->
 	<!-- Footer Wrapper Start -->
-	<div id="footer.jsp"></div>
+
+	<%@include file="component/footer.jsp"%>
+
+
 	<!-- Footer Wrapper End -->
 	<script>
 		const header = document.getElementById("header");
