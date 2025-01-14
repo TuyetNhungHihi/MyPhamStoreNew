@@ -19,4 +19,5 @@ public interface IProductService {
     List<ProductModel> getProductsByCategory(long l);
     List<ProductModel> getLatestProducts();
 
+
 }
