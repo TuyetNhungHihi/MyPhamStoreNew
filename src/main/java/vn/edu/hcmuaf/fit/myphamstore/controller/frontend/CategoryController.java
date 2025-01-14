@@ -2,8 +2,6 @@ package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 
 import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
-import vn.edu.hcmuaf.fit.myphamstore.dao.ICategoryDAO;
-import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.CategoryDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 
@@ -21,7 +19,6 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "CategoryController", value = "/danh-muc")
-
 public class CategoryController extends HttpServlet {
     @Inject
     private IProductService productService;
@@ -64,9 +61,9 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("categories", categories);
 
             // Lấy danh sách sản phẩm thuộc danh mục
-            Long categoryId = Long.parseLong(request.getParameter("id"));
-            List<ProductModel> productsByCategory = productService.getProductsByCategory(categoryId);
-            request.setAttribute("productsByCategory", productsByCategory);
+//            Long categoryId = Long.parseLong(request.getParameter("id"));
+//            List<ProductModel> productsByCategory = productService.getProductsByCategory(categoryId);
+//            request.setAttribute("productsByCategory", productsByCategory);
 
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);
@@ -77,9 +74,7 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("orderBy", orderBy);
             request.setAttribute("categories", categories);
             request.setAttribute("brands", brands);
-            request.setAttribute("productsByCategory", productsByCategory);
-
-            System.out.println("CategoryController - doGet called");
+            //request.setAttribute("productsByCategory", productsByCategory);
 
 
             // Hiển thị trang chủ
