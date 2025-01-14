@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/productDetail")
+@WebServlet(name = "ProductDetailController", value = "/chi-tiet-san-pham")
 public class ProductDetailController extends HttpServlet {
     private IProductDAO productDAO = new ProductDAOImpl();
 

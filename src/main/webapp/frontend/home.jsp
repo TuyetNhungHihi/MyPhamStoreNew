@@ -129,7 +129,7 @@ To change this template use File | Settings | File Templates.
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
-												<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
+												<a href="/chi-tiet-san-pham?id=${product.id}">Chi tiết sản phẩm</a>
 												<fieldset class="rating">
 													<input type="radio" name="rating" value="5" />
 													<label class="full" title="5 stars"></label>

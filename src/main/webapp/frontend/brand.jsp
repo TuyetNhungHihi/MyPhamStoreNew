@@ -52,9 +52,9 @@ Purchase:
     <!-- Top Scroll Start -->
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
-    <div id="nav"></div>
     <!-- Header Wrapper Start -->
-    <div id="header"></div>
+    <%@include file="component/nav.jsp"%>
+    <%@include file="component/header.jsp"%>
     <!-- Header Wrapper End -->
     <!-- Slider Wrapper Start -->
     <!-- Slider Wrapper End -->
@@ -95,7 +95,7 @@ Purchase:
     <!-- Brand end -->
 
     <!-- Footer Wrapper Start -->
-    <div id="footer"></div>
+    <%@include file="component/footer.jsp"%>
     <!-- Footer Wrapper End -->
     <script>
         const header = document.getElementById("header");

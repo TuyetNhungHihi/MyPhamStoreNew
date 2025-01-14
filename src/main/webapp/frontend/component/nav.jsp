@@ -31,12 +31,15 @@
                                     Tất cả sản phẩm
                                 </a>
                             </li>
-
-
-
-                            <li class="parent"><a href="/thuong-hieu">Thương hiệu</a>
+                            <li class="parent">
+                            <a href="<c:url value="/thuong-hieu" />">
+                                Thương hiệu
+                            </a>
                             </li>
-                            <li class="parent"><a href="/lien-he">Liên hệ</a>
+                            <li class="parent">
+                                <a href="<c:url value="/lien-he" />">
+                                    Liên hệ
+                                </a>
                             </li>
                             <li class="parent visible-xs"><a href="./shopping_cart.html">Cart &nbsp;<i
                                         class="fa fa-angle-down" aria-hidden="true"></i></a>

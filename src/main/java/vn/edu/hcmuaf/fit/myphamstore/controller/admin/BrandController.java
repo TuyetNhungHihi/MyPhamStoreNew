@@ -13,7 +13,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.IBrandService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "BrandController", value = "/admin/brand")
+@WebServlet(name = "AdminBrandController", value = "/admin/brand")
 public class BrandController extends HttpServlet {
     @Inject
     private IBrandService brandService;
