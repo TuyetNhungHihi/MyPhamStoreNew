@@ -90,7 +90,7 @@ public class CouponServiceImpl implements ICouponService {
 
     @Override
     public void updateCoupon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/brand/add-brand.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/coupon/add-coupon.jsp");
         Long id = Long.parseLong(request.getParameter("id"));
         CouponModel coupon = couponDAO.getCouponDetail(id);
         System.out.println(coupon);

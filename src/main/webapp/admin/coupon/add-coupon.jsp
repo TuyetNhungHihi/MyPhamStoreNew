@@ -90,72 +90,107 @@
       <!-- Main Content -->
       <main class="main-content row my-table-custom">
         <!--style="display: flex; position: relative; height: min-content;"> -->
-        <div class=" " style="width: 100%">
-          <h1 class="text-center" style="margin-bottom: 20px; margin-top: 85px">
-            Thêm Nhãn Hàng Mới
+        <div class=" " style="width: 100%;">
+          <h1 class="text-center " style="margin-bottom: 20px;">
+            <c:choose>
+              <c:when test="${empty coupon}">Thêm mới Mã giảm giá</c:when>
+              <c:otherwise>Sửa Mã giảm giá #${coupon.id}</c:otherwise>
+            </c:choose>
           </h1>
-          <form
-            class=""
-            action="#"
-            method="post"
-            style="padding: 0 100px 0 100px; margin-left: 100px"
-          >
+          <form class="" action="#" method="post" style="padding: 0 100px 0 100px;">
             <div class="row">
-              <div class="col-lg-12">
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"
-                    >Tên Nhãn hàng</span
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Tên nhãn hàng..."
-                    aria-describedby="basic-addon1"
-                  />
+                  <label class="input-group-addon" for="productName" id="basic-addon1">Mã nhãn hàng</label>
+                  <input type="text" class="form-control" id="productName" name="productName" placeholder="Mã nhãn hàng..."
+                         aria-describedby="basic-addon1" value="${coupon.brand_id}">
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                  <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Code</label>
+                  <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Code..."
+                         aria-describedby="basic-addon1" value="${coupon.code}">
                 </div>
               </div>
             </div>
-            <div class="row" style="margin-top: 20px">
-              <div class="col-lg-6 row">
-                <div class="col-lg-12">
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"
-                      >Hình Ảnh</span
-                    >
-                    <input
-                      id="imageInput"
-                      type="file"
-                      class="form-control"
-                      placeholder="Hình ảnh sản phẩm..."
-                      aria-describedby="basic-addon1"
-                      accept="image/*"
-                    />
-                  </div>
+            <div class="row " >
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                  <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá trị đơn hàng thấp nhất</label>
+                  <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá trị đơn hàng thấp nhất..."
+                         aria-describedby="basic-addon1" value="${coupon.min_order_value}">
                 </div>
               </div>
-              <div class="col-lg-6">
-                <img src="" alt="image" width="100%" id="output" hidden />
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group" >
+                  <label for="price" class="input-group-addon" id="basic-addon1">Loại giảm giá</label>
+                  <input type="text" id="price" name="price" class="form-control" placeholder="Loại giảm giá..."
+                         aria-describedby="basic-addon1" value="${coupon.discount_type}">
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group" >
+                  <label for="price" class="input-group-addon" id="basic-addon1">Giá trị giảm giá</label>
+                  <input type="text" id="price" name="price" class="form-control" placeholder="Giá trị giảm giá..."
+                         aria-describedby="basic-addon1" value="${coupon.discount_value}">
+                </div>
               </div>
             </div>
-            <div style="margin-top: 20px" class="text-center">
-              <button
-                class="btn-lg btn-danger"
-                style="width: 200px"
-                type="button"
-                onclick="history.back()"
-              >
-                Huỷ bỏ
-              </button>
-              <button
-                class="btn-lg btn-primary"
-                style="width: 200px"
-                type="submit"
-              >
-                Thêm Mới
+            <div class="row " >
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                  <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá trị giảm giá tối đa</label>
+                  <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá trị giảm giá tối đa..."
+                         aria-describedby="basic-addon1" value="${coupon.max_discount_value}">
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group" >
+                  <label for="price" class="input-group-addon" id="basic-addon1">Ngày bắt đầu</label>
+                  <input type="text" id="price" name="price" class="form-control" placeholder="Ngày bắt đầu..."
+                         aria-describedby="basic-addon1" value="${coupon.start_date}">
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group" >
+                  <label for="price" class="input-group-addon" id="basic-addon1">Ngày kết thúc</label>
+                  <input type="text" id="price" name="price" class="form-control" placeholder="Ngày kết thúc..."
+                         aria-describedby="basic-addon1" value="${coupon.end_date}">
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group" >
+                  <label for="price" class="input-group-addon" id="basic-addon1">Số lượng sử dụng</label>
+                  <input type="text" id="price" name="price" class="form-control" placeholder="Số lượng sử dụng..."
+                         aria-describedby="basic-addon1" value="${coupon.current_usage}">
+                </div>
+              </div>
+                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                    <div class="input-group" >
+                    <label for="price" class="input-group-addon" id="basic-addon1">Số lượng sử dụng tối đa</label>
+                    <input type="text" id="price" name="price" class="form-control" placeholder="Số lượng sử dụng tối đa..."
+                             aria-describedby="basic-addon1" value="${coupon.max_usage}">
+                    </div>
+                </div>
+              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group" >
+                  <label for="price" class="input-group-addon" id="basic-addon1">Còn hiệu lực</label>
+                  <input type="text" id="price" name="price" class="form-control" placeholder="true or false..."
+                         aria-describedby="basic-addon1" value="${coupon.isAvailable}">
+                </div>
+            <div style="margin-top: 20px;" class="text-center">
+              <button class="btn-lg btn-danger" style="width: 200px;" type="button" onclick="history.back()">Huỷ bỏ</button>
+              <button class="btn-lg btn-primary" style="width: 200px;" type="submit">
+                <c:choose>
+                  <c:when test="${empty coupon}">Thêm sản phẩm</c:when>
+                  <c:otherwise>Lưu chỉnh sửa</c:otherwise>
+                </c:choose>
               </button>
             </div>
           </form>
         </div>
+
       </main>
       <label for="sidebar" class="body-label" id="body-label"></label>
     </div>
