@@ -75,7 +75,7 @@ To change this template use File | Settings | File Templates.
 				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 					<div class="cc_pc_first_accordion_wrapper cc_pc_second_accordion_wrapper2">
 						<div class="cc_pc_accordion">
-							<ul id="accordion8" class="accordion">
+							<ul id="accordion1" class="accordion">
 								<li class="default open">
 									<div class="link cc_product_heading">Loại sản phẩm<i class="fa fa-chevron-down"></i></div>
 									<ul class="submenu">
