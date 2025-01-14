@@ -169,7 +169,8 @@ CREATE TABLE `coupon` (
   `end_date` datetime NOT NULL,
   `current_usage` int DEFAULT 0,
   `max_usage` int  null,
-  `created_at` datetime DEFAULT (now())
+  `created_at` datetime DEFAULT (now()),
+  `is_available` boolean default true
 );
 
 CREATE TABLE `wishlist` (
