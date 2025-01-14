@@ -41,7 +41,7 @@
                                     Liên hệ
                                 </a>
                             </li>
-                            <li class="parent visible-xs"><a href="./shopping_cart.html">Cart &nbsp;<i
+                            <li class="parent visible-xs"><a href="/gio-hang">Cart &nbsp;<i
                                         class="fa fa-angle-down" aria-hidden="true"></i></a>
                                 <ul class="lg-submenu">
                                     <li>
@@ -106,29 +106,33 @@
             </li>
             <li>
                 <div class="ss_cart_value dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <p>1</p>
-                        <a href="shopping_cart.html"><img src="../static/images/header/cart_icon.png" alt="Cart"
-                                title="Yêu thích"> <span>Giỏ hàng: <ins style="text-transform: lowercase;">10.000.000
-                                    đ</ins></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="ss_cart_inner_main_section ss_cart_inner_main_section2">
-                                    <div class="ss_cart_img_wrapper">
-                                        <img src="../static/images/header/cart_img.jpg" alt="cart_img">
-                                    </div>
-                                    <div class="ss_cart_img_cont_wrapper">
-                                        <h3>Sản Phẩm 1</h3>
-                                        <h4>Thể loại 1</h4>
-                                        <span>x</span>
-                                        <ins>10.000.000 đ</ins>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="checkout.html" class="ss_check_btn">Thanh Toán </a>
-                            </li>
-                        </ul>
+<%--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">--%>
+<%--                        <p>${cart.size()}</p>--%>
+<%--                        <a href="<c:url value='/gio-hang' />"><img src="../static/images/header/cart_icon.png" alt="Cart" title="Yêu thích">--%>
+<%--                            <span>Giỏ hàng: <ins style="text-transform: lowercase;">đ</ins></span>--%>
+<%--                        </a>--%>
+<%--                        <ul class="dropdown-menu">--%>
+<%--                            <c:forEach var="entry" items="${cart}">--%>
+<%--                                <c:set var="product" value="${productService.findProductById(entry.key)}"/>--%>
+<%--                                <li>--%>
+<%--                                    <div class="ss_cart_inner_main_section ss_cart_inner_main_section2">--%>
+<%--                                        <div class="ss_cart_img_wrapper">--%>
+<%--                                            <img src="${product.thumbnail}" alt="${product.name}">--%>
+<%--                                        </div>--%>
+<%--                                        <div class="ss_cart_img_cont_wrapper">--%>
+<%--                                            <h3>${product.name}</h3>--%>
+<%--                                            <h4>${product.categoryName}</h4>--%>
+<%--                                            <span>x${entry.value}</span>--%>
+<%--                                            <ins>${product.price * entry.value} đ</ins>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </li>--%>
+<%--                            </c:forEach>--%>
+<%--                            <li>--%>
+<%--                                <a href="<c:url value='' />" class="ss_check_btn">Thanh Toán</a>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </a>--%>
                 </div>
             </li>
         </ul>
