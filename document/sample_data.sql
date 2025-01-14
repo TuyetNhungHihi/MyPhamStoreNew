@@ -69,27 +69,6 @@ INSERT INTO `address` (`id`, `user_id`, `recipient_name`, `recipient_phone`, `ci
 (20, 20, 'Tran Thi T', '0797654321', 'Ho Chi Minh', 'District 8', 'Pham The Hien', null, true, NOW(), NOW());
 
 -- Dữ liệu mẫu cho bảng `brand`
-INSERT INTO `brand` (`id`, `name`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'Oreal', 'loreal_logo.png', NOW(), NOW()),
-(2, 'Maybelline', 'maybelline_logo.png', NOW(), NOW()),
-(3, 'MAC', 'mac_logo.png', NOW(), NOW()),
-(4, 'Estee Lauder', 'estee_lauder_logo.png', NOW(), NOW()),
-(5, 'Dior', 'dior_logo.png', NOW(), NOW()),
-(6, 'Chanel', 'chanel_logo.png', NOW(), NOW()),
-(7, 'Lancome', 'lancome_logo.png', NOW(), NOW()),
-(8, 'Clinique', 'clinique_logo.png', NOW(), NOW()),
-(9, 'Bobbi Brown', 'bobbi_brown_logo.png', NOW(), NOW()),
-(10, 'NARS', 'nars_logo.png', NOW(), NOW()),
-(11, 'Shiseido', 'shiseido_logo.png', NOW(), NOW()),
-(12, 'Urban Decay', 'urban_decay_logo.png', NOW(), NOW()),
-(13, 'Benefit', 'benefit_logo.png', NOW(), NOW()),
-(14, 'Sephora', 'sephora_logo.png', NOW(), NOW()),
-(15, 'Fenty Beauty', 'fenty_beauty_logo.png', NOW(), NOW()),
-(16, 'Tarte', 'tarte_logo.png', NOW(), NOW()),
-(17, 'Too Faced', 'too_faced_logo.png', NOW(), NOW()),
-(18, 'Huda Beauty', 'huda_beauty_logo.png', NOW(), NOW()),
-(19, 'Anastasia', 'anastasia_logo.png', NOW(), NOW()),
-(20, 'Charlotte Tilbury', 'charlotte_tilbury_logo.png', NOW(), NOW());
 
 INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Electronics', 'Devices like phones, laptops, and accessories', NOW(), NOW()),

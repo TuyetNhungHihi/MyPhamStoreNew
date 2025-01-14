@@ -59,6 +59,7 @@ public class CouponServiceImpl implements ICouponService {
         CouponModel couponModel = CouponModel.builder().id(id).build();
         couponModel.setIsAvailable(false);
         CouponModel isSuccess = couponDAO.update(couponModel);
+        System.out.println(isSuccess);
         if (isSuccess == null) {
             request.setAttribute("message", "Có lỗi xảy ra");
         } else {

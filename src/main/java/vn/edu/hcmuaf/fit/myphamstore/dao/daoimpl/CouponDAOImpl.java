@@ -78,7 +78,6 @@ public class CouponDAOImpl implements ICouponDAO {
             log("Coupon not found");
             return null;
         }
-        System.out.println(couponExisted);
 
         String sql = "UPDATE coupon SET brand_id = :brand_id, code = :code,min_order_value = :min_order_value,discount_type=:discount_type" +
                 ",discount_value=:discount_value,max_discount_value=:max_discount_value,start_date=:start_date,end_date=:end_date,current_usage=:current_usage" +
@@ -89,14 +88,15 @@ public class CouponDAOImpl implements ICouponDAO {
                         .bind("brand_id", entity.getBrand_id() == null ? couponExisted.getBrand_id() : entity.getBrand_id())
                         .bind("code", entity.getCode() == null ? couponExisted.getCode() : entity.getCode().trim())
                         .bind("min_order_value", entity.getMin_order_value() == null ? couponExisted.getMin_order_value() : entity.getMin_order_value())
-                        .bind("discount_type", entity.getDiscount_type().toString() == null ? couponExisted.getDiscount_type().toString() : entity.getDiscount_type().toString())
+                        .bind("discount_type", entity.getDiscount_type() == null ? couponExisted.getDiscount_type().toString() : entity.getDiscount_type().toString())
                         .bind("discount_value", entity.getDiscount_value()== null ? couponExisted.getDiscount_value() : entity.getDiscount_value())
                         .bind("max_discount_value", entity.getMax_discount_value() == null ? couponExisted.getMax_discount_value() : entity.getMax_discount_value())
                         .bind("start_date", entity.getStart_date() == null ? couponExisted.getStart_date() : entity.getStart_date())
                         .bind("end_date", entity.getEnd_date() == null ? couponExisted.getEnd_date() : entity.getEnd_date())
                         .bind("current_usage", entity.getCurrent_usage() == null ? couponExisted.getCurrent_usage() : entity.getCurrent_usage())
                         .bind("max_usage", entity.getMax_usage() == null ? couponExisted.getMax_usage() : entity.getMax_usage())
-                        .bind("isAvailable", Boolean.TRUE)
+                        .bind("created_at", couponExisted.getCreatedAt())
+                        .bind("isAvailable", entity.getIsAvailable() == null ? couponExisted.getIsAvailable() : entity.getIsAvailable())
                         .bind("id", entity.getId())
                         .execute();
             });

@@ -173,6 +173,7 @@ CREATE TABLE `coupon` (
   `is_available` boolean default true
 );
 
+
 CREATE TABLE `wishlist` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `user_id` int,
@@ -213,3 +214,5 @@ ALTER TABLE `payment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `wishlist` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 ALTER TABLE `wishlist` ADD FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+
+ALTER TABLE `coupon` ADD FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`);
