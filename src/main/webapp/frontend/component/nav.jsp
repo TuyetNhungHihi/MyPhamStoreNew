@@ -31,10 +31,10 @@
                                     Tất cả sản phẩm
                                 </a>
                             </li>
-
-
-
-                            <li class="parent"><a href="/thuong-hieu">Thương hiệu</a>
+                            <li class="parent">
+                            <a href="<c:url value="/thuong-hieu" />">
+                                Thương hiệu
+                            </a>
                             </li>
                             <li class="parent"><a href="/lien-he">Liên hệ</a>
                             </li>
