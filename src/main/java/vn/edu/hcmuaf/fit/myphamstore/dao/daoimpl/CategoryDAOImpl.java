@@ -25,19 +25,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
             );
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
-    @Override
-    public List<CategoryModel>getNameCategories() {
-        String sql = "SELECT name FROM category";
-        try {
-            return JDBIConnector.getJdbi().withHandle(handle ->
-                    handle.createQuery(sql).mapToBean(CategoryModel.class).list()
-            );
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            return null;
         }
     }
     @Override

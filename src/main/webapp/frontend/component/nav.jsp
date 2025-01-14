@@ -24,13 +24,19 @@
                     <div id="dl-menu" class="xv-menuwrapper responsive-menu menu-three">
                         <div class="clearfix"></div>
                         <ul class="dl-menu">
-                            <li class="parent"><a href="/frontend/home.jsp">Trang Chủ </a>
+                            <li class="parent"><a href="/trang-chu">Trang Chủ </a>
                             </li>
-                            <li class="parent"><a href="/frontend/category.jsp">Tất cả sản phẩm </a>
+                            <li class="parent">
+                                <a href="<c:url value="/danh-muc" />">
+                                    Tất cả sản phẩm
+                                </a>
                             </li>
-                            <li class="parent"><a href="/frontend/brand.jsp">Thương hiệu</a>
+
+
+
+                            <li class="parent"><a href="/thuong-hieu">Thương hiệu</a>
                             </li>
-                            <li class="parent"><a href="/frontend/contact.jsp">Liên hệ</a>
+                            <li class="parent"><a href="/lien-he">Liên hệ</a>
                             </li>
                             <li class="parent visible-xs"><a href="./shopping_cart.html">Cart &nbsp;<i
                                         class="fa fa-angle-down" aria-hidden="true"></i></a>

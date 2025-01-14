@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/brands")
+@WebServlet(name = "BrandController", value = "/thuong-hieu")
 public class BrandController extends HttpServlet {
     private IBrandDAO brandDAO = new BrandDAO();
 
