@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IBrandService;
+import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
@@ -21,6 +23,8 @@ public class HomeController extends HttpServlet {
     private IProductService productService;
     @Inject
     private IBrandService brandService;
+    @Inject
+    private ICategoryService categoryService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,10 +52,15 @@ public class HomeController extends HttpServlet {
             Long categoryId = 4L; // Health & Beauty
             List<ProductModel> healthBeautyProducts = productService.getProductsByCategory(categoryId);
 
+            // Lấy danh sách sản phẩm mới nhất
             List<ProductModel> latestProducts = productService.getLatestProducts();
             request.setAttribute("latestProducts", latestProducts);
 
+            // Lấy danh sách thương hiệu
             List<BrandModel> brands = brandService.getAllBrands();
+
+            // lấy danh sách các loại sản phẩm
+            List<CategoryModel> categories = categoryService.getAllCategories();
 
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);
@@ -63,6 +72,7 @@ public class HomeController extends HttpServlet {
             request.setAttribute("healthBeautyProducts", healthBeautyProducts);
             request.setAttribute("latestProducts", latestProducts);
             request.setAttribute("brands", brands);
+            request.setAttribute("categories", categories);
             // Chuyển hướng đến trang JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/home.jsp");
             dispatcher.forward(request, response);

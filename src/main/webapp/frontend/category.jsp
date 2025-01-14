@@ -40,9 +40,9 @@
 	<!-- Top Scroll Start -->
 	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
 	<!-- Top Scroll End -->
-	<div id="nav"></div>
+	<div id="nav.jsp"></div>
 	<!-- Header Wrapper Start -->
-	<div id="header"></div>
+	<div id="header.jsp"></div>
 	<!-- Header Wrapper End -->
 	<!-- Slider Wrapper Start -->
 	<!-- Slider Wrapper End -->
@@ -75,18 +75,17 @@
 								<li class="default open">
 									<div class="link cc_product_heading">Loại sản phẩm<i class="fa fa-chevron-down"></i></div>
 									<ul class="submenu">
-										<c:forEach var="category" items="${categories}">
-											<li>
-												<div class="content">
-													<div class="box">
-														<p class="cc_pc_color1">
-															<input type="checkbox" id="c${category.id}" name="cb">
-															<label for="c${category.id}">${category.name} (${category.productCount})</label>
-														</p>
-													</div>
+										<div class="wpb_wrapper">
+											<div class="wpb_text_column wpb_content_element">
+												<div class="wpb_wrapper">
+													<ul>
+														<c:forEach var="category" items="${categories}">
+															<li class="nav-title">${category.name}</li>
+														</c:forEach>
+													</ul>
 												</div>
-											</li>
-										</c:forEach>
+											</div>
+										</div>
 									</ul>
 								</li>
 							</ul>
@@ -1281,28 +1280,28 @@
 	</div>
 	<!-- CC pc sidebar accordion End -->
 	<!-- Footer Wrapper Start -->
-	<div id="footer"></div>
+	<div id="footer.jsp"></div>
 	<!-- Footer Wrapper End -->
 	<script>
 		const header = document.getElementById("header");
 		const footer = document.getElementById("footer");
 		const nav = document.getElementById("nav");
 
-		fetch('./header.html')
+		fetch('header.jsp')
 			.then(response => {
 				return response.text()
 			})
 			.then(data => {
 				header.innerHTML = data;
 			});
-		fetch('./footer.html')
+		fetch('footer.jsp')
 			.then(response => {
 				return response.text()
 			})
 			.then(data => {
 				footer.innerHTML = data;
 			});
-		fetch('./nav.html')
+		fetch('nav.jsp')
 			.then(response => {
 				return response.text()
 			}).then(data => {

@@ -36,32 +36,34 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductModel> getLatestProducts() {
         return productDAO.getLatestProducts();
     }
+
     @Override
-  public void stopBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void stopBuying(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         //tến hành cập nhật trạng thái sản phẩm
         ProductModel productModel = ProductModel.builder().id(id).build();
         productModel.setIsAvailable(false);
 
         ProductModel isSuccess = productDAO.update(productModel);
-        if(isSuccess == null) {
+        if (isSuccess == null) {
             request.setAttribute("message", "Có lỗi xảy ra");
-        }else{
+        } else {
             request.setAttribute("message", "Cập nhật thành công id: " + id);
             this.displayProduct(request, response);
         }
     }
+
     @Override
-    public void startBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void startBuying(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         //tến hành cập nhật trạng thái sản phẩm
         ProductModel productModel = ProductModel.builder().id(id).build();
         productModel.setIsAvailable(true);
 
         ProductModel isSuccess = productDAO.update(productModel);
-        if(isSuccess == null) {
+        if (isSuccess == null) {
             request.setAttribute("message", "Có lỗi xảy ra");
-        }else{
+        } else {
             request.setAttribute("message", "Cập nhật thành công id: " + id);
             this.displayProduct(request, response);
         }
@@ -69,11 +71,11 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void displayProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher= request.getRequestDispatcher("/admin/product/product-management.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/product/product-management.jsp");
         String keyword = request.getParameter("keyword");
         String orderBy = request.getParameter("orderBy");
-        int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
-        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
+        int currentPage = Integer.parseInt(request.getParameter("currentPage") == null ? "1" : request.getParameter("currentPage"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "5" : request.getParameter("pageSize"));
 
         List<ProductModel> products = this.getPagingProduct(keyword, currentPage, pageSize, orderBy);
         Long totalPages = this.getTotalPage(5);
@@ -90,15 +92,16 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher= request.getRequestDispatcher("/admin/product/add-product.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/product/add-product.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     public void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher= request.getRequestDispatcher("/admin/product/add-product.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/product/add-product.jsp");
         Long id = Long.parseLong(request.getParameter("id"));
         ProductModel product = productDAO.getProductDetail(id);
         request.setAttribute("product", product);
         dispatcher.forward(request, response);
     }
+}
