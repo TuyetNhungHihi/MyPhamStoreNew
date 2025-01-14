@@ -1,7 +1,11 @@
 package vn.edu.hcmuaf.fit.myphamstore.service;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ICouponService {
@@ -9,4 +13,13 @@ public interface ICouponService {
     List<CouponModel> pagingCoupon(String keyword, int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
 
+    void displayCoupon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    void stopBuying(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    void startBuying(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    void addCoupon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    void updateCoupon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

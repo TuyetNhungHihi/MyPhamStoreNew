@@ -30,7 +30,7 @@ public class BrandDAOImpl implements IBrandDAO {
 
     @Override
     public BrandModel getBrandDetail(Long id) {
-        String sql = "select * from product where id=?";
+        String sql = "select * from brand where id=?";
         try{
             return JDBIConnector.getJdbi().withHandle(h-> h.select(sql, id).mapToBean(BrandModel.class).one());
         }catch (Exception e){

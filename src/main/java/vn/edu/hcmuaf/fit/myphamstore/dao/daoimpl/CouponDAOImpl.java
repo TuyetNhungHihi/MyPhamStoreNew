@@ -15,6 +15,17 @@ import static java.rmi.server.LogStream.log;
 public class CouponDAOImpl implements ICouponDAO {
 
     @Override
+    public CouponModel getCouponDetail(Long id) {
+        String sql = "select * from coupon where id=?";
+        try{
+            return JDBIConnector.getJdbi().withHandle(h-> h.select(sql, id).mapToBean(CouponModel.class).one());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public CouponModel findCouponById(Long id) {
         String query = "SELECT * FROM coupon WHERE id = :id";
         try {
@@ -75,17 +86,16 @@ public class CouponDAOImpl implements ICouponDAO {
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
-                        .bind("brand_id", entity.getBrand_id())
-                        .bind("code", entity.getCode().trim())
-                        .bind("min_order_value", entity.getMin_order_value())
-                        .bind("discount_type", entity.getDiscount_type().toString())
-                        .bind("discount_value", entity.getDiscount_value())
-                        .bind("max_discount_value", entity.getMax_discount_value())
-                        .bind("start_date", entity.getStart_date())
-                        .bind("end_date", entity.getEnd_date())
-                        .bind("current_usage", entity.getCurrent_usage())
-                        .bind("max_usage", entity.getMax_usage())
-                        .bind("created_at", LocalDateTime.now())
+                        .bind("brand_id", entity.getBrand_id() == null ? couponExisted.getBrand_id() : entity.getBrand_id())
+                        .bind("code", entity.getCode() == null ? couponExisted.getCode() : entity.getCode().trim())
+                        .bind("min_order_value", entity.getMin_order_value() == null ? couponExisted.getMin_order_value() : entity.getMin_order_value())
+                        .bind("discount_type", entity.getDiscount_type().toString() == null ? couponExisted.getDiscount_type().toString() : entity.getDiscount_type().toString())
+                        .bind("discount_value", entity.getDiscount_value()== null ? couponExisted.getDiscount_value() : entity.getDiscount_value())
+                        .bind("max_discount_value", entity.getMax_discount_value() == null ? couponExisted.getMax_discount_value() : entity.getMax_discount_value())
+                        .bind("start_date", entity.getStart_date() == null ? couponExisted.getStart_date() : entity.getStart_date())
+                        .bind("end_date", entity.getEnd_date() == null ? couponExisted.getEnd_date() : entity.getEnd_date())
+                        .bind("current_usage", entity.getCurrent_usage() == null ? couponExisted.getCurrent_usage() : entity.getCurrent_usage())
+                        .bind("max_usage", entity.getMax_usage() == null ? couponExisted.getMax_usage() : entity.getMax_usage())
                         .bind("isAvailable", Boolean.TRUE)
                         .bind("id", entity.getId())
                         .execute();
