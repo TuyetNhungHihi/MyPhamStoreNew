@@ -54,4 +54,9 @@ public class CategoryServiceImpl implements ICategoryService {
     public Long getTotalPage(int numOfItem) {
         return categoryDAO.getTotalPage(numOfItem);
     }
+
+    @Override
+    public List<CategoryModel> getAllCategories() {
+        return categoryDAO.getAllCategories();
+    }
 }

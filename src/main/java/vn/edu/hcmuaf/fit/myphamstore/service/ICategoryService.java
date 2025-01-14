@@ -9,4 +9,6 @@ public interface ICategoryService {
     List<CategoryModel> findCategoriesParent(Long childId);
     List<CategoryModel> pagingCategory(String keyword,int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
+
+    List<CategoryModel> getAllCategories();
 }

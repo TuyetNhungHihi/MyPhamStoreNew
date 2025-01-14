@@ -7,25 +7,36 @@
 				<ul class="list-group vertical-menu yamm make-absolute nav vertical-menu-three">
 					<li class="list-group-item button-dropdown"><a href="javascript:void(0)" class="dropdown-toggle sidebar-three"><span><i class="fa fa-list-ul"></i>Danh mục sản phẩm</span></a>
 						<ul class="dropdown-menu">
-							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">	<a title="Computers &amp; Accessories" data-hover="dropdown" href="product-category.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"><i class="fa fa-user" aria-hidden="true"></i> Chăm sóc da mặt</a>
+							<li class="yamm-tfw menu-item menu-item-has-children animate-dropdown dropdown">
+								<div class="wpb_wrapper">
+									<div class="wpb_text_column wpb_content_element">
+										<div class="wpb_wrapper">
+											<ul>
+												<c:forEach var="category" items="${categories}">
+													<li class="nav-title">${category.name}</li>
+												</c:forEach>
+											</ul>
+										</div>
+									</div>
+								</div>
 								<ul role="menu" class=" dropdown-menu">
 									<li class="menu-item animate-dropdown menu-item-object-static_block">
 										<div class="yamm-content">
-											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-												<div class="col-sm-12">
-													<div class="vc_column-inner ">
-														<div class="wpb_wrapper">
-															<div class="wpb_single_image wpb_content_element vc_align_left">
-																<figure class="wpb_wrapper vc_figure">
-																	<div class="vc_single_image-wrapper vc_box_border_grey">
-																		<img src="images/content/mens.jpg" class="vc_single_image-img attachment-full" alt="">
-																	</div>
-																</figure>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
+<%--											<div class="row bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">--%>
+<%--												<div class="col-sm-12">--%>
+<%--													<div class="vc_column-inner ">--%>
+<%--														<div class="wpb_wrapper">--%>
+<%--															<div class="wpb_single_image wpb_content_element vc_align_left">--%>
+<%--																<figure class="wpb_wrapper vc_figure">--%>
+<%--																	<div class="vc_single_image-wrapper vc_box_border_grey">--%>
+<%--																		<img src="images/content/mens.jpg" class="vc_single_image-img attachment-full" alt="">--%>
+<%--																	</div>--%>
+<%--																</figure>--%>
+<%--															</div>--%>
+<%--														</div>--%>
+<%--													</div>--%>
+<%--												</div>--%>
+<%--											</div>--%>
 											<div class="row">
 												<div class="col-sm-12">
 													<div class="vc_column-inner">
