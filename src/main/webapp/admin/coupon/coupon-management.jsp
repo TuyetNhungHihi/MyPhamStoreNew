@@ -60,6 +60,7 @@
                 <thead >
                 <tr>
                     <th  class="text-center">id</th>
+                    <th class="text-center">id nhãn hàng</th>
                     <th class="text-center">Mã Giảm Giá</th>
                     <th class="text-center">Giá trị đơn hàng tối thiểu</th>
                     <th class="text-center">Loại giảm giá</th>
@@ -78,6 +79,7 @@
                 <c:forEach var="coupon" items="${coupons}">
                     <tr>
                         <td class="text-center">${coupon.id}</td>
+                        <td class="text-center">${coupon.brand_id}</td>
                         <td class="text-center">${coupon.code}</td>
                         <td class="text-center">${coupon.min_order_value}đ</td>
                         <td class="text-center">${coupon.discount_type}</td>
@@ -97,7 +99,7 @@
                                 </c:otherwise>
                             </c:choose>
                         <td class="text-center">
-                            <a href="<c:url value="/admin/coupon?action=editCoupon&id=${coupon.id}"/>" class="btn btn-primary">Sửa</a>
+                            <a href="<c:url value="/admin/coupon?action=edit&id=${coupon.id}"/>" class="btn btn-primary">Sửa</a>
                             <c:choose>
                                 <c:when test="${coupon.isAvailable}">
                                     <a href="<c:url value="/admin/coupon?action=stopBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Hiệu Lực</a>
