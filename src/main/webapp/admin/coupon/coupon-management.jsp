@@ -41,7 +41,7 @@
     <!-- Main Content -->
     <main class="main-content row my-table-custom" ><!--style="display: flex; position: relative; height: min-content;"> -->
         <div class=" " style="width: 100%;">
-            <h1 class="text-center " style="margin-bottom: 20px;">Quản lý Nhãn hàng</h1>
+            <h1 class="text-center " style="margin-bottom: 20px;">Quản lý Mã Giảm Giá</h1>
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-6">
                     <div class="input-group">
@@ -60,37 +60,50 @@
                 <thead >
                 <tr>
                     <th  class="text-center">id</th>
-                    <th class="text-center">Tên nhãn hàng</th>
-                    <th class="text-center">Logo</th>
-                    <th class="text-center">Đang bán</th>
+                    <th class="text-center">Mã Giảm Giá</th>
+                    <th class="text-center">Giá trị đơn hàng tối thiểu</th>
+                    <th class="text-center">Loại giảm giá</th>
+                    <th class="text-center">Giá trị giảm giá</th>
+                    <th class="text-center">Giá trị giảm giá tối đa</th>
+                    <th class="text-center">Ngày bắt đầu</th>
+                    <th class="text-center">Ngày kết thúc</th>
+                    <th class="text-center">Số lần sử dụng</th>
+                    <th class="text-center">Số lượng sử dụng tối đa</th>
+                    <th class="text-center">Còn hiệu lực</th>
                     <th class="text-center">Hành Động</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="brand" items="${brands}">
+                <c:forEach var="coupon" items="${coupons}">
                     <tr>
-                        <td class="text-center">${brand.id}</td>
-                        <td >${brand.name}</td>
-                        <td class="text-center">${brand.logo}đ</td>
-                        <td class="text-center"  >
+                        <td class="text-center">${coupon.id}</td>
+                        <td class="text-center">${coupon.code}</td>
+                        <td class="text-center">${coupon.min_order_value}đ</td>
+                        <td class="text-center">${coupon.discount_type}</td>
+                        <td class="text-center">${coupon.discount_value}đ</td>
+                        <td class="text-center">${coupon.max_discount_value}đ</td>
+                        <td class="text-center">${coupon.start_date}</td>
+                        <td class="text-center">${coupon.end_date}</td>
+                        <td class="text-center">${coupon.current_usage}</td>
+                        <td class="text-center">${coupon.max_usage}</td>
+                        <td class="text-center">
                             <c:choose>
-                                <c:when test="${brand.isAvailable}">
-                                    <span class="active-product"></span>
+                                <c:when test="${coupon.isAvailable}">
+                                    <span class="badge badge-success">Còn hiệu lực</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <span class="unactive-product"></span>
+                                    <span class="badge badge-danger">Hết hiệu lực</span>
                                 </c:otherwise>
                             </c:choose>
-                        </td>
                         <td class="text-center">
-                            <a href="<c:url value="/admin/brand?action=editBrand&id=${brand.id}"/>" class="btn btn-primary">Sửa</a>
+                            <a href="<c:url value="/admin/coupon?action=editCoupon&id=${coupon.id}"/>" class="btn btn-primary">Sửa</a>
                             <c:choose>
-                                <c:when test="${brand.isAvailable}">
-                                    <a href="<c:url value="/admin/brand?action=stopBuying&id=${brand.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Bán</a>
+                                <c:when test="${coupon.isAvailable}">
+                                    <a href="<c:url value="/admin/coupon?action=stopBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Hiệu Lực</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value="/admin/brand?action=startBuying&id=${brand.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Bán</a>
+                                    <a href="<c:url value="/admin/coupon?action=startBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Có Hiệu Lực</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

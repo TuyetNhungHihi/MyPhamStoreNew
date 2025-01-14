@@ -98,6 +98,7 @@ public class BrandServiceImpl implements IBrandService {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/brand/add-brand.jsp");
         Long id = Long.parseLong(request.getParameter("id"));
         BrandModel brand = brandDAO.getBrandDetail(id);
+        System.out.println(brand);
         request.setAttribute("brand", brand);
         dispatcher.forward(request, response);
     }
