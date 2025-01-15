@@ -52,16 +52,19 @@
                         <c:otherwise>Sửa sản phẩm #${product.id}</c:otherwise>
                     </c:choose>
                 </h1>
-
+               <c:if test="${not empty message or  not empty param.message}">
+                    <div class="alert alert-success" role="alert">${message}</div>
+                </c:if>
                 <c:choose>
                     <c:when test="${empty product}">
                         <c:set var="formAction" value="/admin/products?action=insert" />
                     </c:when>
                     <c:otherwise>
-                        <c:set var="formAction" value="/admin/products?action=update" />
+                        <c:set var="formAction" value="/admin/products?action=edit" />
                     </c:otherwise>
                 </c:choose>
                 <form class="" id="formContainer" action="<c:url value="${formAction}"/>" method="post" style="padding: 0 100px 0 100px;">
+
                     <c:choose>
                         <c:when test="${!empty product}">
                             <div class="row">
@@ -74,9 +77,9 @@
                                 </div>
                                 <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                                     <div class="input-group">
-                                        <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Số lượng</label>
-                                        <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Số lượng..."
-                                               aria-describedby="basic-addon1" value="${product.soldQuantity}">
+                                        <label for="stock" class="input-group-addon" id="basic-addon1">Số lượng</label>
+                                        <input type="text" name="stock" id="stock" class="form-control" placeholder="Số lượng..."
+                                               aria-describedby="basic-addon1" value="${product.stock}">
                                     </div>
                                 </div>
                             </div>
@@ -110,50 +113,79 @@
                                     <div class="col-md-12 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="basic-addon1">Thumbnail</span>
-                                            <input id="thumbnail"  type="file" class="form-control"
+                                            <input id="imageInput"  type="file" class="form-control"
                                                    placeholder="Hình ảnh sản phẩm..." aria-describedby="basic-addon1"
                                                    accept="image/*">
-                                            <input type="hidden" name="thumbnail">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="basic-addon1">Loại Sản Phẩm</span>
-                                            <select class="form-control" aria-label="Default select example">
-                                                <option selected disabled>Chọn loại sản phẩm...</option>
-                                                <option value="1">Kem chống nắng</option>
-                                                <option value="2">Bông tẩy trang</option>
-                                                <option value="3">Kem dưỡng</option>
+                                            <select name="categoryId" class="form-control" aria-label="Default select example">
+                                                <c:forEach var="c" items="${categories}">
+                                                    <c:choose >
+                                                        <c:when test="${c.id == product.categoryId}">
+                                                            <option selected value="${c.id}">${c.name}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${c.id}">${c.name}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-xs-12">
                                         <div class="input-group" style="margin-top: 20px;">
                                             <span class="input-group-addon" id="basic-addon1">Nhãn Hàng</span>
-                                            <select class="form-control" aria-label="Default select example">
-                                                <option selected disabled>Chọn nhãn hàng...</option>
-                                                <option value="1">Care</option>
-                                                <option value="2">Saigon</option>
-                                                <option value="3">Tiger</option>
+                                            <select name="brandId" class="form-control" aria-label="Default select example">
+                                                <c:forEach var="b" items="${brands}">
+                                                    <c:choose >
+                                                        <c:when test="${b.id == product.brandId}">
+                                                            <option selected value="${b.id}">${b.name}</option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${b.id}">${b.name}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="" alt="image" width="100%" id="thumbnail"  hidden>
+                                    <c:choose>
+                                        <c:when test="${!empty product.thumbnail}">
+                                            <img src="${product.thumbnail}" alt="image" width="80%" id="thumbnail" >
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img  src="" alt="image" width="80%" id="thumbnail"  hidden>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 20px;">
                                 <div class="col-lg-12">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Danh sách hình ảnh sản phẩm</span>
-                                        <input id="mulpInputImage" type="file" accept="image/*" multiple class="form-control" placeholder="Mô tả sản phẩm..."
+                                        <input id="mulpInputImage" name="mulpInputImage" type="file" accept="image/*" multiple class="form-control" placeholder="Mô tả sản phẩm..."
                                                aria-describedby="basic-addon1"></input>
                                     </div>
                                 </div>
-                                <div  hidden id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
-
+                                    <c:if test="${!empty images}">
+                                <div  id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
+                                        <c:forEach var="image" items="${images}">
+                                            <img src="${image.url}" alt="image" width="100px" style="margin: 5px; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">
+                                        </c:forEach>
                                 </div>
+                                    </c:if>
+                                <c:if test="${empty images}">
+                                    <div  hidden id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
+
+                                    </div>
+                                </c:if>
                             </div>
                         </c:when>
                         <c:otherwise>
@@ -237,7 +269,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="" alt="image" width="100%" id="thumbnail"  hidden>
+                                    <img src="" alt="image" width="80%" id="thumbnail"  hidden>
 
                                 </div>
                             </div>
@@ -264,6 +296,13 @@
                             </c:choose>
                         </button>
                     </div>
+                    <c:if test="${!empty product}">
+                        <input type="hidden" name="id" value="${product.id}">
+                        <input type="hidden" name="thumbnail" value="${product.thumbnail}">
+                        <c:forEach var="image" items="${images}">
+                            <input type="hidden" name="images" value="${image.url}">
+                        </c:forEach>
+                    </c:if>
                 </form>
             </div>
         </main>
@@ -274,6 +313,7 @@
     </script>
     <script>
         document.getElementById('imageInput').addEventListener('change', function (event) {
+            document.getElementById('thumbnail').setAttribute('src', '')
             const file = event.target.files[0]; // Lấy tệp được chọn
             if (file) {
                 const reader = new FileReader();
@@ -291,7 +331,8 @@
             const files = event.target.files; // Lấy danh sách các tệp
             const imageContainer = document.getElementById('imageContainer');
             imageContainer.innerHTML = ''; // Xóa nội dung trước đó
-        
+            document.getElementsByName('images').forEach(e => e.remove());
+
             if (files.length > 0) {
                 Array.from(files).forEach(file => {
                     if (file.type.startsWith('image/')) { // Kiểm tra định dạng tệp

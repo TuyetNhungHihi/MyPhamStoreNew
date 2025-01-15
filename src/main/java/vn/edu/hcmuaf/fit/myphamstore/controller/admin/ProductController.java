@@ -36,7 +36,9 @@ public class ProductController extends HttpServlet {
         //them sua xoa san
         String action = request.getParameter("action");
         if(action.equalsIgnoreCase(AdminAction.INSERT)){
-            productService.insertProduct(request, response);
+            productService.executeAddProduct(request, response);
+        }else if (action.equalsIgnoreCase(AdminAction.EDIT)) {
+            productService.executeUpdateProduct(request, response);
         }
     }
 
