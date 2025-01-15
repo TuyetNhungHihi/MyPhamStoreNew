@@ -64,7 +64,9 @@
           <div class="cc_ps_top_slider_section">
             <div class="owl-carousel owl-theme">
               <div class="item" data-hash="zero">
-                <img class="small img-responsive" src="<c:out value="${product.thumbnail}"/>" alt="Product Image">
+                <c:forEach var="productImage" items="${productImages}">
+                  <img class="small img-responsive" src="<c:out value="${productImage.url}"/>" alt="Product Image">
+                </c:forEach>
               </div>
             </div>
           </div>
@@ -327,7 +329,7 @@
                   <div
                           class="btc_shop_single_prod_right_section shop_product_single_head shop_product_single_head_respon">
                     <h1>Đánh giá sản phẩm</h1>
-                    <h4>4.5 <span>đánh giá tổng</span></h4>
+                    <h4><c:out value="${total}* "/><span>đánh giá tổng</span></h4>
                   </div>
                   <div class="text-accordion shop_pdt_form">
                     <div class="progress_section">
@@ -398,13 +400,16 @@
                         <i class="fa fa-user"  style="font-size: 70px;" aria-hidden="true"></i>
                       </div>
                       <div class="sp_comment1_cont">
-                        <h3>Anh Hân</h3>
-                        <p>
-                          <span>june 1, 2018 </span>
-                        </p>
-                        <p>
-                          Sản phẩm quá ư là toẹt dời...
-                        </p>
+                        <c:forEach var="review" items="${reviews}">
+                          <h3><c:out value="${review.userId}"/></h3>
+                          <p>
+                            <span><c:out value="${review.createdAt}"/></span>
+                          </p>
+                          <p>
+                            <c:out value="${review.comment}"/>
+                          </p>
+                        </c:forEach>
+
                       </div>
                     </div>
                   </div>

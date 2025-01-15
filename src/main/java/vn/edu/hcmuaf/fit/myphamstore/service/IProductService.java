@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ReviewModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,4 +27,6 @@ public interface IProductService {
     BrandModel getBrandById(Long brandId);
 
    List<ProductImageModel> getProductImageById(Long id);
+
+    List<ReviewModel> getReviewsByProductId(Long id);
 }

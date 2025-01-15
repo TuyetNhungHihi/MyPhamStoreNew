@@ -9,9 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductImageDAO;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IReviewDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ReviewModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductImageService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
@@ -25,6 +27,10 @@ public class ProductServiceImpl implements IProductService {
     private IBrandDAO brandDAO;
     @Inject
     private IProductImageDAO productImageDAO;
+    @Inject
+    private IReviewDAO reviewDAO;
+
+
     @Override
     public Long getTotalPage(int numOfItems) {
         return productDAO.getTotalPage(numOfItems);
@@ -63,6 +69,11 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<ProductImageModel> getProductImageById(Long id) {
         return productImageDAO.getProductImageById(id);
+    }
+
+    @Override
+    public List<ReviewModel> getReviewsByProductId(Long id) {
+        return reviewDAO.getAllReviewsByProductId(id);
     }
 
     @Override

@@ -43,13 +43,15 @@ public class ReviewDAOImpl implements IReviewDAO {
     public List<ReviewModel> getAllReviewsByProductId(Long id) {
         String sql = "SELECT * FROM review WHERE product_id = :id";
         try {
-            return JDBIConnector.getJdbi().withHandle(handle ->
-                    handle.createQuery(sql).mapToBean(ReviewModel.class).list()
-            );
+            return JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                    .bind("id", id)
+                    .mapToBean(ReviewModel.class)
+                    .list());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+
     }
 
     @Override
