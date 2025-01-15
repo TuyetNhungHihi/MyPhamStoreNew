@@ -126,30 +126,30 @@ public class CartServiceImpl implements ICartService {
             brandIds.add(product.getBrandId());
         });
 
-        List<CouponModel> discountCodes = couponService.findCouponsByBrandIds(brandIds);
+//        List<CouponModel> discountCodes = couponService.findCouponsByBrandIds(brandIds);
 
-        String discountCode = request.getParameter("discountCode");
-        boolean isDiscountValid = false;
-        long discountAmount = 0;
-        if (discountCode != null) {
-            for (CouponModel coupon : discountCodes) {
-                if (coupon.getCode().equals(discountCode)) {
-                    isDiscountValid = true;
-                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
-                    break;
-                }
-            }
-        }
-
-        long finalAmount = totalAmount.get() - discountAmount;
-
-        request.setAttribute("listCartDisplay", listCartDisplay);
-        request.setAttribute("totalAmount", totalAmount.get());
-        request.setAttribute("discountAmount", discountAmount);
-        request.setAttribute("finalAmount", finalAmount);
-        request.setAttribute("isDiscountValid", isDiscountValid);
-        request.setAttribute("discountCodes", discountCodes);
-        request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
+//        String discountCode = request.getParameter("discountCode");
+//        boolean isDiscountValid = false;
+//        long discountAmount = 0;
+//        if (discountCode != null) {
+//            for (CouponModel coupon : discountCodes) {
+//                if (coupon.getCode().equals(discountCode)) {
+//                    isDiscountValid = true;
+//                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
+//                    break;
+//                }
+//            }
+//        }
+//
+//        long finalAmount = totalAmount.get() - discountAmount;
+//
+//        request.setAttribute("listCartDisplay", listCartDisplay);
+//        request.setAttribute("totalAmount", totalAmount.get());
+//        request.setAttribute("discountAmount", discountAmount);
+//        request.setAttribute("finalAmount", finalAmount);
+//        request.setAttribute("isDiscountValid", isDiscountValid);
+//        request.setAttribute("discountCodes", discountCodes);
+//        request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
     }
 
     private long calculateDiscount(long totalAmount, CouponModel coupon) {
