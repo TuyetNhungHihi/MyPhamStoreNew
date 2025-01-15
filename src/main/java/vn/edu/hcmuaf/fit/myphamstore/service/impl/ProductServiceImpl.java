@@ -50,7 +50,10 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<ProductModel> getPagingProduct(String keyword, int currentPage, int pageSize, String orderBy) {
+    public List<ProductModel> getProductsWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
+        if (keyword != null && !keyword.isEmpty()) {
+            keyword = keyword.trim();
+        }
         return productDAO.findAll(keyword, currentPage, pageSize, orderBy);
     }
 
@@ -141,8 +144,8 @@ public class ProductServiceImpl implements IProductService {
         int currentPage = Integer.parseInt(request.getParameter("currentPage") == null ? "1" : request.getParameter("currentPage"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "10" : request.getParameter("pageSize"));
 
-        List<ProductModel> products = this.getPagingProduct(keyword, currentPage, pageSize, orderBy);
-        Long totalPages = this.getTotalPage(pageSize);
+        List<ProductModel> products = this.getProductsWithPaging(keyword, currentPage, pageSize, orderBy);
+        Long totalPages = this.productDAO.getTotalPage(pageSize);
         // Gửi danh sách sản phẩm đến trang JSP
         request.setAttribute("products", products);
         request.setAttribute("totalPages", totalPages);

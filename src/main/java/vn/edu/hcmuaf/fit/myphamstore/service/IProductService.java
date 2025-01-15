@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface IProductService {
     Long getTotalPage(int numOfItems);
-    List<ProductModel> getPagingProduct(String keyword,int currentPage, int pageSize, String orderBy);
+    List<ProductModel> getProductsWithPaging(String keyword,int currentPage, int pageSize, String orderBy);
     Long getTotalProduct();
     void stopBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void startBuying( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;

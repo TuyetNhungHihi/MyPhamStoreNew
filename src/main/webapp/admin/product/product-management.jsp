@@ -44,12 +44,12 @@
                 <h1 class="text-center " style="margin-bottom: 20px;">Quản lý sản phẩm</h1>
                 <div class="row" style="margin-bottom: 20px;">
                     <div class="col-lg-6">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Tìm Kiếm</button>
+                        <form method="get" action="/admin/products" class="input-group">
+                            <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Tìm kiếm ...">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Tìm Kiếm</button>
                           </span>
-                        </div><!-- /input-group -->
+                        </form><!-- /input-group -->
                       </div><!-- /.col-lg-6 -->
                       <div class="col-lg-6">
                         <span style="float: left; margin-top: 5px;"><strong>Hiển thị ${pageSize}</strong> trên ${totalItems} sản phẩm</span>
