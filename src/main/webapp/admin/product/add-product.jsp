@@ -37,11 +37,13 @@
         <!-- start header -->
         <div class="main-content" id="header" style="margin-left: 0; height: fit-content;">
             <%@include file="/admin/components/admin-header.jsp"%>
+
         </div>
         <!-- end header -->
 
         <!-- Main Content -->
         <main class="main-content row my-table-custom">
+
             <!--style="display: flex; position: relative; height: min-content;"> -->
             <div class=" " style="width: 100%;">
                 <h1 class="text-center " style="margin-bottom: 20px;">
@@ -50,6 +52,7 @@
                         <c:otherwise>Sửa sản phẩm #${product.id}</c:otherwise>
                     </c:choose>
                 </h1>
+
                 <c:choose>
                     <c:when test="${empty product}">
                         <c:set var="formAction" value="/admin/products?action=insert" />
@@ -58,7 +61,7 @@
                         <c:set var="formAction" value="/admin/products?action=update" />
                     </c:otherwise>
                 </c:choose>
-                <form class="" action="<c:url value="${formAction}"/>" method="post" style="padding: 0 100px 0 100px;">
+                <form class="" id="formContainer" action="<c:url value="${formAction}"/>" method="post" style="padding: 0 100px 0 100px;">
                     <c:choose>
                         <c:when test="${!empty product}">
                             <div class="row">
@@ -297,15 +300,23 @@
                             imageContainer.hidden = false
                             // Tạo thẻ <img> cho mỗi hình ảnh
                             const img = document.createElement('img');
+                            const input = document.createElement('input');
+
                             img.src = e.target.result;
                             img.style.width = '100px'; // Kích thước ảnh
                             img.style.margin = '5px';
                             img.style.border = '1px solid #ddd';
                             img.style.borderRadius = '4px';
                             img.style.boxShadow = '0px 2px 4px rgba(0, 0, 0, 0.2)';
+
+                            input.type = 'hidden';
+                            input.name = 'images';
+                            input.value = e.target.result;
+
         
                             // Thêm ảnh vào container
                             imageContainer.appendChild(img);
+                            document.getElementById("formContainer").appendChild(input);
                         };
                         reader.readAsDataURL(file); // Chuyển đổi file thành Base64
                     } else {
