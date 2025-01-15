@@ -14,4 +14,12 @@ public interface IUserService {
     boolean checkLogin(String email, String password);
     UserModel findUserByEmail(String email);
     void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    void register(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    void displayListUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+
+    void lockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    void unlockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }
