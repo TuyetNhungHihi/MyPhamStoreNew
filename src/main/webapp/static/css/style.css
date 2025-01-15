@@ -94,6 +94,44 @@ textarea {
   -o-transition: all 0.5s;
   transition: all 0.5s;
 }
+.estimate_shiping_Wrapper_cntnt_2 {
+  margin-top: 20px;
+}
+
+.lr_nl_form_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.lr_nl_form_wrapper input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.lr_nl_form_wrapper button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.lr_nl_form_wrapper button:hover {
+  background-color: #0056b3;
+}
+
+.cart-summary {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.cart-summary p {
+  margin: 5px 0;
+}
 input:focus,
 select:focus,
 button:focus,

@@ -7,9 +7,13 @@ import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public interface ICouponService {
     CouponModel findCouponById(Long id);
+
+    List<CouponModel> findCouponsByBrandIds(Set<Long> brandIds);
+
     List<CouponModel> pagingCoupon(String keyword, int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
 
