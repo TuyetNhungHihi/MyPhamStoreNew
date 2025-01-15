@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public interface ICartService {
     void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException;
-    void updateCart(HttpServletRequest request, HttpServletResponse response);
-    void removeCartItem(HttpServletRequest request, HttpServletResponse response);
+    void updateCart(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    void removeCartItem(HttpServletRequest request, HttpServletResponse response) throws IOException;
     void clearCart(HttpServletRequest request, HttpServletResponse response);
     void displayCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

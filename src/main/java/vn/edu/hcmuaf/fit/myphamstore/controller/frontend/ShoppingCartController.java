@@ -38,10 +38,16 @@ public class ShoppingCartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String action = request.getParameter("action");
-            if( action == null || "add".equals(action)){
-                cartService.addToCart(request, response);
-            }
+        String action = request.getParameter("action");
+        if ("add".equals(action)) {
+            cartService.addToCart(request, response);
+        } else if ("updateCart".equals(action)) {
+            cartService.updateCart(request, response);
+        } else if ("remove".equals(action)) {
+            cartService.removeCartItem(request, response);
+        } else if ("clear".equals(action)) {
+            cartService.clearCart(request, response);
+        }
 
 //        HttpSession session = request.getSession();
 //        @SuppressWarnings("unchecked")
