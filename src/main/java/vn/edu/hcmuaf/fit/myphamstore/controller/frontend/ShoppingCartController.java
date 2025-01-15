@@ -24,7 +24,6 @@ public class ShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         cartService.displayCart(request, response);
-
     }
 
     @Override
@@ -38,6 +37,8 @@ public class ShoppingCartController extends HttpServlet {
             cartService.removeCartItem(request, response);
         } else if ("clear".equals(action)) {
             cartService.clearCart(request, response);
+        }else {
+            cartService.displayCart(request, response);
         }
 
     }

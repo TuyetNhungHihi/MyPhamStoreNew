@@ -2,7 +2,7 @@
 <!-- Header Wrapper Start -->
 <div class="ss_middle_header_wrapper">
     <div class="ss_logo">
-        <a href="home.jsp">
+        <a href="<c:url value="/trang-chu" />">
             <img src="../static/images/logo/logo.svg" alt="Logo" title="big basket" class="img-responsive">
         </a>
     </div>
