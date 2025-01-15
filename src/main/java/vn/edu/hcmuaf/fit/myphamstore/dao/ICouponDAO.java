@@ -10,4 +10,6 @@ import java.util.Set;
 public interface ICouponDAO extends GenericDAO<CouponModel> {
     CouponModel getCouponDetail(Long id);
     CouponModel findCouponById(Long id);
+
+    List<CouponModel> findAvailableCoupons();
 }
