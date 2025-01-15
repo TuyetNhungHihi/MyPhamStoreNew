@@ -15,6 +15,7 @@ import java.util.Objects;
 public class CartModel  implements Serializable {
     private Long productId;
     private Integer quantity;
+    private Long brandId;
 
     @Override
     public boolean equals(Object o) {

@@ -9,6 +9,7 @@ import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static java.rmi.server.LogStream.log;
 
@@ -40,6 +41,22 @@ public class CouponDAOImpl implements ICouponDAO {
         }
         return null;
     }
+        @Override
+        public List<CouponModel> findCouponsByBrandIds(Set<Long> brandIds) {
+            String sql = "SELECT * FROM coupon WHERE brand_id IN (<brandIds>)";
+            try {
+                return JDBIConnector.getJdbi().withHandle(handle ->
+                        handle.createQuery(sql)
+                                .bindList("brandIds", brandIds)
+                                .mapToBean(CouponModel.class)
+                                .list()
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
 
     @Override
     public Long save(CouponModel entity) {

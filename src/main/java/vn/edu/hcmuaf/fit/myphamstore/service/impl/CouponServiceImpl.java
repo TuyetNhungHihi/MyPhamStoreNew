@@ -6,12 +6,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ICouponDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICouponService;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public class CouponServiceImpl implements ICouponService {
     @Inject
@@ -19,6 +19,12 @@ public class CouponServiceImpl implements ICouponService {
     @Override
     public CouponModel findCouponById(Long id) {
         return couponDAO.findCouponById(id);
+    }
+
+
+    @Override
+    public List<CouponModel> findCouponsByBrandIds(Set<Long> brandIds) {
+        return couponDAO.findCouponsByBrandIds(brandIds);
     }
 
     @Override
