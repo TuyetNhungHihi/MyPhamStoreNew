@@ -1,9 +1,9 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
-import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IReviewDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ReviewModel;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -11,14 +11,14 @@ import java.util.List;
 
 import static java.rmi.server.LogStream.log;
 
-public class BrandDAOImpl implements IBrandDAO {
+public class ReviewDAOImpl implements IReviewDAO {
     @Override
-    public BrandModel findBrandById(Long id) {
-        String query = "SELECT * FROM brand WHERE id = :id";
+    public ReviewModel findReviewById(Long id) {
+        String query = "SELECT * FROM review WHERE id = :id";
         try {
-            BrandModel result = JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(query)
+            ReviewModel result = JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(query)
                     .bind("id", id)
-                    .mapToBean(BrandModel.class)
+                    .mapToBean(ReviewModel.class)
                     .one());
             return result;
         } catch (Exception e) {
@@ -29,10 +29,10 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     @Override
-    public BrandModel getBrandDetail(Long id) {
-        String sql = "select * from brand where id=?";
+    public ReviewModel getReviewDetail(Long id) {
+        String sql = "select * from review where id=?";
         try{
-            return JDBIConnector.getJdbi().withHandle(h-> h.select(sql, id).mapToBean(BrandModel.class).one());
+            return JDBIConnector.getJdbi().withHandle(h-> h.select(sql, id).mapToBean(ReviewModel.class).one());
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -40,11 +40,11 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     @Override
-    public List<BrandModel> getAllBrands() {
-        String sql = "SELECT * FROM brand";
+    public List<ReviewModel> getAllReviewsByProductId(Long id) {
+        String sql = "SELECT * FROM review WHERE product_id = :id";
         try {
             return JDBIConnector.getJdbi().withHandle(handle ->
-                    handle.createQuery(sql).mapToBean(BrandModel.class).list()
+                    handle.createQuery(sql).mapToBean(ReviewModel.class).list()
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,16 +53,17 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     @Override
-    public Long save(BrandModel entity) {
-        String sql = "INSERT INTO brand (  name, logo,is_available, created_at, updated_at) " +
-                "VALUES ( :name, :logo, :createdAt, :updatedAt)";
+    public Long save(ReviewModel entity) {
+        String sql = "INSERT INTO review ( user_id, product_id,rating,comment, created_at, updated_at) " +
+                "VALUES ( :userId, :productId,:rating,:comment, :createdAt, :updatedAt)";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
-                        .bind("name", entity.getName().trim())
-                        .bind("logo", entity.getLogo().trim())
-                        .bind("is_available", entity.getIsAvailable())
+                        .bind("user_id", entity.getUserId())
+                        .bind("product_id", entity.getProductId())
+                        .bind("rating", entity.getRating())
+                        .bind("comment", entity.getComment())
                         .bind("createdAt", LocalDateTime.now())
                         .bind("updatedAt", LocalDateTime.now())
                         .executeAndReturnGeneratedKeys("id") // Lấy giá trị khóa chính tự động sinh
@@ -77,19 +78,22 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     @Override
-    public BrandModel update(BrandModel entity) {
-        BrandModel brandExisted = findBrandById(entity.getId());
-        if (brandExisted == null) {
+    public ReviewModel update(ReviewModel entity) {
+        ReviewModel reviewExisted = findReviewById(entity.getId());
+        if (reviewExisted == null) {
             log("Contact not found");
             return null;
         }
-        String sql = "UPDATE brand SET name = :name, logo = :logo,is_available = :isAvailable , updated_at = :updatedAt WHERE id = :id";
+
+
+        String sql = "UPDATE review SET user_id = :userId, product_id = :productId,rating = :rating,comment=:comment , updated_at = :updatedAt WHERE id = :id";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
-                        .bind("name", entity.getName() == null ? brandExisted.getName() : entity.getName().trim())
-                        .bind("logo", entity.getLogo() == null ? brandExisted.getLogo() : entity.getLogo())
-                        .bind("isAvailable", entity.getIsAvailable() == null ? brandExisted.getIsAvailable() : entity.getIsAvailable())
+                        .bind("userId", entity.getUserId())
+                        .bind("productId", entity.getProductId())
+                        .bind("rating", entity.getRating() == null ? reviewExisted.getRating() : entity.getRating())
+                        .bind("comment", entity.getComment()== null ? reviewExisted.getComment() : entity.getComment())
                         .bind("updatedAt", LocalDateTime.now())
                         .bind("id", entity.getId())
                         .execute();
@@ -105,25 +109,25 @@ public class BrandDAOImpl implements IBrandDAO {
     }
 
     @Override
-    public void delete(BrandModel entity) {
+    public void delete(ReviewModel entity) {
 
     }
 
     @Override
-    public List<BrandModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
+    public List<ReviewModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào
         if (currentPage < 1) currentPage = 1;
 
         // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
-        List<String> allowedColumns = Arrays.asList("id", "name", "logo","is_available","created_at", "updated_at");
+        List<String> allowedColumns = Arrays.asList("id", "user_id", "product_id","rating","comment","created_at", "updated_at");
         if (!allowedColumns.contains(orderBy)) {
             orderBy = "id";
         }
 
         // Xây dựng câu lệnh SQL
-        String sql = "SELECT * FROM brand ";
+        String sql = "SELECT * FROM review ";
         if (keyword != null && !keyword.trim().isEmpty()) {
-            sql += "WHERE CONCAT(id, name, logo,is_available, created_at, updated_at) LIKE :keyword ";
+            sql += "WHERE CONCAT(id, user_id, product_id,rating,comment, created_at, updated_at) LIKE :keyword ";
         }
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT :limit " +
@@ -133,7 +137,7 @@ public class BrandDAOImpl implements IBrandDAO {
         String finalSql = sql;
 
 
-        List<BrandModel> brandModels = JDBIConnector.getJdbi().withHandle(handle -> {
+        List<ReviewModel> reviewModels = JDBIConnector.getJdbi().withHandle(handle -> {
             // Tạo truy vấn và gán các tham số
             var query = handle.createQuery(finalSql)
                     .bind("limit", pageSize)
@@ -144,14 +148,14 @@ public class BrandDAOImpl implements IBrandDAO {
             }
 
             // Ánh xạ kết quả truy vấn thành đối tượng UserModel
-            return query.mapToBean(BrandModel.class).list();
+            return query.mapToBean(ReviewModel.class).list();
         });
-        return brandModels;
+        return reviewModels;
     }
 
     @Override
     public Long getTotalPage(int numOfItems) {
-        String query = "SELECT COUNT(*) FROM brand";
+        String query = "SELECT COUNT(*) FROM review";
 
         try {
             // Dùng withHandle để thực hiện câu lệnh SQL
@@ -176,6 +180,4 @@ public class BrandDAOImpl implements IBrandDAO {
 
         return null;
     }
-
-
 }
