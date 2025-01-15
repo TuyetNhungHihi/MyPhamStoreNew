@@ -146,12 +146,13 @@
                   <img src="https://www.guardian.com.vn/media/catalog/product/cache/30b2b44eba57cd45fd3ef9287600968e/3/0/3023960_gqyugemvie8iz6za.png" width="230px" alt="" />
                 </div>
                 <div class="text-accordion">
-                  <p>
-                    Giới Thiệu
-                    Kem Dưỡng Ẩm Skin1004 Làm Dịu Da Chiết Xuất Rau Má 75ml là kem dưỡng đến từ thương hiệu mỹ phẩm Skin1004 của
-                    Hàn Quốc, thành phần chứa 72% chiết xuất rau má cùng với 4 loại Ceramide có nguồn gốc từ thực vật
-                    làm dịu làn da mụn, kích ứng, giúp tăng cường hàng rào bảo vệ da, nuôi dưỡng làn da khỏe mạnh.
-                  </p>
+<%--                  <p>--%>
+<%--                    Giới Thiệu--%>
+<%--                    Kem Dưỡng Ẩm Skin1004 Làm Dịu Da Chiết Xuất Rau Má 75ml là kem dưỡng đến từ thương hiệu mỹ phẩm Skin1004 của--%>
+<%--                    Hàn Quốc, thành phần chứa 72% chiết xuất rau má cùng với 4 loại Ceramide có nguồn gốc từ thực vật--%>
+<%--                    làm dịu làn da mụn, kích ứng, giúp tăng cường hàng rào bảo vệ da, nuôi dưỡng làn da khỏe mạnh.--%>
+<%--                  </p>--%>
+  ${product.description}
                   <!-- <ul class="accordian_list_item">
                     <li>
                       <i class="fa fa-long-arrow-right"></i> Lorem quis

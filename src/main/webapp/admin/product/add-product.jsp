@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <%@include file="/common/tablib.jsp"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +24,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../../static/css/category-management.css">
     <link rel="stylesheet" href="../../static/css/admin-management.css">
-    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
-<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script type="text/javascript" src="../../static/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
-
     <div class="dashboard">
         <!-- Sidebar -->
         <div class="sidebar " id="sidebar">
@@ -50,97 +50,208 @@
                         <c:otherwise>Sửa sản phẩm #${product.id}</c:otherwise>
                     </c:choose>
                 </h1>
-                <form class="" action="#" method="post" style="padding: 0 100px 0 100px;">
-                    <div class="row">
-                        <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
-                            <div class="input-group">
-                                <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm</label>
-                                <input type="text" class="form-control" id="productName" name="productName" placeholder="Tên sản phẩm..."
-                                    aria-describedby="basic-addon1" value="${product.name}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
-                            <div class="input-group">
-                                <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Số lượng</label>
-                                <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Số lượng..."
-                                    aria-describedby="basic-addon1" value="${product.soldQuantity}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row " >
-                        <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
-                            <div class="input-group">
-                                <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá nhập</label>
-                                <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá nhập..."
-                                    aria-describedby="basic-addon1" value="${product.costPrice}">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
-                            <div class="input-group" >
-                                <label for="price" class="input-group-addon" id="basic-addon1">Giá bán</label>
-                                <input type="text" id="price" name="price" class="form-control" placeholder="Giá bán..."
-                                    aria-describedby="basic-addon1" value="${product.price}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-md-12 col-xs-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Mô Tả</span>
-                                <div id="description" class="form-control" placeholder="Mô tả sản phẩm..."
-                                    aria-describedby="basic-addon1">${product.description}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-md-6 col-xs-12 row">
-                            <div class="col-md-12 col-xs-12">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Thumbnail</span>
-                                    <input id="imageInput" type="file" class="form-control"
-                                        placeholder="Hình ảnh sản phẩm..." aria-describedby="basic-addon1"
-                                        accept="image/*">
+                <c:choose>
+                    <c:when test="${empty product}">
+                        <c:set var="formAction" value="/admin/products?action=insert" />
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="formAction" value="/admin/products?action=update" />
+                    </c:otherwise>
+                </c:choose>
+                <form class="" action="<c:url value="${formAction}"/>" method="post" style="padding: 0 100px 0 100px;">
+                    <c:choose>
+                        <c:when test="${!empty product}">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group">
+                                        <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm 1</label>
+                                        <input type="text" class="form-control" id="productName" name="productName" placeholder="Tên sản phẩm..."
+                                               aria-describedby="basic-addon1" value="${product.name}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group">
+                                        <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Số lượng</label>
+                                        <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Số lượng..."
+                                               aria-describedby="basic-addon1" value="${product.soldQuantity}">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Loại Sản Phẩm</span>
-                                    <select class="form-control" aria-label="Default select example">
-                                        <option selected disabled>Chọn loại sản phẩm...</option>
-                                        <option value="1">Kem chống nắng</option>
-                                        <option value="2">Bông tẩy trang</option>
-                                        <option value="3">Kem dưỡng</option>
-                                    </select>
+                            <div class="row " >
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group">
+                                        <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá nhập</label>
+                                        <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá nhập..."
+                                               aria-describedby="basic-addon1" value="${product.costPrice}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group" >
+                                        <label for="price" class="input-group-addon" id="basic-addon1">Giá bán</label>
+                                        <input type="text" id="price" name="price" class="form-control" placeholder="Giá bán..."
+                                               aria-describedby="basic-addon1" value="${product.price}">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-xs-12">
-                                <div class="input-group" style="margin-top: 20px;">
-                                    <span class="input-group-addon" id="basic-addon1">Nhãn Hàng</span>
-                                    <select class="form-control" aria-label="Default select example">
-                                        <option selected disabled>Chọn nhãn hàng...</option>
-                                        <option value="1">Care</option>
-                                        <option value="2">Saigon</option>
-                                        <option value="3">Tiger</option>
-                                    </select>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Mô Tả</span>
+                                        <textarea name="description" id="description" class="form-control" placeholder="Mô tả sản phẩm..."
+                                                  aria-describedby="basic-addon1">${product.description}</textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <img src="" alt="image" width="100%" id="output"  hidden>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Danh sách hình ảnh sản phẩm</span>
-                                <input id="mulpInputImage" type="file" accept="image/*" multiple class="form-control" placeholder="Mô tả sản phẩm..."
-                                    aria-describedby="basic-addon1"></input>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-md-6 col-xs-12 row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">Thumbnail</span>
+                                            <input id="thumbnail"  type="file" class="form-control"
+                                                   placeholder="Hình ảnh sản phẩm..." aria-describedby="basic-addon1"
+                                                   accept="image/*">
+                                            <input type="hidden" name="thumbnail">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">Loại Sản Phẩm</span>
+                                            <select class="form-control" aria-label="Default select example">
+                                                <option selected disabled>Chọn loại sản phẩm...</option>
+                                                <option value="1">Kem chống nắng</option>
+                                                <option value="2">Bông tẩy trang</option>
+                                                <option value="3">Kem dưỡng</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="input-group" style="margin-top: 20px;">
+                                            <span class="input-group-addon" id="basic-addon1">Nhãn Hàng</span>
+                                            <select class="form-control" aria-label="Default select example">
+                                                <option selected disabled>Chọn nhãn hàng...</option>
+                                                <option value="1">Care</option>
+                                                <option value="2">Saigon</option>
+                                                <option value="3">Tiger</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="" alt="image" width="100%" id="thumbnail"  hidden>
+                                </div>
                             </div>
-                        </div>
-                        <div  hidden id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Danh sách hình ảnh sản phẩm</span>
+                                        <input id="mulpInputImage" type="file" accept="image/*" multiple class="form-control" placeholder="Mô tả sản phẩm..."
+                                               aria-describedby="basic-addon1"></input>
+                                    </div>
+                                </div>
+                                <div  hidden id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
 
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group">
+                                        <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm</label>
+                                        <input type="text" class="form-control" id="productName" name="productName" placeholder="Tên sản phẩm..."
+                                               aria-describedby="basic-addon1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group">
+                                        <label for="stock" class="input-group-addon" id="basic-addon1">Số lượng</label>
+                                        <input type="text" name="stock" id="stock" class="form-control" placeholder="Số lượng..."
+                                               aria-describedby="basic-addon1" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row " >
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group">
+                                        <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá nhập</label>
+                                        <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá nhập..."
+                                               aria-describedby="basic-addon1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                    <div class="input-group" >
+                                        <label for="price" class="input-group-addon" id="basic-addon1">Giá bán</label>
+                                        <input type="text" id="price" name="price" class="form-control" placeholder="Giá bán..."
+                                               aria-describedby="basic-addon1" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Mô Tả</span>
+                                        <textarea required name="description" id="description" class="form-control" placeholder="Mô tả sản phẩm..."
+                                             aria-describedby="basic-addon1"></textarea>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-md-6 col-xs-12 row">
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">Thumbnail</span>
+                                            <input id="imageInput" type="file" class="form-control"
+                                                   placeholder="Hình ảnh sản phẩm..." aria-describedby="basic-addon1"
+                                                   accept="image/*" required>
+                                            <input name="thumbnail" type="hidden">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">Loại Sản Phẩm</span>
+                                            <select name="categoryId" class="form-control" aria-label="Default select example">
+                                                <option  selected disabled>Chọn loại sản phẩm...</option>
+                                                <c:forEach var="c" items="${categories}">
+                                                    <option value="${c.id}">${c.name}</option>
+                                                </c:forEach>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-xs-12">
+                                        <div class="input-group" style="margin-top: 20px;">
+                                            <span class="input-group-addon" id="basic-addon1">Nhãn Hàng</span>
+                                            <select name="brandId" class="form-control" aria-label="Default select example">
+                                                <option selected disabled>Chọn nhãn hàng...</option>
+                                                <c:forEach var="b" items="${brands}">
+                                                    <option value="${b.id}">${b.name}</option>
+                                                </c:forEach>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="" alt="image" width="100%" id="thumbnail"  hidden>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Danh sách hình ảnh sản phẩm</span>
+                                        <input id="mulpInputImage" name="mulpInputImage" type="file" accept="image/*" multiple class="form-control"
+                                               aria-describedby="basic-addon1" required></input>
+                                    </div>
+                                </div>
+                                <div  hidden id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
+
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                     <div style="margin-top: 20px;" class="text-center">
                         <button class="btn-lg btn-danger" style="width: 200px;" type="button" onclick="history.back()">Huỷ bỏ</button>
                         <button class="btn-lg btn-primary" style="width: 200px;" type="submit">
@@ -152,56 +263,21 @@
                     </div>
                 </form>
             </div>
-
         </main>
         <label for="sidebar" class="body-label" id="body-label"></label>
     </div>
     <script>
-        
-        function selectLocalImage() {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-            input.click();
-        
-            input.onchange = () => {
-                const file = input.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        const range = quill.getSelection();
-                        quill.insertEmbed(range.index, 'image', reader.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
-        }
-        var quill = new Quill('#description', {
-            theme: 'snow',
-            modules: {
-                toolbar: {
-                    container: [
-                        ['bold', 'italic', 'underline'],
-                        ['image']  // Chỉ định image tool
-                    ],
-                    handlers: {
-                        'image': function () {
-                            selectLocalImage();
-                        }
-                    },
-                }
-            }
-        });
+        CKEDITOR.replace('description');
     </script>
-
     <script>
         document.getElementById('imageInput').addEventListener('change', function (event) {
             const file = event.target.files[0]; // Lấy tệp được chọn
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    document.getElementById('output').hidden = false;
-                    document.getElementById('output').setAttribute('src', e.target.result)
+                    document.getElementById('thumbnail').hidden = false;
+                    document.getElementById('thumbnail').setAttribute('src', e.target.result)
+                    document.getElementsByName('thumbnail')[0].value = e.target.result;
                 };
                 reader.readAsDataURL(file); // Chuyển đổi tệp thành Base64
             } else {
@@ -240,13 +316,14 @@
                 alert('Không có tệp nào được chọn!');
             }
         });
-        
+
     </script>
     <script src="../../static/js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script src="../../static/js/admin.js"> </script>
     <script src="../../static/js/category-management.js"></script>
+
 </body>
 
 </html>
