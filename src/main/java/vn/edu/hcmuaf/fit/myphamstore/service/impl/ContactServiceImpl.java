@@ -2,10 +2,18 @@ package vn.edu.hcmuaf.fit.myphamstore.service.impl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.common.ContactStatus;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IContactDAO;
+import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ContactModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IContactService;
+
+import java.io.IOException;
+import java.util.List;
 
 @ApplicationScoped
 public class ContactServiceImpl implements IContactService {
@@ -14,23 +22,69 @@ public class ContactServiceImpl implements IContactService {
     private IContactDAO contactDAO;
 
     @Override
-    public Long saveContact(ContactModel contactModel) {
-        return contactDAO.saveContact(contactModel);
-    }
-
-    @Override
-    public void updateStatus(Long id, ContactStatus status) {
-        ContactModel contactModel = contactDAO.findContactById(id);
-        if (contactModel == null) {
-            System.out.println("Contact not found");
-            return;
-        }
-        contactModel.setStatus(status);
-        contactDAO.updateContact(contactModel);
-    }
-
-    @Override
     public ContactModel findContactById(Long id) {
         return contactDAO.findContactById(id);
+    }
+
+    @Override
+    public List<ContactModel> pagingBrand(String keyword, int currentPage, int pageSize, String orderBy) {
+        return contactDAO.findAll(keyword, currentPage, pageSize, orderBy);
+    }
+
+    @Override
+    public void displayContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/contact/contact-management.jsp");
+        String keyword = request.getParameter("keyword");
+        String orderBy = request.getParameter("orderBy");
+        int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
+
+        List<ContactModel> contacts = this.pagingBrand(keyword, currentPage, pageSize, orderBy);
+        Long totalPages = this.getTotalPage(5);
+
+        request.setAttribute("contacts", contacts);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("pageSize", pageSize);
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("orderBy", orderBy);
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    public void pending(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        //tến hành cập nhật trạng thái sản phẩm
+        ContactModel contactModel = ContactModel.builder().id(id).build();
+        contactModel.setStatus(ContactStatus.PENDING);
+        ContactModel isSuccess = contactDAO.update(contactModel);
+        if (isSuccess == null) {
+            request.setAttribute("message", "Có lỗi xảy ra");
+        } else {
+            request.setAttribute("message", "Cập nhật thành công id: " + id);
+            this.displayContact(request, response);
+        }
+    }
+
+    @Override
+    public void done(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        //tến hành cập nhật trạng thái sản phẩm
+        ContactModel contactModel = ContactModel.builder().id(id).build();
+        contactModel.setStatus(ContactStatus.DONE);
+        ContactModel isSuccess = contactDAO.update(contactModel);
+        if (isSuccess == null) {
+            request.setAttribute("message", "Có lỗi xảy ra");
+        } else {
+            request.setAttribute("message", "Cập nhật thành công id: " + id);
+            this.displayContact(request, response);
+        }
+    }
+
+
+
+    @Override
+    public Long getTotalPage(int i) {
+        return contactDAO.getTotalPage(i);
     }
 }
