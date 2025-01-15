@@ -40,8 +40,8 @@ public class ReviewDAOImpl implements IReviewDAO {
     }
 
     @Override
-    public List<ReviewModel> getAllReviewsByProductId() {
-        String sql = "SELECT * FROM review";
+    public List<ReviewModel> getAllReviewsByProductId(Long id) {
+        String sql = "SELECT * FROM review WHERE product_id = :id";
         try {
             return JDBIConnector.getJdbi().withHandle(handle ->
                     handle.createQuery(sql).mapToBean(ReviewModel.class).list()
