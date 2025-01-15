@@ -139,7 +139,6 @@ public class CartServiceImpl implements ICartService {
         }
 
         List<CouponModel> discountCodes= couponService.findAvailableCoupons();
-        System.out.println(discountCodes);
         List<Map<String, Object>> simplifiedDiscountCodes = discountCodes.stream()
                 .map(coupon -> {
                     Map<String, Object> map = new HashMap<>();
@@ -149,28 +148,27 @@ public class CartServiceImpl implements ICartService {
                     return map;
                 })
                 .collect(Collectors.toList());
-
         request.setAttribute("discountCodes", simplifiedDiscountCodes);
 
-//        String discountCode = request.getParameter("discountCode");
-//        boolean isDiscountValid = false;
-//        long discountAmount = 0;
-//        if (discountCode != null) {
-//            for (CouponModel coupon : discountCodes) {
-//                if (coupon.getCode().equals(discountCode)) {
-//                    isDiscountValid = true;
-//                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
-//                    break;
-//                }
-//            }
-//        }
-//
+        String discountCode = request.getParameter("discountCode");
+        boolean isDiscountValid = false;
+        long discountAmount = 0;
+        if (discountCode != null) {
+            for (CouponModel coupon : discountCodes) {
+                if (coupon.getCode().equals(discountCode)) {
+                    isDiscountValid = true;
+                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
+                    break;
+                }
+            }
+        }
+
         request.setAttribute("listCartDisplay", listCartDisplay);
         request.setAttribute("totalAmount", totalAmount.get());
-//        long finalAmount = totalAmount.get() - discountAmount;
-//        request.setAttribute("discountAmount", discountAmount);
-//        request.setAttribute("finalAmount", finalAmount);
-//        request.setAttribute("isDiscountValid", isDiscountValid);
+        long finalAmount = totalAmount.get() - discountAmount;
+        request.setAttribute("discountAmount", discountAmount);
+        request.setAttribute("finalAmount", finalAmount);
+        request.setAttribute("isDiscountValid", isDiscountValid);
 
 
         request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
