@@ -14,5 +14,5 @@ public class SlideModel {
     private Long id;
     private String image;
     private String url;
-
+    private Boolean isAvailable;
 }

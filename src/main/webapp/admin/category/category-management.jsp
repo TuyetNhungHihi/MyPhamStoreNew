@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -87,60 +88,6 @@
     <div class="main-content">
       <main>
         <div class="main">
-          <div class="cards">
-            <div class="card-single">
-              <div class="card-flex">
-                <div class="card-info">
-                  <div class="card-head">
-                    <span>Danh mục sản phẩm nhập vào</span>
-                    <small>Số lượng</small>
-                  </div>
-
-                  <p class="cost">17,633</p>
-                  <small>Ít hơn 2% so với tháng trước</small>
-                </div>
-
-                <div class="card-chart">
-                  <span class="las la-chart-line"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card-single">
-              <div class="card-flex">
-                <div class="card-info">
-                  <div class="card-head">
-                    <span>Danh mục sản phẩm bán nhiều nhất</span>
-                    <small>Số lượng</small>
-                  </div>
-
-                  <p class="cost">57,633</p>
-                  <small>Tăng 12% so với tháng trước</small>
-                </div>
-
-                <div class="card-chart">
-                  <span class="green las la-chart-line"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="card-single">
-              <div class="card-flex">
-                <div class="card-info">
-                  <div class="card-head">
-                    <span>Danh mục sản phẩm còn lại</span>
-                    <small>Số lượng</small>
-                  </div>
-
-                  <p class="cost">157,633</p>
-                  <small>Ít hơn 10% so với tháng trước</small>
-                </div>
-                <div class="card-chart">
-                  <span class="orange las la-chart-line"></span>
-                </div>
-              </div>
-            </div>
-          </div>
           <main class="main-content row my-table-custom">
             <!--style="display: flex; position: relative; height: min-content;"> -->
             <div class=" " style="width: 100%">
