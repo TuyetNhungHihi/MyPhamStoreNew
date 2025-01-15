@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Quản lý Slide Hiển Thị</title>
+    <title>Quản lý Liên Hệ</title>
     <link rel="stylesheet" href="../../static/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -42,55 +42,56 @@
     <!-- Main Content -->
     <main class="main-content row my-table-custom" ><!--style="display: flex; position: relative; height: min-content;"> -->
         <div class=" " style="width: 100%;">
-            <h1 class="text-center " style="margin-bottom: 20px;">Quản lý Slide Hiển Thị</h1>
+            <h1 class="text-center " style="margin-bottom: 20px;">Quản lý Liên Hệ</h1>
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm ...">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Tìm Kiếm</button>
                           </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
-                    <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 5)</strong> trên ${slides.size() * totalPages} Slide</span>
-                    <a href="add-brand.jsp" class="btn btn-primary" style="float: right;">Thêm Slide</a>
+                    <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 5)</strong> trên ${contacts.size() * totalPages} Liên hệ</span>
                 </div>
             </div>
             <table class="table table-striped ">
                 <thead >
                 <tr>
                     <th  class="text-center">id</th>
-                    <th class="text-center">Hình Ảnh</th>
-                    <th class="text-center">Đường dẫn hình ảnh</th>
-                    <th class="text-center">Hiệu lực</th>
+                    <th class="text-center">Email người dùng</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Nội dung</th>
+                    <th class="text-center">Trạng thái</th>
                     <th class="text-center">Hành Động</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="slide" items="${slides}">
+                <c:forEach var="contact" items="${contacts}">
                     <tr>
-                        <td class="text-center">${slide.id}</td>
-                        <td class="text-center">${slide.image}</td>
-                        <td class="text-center">${slide.url}</td>
+                        <td class="text-center">${contact.id}</td>
+                        <td class="text-center">${contact.email}</td>
+                        <td class="text-center">${contact.title}</td>
+                        <td class="text-center">${contact.content}</td>
                         <td class="text-center">
                             <c:choose>
-                            <c:when test="${slide.isAvailable}">
-                            <span class="badge badge-success">Còn hiệu lực</span>
-                            </c:when>
-                            <c:otherwise>
-                            <span class="badge badge-danger">Hết hiệu lực</span>
-                            </c:otherwise>
-                            </c:choose>
-                        <td class="text-center">
-                            <a href="<c:url value="/admin/slides?action=edit&id=${slide.id}"/>" class="btn btn-primary">Sửa</a>
-                            <c:choose>
-                                <c:when test="${slide.isAvailable}">
-                                    <a href="<c:url value="/admin/slides?action=stopBuying&id=${slide.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Hiệu Lực</a>
+                                <c:when test="${contact.status == 'pending'}">
+                                    <span class="unactive-product">Pending</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value="/admin/slides?action=startBuying&id=${slide.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Có Hiệu Lực</a>
+                                    <span class="active-product">Done</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td class="text-center">
+                            <c:choose>
+                                <c:when test="${contact.status == 'Pending'}">
+                                    <a href="<c:url value="/admin/contacts?action=stopBuying&id=${contact.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning"> Đã Duyệt</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="<c:url value="/admin/contacts?action=startBuying&id=${contact.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Đang Chờ Duyệt</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
 Created by IntelliJ IDEA.
 User: cucsh
@@ -7,7 +7,7 @@ Time: 10:10 AM
 To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <!--
 Template Name: big basket
@@ -103,11 +103,15 @@ Purchase:
         <div class="ss_inner_title_cont_wrapper">
           <ul>
             <li>
-              <a href="#"><i class="fa fa-home"></i></a>&nbsp;&nbsp; >
+              <a href="<c:url value="/trang-chu" />"><i class="fa fa-home"></i></a>&nbsp;&nbsp; >
             </li>
-            <li>Sản phẩm&nbsp;&nbsp; ></li>
+            <li>Sản phẩm&nbsp;&nbsp; >
+              <a href="<c:url value="/danh-muc" />"></a>&nbsp;&nbsp; >
+            </li>
             <li>Mua sắm&nbsp;&nbsp; ></li>
-            <li>Giỏ hàng</li>
+            <li>Giỏ hàng
+              <a href="<c:url value="/gio-hang" />"></a>&nbsp;&nbsp; >
+            </li>
           </ul>
         </div>
       </div>
@@ -209,14 +213,25 @@ Purchase:
                       <button type="submit">Xác nhận</button>
                     </div>
                   </form>
-<%--                  <c:if test="${isDiscountValid}">--%>
-<%--                    <p>Mã giảm giá hợp lệ!</p>--%>
-<%--                  </c:if>--%>
-<%--                  <c:if test="${not isDiscountValid}">--%>
-<%--                    <p>Mã giảm giá không hợp lệ!</p>--%>
-<%--                  </c:if>--%>
+
+                  <c:if test="${not empty discountCodes}">
+                    <h2>Các mã giảm giá:</h2>
+                    <ul id="discountCodesList">
+                      <c:forEach var="code" items="${discountCodes}" varStatus="status">
+                        <c:if test="${status.index < 3}">
+                          <li>${code.code} - ${code.discountValue}</li>
+                        </c:if>
+                      </c:forEach>
+                    </ul>
+                    <c:if test="${discountCodes.size() > 3}">
+                      <button id="seeMoreBtn" onclick="showMoreCodes()">Xem thêm</button>
+                    </c:if>
+                  </c:if>
+
+
                 </div>
               </div>
+
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -242,6 +257,11 @@ Purchase:
         </c:when>
         <c:otherwise>
           <h1>Giỏ hàng của bạn đang trống!</h1>
+          <td class="shop_btn_wrapper shop_car_btn_wrapper">
+            <ul>
+              <li><a href="/trang-chu"><h3>>Tiếp tục mua sắm</h3></a></li>
+            </ul>
+          </td>
         </c:otherwise>
       </c:choose>
     </div>
@@ -280,6 +300,18 @@ Purchase:
             nav.innerHTML = data;
           });
 </script>
+
+<script>
+  function showMoreCodes() {
+    const list = document.getElementById('discountCodesList');
+    list.innerHTML = '';
+    <c:forEach var="code" items="${discountCodes}">
+    list.innerHTML += `<li>${code.code} - ${code.description}</li>`;
+    </c:forEach>
+    document.getElementById('seeMoreBtn').style.display = 'none';
+  }
+</script>
+
 <!--main js file start-->
 <script src="../static/js/jquery_min.js"></script>
 <script src="../static/js/wow.js"></script>

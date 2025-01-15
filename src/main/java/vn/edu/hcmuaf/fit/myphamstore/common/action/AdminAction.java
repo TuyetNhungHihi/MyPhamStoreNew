@@ -10,5 +10,10 @@ public class AdminAction {
     public static final String LOCK_USER = "lockUser";
     public static final String UNLOCK_USER = "unlockUser";
     public static final String SEARCH = "search";
+<<<<<<< HEAD
     public static final String INSERT = "insert";
+=======
+    public static final String PENDING = "pending";
+    public static final String DONE = "done";
+>>>>>>> 0fcf526d9d17c0b64600ad1bd21c17cba54590ca
 }

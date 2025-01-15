@@ -11,18 +11,20 @@ import vn.edu.hcmuaf.fit.myphamstore.model.CartModelHelper;
 import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICartService;
+import vn.edu.hcmuaf.fit.myphamstore.service.ICouponService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class CartServiceImpl implements ICartService {
     @Inject
     private IProductService productService;
     @Inject
-    private CouponServiceImpl couponService;
+    private ICouponService couponService;
     @Override
     public void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long productId = Long.parseLong(request.getParameter("productId"));
@@ -112,50 +114,70 @@ public class CartServiceImpl implements ICartService {
         HttpSession session = request.getSession();
         List<CartModel> listCartItems = (List<CartModel>) session.getAttribute("cart");
         if (listCartItems == null) {
+            request.setAttribute("errorMessage", "Your cart is empty.");
             request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
             return;
         }
 
         List<CartModelHelper> listCartDisplay = new ArrayList<>();
         AtomicLong totalAmount = new AtomicLong(0);
-        Set<Long> brandIds = new HashSet<>();
-        listCartItems.forEach(cartItem -> {
-            ProductModel product = productService.findProductById(cartItem.getProductId());
-            totalAmount.addAndGet(product.getPrice() * cartItem.getQuantity());
-            listCartDisplay.add(new CartModelHelper(product, cartItem.getQuantity()));
-            brandIds.add(product.getBrandId());
-        });
+        try {
+            for (CartModel cartItem : listCartItems) {
+                ProductModel product = productService.findProductById(cartItem.getProductId());
+                if (product == null) {
+                    request.setAttribute("errorMessage", "Product not found: " + cartItem.getProductId());
+                    request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
+                    return;
+                }
+                totalAmount.addAndGet(product.getPrice() * cartItem.getQuantity());
+                listCartDisplay.add(new CartModelHelper(product, cartItem.getQuantity()));
+            }
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "An error occurred while processing your cart.");
+            request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
+            return;
+        }
 
-//        List<CouponModel> discountCodes = couponService.findCouponsByBrandIds(brandIds);
+        List<CouponModel> discountCodes= couponService.findAvailableCoupons();
+        List<Map<String, Object>> simplifiedDiscountCodes = discountCodes.stream()
+                .map(coupon -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("code", coupon.getCode());
+                    map.put("discountType", coupon.getDiscountType());
+                    map.put("discountValue", coupon.getDiscountValue());
+                    return map;
+                })
+                .collect(Collectors.toList());
+        request.setAttribute("discountCodes", simplifiedDiscountCodes);
 
-//        String discountCode = request.getParameter("discountCode");
-//        boolean isDiscountValid = false;
-//        long discountAmount = 0;
-//        if (discountCode != null) {
-//            for (CouponModel coupon : discountCodes) {
-//                if (coupon.getCode().equals(discountCode)) {
-//                    isDiscountValid = true;
-//                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
-//                    break;
-//                }
-//            }
-//        }
-//
-//        long finalAmount = totalAmount.get() - discountAmount;
-//
-//        request.setAttribute("listCartDisplay", listCartDisplay);
-//        request.setAttribute("totalAmount", totalAmount.get());
-//        request.setAttribute("discountAmount", discountAmount);
-//        request.setAttribute("finalAmount", finalAmount);
-//        request.setAttribute("isDiscountValid", isDiscountValid);
-//        request.setAttribute("discountCodes", discountCodes);
-//        request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
+        String discountCode = request.getParameter("discountCode");
+        boolean isDiscountValid = false;
+        long discountAmount = 0;
+        if (discountCode != null) {
+            for (CouponModel coupon : discountCodes) {
+                if (coupon.getCode().equals(discountCode)) {
+                    isDiscountValid = true;
+                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
+                    break;
+                }
+            }
+        }
+
+        request.setAttribute("listCartDisplay", listCartDisplay);
+        request.setAttribute("totalAmount", totalAmount.get());
+        long finalAmount = totalAmount.get() - discountAmount;
+        request.setAttribute("discountAmount", discountAmount);
+        request.setAttribute("finalAmount", finalAmount);
+        request.setAttribute("isDiscountValid", isDiscountValid);
+
+
+        request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
     }
 
     private long calculateDiscount(long totalAmount, CouponModel coupon) {
-        if (coupon.getDiscountType().equals("percentage")) {
+        if ("percentage".equals(coupon.getDiscountType())) {
             return totalAmount * coupon.getDiscountValue() / 100;
-        } else if (coupon.getDiscountType().equals("fixed")) {
+        } else if ("fixed".equals(coupon.getDiscountType())) {
             return coupon.getDiscountValue();
         }
         return 0;

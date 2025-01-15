@@ -2,14 +2,12 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ICouponDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import static java.rmi.server.LogStream.log;
 
@@ -182,5 +180,19 @@ public class CouponDAOImpl implements ICouponDAO {
         }
 
         return null;
+    }
+    @Override
+    public List<CouponModel> findAvailableCoupons() {
+        String sql = "SELECT * FROM coupon WHERE is_available = true AND start_date <= NOW() AND end_date >= NOW()";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .mapToBean(CouponModel.class)
+                            .list()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 }

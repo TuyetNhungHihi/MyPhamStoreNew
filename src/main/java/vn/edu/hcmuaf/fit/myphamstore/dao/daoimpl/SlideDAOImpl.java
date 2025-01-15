@@ -15,7 +15,7 @@ public class SlideDAOImpl implements ISlideDAO {
 
     @Override
     public Long save(SlideModel entity) {
-        String sql = "INSERT INTO slide ( image,url, created_at, updated_at) " +
+        String sql = "INSERT INTO slide ( image,url,is_available, created_at, updated_at) " +
                 "VALUES ( :image, :url, :createdAt, :updatedAt)";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
@@ -23,6 +23,7 @@ public class SlideDAOImpl implements ISlideDAO {
                 return handle.createUpdate(sql)
                         .bind("image", entity.getImage().trim())
                         .bind("url", entity.getUrl().trim())
+                        .bind("is_available", entity.getIsAvailable())
                         .bind("createdAt", LocalDateTime.now())
                         .bind("updatedAt", LocalDateTime.now())
                         .executeAndReturnGeneratedKeys("id") // Lấy giá trị khóa chính tự động sinh
@@ -42,12 +43,13 @@ public class SlideDAOImpl implements ISlideDAO {
             log("Contact not found");
             return null;
         }
-        String sql = "UPDATE slide SET image = :image, url = :url, updated_at = :updatedAt WHERE id = :id";
+        String sql = "UPDATE slide SET image = :image, url = :url,is_available=:isAvailable, updated_at = :updatedAt WHERE id = :id";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
                         .bind("name", entity.getImage() == null ? slideExisted.getImage() : entity.getImage().trim())
-                        .bind("is_available", entity.getUrl() == null ? slideExisted.getUrl() : entity.getUrl())
+                        .bind("url", entity.getUrl() == null ? slideExisted.getUrl() : entity.getUrl())
+                        .bind("isAvailable", entity.getIsAvailable() == null ? slideExisted.getIsAvailable() : entity.getIsAvailable())
                         .bind("updatedAt", LocalDateTime.now())
                         .bind("id", entity.getId())
                         .execute();
@@ -74,7 +76,7 @@ public class SlideDAOImpl implements ISlideDAO {
         if (currentPage < 1) currentPage = 1;
 
         // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
-        List<String> allowedColumns = Arrays.asList("id", "parent_id", "description","created_at", "updated_at");
+        List<String> allowedColumns = Arrays.asList("id", "image", "url","is_available","created_at", "updated_at");
         if (!allowedColumns.contains(orderBy)) {
             orderBy = "id";
         }
@@ -82,7 +84,7 @@ public class SlideDAOImpl implements ISlideDAO {
         // Xây dựng câu lệnh SQL
         String sql = "SELECT * FROM slide ";
         if (keyword != null && !keyword.trim().isEmpty()) {
-            sql += "WHERE CONCAT(id,image,url, created_at, updated_at) LIKE :keyword ";
+            sql += "WHERE CONCAT(id,image,url,is_available, created_at, updated_at) LIKE :keyword ";
         }
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT :limit " +

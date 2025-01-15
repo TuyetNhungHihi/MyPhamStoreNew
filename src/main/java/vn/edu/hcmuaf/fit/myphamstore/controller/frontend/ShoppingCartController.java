@@ -24,16 +24,6 @@ public class ShoppingCartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         cartService.displayCart(request, response);
-//        HttpSession session = request.getSession();
-//        @SuppressWarnings("unchecked")
-//        Map<Long, Integer> cart = (Map<Long, Integer>) session.getAttribute("cart");
-//        if (cart == null) {
-//            cart = new HashMap<>();
-//            session.setAttribute("cart", cart);
-//        }
-//        request.setAttribute("cart", cart);
-//        request.setAttribute("productService", productService); // Pass productService to JSP
-//        request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
     }
 
     @Override
@@ -47,38 +37,10 @@ public class ShoppingCartController extends HttpServlet {
             cartService.removeCartItem(request, response);
         } else if ("clear".equals(action)) {
             cartService.clearCart(request, response);
+        }else {
+            cartService.displayCart(request, response);
         }
 
-//        HttpSession session = request.getSession();
-//        @SuppressWarnings("unchecked")
-//        Map<Long, Integer> cart = (Map<Long, Integer>) session.getAttribute("cart");
-//        if (cart == null) {
-//            cart = new HashMap<>();
-//            session.setAttribute("cart", cart);
-//        }
-//
-//        String action = request.getParameter("action");
-//        String productIdStr = request.getParameter("productId");
-//        Long productId = null;
-
-//        try {
-//            productId = Long.parseLong(productIdStr);
-//        } catch (NumberFormatException e) {
-//            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID");
-//            return;
-//        }
-
-//        // Kiểm tra sự tồn tại của sản phẩm trước khi thêm vào giỏ hàng
-//        if (productService.findById(productId) == null) {
-//            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Product not found");
-//            return;
-//        }
-
-//        if ("add".equals(action)) {
-//            cart.put(productId, cart.getOrDefault(productId, 0) + 1);
-//        }
-//
-//        response.sendRedirect(request.getContextPath() + "/gio-hang");
     }
 
 }

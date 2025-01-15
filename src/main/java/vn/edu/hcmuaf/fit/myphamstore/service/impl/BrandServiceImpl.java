@@ -53,7 +53,6 @@ public class BrandServiceImpl implements IBrandService {
         request.setAttribute("pageSize", pageSize);
         request.setAttribute("keyword", keyword);
         request.setAttribute("orderBy", orderBy);
-        System.out.println(brands);
         dispatcher.forward(request, response);
     }
 

@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@include file="/common/tablib.jsp"%>
 <!-- Header Wrapper Start -->
 <div class="ss_middle_header_wrapper">
     <div class="ss_logo">
-        <a href="home.jsp">
+        <a href="<c:url value="/trang-chu" />">
             <img src="../static/images/logo/logo.svg" alt="Logo" title="big basket" class="img-responsive">
         </a>
     </div>
@@ -86,23 +87,29 @@
                     </ul>
                 </div>
             </li>
-            <li id="login-label" style="height: 82px;
+            <li id="" style="height: 82px;
                 display: flex;align-items: center;">
-                <!-- <div class="ss_login_box">	<a href="./login.jsp"><span>Đăng nhập/Đăng ký</span> <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive"></a>
-                </div> -->
-                <!-- <div class="dropdown">
+                <div class="ss_login_box">
+                <a href="<c:url value="/login" />">
+                    <span>Đăng nhập/Đăng ký</span>
+                    <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive">
+                </a>
+            </div>
+            <c:if test="${not empty user}">
+                <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      Nguyễn Ngọc Hân <strong>#12</strong>
-                      <span class="caret"></span
+                        Nguyễn Ngọc Hân <strong>#12</strong>
+                        <span class="caret"></span>
                     </button>
-                    <ul  class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121; text-decoration: none;">
-                      <li><a href="change-password.jsp" style="text-decoration: none;">Đổi mật khẩu</a></li>
-                      <li><a href="../frontend/profile.html" style="text-decoration: none;">Thông tin cá nhân</a></li>
-                      <li><a href="#" style="text-decoration: none;">Lịch sử đơn hàng</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#" style="text-decoration: none;">Đăng xuất</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121; text-decoration: none;">
+                        <li><a href="change-password.jsp" style="text-decoration: none;">Đổi mật khẩu</a></li>
+                        <li><a href="../frontend/profile.html" style="text-decoration: none;">Thông tin cá nhân</a></li>
+                        <li><a href="#" style="text-decoration: none;">Lịch sử đơn hàng</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" style="text-decoration: none;">Đăng xuất</a></li>
                     </ul>
-                  </div> -->
+                </div>
+            </c:if>
             </li>
             <li>
                 <div class="ss_cart_value dropdown">
