@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.common.action.AdminAction;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.impl.UserServiceImpl;
 
@@ -18,13 +19,13 @@ public class UserController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<UserModel> users = userService.getUsersWithPaging(null, 0, 5, "id");
-            users.forEach(System.out::println);
-            response.getWriter().write(users.toString());
-        } catch (Exception e) {
-            e.printStackTrace(); // Log the exception for debugging
-            response.getWriter().write("Error: " + e.getMessage());
-        }
+       String action = request.getParameter("action");
+       if (action == null || action.isEmpty() || AdminAction.DISPLAY.equals(action)) {
+           userService.displayListUsers(request, response);
+       } else if (action.equalsIgnoreCase(AdminAction.LOCK_USER)) {
+           userService.lockUser(request, response);
+       } else if (action.equalsIgnoreCase(AdminAction.UNLOCK_USER)) {
+           userService.unlockUser(request, response);
+       }
     }
 }
