@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
 Created by IntelliJ IDEA.
 User: cucsh
@@ -7,7 +7,7 @@ Time: 10:10 AM
 To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <!--
 Template Name: big basket
@@ -103,11 +103,15 @@ Purchase:
         <div class="ss_inner_title_cont_wrapper">
           <ul>
             <li>
-              <a href="#"><i class="fa fa-home"></i></a>&nbsp;&nbsp; >
+              <a href="<c:url value="/trang-chu" />"><i class="fa fa-home"></i></a>&nbsp;&nbsp; >
             </li>
-            <li>Sản phẩm&nbsp;&nbsp; ></li>
+            <li>Sản phẩm&nbsp;&nbsp; >
+              <a href="<c:url value="/danh-muc" />"></a>&nbsp;&nbsp; >
+            </li>
             <li>Mua sắm&nbsp;&nbsp; ></li>
-            <li>Giỏ hàng</li>
+            <li>Giỏ hàng
+              <a href="<c:url value="/gio-hang" />"></a>&nbsp;&nbsp; >
+            </li>
           </ul>
         </div>
       </div>
@@ -215,7 +219,7 @@ Purchase:
                     <ul id="discountCodesList">
                       <c:forEach var="code" items="${discountCodes}" varStatus="status">
                         <c:if test="${status.index < 3}">
-                          <li>${code.code} - ${code.description}</li>
+                          <li>${code.code} - ${code.discountValue}</li>
                         </c:if>
                       </c:forEach>
                     </ul>
@@ -255,7 +259,7 @@ Purchase:
           <h1>Giỏ hàng của bạn đang trống!</h1>
           <td class="shop_btn_wrapper shop_car_btn_wrapper">
             <ul>
-              <li><a href="/trang-chu">Tiếp tục mua sắm</a></li>
+              <li><a href="/trang-chu"><h3>>Tiếp tục mua sắm</h3></a></li>
             </ul>
           </td>
         </c:otherwise>
