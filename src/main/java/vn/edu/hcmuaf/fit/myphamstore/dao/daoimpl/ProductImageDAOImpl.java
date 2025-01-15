@@ -19,6 +19,17 @@ public class ProductImageDAOImpl implements IProductImageDAO {
 
     @Override
     public ProductImageModel findProductImageById(Long id) {
+        String query = "SELECT * FROM review WHERE id = :id";
+        try {
+            ProductImageModel result = JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(query)
+                    .bind("id", id)
+                    .mapToBean(ProductImageModel.class)
+                    .one());
+            return result;
+        } catch (Exception e) {
+            log("category not found");
+            e.printStackTrace();
+        }
         return null;
     }
 
