@@ -41,32 +41,17 @@ public class CouponDAOImpl implements ICouponDAO {
         }
         return null;
     }
-        @Override
-        public List<CouponModel> findCouponsByBrandIds(Set<Long> brandIds) {
-            String sql = "SELECT * FROM coupon WHERE brand_id IN (<brandIds>)";
-            try {
-                return JDBIConnector.getJdbi().withHandle(handle ->
-                        handle.createQuery(sql)
-                                .bindList("brandIds", brandIds)
-                                .mapToBean(CouponModel.class)
-                                .list()
-                );
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
+
 
 
     @Override
     public Long save(CouponModel entity) {
-        String sql = "INSERT INTO coupon ( brand_id, code, min_order_value, discount_type,discount_value,max_discount_value,start_date,end_date,current_usage,max_usage, created_at, is_available) " +
-                "VALUES ( :brand_id, :code, :min_order_value, :discount_type,:discount_value,:max_discount_value,:start_date,:end_date,:current_usage,:max_usage, :created_at,is_available)";
+        String sql = "INSERT INTO coupon (  code, min_order_value, discount_type,discount_value,max_discount_value,start_date,end_date,current_usage,max_usage, created_at, is_available) " +
+                "VALUES (  :code, :min_order_value, :discount_type,:discount_value,:max_discount_value,:start_date,:end_date,:current_usage,:max_usage, :created_at,is_available)";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
-                        .bind("brand_id", entity.getBrandId())
                         .bind("code", entity.getCode().trim())
                         .bind("min_order_value", entity.getMinOrderValue())
                         .bind("discount_type", entity.getDiscountType().toString())
@@ -96,13 +81,12 @@ public class CouponDAOImpl implements ICouponDAO {
             return null;
         }
 
-        String sql = "UPDATE coupon SET brand_id = :brand_id, code = :code,min_order_value = :min_order_value,discount_type=:discount_type" +
+        String sql = "UPDATE coupon SET  code = :code,min_order_value = :min_order_value,discount_type=:discount_type" +
                 ",discount_value=:discount_value,max_discount_value=:max_discount_value,start_date=:start_date,end_date=:end_date,current_usage=:current_usage" +
                 ",max_usage=:max_usage, created_at=:created_at,is_available = :isAvailable WHERE id = :id";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
-                        .bind("brand_id", entity.getBrandId() == null ? couponExisted.getBrandId() : entity.getBrandId())
                         .bind("code", entity.getCode() == null ? couponExisted.getCode() : entity.getCode().trim())
                         .bind("min_order_value", entity.getMinOrderValue() == null ? couponExisted.getMinOrderValue() : entity.getMinOrderValue())
                         .bind("discount_type", entity.getDiscountType() == null ? couponExisted.getDiscountType().toString() : entity.getDiscountType().toString())
@@ -146,7 +130,7 @@ public class CouponDAOImpl implements ICouponDAO {
         // Xây dựng câu lệnh SQL
         String sql = "SELECT * FROM coupon ";
         if (keyword != null && !keyword.trim().isEmpty()) {
-            sql += "WHERE CONCAT(id,brand_id, code, min_order_value, discount_type,discount_value,max_discount_value,start_date,end_date,current_usage,max_usage, created_at, is_available) LIKE :keyword ";
+            sql += "WHERE CONCAT(id, code, min_order_value, discount_type,discount_value,max_discount_value,start_date,end_date,current_usage,max_usage, created_at, is_available) LIKE :keyword ";
         }
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT :limit " +

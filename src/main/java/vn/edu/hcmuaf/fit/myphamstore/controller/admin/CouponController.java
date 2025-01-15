@@ -8,12 +8,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.common.action.AdminAction;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICouponService;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "AdminCouponController", value = "/admin/coupons")
 public class CouponController extends HttpServlet {

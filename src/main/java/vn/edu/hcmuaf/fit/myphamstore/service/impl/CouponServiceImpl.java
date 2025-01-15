@@ -21,12 +21,6 @@ public class CouponServiceImpl implements ICouponService {
         return couponDAO.findCouponById(id);
     }
 
-
-    @Override
-    public List<CouponModel> findCouponsByBrandIds(Set<Long> brandIds) {
-        return couponDAO.findCouponsByBrandIds(brandIds);
-    }
-
     @Override
     public List<CouponModel> pagingCoupon(String keyword, int currentPage, int pageSize, String orderBy) {
         return couponDAO.findAll(keyword, currentPage, pageSize, orderBy);
