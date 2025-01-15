@@ -142,7 +142,7 @@ Purchase:
                     <th>Số lượng</th>
 
                     <th>Tổng cộng:</th>
-                    <th>&nbsp;</th>
+                    <th>&nbsp;    </th>
                   </tr>
                   </thead>
                   <tbody>
@@ -162,14 +162,21 @@ Purchase:
                       </td>
                       <td class="cart_page_price">${i.product.price}đ</td>
                       <td>
-                        <input value="123" type="number" readonly />
+                      <td>
+                        <form method="post" action="/gio-hang">
+                          <input type="hidden" name="action" value="updateCart" />
+                          <input type="hidden" name="productId" value="${i.product.id}" />
+                          <input type="number" name="quantity" value="${i.quantity}" min="1" onchange="this.form.submit()" />
+                        </form>
                       </td>
                       <td class="cart_page_totl">${i.product.price * i.quantity}đ</td>
                       <td>
                         <form method="post" action="/gio-hang">
-                          <input type="hidden" name="action" value="remove">
-                          <input type="hidden" name="productId" value="">
-                          <button type="submit" class="remove-btn"><i class="fa fa-trash"></i></button>
+                          <input type="hidden" name="action" value="remove" />
+                          <input type="hidden" name="productId" value="${i.product.id}" />
+                          <button type="submit" class="remove-btn">
+                            <i class="fa fa-trash"></i>
+                          </button>
                         </form>
                       </td>
                     </tr>
