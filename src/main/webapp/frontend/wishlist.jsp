@@ -263,6 +263,7 @@ Purchase:
 				}
 				run_clock('clockdiv',deadline);
 	</script>
+
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			document.querySelectorAll('.fa-heart').forEach(function(heartIcon) {
@@ -283,6 +284,7 @@ Purchase:
 						if (data.success) {
 							heartIcon.style.color = 'red';
 							showToast('Product added to wishlist!');
+							refreshWishlist();
 						} else {
 							showToast('Failed to add product to wishlist.');
 						}
@@ -290,6 +292,17 @@ Purchase:
 					.catch(error => {
 						console.error('Error:', error);
 						showToast('An error occurred. Please try again.');
+					});
+		}
+
+		function refreshWishlist() {
+			fetch('/wishlist')
+					.then(response => response.text())
+					.then(html => {
+						document.querySelector('.ss_latest_products').innerHTML = html;
+					})
+					.catch(error => {
+						console.error('Error:', error);
 					});
 		}
 
@@ -303,6 +316,20 @@ Purchase:
 			}, 3000);
 		}
 	</script>
+
+	<script>
+		function refreshWishlist() {
+			fetch('/wishlist')
+					.then(response => response.text())
+					.then(html => {
+						document.querySelector('.ss_latest_products').innerHTML = html;
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+		}
+	</script>
+
 	<!--main js file end-->
 </body>
 
