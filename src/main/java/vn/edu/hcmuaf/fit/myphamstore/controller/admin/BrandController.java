@@ -19,7 +19,7 @@ public class BrandController extends HttpServlet {
     @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action == null || action.equalsIgnoreCase(AdminAction.DISPLAY)) {
+        if (action == null || action.isEmpty() || action.equalsIgnoreCase(AdminAction.DISPLAY) || action.equalsIgnoreCase(AdminAction.SEARCH)) {
             brandService.displayBrand(request, response);
         } else if (action.equalsIgnoreCase(AdminAction.STOP_BUYING)) {
             brandService.stopBuying( request, response);
