@@ -173,10 +173,7 @@ CREATE TABLE `coupon` (
   `created_at` datetime DEFAULT (now()),
   `is_available` boolean default true,
   `brand_id` int null
-<<<<<<< HEAD
 
-=======
->>>>>>> 0882a4ccc82f6bc420f3ef22a92f07f9c346986c
 );
 
 
