@@ -209,14 +209,25 @@ Purchase:
                       <button type="submit">Xác nhận</button>
                     </div>
                   </form>
-<%--                  <c:if test="${isDiscountValid}">--%>
-<%--                    <p>Mã giảm giá hợp lệ!</p>--%>
-<%--                  </c:if>--%>
-<%--                  <c:if test="${not isDiscountValid}">--%>
-<%--                    <p>Mã giảm giá không hợp lệ!</p>--%>
-<%--                  </c:if>--%>
+
+                  <c:if test="${not empty discountCodes}">
+                    <h2>Các mã giảm giá:</h2>
+                    <ul id="discountCodesList">
+                      <c:forEach var="code" items="${discountCodes}" varStatus="status">
+                        <c:if test="${status.index < 3}">
+                          <li>${code.code} - ${code.description}</li>
+                        </c:if>
+                      </c:forEach>
+                    </ul>
+                    <c:if test="${discountCodes.size() > 3}">
+                      <button id="seeMoreBtn" onclick="showMoreCodes()">Xem thêm</button>
+                    </c:if>
+                  </c:if>
+
+
                 </div>
               </div>
+
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -242,6 +253,11 @@ Purchase:
         </c:when>
         <c:otherwise>
           <h1>Giỏ hàng của bạn đang trống!</h1>
+          <td class="shop_btn_wrapper shop_car_btn_wrapper">
+            <ul>
+              <li><a href="/trang-chu">Tiếp tục mua sắm</a></li>
+            </ul>
+          </td>
         </c:otherwise>
       </c:choose>
     </div>
@@ -280,6 +296,18 @@ Purchase:
             nav.innerHTML = data;
           });
 </script>
+
+<script>
+  function showMoreCodes() {
+    const list = document.getElementById('discountCodesList');
+    list.innerHTML = '';
+    <c:forEach var="code" items="${discountCodes}">
+    list.innerHTML += `<li>${code.code} - ${code.description}</li>`;
+    </c:forEach>
+    document.getElementById('seeMoreBtn').style.display = 'none';
+  }
+</script>
+
 <!--main js file start-->
 <script src="../static/js/jquery_min.js"></script>
 <script src="../static/js/wow.js"></script>

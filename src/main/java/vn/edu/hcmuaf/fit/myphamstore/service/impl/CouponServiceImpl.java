@@ -11,11 +11,11 @@ import vn.edu.hcmuaf.fit.myphamstore.service.ICouponService;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 public class CouponServiceImpl implements ICouponService {
     @Inject
     private ICouponDAO couponDAO;
+
     @Override
     public CouponModel findCouponById(Long id) {
         return couponDAO.findCouponById(id);
@@ -97,5 +97,11 @@ public class CouponServiceImpl implements ICouponService {
         System.out.println(coupon);
         request.setAttribute("coupon", coupon);
         dispatcher.forward(request, response);
+    }
+
+
+    @Override
+    public List<CouponModel> findAvailableCoupons() {
+        return couponDAO.findAvailableCoupons();
     }
 }
