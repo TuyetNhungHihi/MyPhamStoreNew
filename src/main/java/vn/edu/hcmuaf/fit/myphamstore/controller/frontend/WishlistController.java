@@ -6,18 +6,26 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.WishlistDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
-import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
-import vn.edu.hcmuaf.fit.myphamstore.service.impl.ProductServiceImpl;
+import vn.edu.hcmuaf.fit.myphamstore.service.impl.WishlistServiceImpl;
+
+import org.jdbi.v3.core.Jdbi;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "WishlistController", value = "/wishlist")
 public class WishlistController extends HttpServlet {
-    private IProductService productService = new ProductServiceImpl();
+    private WishlistServiceImpl wishlistService;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        Jdbi jdbi = Jdbi.create("jdbc:postgresql://localhost:5432/yourdb", "username", "password");
+        wishlistService = new WishlistServiceImpl(new WishlistDAOImpl(jdbi));
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,16 +39,10 @@ public class WishlistController extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        List<ProductModel> wishlist = (List<ProductModel>) session.getAttribute("wishlist");
+        Long userId = (Long) session.getAttribute("userId");
 
-        if (wishlist == null) {
-            wishlist = new ArrayList<>();
-        }
-
-        ProductModel product = productService.findProductById(Long.parseLong(productId));
-        if (product != null && !wishlist.contains(product)) {
-            wishlist.add(product);
-            session.setAttribute("wishlist", wishlist);
+        if (userId != null) {
+            wishlistService.addToWishlist(userId, Long.parseLong(productId));
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();
             out.print("{\"success\": true}");
@@ -55,8 +57,15 @@ public class WishlistController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("userId");
 
-
-        request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
+        if (userId != null) {
+            List<ProductModel> wishlist = wishlistService.getWishlist(userId);
+            request.setAttribute("wishlist", wishlist);
+            request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/fontend/login");
+        }
     }
 }

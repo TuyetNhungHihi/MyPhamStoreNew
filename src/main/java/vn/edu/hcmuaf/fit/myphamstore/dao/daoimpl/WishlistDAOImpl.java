@@ -1,8 +1,9 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
+import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IWIshlistDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.WishlistModel;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,14 @@ import java.util.List;
 
 import static java.rmi.server.LogStream.log;
 
-public class WishlistImpl implements IWIshlistDAO {
+
+public class WishlistDAOImpl implements IWIshlistDAO {
+    private final Jdbi jdbi;
+
+    public WishlistDAOImpl(Jdbi jdbi) {
+        this.jdbi = jdbi;
+    }
+
     @Override
     public WishlistModel findWishlistById(Long id) {
         String query = "SELECT * FROM wishlist WHERE id = :id";
@@ -157,5 +165,24 @@ public class WishlistImpl implements IWIshlistDAO {
         }
 
         return null;
+    }
+    @Override
+    public List<ProductModel> getWishlist(Long userId) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM products WHERE id IN (SELECT product_id FROM wishlist WHERE user_id = :userId)")
+                        .bind("userId", userId)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
+    @Override
+    public void addToWishlist(Long userId, Long productId) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("INSERT INTO wishlist (user_id, product_id) VALUES (:userId, :productId)")
+                        .bind("userId", userId)
+                        .bind("productId", productId)
+                        .execute()
+        );
     }
 }
