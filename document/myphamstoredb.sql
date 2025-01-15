@@ -133,6 +133,7 @@ CREATE TABLE `slide` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `image` varchar(500) NOT NULL,
   `url` varchar(500) NOT NULL,
+  is_available BOOLEAN NOT NULL DEFAULT TRUE,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
 );
@@ -170,7 +171,9 @@ CREATE TABLE `coupon` (
   `current_usage` int DEFAULT 0,
   `max_usage` int  null,
   `created_at` datetime DEFAULT (now()),
-  `is_available` boolean default true
+  `is_available` boolean default true,
+  `brand_id` int null
+
 );
 
 
