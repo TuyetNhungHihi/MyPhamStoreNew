@@ -15,7 +15,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.ICouponService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AdminCouponController", value = "/admin/coupon")
+@WebServlet(name = "AdminCouponController", value = "/admin/coupons")
 public class CouponController extends HttpServlet {
     @Inject
     private ICouponService couponService;

@@ -11,7 +11,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.ISlideService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SlideController", value = "/admin/slide")
+@WebServlet(name = "SlideController", value = "/admin/slides")
 public class SlideController extends HttpServlet {
     @Inject
     private ISlideService slideService;

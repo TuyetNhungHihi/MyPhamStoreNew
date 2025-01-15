@@ -13,7 +13,6 @@ public interface IBrandService {
     BrandModel findBrandById(Long id);
     List<BrandModel> pagingBrand(String keyword,int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
-
     List<BrandModel> getAllBrands();
 
     void displayBrand(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
