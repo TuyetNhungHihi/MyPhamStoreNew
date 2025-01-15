@@ -96,6 +96,8 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public void insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String[] listImage = request.getParameterValues("images");
+
         String thumbnail = request.getParameter("thumbnail");
         String name = request.getParameter("productName");
         String stock = request.getParameter("stock");
@@ -113,6 +115,7 @@ public class ProductServiceImpl implements IProductService {
                 .brandId(Long.parseLong(brandId))
                 .categoryId(Long.parseLong(categoryId))
                 .thumbnail(thumbnail)
+                .stock(Integer.parseInt(stock))
                 .isAvailable(true)
                 .build();
         try{
@@ -120,6 +123,14 @@ public class ProductServiceImpl implements IProductService {
             if (isSuccess == null || isSuccess == 0) {
                 request.setAttribute("message", "Có lỗi xảy ra");
             } else {
+                //tiến hành lưu ảnh sản phẩm
+                for (String image : listImage) {
+                    ProductImageModel productImageModel = ProductImageModel.builder()
+                            .productId(isSuccess)
+                            .url(image)
+                            .build();
+                    productImageDAO.save(productImageModel);
+                }
                 request.setAttribute("message", "Thêm sản phẩm thành công");
                 this.displayProduct(request, response);
             }
