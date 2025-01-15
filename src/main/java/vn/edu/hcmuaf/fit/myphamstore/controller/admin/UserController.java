@@ -20,12 +20,15 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        String action = request.getParameter("action");
-       if (action == null || action.isEmpty() || AdminAction.DISPLAY.equals(action)) {
+        System.out.println(request.getParameter("totalPages"));
+       if (action == null || action.isEmpty() || AdminAction.DISPLAY.equals(action) ||action.equalsIgnoreCase(AdminAction.SEARCH)) {
            userService.displayListUsers(request, response);
        } else if (action.equalsIgnoreCase(AdminAction.LOCK_USER)) {
            userService.lockUser(request, response);
        } else if (action.equalsIgnoreCase(AdminAction.UNLOCK_USER)) {
            userService.unlockUser(request, response);
+       } else if(action.equalsIgnoreCase(AdminAction.DISPLAY_DETAIL)){
+           userService.detailUser(request, response);
        }
     }
 }

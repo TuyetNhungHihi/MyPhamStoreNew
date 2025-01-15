@@ -142,7 +142,7 @@ Purchase:
                     <th>Số lượng</th>
 
                     <th>Tổng cộng:</th>
-                    <th>&nbsp;</th>
+                    <th>&nbsp;    </th>
                   </tr>
                   </thead>
                   <tbody>
@@ -162,14 +162,21 @@ Purchase:
                       </td>
                       <td class="cart_page_price">${i.product.price}đ</td>
                       <td>
-                        <input value="123" type="number" readonly />
+                      <td>
+                        <form method="post" action="/gio-hang">
+                          <input type="hidden" name="action" value="updateCart" />
+                          <input type="hidden" name="productId" value="${i.product.id}" />
+                          <input type="number" name="quantity" value="${i.quantity}" min="1" onchange="this.form.submit()" />
+                        </form>
                       </td>
                       <td class="cart_page_totl">${i.product.price * i.quantity}đ</td>
                       <td>
                         <form method="post" action="/gio-hang">
-                          <input type="hidden" name="action" value="remove">
-                          <input type="hidden" name="productId" value="">
-                          <button type="submit" class="remove-btn"><i class="fa fa-trash"></i></button>
+                          <input type="hidden" name="action" value="remove" />
+                          <input type="hidden" name="productId" value="${i.product.id}" />
+                          <button type="submit" class="remove-btn">
+                            <i class="fa fa-trash"></i>
+                          </button>
                         </form>
                       </td>
                     </tr>
@@ -193,17 +200,21 @@ Purchase:
                 </table>
               </div>
 
-              <div
-                      class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_cntnt_2"
-              >
-                <div
-                        class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2"
-                >
+              <div class="estimate_shiping_Wrapper_cntnt estimate_shiping_Wrapper_cntnt_2">
+                <div class="btc_shop_single_prod_right_section shop_product_single_head related_pdt_shop_head related_pdt_shop_head_2">
                   <h1>Nhập mã giảm giá tại đây:</h1>
-                  <div class="lr_nl_form_wrapper">
-                    <input type="text" placeholder="Nhập mã giảm giá của bạn" />
-                    <button type="submit">Xác nhận</button>
-                  </div>
+                  <form method="post" action="/gio-hang">
+                    <div class="lr_nl_form_wrapper">
+                      <input type="text" name="discountCode" placeholder="Nhập mã giảm giá của bạn" />
+                      <button type="submit">Xác nhận</button>
+                    </div>
+                  </form>
+<%--                  <c:if test="${isDiscountValid}">--%>
+<%--                    <p>Mã giảm giá hợp lệ!</p>--%>
+<%--                  </c:if>--%>
+<%--                  <c:if test="${not isDiscountValid}">--%>
+<%--                    <p>Mã giảm giá không hợp lệ!</p>--%>
+<%--                  </c:if>--%>
                 </div>
               </div>
             </div>
@@ -212,21 +223,13 @@ Purchase:
               <div class="shipping_Wrapper">
                 <table class="table">
                   <tbody>
-                  <tr>
-                    <th>Tạm tính :</th>
-                    <td><span class="price">609,000đ</span></td>
-                  </tr>
-                  <tr>
-                    <th>Giảm giá :</th>
-                    <td><span class="price">-109,000đ</span></td>
-                  </tr>
-                  <tr>
-                    <th class="cart_btn_cntnt">Tạm tính :</th>
-                    <td>
-                      <span class="cart_btn_cntnt_clr">500,000đ </span>
-                    </td>
-                  </tr>
-                  </tbody>
+                  <div class="cart-summary">
+                    <p>Tổng giá: ${totalAmount}đ</p>
+                    <c:if test="${discountAmount > 0}">
+                      <p>Giảm giá: -${discountAmount}đ</p>
+                    </c:if>
+                    <p>Thành tiền: ${finalAmount}đ</p>
+                  </div>
                 </table>
                 <div class="shop_btn_wrapper shop_btn_wrapper_shipping">
                   <ul>
@@ -249,6 +252,7 @@ Purchase:
 <!-- Footer Wrapper Start -->
 <%@include file="component/footer.jsp"%>
 <!-- Footer Wrapper End -->
+
 <script>
   const header = document.getElementById("header");
   const footer = document.getElementById("footer");

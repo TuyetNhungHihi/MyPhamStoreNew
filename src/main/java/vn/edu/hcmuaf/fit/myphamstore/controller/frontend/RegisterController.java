@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 
+import jakarta.inject.Inject;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.UserDAOImp;
@@ -11,54 +12,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.service.IUserService;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
-    private final IUserDAO userDAO = new UserDAOImp();
-
+    private static final long serialVersionUID = 1L;
+    @Inject
+    private IUserService userService;
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/frontend/register.jsp").forward(req, resp);
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String fullName = request.getParameter("fullName");
-        String phone = request.getParameter("phone");
-        String dateOfBirth = request.getParameter("dateOfBirth");
-        String gender = request.getParameter("gender");
-        String password = request.getParameter("password");
-
-        // Validate input data
-        if (email == null || fullName == null || phone == null || dateOfBirth == null || gender == null || password == null) {
-            request.setAttribute("errorMessage", "All fields are required.");
-            request.getRequestDispatcher("/frontend/register.jsp").forward(request, response);
-            return;
-        }
-
-        // Check if email already exists
-        if (userDAO.checkEmailExist(email)) {
-            request.setAttribute("errorMessage", "Email already exists.");
-            request.getRequestDispatcher("/frontend/register.jsp").forward(request, response);
-            return;
-        }
-
-        // Create a new user model
-        UserModel user = new UserModel();
-        user.setEmail(email);
-        user.setFullName(fullName);
-        user.setPhone(phone);
-        user.setDateOfBirth(LocalDate.parse(dateOfBirth));
-        user.setGender(Gender.valueOf(gender));
-        user.setPassword(PasswordUtils.hashPassword(password));
-
-        // Save the user to the database
-        Long userId = userDAO.save(user);
-
-        if (userId != null) {
-            request.getSession().setAttribute("user", user);
-            response.sendRedirect("home.jsp");
-        } else {
-            request.setAttribute("errorMessage", "Registration failed. Please try again.");
-            request.getRequestDispatcher("/frontend/register.jsp").forward(request, response);
-        }
+       userService.register(request, response);
     }
 }

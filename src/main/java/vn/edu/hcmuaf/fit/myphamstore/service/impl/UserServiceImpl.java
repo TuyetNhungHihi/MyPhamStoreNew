@@ -6,15 +6,21 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
+import vn.edu.hcmuaf.fit.myphamstore.common.RoleType;
 import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IRoleDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.RoleModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IUserService;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @ApplicationScoped
 public class UserServiceImpl implements IUserService {
     @Inject
@@ -24,7 +30,15 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<UserModel> getUsersWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
-        return userDAO.findAll(keyword, currentPage, pageSize, orderBy);
+        if (keyword != null && !keyword.isEmpty()) {
+            keyword = keyword.trim();
+        }
+        return userDAO
+                .findAll(keyword, currentPage, pageSize, orderBy)
+                .stream().map(u ->{
+                    u.setRoles(roleDAO.findListRoleByUserId(u.getId()));
+                    return u;
+                }).collect(Collectors.toList());
     }
 
     @Override
@@ -81,7 +95,52 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+        RequestDispatcher dispatcher = null;
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("rePassword");
+        String phone  = request.getParameter("phone");
+        LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));
+        String gender = request.getParameter("gender");
+        //check email tồn tại
+        if(userDAO.checkEmailExist(email)) {
+            request.setAttribute("message", "Email đã tồn tại trong hệ thống!");
+            dispatcher = request.getRequestDispatcher("/frontend/register.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        //check phone number tồn tại
+        if(userDAO.checkPhoneExist(phone)) {
+            request.setAttribute("message", "Số đện thoại đã tồn tại trong hệ thống!");
+            dispatcher = request.getRequestDispatcher("/frontend/register.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        //check pass
+        if(!password.equalsIgnoreCase(confirmPassword)) {
+            request.setAttribute("message", "Mật khẩu không trùng khớp!");
+            dispatcher = request.getRequestDispatcher("/frontend/register.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        //tiến hành đăng kí
+        UserModel user = UserModel.builder()
+                .fullName(fullName)
+                .gender(Gender.valueOf(gender))
+                .dateOfBirth(dateOfBirth)
+                .email(email)
+                .phone(phone)
+                .status(UserStatus.INACTIVE)
+                .password(password)
+                .avatar(null).build();
+        Long savedUserId = userDAO.save(user);
+        System.out.println(savedUserId);
+        if( savedUserId!= null && savedUserId  > 0){
+            roleDAO.setRoleToUser(RoleType.CUSTOMER, savedUserId);
+        }
+        request.setAttribute("message", "Đăng ký thành công");
+        request.getRequestDispatcher("/frontend/register.jsp").forward(request, response);
     }
 
     @Override
@@ -91,9 +150,14 @@ public class UserServiceImpl implements IUserService {
         String keyword = request.getParameter("keyword");
         String orderBy = request.getParameter("orderBy");
         int currentPage = Integer.parseInt(request.getParameter("currentPage") == null ? "1" : request.getParameter("currentPage"));
-        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "5" : request.getParameter("pageSize"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null ? "10" : request.getParameter("pageSize"));
 
-        List<UserModel> users = this.getUsersWithPaging(keyword, currentPage, pageSize, orderBy);
+        List<UserModel> users = this.getUsersWithPaging(keyword, currentPage, pageSize, orderBy)
+                .stream()
+                .filter(u -> u.getRoles().stream()
+                        .anyMatch(r -> r.getName().equalsIgnoreCase(RoleType.CUSTOMER.toString())))
+                .collect(Collectors.toList());
+        System.out.println(users);
         Long totalPages = this.userDAO.getTotalPage(pageSize);
         // Gửi danh sách sản phẩm đến trang JSP
         request.setAttribute("users", users);
@@ -104,6 +168,23 @@ public class UserServiceImpl implements IUserService {
         request.setAttribute("keyword", keyword);
         request.setAttribute("orderBy", orderBy);
         dispatcher.forward(request, response);
+    }
+
+    @Override
+    public UserModel findUserById(Long id) {
+        if(id == null) {
+            return null;
+        }
+        try{
+            UserModel user = userDAO.getUserById(id);
+            if(user != null) {
+                user.setRoles(roleDAO.findListRoleByUserId(user.getId()));
+            }
+            return user;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -120,6 +201,19 @@ public class UserServiceImpl implements IUserService {
         }
 
         this.displayListUsers(request,response);
+    }
+
+    @Override
+    public void detailUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        UserModel userModel = null;
+        if(id != null) {
+            userModel = this.findUserById(id);
+        }
+        if(userModel != null) {
+            request.setAttribute("user", userModel);
+            request.getRequestDispatcher("/admin/customer/user-detail.jsp").forward(request, response);
+        }
     }
 
     @Override

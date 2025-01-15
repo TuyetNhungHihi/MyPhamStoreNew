@@ -8,53 +8,97 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.myphamstore.model.CartModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CartModelHelper;
+import vn.edu.hcmuaf.fit.myphamstore.model.CouponModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICartService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @ApplicationScoped
 public class CartServiceImpl implements ICartService {
     @Inject
     private IProductService productService;
+    @Inject
+    private CouponServiceImpl couponService;
     @Override
     public void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long productId = Long.parseLong(request.getParameter("productId"));
-        int quantity = Integer.parseInt(request.getParameter("quantity")==null?"1":request.getParameter("quantity"));
-        CartModel item = CartModel.builder().productId(productId).quantity(quantity).build();
+        int quantity = Integer.parseInt(request.getParameter("quantity") == null ? "1" : request.getParameter("quantity"));
+        ProductModel product = productService.findProductById(productId);
+        Long brandId = product.getBrandId();
+
+        CartModel item = CartModel.builder()
+                .productId(productId)
+                .quantity(quantity)
+                .brandId(brandId)
+                .build();
 
         HttpSession session = request.getSession();
-        List<CartModel> listCartItems = session.getAttribute("cart")==null ? new ArrayList<>() : (List<CartModel>) session.getAttribute("cart");
-        System.out.println("TRuoc khi them: "+listCartItems);
+        List<CartModel> listCartItems = session.getAttribute("cart") == null ? new ArrayList<>() : (List<CartModel>) session.getAttribute("cart");
+        System.out.println("Before adding: " + listCartItems);
         listCartItems.forEach(cartItem -> {
-            if (cartItem.equals(item)) { //check xem sản phẩm đã có trong giỏ hàng chưa
+            if (cartItem.equals(item)) { // Check if the product is already in the cart
                 cartItem.setQuantity(cartItem.getQuantity() + quantity);
                 return;
             }
         });
-        //nếu sản phẩm chưa có trong giỏ hàng thì thêm vào
-        if(!listCartItems.contains(item)){
+        // If the product is not in the cart, add it
+        if (!listCartItems.contains(item)) {
             listCartItems.add(item);
         }
 
-        System.out.println("Sau khi them: "+listCartItems);
+        System.out.println("After adding: " + listCartItems);
         session.setAttribute("cart", listCartItems);
         response.sendRedirect(request.getHeader("referer"));
     }
 
     @Override
-    public void updateCart(HttpServletRequest request, HttpServletResponse response) {
+    public void updateCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<CartModel> cart = (List<CartModel>) session.getAttribute("cart");
+        if (cart == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Cart not found");
+            return;
+        }
 
+        Long productId = Long.parseLong(request.getParameter("productId"));
+        Integer quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        if (quantity < 1) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quantity must be at least 1");
+            return;
+        }
+
+        for (CartModel item : cart) {
+            if (item.getProductId().equals(productId)) {
+                item.setQuantity(quantity);
+                break;
+            }
+        }
+
+        session.setAttribute("cart", cart);
+        response.sendRedirect(request.getHeader("referer"));
     }
 
     @Override
-    public void removeCartItem(HttpServletRequest request, HttpServletResponse response) {
+    public void removeCartItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<CartModel> cart = (List<CartModel>) session.getAttribute("cart");
+        if (cart == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        Long productId = Long.parseLong(request.getParameter("productId"));
+        cart.removeIf(item -> item.getProductId().equals(productId));
+
+        session.setAttribute("cart", cart);
+        response.sendRedirect(request.getHeader("referer"));
 
     }
 
@@ -66,21 +110,54 @@ public class CartServiceImpl implements ICartService {
     @Override
     public void displayCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<CartModel> listCartItems = (List<CartModel>)session.getAttribute("cart");
-        if(listCartItems == null){
+        List<CartModel> listCartItems = (List<CartModel>) session.getAttribute("cart");
+        if (listCartItems == null) {
             request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
             return;
         }
-        //khi giỏ hàng có sản phẩm thì hiển thị ra
+
         List<CartModelHelper> listCartDisplay = new ArrayList<>();
         AtomicLong totalAmount = new AtomicLong(0);
+        Set<Long> brandIds = new HashSet<>();
         listCartItems.forEach(cartItem -> {
             ProductModel product = productService.findProductById(cartItem.getProductId());
             totalAmount.addAndGet(product.getPrice() * cartItem.getQuantity());
             listCartDisplay.add(new CartModelHelper(product, cartItem.getQuantity()));
+            brandIds.add(product.getBrandId());
         });
+
+        List<CouponModel> discountCodes = couponService.findCouponsByBrandIds(brandIds);
+
+        String discountCode = request.getParameter("discountCode");
+        boolean isDiscountValid = false;
+        long discountAmount = 0;
+        if (discountCode != null) {
+            for (CouponModel coupon : discountCodes) {
+                if (coupon.getCode().equals(discountCode)) {
+                    isDiscountValid = true;
+                    discountAmount = calculateDiscount(totalAmount.get(), coupon);
+                    break;
+                }
+            }
+        }
+
+        long finalAmount = totalAmount.get() - discountAmount;
+
         request.setAttribute("listCartDisplay", listCartDisplay);
-        request.setAttribute("totalAmount", totalAmount);
+        request.setAttribute("totalAmount", totalAmount.get());
+        request.setAttribute("discountAmount", discountAmount);
+        request.setAttribute("finalAmount", finalAmount);
+        request.setAttribute("isDiscountValid", isDiscountValid);
+        request.setAttribute("discountCodes", discountCodes);
         request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
+    }
+
+    private long calculateDiscount(long totalAmount, CouponModel coupon) {
+        if (coupon.getDiscountType().equals("percentage")) {
+            return totalAmount * coupon.getDiscountValue() / 100;
+        } else if (coupon.getDiscountType().equals("fixed")) {
+            return coupon.getDiscountValue();
+        }
+        return 0;
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- 
@@ -82,7 +83,7 @@ Purchase:
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
     <!-- Header Wrapper Start -->
-    <div id="nav"></div>
+    <%@include file="/frontend/component/nav.jsp"%>
     <!-- Main Content -->
     <div class="form-bg">
       <div class="container">
@@ -98,13 +99,16 @@ Purchase:
                 />
               </div>
               <h3 class="title">Đăng kí</h3>
-              <form class="form-horizontal">
+              <form class="form-horizontal" method="post" action="/register">
                 <div class="form-group">
                   <label>Họ và tên</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Họ và tên"
+                    id="fullName"
+                    name="fullName"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -113,6 +117,9 @@ Purchase:
                     type="email"
                     class="form-control"
                     placeholder="Địa chỉ email"
+                    id="email"
+                    name="email"
+                    required
                   />
                 </div>
                 <div class="form-group">
@@ -132,8 +139,8 @@ Purchase:
                   <label>Nhập lại mật khẩu</label>
                   <input
                     type="password"
-                    id="re-password"
-                    name="re-password"
+                    id="rePassword"
+                    name="rePassword"
                     class="form-control"
                     placeholder="Nhập lại mật khẩu"
                     pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
@@ -141,47 +148,51 @@ Purchase:
                     required
                   />
                 </div>
-                <div
-                  id="password-error-message"
-                  class="alert alert-danger"
-                  role="alert"
-                  style="font-size: medium"
-                  hidden
-                >
-                  mật khẩu không khớp!
-                </div>
+
                 <h4 class="sub-title">Thông tin cá nhân</h4>
                 <div class="form-group">
                   <label>Số điện thoại</label>
                   <input
+                          id="phone"
+                          name="phone"
                     type="text"
                     class="form-control"
                     placeholder="Số điện thoại"
+                          required
                   />
                 </div>
                 <div class="form-group">
                   <label>Ngày sinh</label>
-                  <input type="date" class="form-control" />
+                  <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" />
                 </div>
                 <div class="form-group">
                   <label>Giới tính : </label>
                   <span style="margin-left: 20px">
-                    <input type="radio" id="Nam" name="gender" value="Nam" />
-                    <label for="Nam">Nam</label>
+                    <input type="radio" id="MALE" name="gender" value="MALE" />
+                    <label for="MALE">nam</label>
                   </span>
 
                   <span style="margin-left: 15px">
-                    <input type="radio" id="Nu" name="gender" value="Nữ" />
-                    <label for="Nu">Nữ</label>
+                    <input type="radio" id="FEMALE" name="gender" value="FEMALE" />
+                    <label for="FEMALE">nữ</label>
                   </span>
                 </div>
                 <div class="check-terms">
                   <input type="checkbox" class="checkbox" />
                   <span class="check-label">Tôi đồng ý với các điều khoản</span>
                 </div>
+                <div
+                        id="password-error-message"
+                        class="alert alert-danger"
+                        role="alert"
+                        style="font-size: medium"
+                        hidden
+                >
+                  mật khẩu không khớp!
+                </div>
                 <span class="signin-link"
                   >Đã có tài khoản? Nhấn vào đây để
-                  <a href="login.jsp">Đăng nhập</a></span
+                  <a href="<c:url value="/login"></c:url> ">Đăng nhập</a></span
                 >
                 <button class="btn signup">Tạo tài khoản</button>
               </form>
@@ -192,27 +203,8 @@ Purchase:
     </div>
     <!-- Brandlogo Wrapper End -->
 
-    <div id="footer"></div>
-    <script>
-      const header = document.getElementById("header");
-      const footer = document.getElementById("footer");
-      const nav = document.getElementById("nav");
+    <%@include file="/frontend/component/footer.jsp"%>
 
-      fetch("./footer.jsp")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          footer.innerHTML = data;
-        });
-      fetch("./nav.jsp")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          nav.innerHTML = data;
-        });
-    </script>
     <!--main js file start-->
     <script src="../static/js/jquery_min.js"></script>
     <script src="../static/js/wow.js"></script>

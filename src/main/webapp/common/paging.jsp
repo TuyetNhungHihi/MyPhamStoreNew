@@ -17,13 +17,26 @@
       </li>
 
       <!-- Page Numbers -->
-      <c:forEach var="i" begin="0" end="${totalPages-1}" varStatus="status">
-        <li class="<c:if test='${status.index + 1 == currentPage}'>active</c:if>">
-          <a href="?currentPage=${status.index + 1}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}">
-              ${status.index + 1}
-          </a>
-        </li>
-      </c:forEach>
+      <c:choose>
+        <c:when test="${totalPages < 2}">
+          <!-- Trường hợp chỉ có 1 trang -->
+          <li class="active">
+            <a href="?totalPages=${totalPages}&currentPage=1&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}">
+              1
+            </a>
+          </li>
+        </c:when>
+        <c:otherwise>
+          <!-- Trường hợp nhiều hơn 1 trang -->
+          <c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="status">
+            <li class="<c:if test='${status.index + 1 == currentPage}'>active</c:if>">
+              <a href="?totalPages=${totalPages}&currentPage=${status.index + 1}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}">
+                  ${status.index + 1}
+              </a>
+            </li>
+          </c:forEach>
+        </c:otherwise>
+      </c:choose>
 
       <!-- Next Button -->
       <li class="<c:if test='${currentPage >= totalPages}'>disabled</c:if>">

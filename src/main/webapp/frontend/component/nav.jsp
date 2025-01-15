@@ -106,11 +106,11 @@
             </li>
             <li>
                 <div class="ss_cart_value dropdown">
-<%--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">--%>
-<%--                        <p>${cart.size()}</p>--%>
-<%--                        <a href="<c:url value='/gio-hang' />"><img src="../static/images/header/cart_icon.png" alt="Cart" title="Yêu thích">--%>
-<%--                            <span>Giỏ hàng: <ins style="text-transform: lowercase;">đ</ins></span>--%>
-<%--                        </a>--%>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <p>${cart.size()}</p>
+                        <a href="<c:url value='/gio-hang' />"><img src="../static/images/header/cart_icon.png" alt="Cart" title="Yêu thích">
+                            <span>Giỏ hàng: <ins style="text-transform: lowercase;">đ</ins></span>
+                        </a>
 <%--                        <ul class="dropdown-menu">--%>
 <%--                            <c:forEach var="entry" items="${cart}">--%>
 <%--                                <c:set var="product" value="${productService.findProductById(entry.key)}"/>--%>

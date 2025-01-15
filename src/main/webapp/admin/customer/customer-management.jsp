@@ -44,12 +44,12 @@
             <h1 class="text-center " style="margin-bottom: 20px;">Quản lý khách hàng</h1>
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm khách hàng...">
+                    <form method="get" action="/admin-users" class="input-group">
+                        <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Tìm kiếm khách hàng...">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Tìm Kiếm</button>
+                            <button class="btn btn-default" type="submit">Tìm Kiếm</button>
                           </span>
-                    </div><!-- /input-group -->
+                    </form><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
                     <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 khách hàng</span>
@@ -83,7 +83,7 @@
                             </c:choose>
                         </td>
                         <td class="text-center">
-                            <a href="<c:url value="/admin-users?action=detail&id=${u.id}"/>" class="btn btn-primary">Chi Tiết</a>
+                            <a href="<c:url value="/admin-users?action=displayDetail&id=${u.id}"/>" class="btn btn-primary">Chi Tiết</a>
                             <c:choose>
                                 <c:when test="${u.status eq 'ACTIVE'}">
                                     <a href="<c:url value="/admin-users?action=lockUser&id=${u.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Khóa</a>
