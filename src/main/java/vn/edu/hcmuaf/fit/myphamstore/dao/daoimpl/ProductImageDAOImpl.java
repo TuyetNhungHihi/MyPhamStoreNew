@@ -13,8 +13,19 @@ import static java.rmi.server.LogStream.log;
 
 public class ProductImageDAOImpl implements IProductImageDAO {
     @Override
-    public String getProductImage(Long productId) {
-        return "";
+    public List<ProductImageModel> getProductImageById(Long productId) {
+        String query = "SELECT * FROM product_image WHERE product_id = :productId";
+        try {
+            List<ProductImageModel> result = JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(query)
+                    .bind("productId", productId)
+                    .mapToBean(ProductImageModel.class)
+                    .list());
+            return result;
+        } catch (Exception e) {
+            log("category not found");
+            e.printStackTrace();
+        return null;
+        }
     }
 
     @Override

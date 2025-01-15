@@ -3,6 +3,8 @@ package vn.edu.hcmuaf.fit.myphamstore.service;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
 import java.io.IOException;
@@ -20,4 +22,8 @@ public interface IProductService {
     List<ProductModel> getLatestProducts();
     ProductModel findProductById(Long id);
 
+    ProductModel getProductDetail(Long id);
+    BrandModel getBrandById(Long brandId);
+
+   List<ProductImageModel> getProductImageById(Long id);
 }

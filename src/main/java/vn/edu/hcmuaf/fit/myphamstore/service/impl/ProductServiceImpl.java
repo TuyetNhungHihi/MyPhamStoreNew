@@ -6,8 +6,13 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IProductImageDAO;
+import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.service.IProductImageService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
@@ -16,7 +21,10 @@ import java.util.List;
 public class ProductServiceImpl implements IProductService {
     @Inject
     private IProductDAO productDAO;
-
+    @Inject
+    private IBrandDAO brandDAO;
+    @Inject
+    private IProductImageDAO productImageDAO;
     @Override
     public Long getTotalPage(int numOfItems) {
         return productDAO.getTotalPage(numOfItems);
@@ -40,6 +48,21 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductModel findProductById(Long id) {
         return productDAO.getProductDetail(id);
+    }
+
+    @Override
+    public ProductModel getProductDetail(Long id) {
+        return productDAO.getProductDetail(id);
+    }
+
+    @Override
+    public BrandModel getBrandById(Long brandId) {
+        return brandDAO.findBrandById(brandId);
+    }
+
+    @Override
+    public List<ProductImageModel> getProductImageById(Long id) {
+        return productImageDAO.getProductImageById(id);
     }
 
     @Override
