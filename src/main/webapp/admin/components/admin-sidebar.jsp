@@ -10,9 +10,9 @@
 <div class="sidebar-brand">
   <div class="brand-flex">
     <img
-      src="/src/main/webapp/static/images/logo/logo5.svg"
-      class="img-logo"
-      alt="logo"
+            src="/src/main/webapp/static/images/logo/logo5.svg"
+            class="img-logo"
+            alt="logo"
     />
 
     <div class="brand-icons">
@@ -47,53 +47,53 @@
       <ul>
         <li>
           <a class="link-admin-header" href="/src/main/webapp/admin/admin-dashboard.html"
-            ><span class="las la-balance-scale"></span>Trang Chủ</a
+          ><span class="las la-balance-scale"></span>Trang Chủ</a
           >
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/employee/employee-management.html"
-            ><span class="las la-users"></span>Quản lý nhân viên</a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/employee/employee-management.html"
+          ><span class="las la-users"></span>Quản lý nhân viên</a
           >
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/order/order-management.html"
-            ><span class="las la-shopping-cart"></span>Quản lý đơn hàng</a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/order/order-management.html"
+          ><span class="las la-shopping-cart"></span>Quản lý đơn hàng</a
           >
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/product/product-management.html"
-            ><span class="fa fa-shopping-cart" style="font-size: medium"></span
-            >Quản lý sản phẩm</a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/product/product-management.html"
+          ><span class="fa fa-shopping-cart" style="font-size: medium"></span
+          >Quản lý sản phẩm</a
           >
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/category/category-management.html"
-            ><span class="las fa fa-tasks" style="font-size: medium"></span>Quản
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/category/category-management.html"
+          ><span class="las fa fa-tasks" style="font-size: medium"></span>Quản
             lý danh mục</a
           >
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/brand/brand-management.html"
-            ><span class="fa fa-sticky-note" style="font-size: medium"></span
-            >Quản lý nhãn hàng</a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/brand/brand-management.html"
+          ><span class="fa fa-sticky-note" style="font-size: medium"></span
+          >Quản lý nhãn hàng</a
           >
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/customer/customer-management.html"
-            ><span class="fa fa-slide" style="font-size: medium"></span
-            >Quản lý khách hàng</a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/customer/customer-management.html"
+          ><span class="fa fa-slide" style="font-size: medium"></span
+          >Quản lý khách hàng</a
           >
         </li>
         <li>
@@ -106,20 +106,20 @@
         </li>
         <li>
           <a
-            class="link-admin-header"
-            href="/src/main/webapp/admin/slide/slide-management.html"
-            ><span class="fa fa-slide" style="font-size: medium"></span
-            >Chỉnh sửa slide hiển thị</a
+                  class="link-admin-header"
+                  href="/src/main/webapp/admin/slide/slide-management.html"
+          ><span class="fa fa-slide" style="font-size: medium"></span
+          >Chỉnh sửa slide hiển thị</a
           >
         </li>
       </ul>
     </div>
     <div style="height: 100px; width: 250px; position: relative">
       <a
-        class="link-admin-header"
-        style="position: absolute; right: 20px; bottom: 30px; color: #efefef"
-        href="#"
-        ><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất
+              class="link-admin-header"
+              style="position: absolute; right: 20px; bottom: 30px; color: #efefef"
+              href="#"
+      ><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất
       </a>
     </div>
   </div>

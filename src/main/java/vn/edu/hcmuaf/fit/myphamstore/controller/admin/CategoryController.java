@@ -9,7 +9,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AdminCategoryController", value = "/admin/category")
+@WebServlet(name = "AdminCategoryController", value = "/admin/categories")
 public class CategoryController extends HttpServlet {
     @Inject
     private ICategoryService categoryService;
