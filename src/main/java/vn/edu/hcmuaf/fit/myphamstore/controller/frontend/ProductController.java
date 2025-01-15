@@ -13,13 +13,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class ProductController extends HttpServlet {
-    private IProductDAO productDAO;
-
-    @Override
-    public void init() throws ServletException {
-        productDAO = new ProductDAOImpl();
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

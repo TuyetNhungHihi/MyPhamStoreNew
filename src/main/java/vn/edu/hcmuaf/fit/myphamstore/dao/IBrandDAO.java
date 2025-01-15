@@ -8,6 +8,5 @@ import java.util.List;
 public interface IBrandDAO extends GenericDAO<BrandModel> {
     BrandModel findBrandById(Long id);
     BrandModel getBrandDetail(Long id);
-
     List<BrandModel> getAllBrands();
 }
