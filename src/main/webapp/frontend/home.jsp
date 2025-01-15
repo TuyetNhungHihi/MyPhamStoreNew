@@ -124,7 +124,7 @@ To change this template use File | Settings | File Templates.
 												<img src="${product.thumbnail}" alt="Product" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">${product.name}</a></h4>
+												<h4><a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
 												<p>${product.description}</p>
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
@@ -209,13 +209,13 @@ To change this template use File | Settings | File Templates.
 															 alt="Product" class="img-responsive">
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
-														<h4><a href="productDetail?id=${product.id}">${product.name}</a></h4>
+														<h4><a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
 														<p>${product.description}</p>
 														<del>${product.price}</del>
 														<ins>${product.price - (product.price * 0.2)}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
-														<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
+														<a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">Chi tiết sản phẩm</a>
 														<ul>
 															<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
 															<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
@@ -354,12 +354,12 @@ To change this template use File | Settings | File Templates.
 												<img src="${product.thumbnail}" alt="${product.name}" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp?id=${product.id}">${product.name}</a></h4>
+												<h4><a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
 												<p>${product.description}</p>
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
-												<a href="productDetail?id=${product.id}">Chi tiết sản phẩm</a>
+												<a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">Chi tiết sản phẩm</a>
 												<ul>
 													<li><button class="ss_btn">Thêm vào giỏ hàng</button></li>
 													<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
