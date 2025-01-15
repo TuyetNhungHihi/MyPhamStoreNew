@@ -79,7 +79,7 @@ CREATE TABLE `product` (
   `description` text  null,
   `is_available` boolean DEFAULT true,
   `thumbnail` varchar(500) NOT NULL,
-  `brand_id` int,
+  `brand_id` int ,
   `category_id` int,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
@@ -173,7 +173,10 @@ CREATE TABLE `coupon` (
   `created_at` datetime DEFAULT (now()),
   `is_available` boolean default true,
   `brand_id` int null
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0882a4ccc82f6bc420f3ef22a92f07f9c346986c
 );
 
 

@@ -92,6 +92,86 @@ INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`)
 (19, 'Music Instruments', 'Guitars, drums, and other musical instruments', NOW(), NOW()),
 (20, 'Art & Craft', 'Art supplies and DIY craft materials', NOW(), NOW());
 
+INSERT INTO `brand` (`name`, `logo`, `is_available`, `created_at`, `updated_at`)
+VALUES 
+('L\'Oreal', 'https://example.com/logos/loreal.png', TRUE, NOW(), NOW()),
+('Nivea', 'https://example.com/logos/nivea.png', TRUE, NOW(), NOW()),
+('The Body Shop', 'https://example.com/logos/thebodyshop.png', TRUE, NOW(), NOW()),
+('Clinique', 'https://example.com/logos/clinique.png', TRUE, NOW(), NOW()),
+('Neutrogena', 'https://example.com/logos/neutrogena.png', TRUE, NOW(), NOW()),
+('Maybelline', 'https://example.com/logos/maybelline.png', TRUE, NOW(), NOW()),
+('Estee Lauder', 'https://example.com/logos/esteelauder.png', TRUE, NOW(), NOW()),
+('MAC Cosmetics', 'https://example.com/logos/mac.png', TRUE, NOW(), NOW()),
+('Shiseido', 'https://example.com/logos/shiseido.png', TRUE, NOW(), NOW()),
+('Dove', 'https://example.com/logos/dove.png', TRUE, NOW(), NOW());
+
+
+
+
+INSERT INTO `order` (`id`, `address_id`, `user_id`, `status`, `payment_method`, `shipping_fee`, `note`, `total_price`, `order_date`, `confirm_at`) VALUES
+(1, 1, 1, 'PENDING', 'COD', 30000, 'Handle with care', 500000, NOW(), NOW()),
+(2, 2, 2, 'CONFIRMED', 'Online', 25000, 'Deliver ASAP', 800000, NOW(), NOW()),
+(3, 3, 3, 'DELIVERED', 'COD', 20000, 'No special instructions', 1200000, NOW(), NOW()),
+(4, 4, 4, 'PENDING', 'COD', 35000, 'Handle with care', 450000, NOW(), NULL),
+(5, 5, 5, 'DELIVERED', 'Online', 15000, 'Ring the bell twice', 900000, NOW(), NOW()),
+(7, 7, 7, 'PENDING', 'COD', 30000, 'Leave at door', 700000, NOW(), NULL),
+(8, 8, 8, 'DELIVERED', 'Online', 20000, '', 950000, NOW(), NOW()),
+(9, 9, 9, 'CONFIRMED', 'COD', 30000, '', 600000, NOW(), NOW()),
+(10, 10, 10, 'DELIVERED', 'COD', 15000, 'Deliver in the evening', 400000, NOW(), NOW()),
+(11, 11, 11, 'PENDING', 'Online', 25000, '', 500000, NOW(), NULL),
+(12, 12, 12, 'CONFIRMED', 'COD', 20000, '', 750000, NOW(), NOW()),
+(13, 13, 13, 'DELIVERED', 'COD', 30000, 'Handle with care', 850000, NOW(), NOW()),
+
+(15, 15, 15, 'PENDING', 'COD', 35000, '', 550000, NOW(), NULL),
+(16, 16, 16, 'DELIVERED', 'Online', 20000, 'Call before arriving', 300000, NOW(), NOW()),
+(17, 17, 17, 'CONFIRMED', 'COD', 25000, '', 800000, NOW(), NOW()),
+(18, 18, 18, 'DELIVERED', 'COD', 15000, 'Deliver to front desk', 650000, NOW(), NOW()),
+
+(20, 20, 20, 'DELIVERED', 'Online', 30000, 'Leave at security gate', 900000, NOW(), NOW());
+
+
+
+INSERT INTO `payment` (`id`, `order_id`, `user_id`, `method`, `status`, `amount`, `transaction_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'COD', 'COMPLETED', 500000, 'TX123456', NOW(), NOW()),
+(2, 2, 2, 'Online', 'COMPLETED', 800000, 'TX123457', NOW(), NOW()),
+(3, 3, 3, 'COD', 'COMPLETED', 1200000, 'TX123458', NOW(), NOW()),
+(4, 4, 4, 'COD', 'PENDING', 450000, 'TX123459', NOW(), NULL),
+(5, 5, 5, 'Online', 'COMPLETED', 900000, 'TX123460', NOW(), NOW()),
+(7, 7, 7, 'COD', 'PENDING', 700000, 'TX123462', NOW(), NULL),
+(8, 8, 8, 'Online', 'COMPLETED', 950000, 'TX123463', NOW(), NOW()),
+(9, 9, 9, 'COD', 'COMPLETED', 600000, 'TX123464', NOW(), NOW()),
+(10, 10, 10, 'COD', 'COMPLETED', 400000, 'TX123465', NOW(), NOW()),
+(11, 11, 11, 'Online', 'PENDING', 500000, 'TX123466', NOW(), NULL),
+(12, 12, 12, 'COD', 'COMPLETED', 750000, 'TX123467', NOW(), NOW()),
+(13, 13, 13, 'COD', 'COMPLETED', 850000, 'TX123468', NOW(), NOW()),
+(15, 15, 15, 'COD', 'PENDING', 550000, 'TX123470', NOW(), NULL),
+(16, 16, 16, 'Online', 'COMPLETED', 300000, 'TX123471', NOW(), NOW()),
+(17, 17, 17, 'COD', 'COMPLETED', 800000, 'TX123472', NOW(), NOW()),
+(18, 18, 18, 'COD', 'COMPLETED', 650000, 'TX123473', NOW(), NOW()),
+(20, 20, 20, 'Online', 'COMPLETED', 900000, 'TX123475', NOW(), NOW());
+
+INSERT INTO `coupon` (`code`, `min_order_value`, `discount_type`, `discount_value`, `start_date`, `end_date`, `current_usage`, `max_usage`, `created_at`, `is_available`, `brand_id`)
+VALUES 
+('SAVE10', 50000, 'PERCENTAGE', 10, '2025-01-01', '2025-12-31', 0, 100, NOW(), TRUE, 1),
+('DISCOUNT20', 100000, 'PERCENTAGE', 20, '2025-01-01', '2025-12-31', 0, 200, NOW(), TRUE, 2),
+('FIXED50', 200000, 'FIXED', 50000, '2025-02-01', '2025-11-30', 0, NULL, NOW(), TRUE, NULL),
+('WELCOME25', 0, 'PERCENTAGE', 25, '2025-01-15', '2025-12-15', 0, 50, NOW(), TRUE, 3),
+('WINTER15', 50000, 'FIXED', 15000, '2025-01-01', '2025-03-31', 0, 300, NOW(), TRUE, NULL),
+('SUMMER10', 100000, 'PERCENTAGE', 10, '2025-06-01', '2025-08-31', 0, 500, NOW(), TRUE, 4),
+('FREESHIP', 0, 'FIXED', 30000, '2025-01-01', '2025-12-31', 0, 1000, NOW(), TRUE, NULL),
+('BRANDOFF50', 300000, 'FIXED', 50000, '2025-01-20', '2025-07-20', 0, 100, NOW(), TRUE, 5),
+('SHOPMORE30', 50000, 'PERCENTAGE', 30, '2025-02-01', '2025-05-01', 0, NULL, NOW(), TRUE, NULL),
+('EXTRA100', 200000, 'FIXED', 100000, '2025-01-01', '2025-04-30', 0, 50, NOW(), TRUE, NULL),
+('NEWYEAR20', 100000, 'PERCENTAGE', 20, '2025-01-01', '2025-01-31', 0, 150, NOW(), TRUE, NULL),
+('SPRINGSALE15', 150000, 'PERCENTAGE', 15, '2025-03-01', '2025-05-31', 0, NULL, NOW(), TRUE, NULL),
+('AUTUMN20', 80000, 'PERCENTAGE', 20, '2025-09-01', '2025-11-30', 0, 200, NOW(), TRUE, 6),
+('HOLIDAY50', 0, 'FIXED', 50000, '2025-12-01', '2025-12-31', 0, 300, NOW(), TRUE, NULL),
+('STUDENT10', 50000, 'PERCENTAGE', 10, '2025-01-01', '2025-12-31', 0, 1000, NOW(), TRUE, 7),
+('LOYALTY25', 100000, 'PERCENTAGE', 25, '2025-01-01', '2025-12-31', 0, 200, NOW(), TRUE, 8),
+('BULKBUY30', 200000, 'PERCENTAGE', 30, '2025-01-01', '2025-06-30', 0, NULL, NOW(), TRUE, NULL),
+('FLASHSALE50', 0, 'PERCENTAGE', 50, '2025-01-15', '2025-01-20', 0, 500, NOW(), TRUE, NULL),
+('WEEKEND15', 100000, 'PERCENTAGE', 15, '2025-01-01', '2025-12-31', 0, 100, NOW(), TRUE, 9),
+('SPECIAL100', 300000, 'FIXED', 100000, '2025-01-01', '2025-03-31', 0, 50, NOW(), TRUE, 10);
 
 -- Dữ liệu mẫu cho bảng `product`
 INSERT INTO `product` (`id`, `name`, `price`, `cost_price`, `stock`, `sold_quantity`, `description`, `is_available`, `thumbnail`, `brand_id`, `category_id`, `created_at`, `updated_at`) VALUES
@@ -103,17 +183,17 @@ INSERT INTO `product` (`id`, `name`, `price`, `cost_price`, `stock`, `sold_quant
 (6, 'Lancome Moisturizer', 500000, 400000, 200, 80, 'Hydrating moisturizer', true, 'lancome_moisturizer.png', 7, 3, NOW(), NOW()),
 (7, 'Clinique Shampoo', 300000, 250000, 150, 60, 'Gentle shampoo for all hair types', true, 'clinique_shampoo.png', 8, 8, NOW(), NOW()),
 (8, 'Bobbi Brown Brushes', 400000, 300000, 200, 75, 'Professional makeup brushes', true, 'bobbi_brown_brushes.png', 9, 20, NOW(), NOW()),
-(9, 'Urban Decay Nail Polish', 150000, 100000, 300, 110, 'Vibrant nail polish colors', true, 'urban_decay_nail_polish.png', 12, 17, NOW(), NOW()),
-(10, 'Benefit Lotions', 450000, 350000, 150, 50, 'Soothing body lotions', true, 'benefit_lotions.png', 13, 15, NOW(), NOW()),
-(11, 'Sephora Lipstick', 320000, 250000, 180, 70, 'Rich pigment lipstick', true, 'sephora_lipstick.png', 14, 5, NOW(), NOW()),
-(12, 'Fenty Beauty Foundation', 550000, 450000, 90, 35, 'Flawless finish foundation', true, 'fenty_beauty_foundation.png', 15, 6, NOW(), NOW()),
-(13, 'Huda Beauty Eyeshadow', 700000, 600000, 120, 65, 'High-pigment eyeshadow', true, 'huda_beauty_eyeshadow.png', 18, 4, NOW(), NOW()),
-(14, 'Anastasia Brow Pencil', 300000, 250000, 200, 90, 'Perfect brow pencil', true, 'anastasia_brow_pencil.png', 19, 19, NOW(), NOW()),
-(15, 'Too Faced Conditioner', 350000, 300000, 180, 50, 'Nourishing hair conditioner', true, 'too_faced_conditioner.png', 17, 9, NOW(), NOW()),
-(16, 'Charlotte Tilbury Blush', 600000, 500000, 80, 40, 'Soft-focus blush', true, 'charlotte_tilbury_blush.png', 20, 4, NOW(), NOW()),
-(17, 'Shiseido Nail Remover', 200000, 150000, 300, 120, 'Quick nail polish remover', true, 'shiseido_nail_remover.png', 11, 18, NOW(), NOW()),
-(18, 'Tarte Body Wash', 400000, 300000, 140, 70, 'Gentle body wash', true, 'tarte_body_wash.png', 16, 14, NOW(), NOW()),
-(19, 'Benefit Hair Serum', 550000, 450000, 100, 45, 'Silky hair serum', true, 'benefit_hair_serum.png', 13, 7, NOW(), NOW()),
+(9, 'Urban Decay Nail Polish', 150000, 100000, 300, 110, 'Vibrant nail polish colors', true, 'urban_decay_nail_polish.png', 10, 17, NOW(), NOW()),
+(10, 'Benefit Lotions', 450000, 350000, 150, 50, 'Soothing body lotions', true, 'benefit_lotions.png', 9, 15, NOW(), NOW()),
+(11, 'Sephora Lipstick', 320000, 250000, 180, 70, 'Rich pigment lipstick', true, 'sephora_lipstick.png', 8, 5, NOW(), NOW()),
+(12, 'Fenty Beauty Foundation', 550000, 450000, 90, 35, 'Flawless finish foundation', true, 'fenty_beauty_foundation.png', 7, 6, NOW(), NOW()),
+(13, 'Huda Beauty Eyeshadow', 700000, 600000, 120, 65, 'High-pigment eyeshadow', true, 'huda_beauty_eyeshadow.png', 6, 4, NOW(), NOW()),
+(14, 'Anastasia Brow Pencil', 300000, 250000, 200, 90, 'Perfect brow pencil', true, 'anastasia_brow_pencil.png', 5, 19, NOW(), NOW()),
+(15, 'Too Faced Conditioner', 350000, 300000, 180, 50, 'Nourishing hair conditioner', true, 'too_faced_conditioner.png', 4, 9, NOW(), NOW()),
+(16, 'Charlotte Tilbury Blush', 600000, 500000, 80, 40, 'Soft-focus blush', true, 'charlotte_tilbury_blush.png', 3, 4, NOW(), NOW()),
+(17, 'Shiseido Nail Remover', 200000, 150000, 300, 120, 'Quick nail polish remover', true, 'shiseido_nail_remover.png', 2, 18, NOW(), NOW()),
+(18, 'Tarte Body Wash', 400000, 300000, 140, 70, 'Gentle body wash', true, 'tarte_body_wash.png', 1, 14, NOW(), NOW()),
+(19, 'Benefit Hair Serum', 550000, 450000, 100, 45, 'Silky hair serum', true, 'benefit_hair_serum.png', 5, 7, NOW(), NOW()),
 (20, 'MAC Compact Powder', 500000, 400000, 150, 60, 'Smooth compact powder', true, 'mac_compact_powder.png', 3, 4, NOW(), NOW());
 
 INSERT INTO `product_variant` (`id`, `product_id`, `name`, `price`, `stock`, `sold_quantity`, `thumbnail`, `is_available`, `created_at`, `updated_at`)
@@ -181,30 +261,6 @@ INSERT INTO `review` (`id`, `user_id`, `product_id`, `rating`, `comment`, `creat
 (19, 19, 19, 4, 'Decent.', NOW(), NOW()),
 (20, 20, 20, 5, 'Excellent!', NOW(), NOW());
 
-
-INSERT INTO `order` (`id`, `address_id`, `user_id`, `status`, `payment_method`, `shipping_fee`, `note`, `total_price`, `order_date`, `confirm_at`) VALUES
-(1, 1, 1, 'PENDING', 'COD', 30000, 'Handle with care', 500000, NOW(), NOW()),
-(2, 2, 2, 'CONFIRMED', 'Online', 25000, 'Deliver ASAP', 800000, NOW(), NOW()),
-(3, 3, 3, 'DELIVERED', 'COD', 20000, 'No special instructions', 1200000, NOW(), NOW()),
-(4, 4, 4, 'PENDING', 'COD', 35000, 'Handle with care', 450000, NOW(), NULL),
-(5, 5, 5, 'DELIVERED', 'Online', 15000, 'Ring the bell twice', 900000, NOW(), NOW()),
-(7, 7, 7, 'PENDING', 'COD', 30000, 'Leave at door', 700000, NOW(), NULL),
-(8, 8, 8, 'DELIVERED', 'Online', 20000, '', 950000, NOW(), NOW()),
-(9, 9, 9, 'CONFIRMED', 'COD', 30000, '', 600000, NOW(), NOW()),
-(10, 10, 10, 'DELIVERED', 'COD', 15000, 'Deliver in the evening', 400000, NOW(), NOW()),
-(11, 11, 11, 'PENDING', 'Online', 25000, '', 500000, NOW(), NULL),
-(12, 12, 12, 'CONFIRMED', 'COD', 20000, '', 750000, NOW(), NOW()),
-(13, 13, 13, 'DELIVERED', 'COD', 30000, 'Handle with care', 850000, NOW(), NOW()),
-
-(15, 15, 15, 'PENDING', 'COD', 35000, '', 550000, NOW(), NULL),
-(16, 16, 16, 'DELIVERED', 'Online', 20000, 'Call before arriving', 300000, NOW(), NOW()),
-(17, 17, 17, 'CONFIRMED', 'COD', 25000, '', 800000, NOW(), NOW()),
-(18, 18, 18, 'DELIVERED', 'COD', 15000, 'Deliver to front desk', 650000, NOW(), NOW()),
-
-(20, 20, 20, 'DELIVERED', 'Online', 30000, 'Leave at security gate', 900000, NOW(), NOW());
-
-
-
 INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `total_price`) VALUES
 (1, 1, 1, 2, 400000),
 (2, 1, 2, 1, 100000),
@@ -225,45 +281,3 @@ INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `total_p
 (18, 12, 18, 3, 750000),
 (19, 13, 19, 2, 700000);
 
-
-INSERT INTO `payment` (`id`, `order_id`, `user_id`, `method`, `status`, `amount`, `transaction_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'COD', 'COMPLETED', 500000, 'TX123456', NOW(), NOW()),
-(2, 2, 2, 'Online', 'COMPLETED', 800000, 'TX123457', NOW(), NOW()),
-(3, 3, 3, 'COD', 'COMPLETED', 1200000, 'TX123458', NOW(), NOW()),
-(4, 4, 4, 'COD', 'PENDING', 450000, 'TX123459', NOW(), NULL),
-(5, 5, 5, 'Online', 'COMPLETED', 900000, 'TX123460', NOW(), NOW()),
-(7, 7, 7, 'COD', 'PENDING', 700000, 'TX123462', NOW(), NULL),
-(8, 8, 8, 'Online', 'COMPLETED', 950000, 'TX123463', NOW(), NOW()),
-(9, 9, 9, 'COD', 'COMPLETED', 600000, 'TX123464', NOW(), NOW()),
-(10, 10, 10, 'COD', 'COMPLETED', 400000, 'TX123465', NOW(), NOW()),
-(11, 11, 11, 'Online', 'PENDING', 500000, 'TX123466', NOW(), NULL),
-(12, 12, 12, 'COD', 'COMPLETED', 750000, 'TX123467', NOW(), NOW()),
-(13, 13, 13, 'COD', 'COMPLETED', 850000, 'TX123468', NOW(), NOW()),
-(15, 15, 15, 'COD', 'PENDING', 550000, 'TX123470', NOW(), NULL),
-(16, 16, 16, 'Online', 'COMPLETED', 300000, 'TX123471', NOW(), NOW()),
-(17, 17, 17, 'COD', 'COMPLETED', 800000, 'TX123472', NOW(), NOW()),
-(18, 18, 18, 'COD', 'COMPLETED', 650000, 'TX123473', NOW(), NOW()),
-(20, 20, 20, 'Online', 'COMPLETED', 900000, 'TX123475', NOW(), NOW());
-
-INSERT INTO `coupon` (`code`, `min_order_value`, `discount_type`, `discount_value`, `start_date`, `end_date`, `current_usage`, `max_usage`, `created_at`)
-VALUES
-('SAVE10', 100000, 'PERCENTAGE', 10, '2025-01-01', '2025-12-31', 0, 100, NOW()),
-('SAVE20', 200000, 'PERCENTAGE', 20, '2025-01-01', '2025-12-31', 0, 50, NOW()),
-('WELCOME50', 50000, 'FIXED', 50000, '2025-01-01', '2025-12-31', 0, 200, NOW()),
-('FREESHIP', 0, 'FIXED', 30000, '2025-01-01', '2025-06-30', 0, NULL, NOW()),
-('NEWYEAR25', 250000, 'PERCENTAGE', 25, '2025-01-01', '2025-03-31', 0, 150, NOW()),
-('SUMMER15', 150000, 'PERCENTAGE', 15, '2025-06-01', '2025-08-31', 0, 100, NOW()),
-('WINTER30', 300000, 'PERCENTAGE', 30, '2025-11-01', '2025-12-31', 0, 50, NOW()),
-('LUCKY100', 1000000, 'FIXED', 100000, '2025-01-01', '2025-12-31', 0, 10, NOW()),
-('FLASH50', 50000, 'PERCENTAGE', 50, '2025-01-01', '2025-01-07', 0, 500, NOW()),
-('HOLIDAY20', 200000, 'PERCENTAGE', 20, '2025-12-15', '2025-12-31', 0, 100, NOW()),
-('BIRTHDAY', 0, 'FIXED', 150000, '2025-01-01', '2025-12-31', 0, 30, NOW()),
-('SHOPNOW10', 50000, 'PERCENTAGE', 10, '2025-01-01', '2025-12-31', 0, NULL, NOW()),
-('SPECIAL5', 100000, 'FIXED', 50000, '2025-01-01', '2025-06-30', 0, 500, NOW()),
-('EXTRA30', 300000, 'PERCENTAGE', 30, '2025-03-01', '2025-06-30', 0, 100, NOW()),
-('FAMILY20', 200000, 'PERCENTAGE', 20, '2025-07-01', '2025-09-30', 0, 100, NOW()),
-('VIP100', 1000000, 'FIXED', 200000, '2025-01-01', '2025-12-31', 0, 5, NOW()),
-('MIDWEEK25', 250000, 'PERCENTAGE', 25, '2025-01-01', '2025-01-31', 0, 100, NOW()),
-('BLACKFRIDAY', 0, 'PERCENTAGE', 50, '2025-11-25', '2025-11-30', 0, NULL, NOW()),
-('CYBERMONDAY', 0, 'PERCENTAGE', 40, '2025-12-01', '2025-12-02', 0, NULL, NOW()),
-('STUDENT10', 50000, 'PERCENTAGE', 10, '2025-01-01', '2025-12-31', 0, 300, NOW());
