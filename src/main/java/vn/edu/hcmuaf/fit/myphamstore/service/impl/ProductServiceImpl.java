@@ -97,7 +97,35 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public void insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String thumbnail = request.getParameter("thumbnail");
-        System.out.println(thumbnail);
+        String name = request.getParameter("productName");
+        String stock = request.getParameter("stock");
+        String description = request.getParameter("description");
+        String price = request.getParameter("price");
+        String costPrice = request.getParameter("costPrice");
+        String brandId = request.getParameter("brandId");
+        String categoryId = request.getParameter("categoryId");
+
+        ProductModel productModel = ProductModel.builder()
+                .name(name)
+                .description(description)
+                .price(Long.parseLong(price))
+                .costPrice(Long.parseLong(costPrice))
+                .brandId(Long.parseLong(brandId))
+                .categoryId(Long.parseLong(categoryId))
+                .thumbnail(thumbnail)
+                .isAvailable(true)
+                .build();
+        try{
+            Long isSuccess = productDAO.save(productModel);
+            if (isSuccess == null || isSuccess == 0) {
+                request.setAttribute("message", "Có lỗi xảy ra");
+            } else {
+                request.setAttribute("message", "Thêm sản phẩm thành công");
+                this.displayProduct(request, response);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

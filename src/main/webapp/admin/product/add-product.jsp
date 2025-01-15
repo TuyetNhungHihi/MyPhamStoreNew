@@ -58,13 +58,13 @@
                         <c:set var="formAction" value="/admin/products?action=update" />
                     </c:otherwise>
                 </c:choose>
-                <form class="" action="<c:url value="${formAction}"/>" enctype="multipart/form-data" method="post" style="padding: 0 100px 0 100px;">
+                <form class="" action="<c:url value="${formAction}"/>" method="post" style="padding: 0 100px 0 100px;">
                     <c:choose>
                         <c:when test="${!empty product}">
                             <div class="row">
                                 <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                                     <div class="input-group">
-                                        <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm</label>
+                                        <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm 1</label>
                                         <input type="text" class="form-control" id="productName" name="productName" placeholder="Tên sản phẩm..."
                                                aria-describedby="basic-addon1" value="${product.name}">
                                     </div>
@@ -107,9 +107,10 @@
                                     <div class="col-md-12 col-xs-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="basic-addon1">Thumbnail</span>
-                                            <input id="thumbnail" name="thumbnail" type="file" class="form-control"
+                                            <input id="thumbnail"  type="file" class="form-control"
                                                    placeholder="Hình ảnh sản phẩm..." aria-describedby="basic-addon1"
                                                    accept="image/*">
+                                            <input type="hidden" name="thumbnail">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
@@ -158,14 +159,14 @@
                                     <div class="input-group">
                                         <label class="input-group-addon" for="productName" id="basic-addon1">Tên Sản Phẩm</label>
                                         <input type="text" class="form-control" id="productName" name="productName" placeholder="Tên sản phẩm..."
-                                               aria-describedby="basic-addon1" >
+                                               aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                                     <div class="input-group">
-                                        <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Số lượng</label>
-                                        <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Số lượng..."
-                                               aria-describedby="basic-addon1" >
+                                        <label for="stock" class="input-group-addon" id="basic-addon1">Số lượng</label>
+                                        <input type="text" name="stock" id="stock" class="form-control" placeholder="Số lượng..."
+                                               aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                             </div>
@@ -174,14 +175,14 @@
                                     <div class="input-group">
                                         <label class="input-group-addon" id="basic-addon1" for="costPrice" >Giá nhập</label>
                                         <input type="text" id="costPrice" name="costPrice" class="form-control" placeholder="Giá nhập..."
-                                               aria-describedby="basic-addon1" >
+                                               aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                                     <div class="input-group" >
                                         <label for="price" class="input-group-addon" id="basic-addon1">Giá bán</label>
                                         <input type="text" id="price" name="price" class="form-control" placeholder="Giá bán..."
-                                               aria-describedby="basic-addon1">
+                                               aria-describedby="basic-addon1" required>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +190,7 @@
                                 <div class="col-md-12 col-xs-12">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Mô Tả</span>
-                                        <textarea  name="description" id="description" class="form-control" placeholder="Mô tả sản phẩm..."
+                                        <textarea required name="description" id="description" class="form-control" placeholder="Mô tả sản phẩm..."
                                              aria-describedby="basic-addon1"></textarea>
 
                                     </div>
@@ -203,14 +204,15 @@
                                             <span class="input-group-addon" id="basic-addon1">Thumbnail</span>
                                             <input id="imageInput" type="file" class="form-control"
                                                    placeholder="Hình ảnh sản phẩm..." aria-describedby="basic-addon1"
-                                                   accept="image/*">
+                                                   accept="image/*" required>
+                                            <input name="thumbnail" type="hidden">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="basic-addon1">Loại Sản Phẩm</span>
-                                            <select class="form-control" aria-label="Default select example">
-                                                <option selected disabled>Chọn loại sản phẩm...</option>
+                                            <select name="categoryId" class="form-control" aria-label="Default select example">
+                                                <option  selected disabled>Chọn loại sản phẩm...</option>
                                                 <c:forEach var="c" items="${categories}">
                                                     <option value="${c.id}">${c.name}</option>
                                                 </c:forEach>
@@ -221,7 +223,7 @@
                                     <div class="col-md-12 col-xs-12">
                                         <div class="input-group" style="margin-top: 20px;">
                                             <span class="input-group-addon" id="basic-addon1">Nhãn Hàng</span>
-                                            <select class="form-control" aria-label="Default select example">
+                                            <select name="brandId" class="form-control" aria-label="Default select example">
                                                 <option selected disabled>Chọn nhãn hàng...</option>
                                                 <c:forEach var="b" items="${brands}">
                                                     <option value="${b.id}">${b.name}</option>
@@ -232,7 +234,8 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="" alt="image" width="100%" id="thumbnail" name="thumbnail"  hidden>
+                                    <img src="" alt="image" width="100%" id="thumbnail"  hidden>
+
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 20px;">
@@ -240,7 +243,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Danh sách hình ảnh sản phẩm</span>
                                         <input id="mulpInputImage" name="mulpInputImage" type="file" accept="image/*" multiple class="form-control"
-                                               aria-describedby="basic-addon1"></input>
+                                               aria-describedby="basic-addon1" required></input>
                                     </div>
                                 </div>
                                 <div  hidden id="imageContainer" class="col-lg-12" style=" width: 100%; height: 200px; margin-top: 20px; overflow: hidden;">
@@ -274,6 +277,7 @@
                 reader.onload = function (e) {
                     document.getElementById('thumbnail').hidden = false;
                     document.getElementById('thumbnail').setAttribute('src', e.target.result)
+                    document.getElementsByName('thumbnail')[0].value = e.target.result;
                 };
                 reader.readAsDataURL(file); // Chuyển đổi tệp thành Base64
             } else {

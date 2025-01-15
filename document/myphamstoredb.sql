@@ -10,7 +10,7 @@ CREATE TABLE `user` (
   `phone` varchar(255) UNIQUE NOT NULL,
   `date_of_birth` date NOT NULL,
   `gender` ENUM ('MALE', 'FEMALE', 'OTHER') NOT NULL,
-  `avatar` varchar(500),
+  `avatar` longtext,
   `status` ENUM ('NONE', 'ACTIVE', 'INACTIVE') not null,
   `last_login` datetime,
   `created_at` datetime DEFAULT (now()),
@@ -48,7 +48,7 @@ CREATE TABLE `address` (
 CREATE TABLE `brand` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` nvarchar(255) NOT NULL,
-  `logo` varchar(500) NOT NULL,
+  `logo` longtext NOT NULL,
   `is_available` boolean default true,
   `created_at` datetime DEFAULT (now()),
   `updated_at` datetime DEFAULT (now())
@@ -76,9 +76,9 @@ CREATE TABLE `product` (
   `cost_price` int NOT NULL,
   `stock` int NOT NULL,
   `sold_quantity` int default 0,
-  `description` text  null,
+  `description` longtext  null,
   `is_available` boolean DEFAULT true,
-  `thumbnail` varchar(500) NOT NULL,
+  `thumbnail` longtext NOT NULL,
   `brand_id` int ,
   `category_id` int,
   `created_at` datetime DEFAULT (now()),
@@ -91,7 +91,7 @@ CREATE TABLE product_variant (
     price INT NOT NULL,
     stock INT DEFAULT 0,
     sold_quantity INT DEFAULT 0,
-    thumbnail TEXT(500) DEFAULT NULL, -- Ảnh riêng cho phiên bản
+    longtext DEFAULT NULL, -- Ảnh riêng cho phiên bản
     is_available BOOLEAN NOT NULL DEFAULT TRUE,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT NOW(),
@@ -131,7 +131,7 @@ CREATE TABLE `order_detail` (
 
 CREATE TABLE `slide` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `image` varchar(500) NOT NULL,
+  `image` longtext NOT NULL,
   `url` varchar(500) NOT NULL,
   `is_available` BOOLEAN NOT NULL DEFAULT TRUE,
   `created_at` datetime DEFAULT (now()),
