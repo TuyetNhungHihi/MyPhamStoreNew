@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,13 +59,14 @@
 
   <body>
     <div class="dashboard">
-      <!-- Sidebar -->
-      <div class="sidebar" id="sidebar"></div>
+      <div class="sidebar " id="sidebar">
+        <%@include file="/admin/components/admin-sidebar.jsp"%>
+      </div>
       <!-- end sidebar -->
       <!-- start header -->
-      <div class="main-content" id="header" style="margin-left: 0"></div>
-      <!-- end header -->
-
+      <div class="main-content" id="header" style="margin-left: 0; height: fit-content;">
+        <%@include file="/admin/components/admin-header.jsp"%>
+      </div>
       <!-- Main Content -->
       <main class="main-content row" style="margin-top: 76px">
         <!--style="display: flex; position: relative; height: min-content;"> -->
@@ -159,25 +162,6 @@
 
       <label for="sidebar" class="body-label" id="body-label"></label>
     </div>
-    <script>
-      const header = document.getElementById("header");
-      const sidebar1 = document.getElementById("sidebar");
-
-      fetch("components/admin-header.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          header.innerHTML = data;
-        });
-      fetch("components/admin-sidebar.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          sidebar1.innerHTML = data;
-        });
-    </script>
     <script src="../static/js/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
