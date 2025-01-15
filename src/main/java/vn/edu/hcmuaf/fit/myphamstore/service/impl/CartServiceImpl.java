@@ -49,12 +49,49 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public void updateCart(HttpServletRequest request, HttpServletResponse response) {
+    public void updateCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<CartModel> cart = (List<CartModel>) session.getAttribute("cart");
+        if (cart == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Cart not found");
+            return;
+        }
 
+        Long productId = Long.parseLong(request.getParameter("productId"));
+        Integer quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        if (quantity < 1) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quantity must be at least 1");
+            return;
+        }
+
+        for (CartModel item : cart) {
+            if (item.getProductId().equals(productId)) {
+                item.setQuantity(quantity);
+                break;
+            }
+        }
+
+        session.setAttribute("cart", cart);
+        response.sendRedirect(request.getHeader("referer"));
     }
 
     @Override
-    public void removeCartItem(HttpServletRequest request, HttpServletResponse response) {
+    public void removeCartItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<CartModel> cart = (List<CartModel>) session.getAttribute("cart");
+        if (cart == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        Long productId = Long.parseLong(request.getParameter("productId"));
+        cart.removeIf(item -> item.getProductId().equals(productId));
+
+        session.setAttribute("cart", cart);
+        response.sendRedirect(request.getHeader("referer"));
 
     }
 
