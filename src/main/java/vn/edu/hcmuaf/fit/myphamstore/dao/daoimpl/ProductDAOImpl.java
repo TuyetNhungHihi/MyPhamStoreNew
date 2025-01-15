@@ -107,6 +107,16 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public List<ProductModel> findVariantsByProductId(Long productId) {
+        String sql = "SELECT * FROM product_variant WHERE product_id = :productId";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("product_id", productId)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+    @Override
     public List<ProductModel> getLatestProducts() {
         String sql = "SELECT * FROM product ORDER BY created_at DESC LIMIT 5";
         return JDBIConnector.getJdbi().withHandle(handle ->

@@ -10,6 +10,6 @@ public interface IProductDAO extends GenericDAO<ProductModel> {
     List<ProductModel> getProductsByCategory(Long categoryId);
     List<ProductModel> getLatestProductsByCategory(Long categoryId, int limit);
     List<ProductModel> getAllProducts();
-
+    List<ProductModel> findVariantsByProductId(Long productId);
     List<ProductModel> getLatestProducts();
 }
