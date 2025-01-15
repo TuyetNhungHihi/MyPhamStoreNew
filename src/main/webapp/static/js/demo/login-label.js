@@ -19,7 +19,7 @@ window.onload = ()=>{
         `
     }else{
         loginLabel.innerHTML = `
-        <div class="ss_login_box">	<a href="./login.html"><span>Đăng nhập/Đăng ký</span> <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive"></a>
+        <div class="ss_login_box">	<a href="/login"><span>Đăng nhập/Đăng ký</span> <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive"></a>
             </div>
         `
     }

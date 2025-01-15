@@ -10,4 +10,6 @@ public class AdminAction {
     public static final String LOCK_USER = "lockUser";
     public static final String UNLOCK_USER = "unlockUser";
     public static final String SEARCH = "search";
+    public static final String PENDING = "pending";
+    public static final String DONE = "done";
 }
