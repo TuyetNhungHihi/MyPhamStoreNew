@@ -9,6 +9,6 @@ public interface IReviewDAO extends GenericDAO<ReviewModel> {
     ReviewModel findReviewById(Long id);
     ReviewModel getReviewDetail(Long id);
 
-    List<ReviewModel> getAllReviews();
+    List<ReviewModel> getAllReviewsByProductId();
 
 }

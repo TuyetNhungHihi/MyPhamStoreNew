@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @Setter
 @Getter
-public class ReviewModel {
+public class ReviewModel extends BaseModel{
     private Long userId;
     private Long productId;
     private String comment;

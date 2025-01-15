@@ -83,8 +83,6 @@ public class BrandDAOImpl implements IBrandDAO {
             log("Contact not found");
             return null;
         }
-        System.out.println(brandExisted);
-
         String sql = "UPDATE brand SET name = :name, logo = :logo,is_available = :isAvailable , updated_at = :updatedAt WHERE id = :id";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
