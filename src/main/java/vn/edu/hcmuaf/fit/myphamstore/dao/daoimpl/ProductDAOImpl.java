@@ -51,7 +51,31 @@ public class ProductDAOImpl implements IProductDAO {
 
     @Override
     public Long save(ProductModel entity) {
-        return 0L;
+        String sql = "INSERT INTO product (name, price, cost_price, stock, sold_quantity, description, is_available, thumbnail, brand_id, category_id, created_at, updated_at) " +
+                "VALUES (:name, :price, :costPrice, :stock, :soldQuantity, :description, :isAvailable, :thumbnail, :brandId, :categoryId, :createdAt, :updatedAt)";
+        try{
+         return JDBIConnector.getJdbi().withHandle(handle -> {
+             return handle.createUpdate(sql)
+                     .bind("name", entity.getName() != null ? entity.getName().trim() : "")
+                     .bind("price", entity.getPrice() != null ? entity.getPrice() : 0)
+                     .bind("costPrice", entity.getCostPrice() != null ? entity.getCostPrice() : 0)
+                     .bind("stock", entity.getStock() != null ? entity.getStock() : 0)
+                     .bind("soldQuantity", entity.getSoldQuantity() != null ? entity.getSoldQuantity() : 0)
+                     .bind("description", entity.getDescription() != null ? entity.getDescription().trim() : "")
+                     .bind("isAvailable", entity.getIsAvailable() != null ? entity.getIsAvailable() : true)
+                     .bind("thumbnail", entity.getThumbnail() != null ? entity.getThumbnail().trim() : "")
+                     .bind("brandId", entity.getBrandId() != null ? entity.getBrandId() : 1)
+                     .bind("categoryId", entity.getCategoryId() != null ? entity.getCategoryId() : 1)
+                     .bind("createdAt", new Timestamp(System.currentTimeMillis()))
+                     .bind("updatedAt", new Timestamp(System.currentTimeMillis()))
+                     .executeAndReturnGeneratedKeys("id")
+                     .mapTo(Long.class)
+                     .one();
+         });
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

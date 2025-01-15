@@ -42,6 +42,9 @@
         <main class="main-content row my-table-custom" ><!--style="display: flex; position: relative; height: min-content;"> -->
             <div class=" " style="width: 100%;">
                 <h1 class="text-center " style="margin-bottom: 20px;">Quản lý sản phẩm</h1>
+                <c:if test="${not empty message}">
+                    <div class="alert alert-success" role="alert">${message}</div>
+                </c:if>
                 <div class="row" style="margin-bottom: 20px;">
                     <div class="col-lg-6">
                         <div class="input-group">

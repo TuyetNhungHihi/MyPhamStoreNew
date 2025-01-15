@@ -63,17 +63,18 @@
         <div class="video_img_section_wrapper">
           <div class="cc_ps_top_slider_section">
             <div class="owl-carousel owl-theme">
+              <c:forEach var="productImage" items="${productImages}">
               <div class="item" data-hash="zero">
-                <c:forEach var="productImage" items="${productImages}">
                   <img class="small img-responsive" src="<c:out value="${productImage.url}"/>" alt="Product Image">
-                </c:forEach>
               </div>
+              </c:forEach>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="btc_shop_single_prod_right_section">
+          <h1><a href="#">${product.name}"</h1>
           <div class="btc_shop_sin_pro_icon_wrapper">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -84,13 +85,13 @@
               10 Đánh Giá <span><a href="#collapseFiveLeftfive">Đánh giá của bạn</a></span>
             </p>
             <div class="ss_featured_products_box_img_list_cont ss_featured_products_box_img_list_cont_single">
-              <h4><a href="#"><c:out value="${product.name}"/></a></h4>
+
 <%--              <p class="shop_pera"><c:out value="${product.brandName}"/></p>--%>
               <del><c:out value="${product.price}"/>đ</del> <ins><c:out value="${product.costPrice}"/>đ</ins>
-              <h5>
-                Giới Thiệu:
-                <c:out value="${product.description}"/>
-              </h5>
+<%--              <h5>--%>
+<%--                Giới Thiệu:--%>
+<%--                <c:out value="${product.description}"/>--%>
+<%--              </h5>--%>
             </div>
           </div>
           <div class="btc_shop_prod_quanty_bar">
@@ -142,137 +143,12 @@
             </div>
             <div id="description" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
               <div class="panel-body">
-                <div class="img-accordion">
-                  <img src="https://www.guardian.com.vn/media/catalog/product/cache/30b2b44eba57cd45fd3ef9287600968e/3/0/3023960_gqyugemvie8iz6za.png" width="230px" alt="" />
-                </div>
-                <div class="text-accordion">
-<%--                  <p>--%>
-<%--                    Giới Thiệu--%>
-<%--                    Kem Dưỡng Ẩm Skin1004 Làm Dịu Da Chiết Xuất Rau Má 75ml là kem dưỡng đến từ thương hiệu mỹ phẩm Skin1004 của--%>
-<%--                    Hàn Quốc, thành phần chứa 72% chiết xuất rau má cùng với 4 loại Ceramide có nguồn gốc từ thực vật--%>
-<%--                    làm dịu làn da mụn, kích ứng, giúp tăng cường hàng rào bảo vệ da, nuôi dưỡng làn da khỏe mạnh.--%>
-<%--                  </p>--%>
-  ${product.description}
-                  <!-- <ul class="accordian_list_item">
-                    <li>
-                      <i class="fa fa-long-arrow-right"></i> Lorem quis
-                      bibendum auctor, nisi elit consequat ipsum.
-                    </li>
-                    <li>
-                      <i class="fa fa-long-arrow-right"></i> Proin gravida
-                      nibh vel velit auctor aliquet. Aenean sollicitudin.
-                    </li>
-                    <li>
-                      <i class="fa fa-long-arrow-right"></i> Lorem quis
-                      bibendum auctor, nisi elit consequat ipsum.
-                    </li>
-                  </ul> -->
-                </div>
+               ${product.description}
               </div>
               <!-- end of panel-body -->
             </div>
           </div>
-          <!-- /.panel-default -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion_oneLeft"
-                   href="#usage" aria-expanded="false">
-                  Công Dụng
-                </a>
-              </h4>
-            </div>
-            <div id="usage" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-              <div class="panel-body">
-                <div class="text-accordion">
-                  <p>
-                    Giới Thiệu
-                    Công Dụng
-                    CÔNG DỤNG CHÍNH - MAIN FUNCTION:
 
-                    Sự kết hợp hoàn hảo của bộ đôi thành phần dịu nhẹ nhất – Rau má Centella Asiatica và Ceramide – mang năng lượng chữa lành và kháng khuẩn cực kì hiệu quả, nhẹ nhàng cấp ẩm sâu và nuôi dưỡng hàng rào bảo vệ da khỏe mạnh.
-                    Kết cấu dạng gel mỏng nhẹ như nước cùng khả năng hạ nhiệt độ tức thì và thấm cực nhanh vào sâu từng lớp biểu bì da, vỗ về làn da đang đỏ rát, kích ứng hay tổn thương do mụn trở lại trạng thái ổn định và mềm mịn hơn.
-                    Giúp kháng viêm cho mụn, giúp mờ thâm do mụn gây ra
-                    Khả năng hạ nhiệt và làm dịu tức thì giúp làn da đang đỏ rát hay kích ứng trở lại trạng thái mềm mịn
-                    Đặc biệt, độ lành tính đã được kiểm chứng phù hợp với làn da dầu mụn nhạy cảm nhất.
-                    Loại da phù hợp:
-
-                    Da dầu, Da nhạy cảm
-
-                    Giải pháp tình trạng da:
-
-                    Da tổn thương sau mụn, Da nhạy cảm - kích ứng
-                  </p>
-                  <!-- <ul class="accordian_list_item">
-                    <li>
-                      <i class="fa fa-long-arrow-right"></i> Proin gravida
-                      nibh vel velit auctor aliquet. Aenean sollicitudin.
-                    </li>
-                    <li>
-                      <i class="fa fa-long-arrow-right"></i> Lorem quis
-                      bibendum auctor, nisi elit consequat ipsum.
-                    </li>
-                  </ul> -->
-                </div>
-              </div>
-              <!-- end of panel-body -->
-            </div>
-          </div>
-          <!-- /.panel-default -->
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion_oneLeft"
-                   href="#ingredent" aria-expanded="false">
-                  Thành Phần
-                </a>
-              </h4>
-            </div>
-            <div id="ingredent" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-              <div class="panel-body">
-                <div class="text-accordion">
-                  <p>Giới Thiệu
-                    Công Dụng
-                    Thành Phần
-                    Thành phần chính:
-
-                    - Madecassoside: mang lại hiệu quả kháng khuẩn, kháng viêm cho mụn, giúp mờ thâm do mụn gây ra, làm dịu da và tái tạo da.
-
-                    - Asiaticoside: cải thiện sự cân bằng lượng dầu – nước, tổng hợp collagen ở tầng biểu bì giúp da căng mịn, mềm da và cấp ẩm cho da luôn mềm mại.
-
-                    - Asiatic Axit: giúp củng cố sức mạnh cho làn da, tăng cường khả năng tự bảo vệ của da, làm dịu làn da mẫn cảm, chống oxy hóa, cải thiện độ đàn hồi của da.
-
-                    - Madecassic Axid: làm dịu làn da mệt mỏi, cải thiện những vết tích trên da, làm lành làn da bị tổn thương, phục hồi, cân bằng độ ẩm và tái sinh tế bào da non.
-
-                    Thành phần đầy đủ:
-
-                    Centella Asiatica Extract (72%), Mentha Piperita (Peppermint) Leaf Extract, Ginger Eextract, Ceramide (NP), Coptis Chinensis Root Extract, Cacao Eextract, Sodium Hyaluronic, Beta - glucan, Ceramide (EOP), Ceramide (NS), Ceramide (AP)
-                  </p>
-                </div>
-              </div>
-              <!-- end of panel-body -->
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a class="collapsed" data-toggle="collapse" data-parent="#accordion_oneLeft"
-                   href="#introduction" aria-expanded="false">
-                  Hướng Dẫn Sử Dụng
-                </a>
-              </h4>
-            </div>
-            <div id="introduction" class="panel-collapse collapse" aria-expanded="false" role="tablist">
-              <div class="panel-body">
-                <div class="text-accordion">
-                  <p>Sử dụng ở bước cuối cùng trong chu trình chăm sóc da, lấy một lượng vừa đủ thoa đều lên da và vỗ nhẹ để dưỡng chất được hấp thụ tối đa.
-
-                    Dùng đều đặn mỗi ngày để đạt hiệu quả tối ưu.</p>
-                </div>
-              </div>
-              <!-- end of panel-body -->
-            </div>
-          </div>
           <!-- /.panel-default -->
           <div class="panel panel-default">
             <div class="panel-heading">
