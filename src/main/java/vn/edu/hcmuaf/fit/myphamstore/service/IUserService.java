@@ -18,8 +18,8 @@ public interface IUserService {
     void changePassword(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
     void register(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
     void displayListUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
-
+    UserModel findUserById(Long id);
     void lockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-
+    void detailUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void unlockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

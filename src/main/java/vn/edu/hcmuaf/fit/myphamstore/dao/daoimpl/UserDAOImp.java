@@ -240,14 +240,15 @@ public class UserDAOImp implements IUserDAO {
      */
     @Override
     public Long getTotalPage(int numOfItems) {
-        String query = "SELECT COUNT(*) FROM user";
+        String query = "SELECT COUNT(*) FROM user u JOIN user_has_role ur ON u.id = ur.user_id JOIN role r ON ur.role_id = r.id WHERE r.name = :roleName ";
 
         try {
             // Dùng withHandle để thực hiện câu lệnh SQL
             Long totalUser = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createQuery(query)
-                        .mapTo(Long.class)  // Ánh xạ kết quả thành kiểu Long
-                        .one();  // Chỉ lấy một kết quả duy nhất
+                        .bind("roleName", "CUSTOMER") // Gắn giá trị cho tham số :roleName
+                        .mapTo(Long.class)           // Ánh xạ kết quả thành kiểu Long
+                        .one();                      // Chỉ lấy một kết quả duy nhất
             });
 
             // Tính toán số trang
