@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,22 +46,21 @@
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm ...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Tìm Kiếm</button>
                           </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
-                    <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 nhãn hàng</span>
-                    <a href="add-brand.jsp" class="btn btn-primary" style="float: right;">Thêm nhãn hàng</a>
+                    <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 5)</strong> trên ${coupons.size() * totalPages} Mã giảm giá</span>
+                    <a href="add-brand.jsp" class="btn btn-primary" style="float: right;">Thêm Mã giảm giá</a>
                 </div>
             </div>
             <table class="table table-striped ">
                 <thead >
                 <tr>
                     <th  class="text-center">id</th>
-                    <th class="text-center">id nhãn hàng</th>
                     <th class="text-center">Mã Giảm Giá</th>
                     <th class="text-center">Giá trị đơn hàng tối thiểu</th>
                     <th class="text-center">Loại giảm giá</th>
@@ -79,7 +79,6 @@
                 <c:forEach var="coupon" items="${coupons}">
                     <tr>
                         <td class="text-center">${coupon.id}</td>
-                        <td class="text-center">${coupon.brandId}</td>
                         <td class="text-center">${coupon.code}</td>
                         <td class="text-center">${coupon.minOrderValue}đ</td>
                         <td class="text-center">${coupon.discountType}</td>
@@ -99,13 +98,13 @@
                                 </c:otherwise>
                             </c:choose>
                         <td class="text-center">
-                            <a href="<c:url value="/admin/coupon?action=edit&id=${coupon.id}"/>" class="btn btn-primary">Sửa</a>
+                            <a href="<c:url value="/admin/coupons?action=edit&id=${coupon.id}"/>" class="btn btn-primary">Sửa</a>
                             <c:choose>
                                 <c:when test="${coupon.isAvailable}">
-                                    <a href="<c:url value="/admin/coupon?action=stopBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Hiệu Lực</a>
+                                    <a href="<c:url value="/admin/coupons?action=stopBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Ngưng Hiệu Lực</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value="/admin/coupon?action=startBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Có Hiệu Lực</a>
+                                    <a href="<c:url value="/admin/coupons?action=startBuying&id=${coupon.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Có Hiệu Lực</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>

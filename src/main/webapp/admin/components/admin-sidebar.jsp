@@ -87,14 +87,6 @@
             <span class="las la-balance-scale"></span>Quản lý slide hiển thị
           </a>
         </li>
-        <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/slide/slide-management.html"
-          ><span class="fa fa-slide" style="font-size: medium"></span
-          >Chỉnh sửa slide hiển thị</a
-          >
-        </li>
       </ul>
     </div>
     <div style="height: 100px; width: 250px; position: relative">

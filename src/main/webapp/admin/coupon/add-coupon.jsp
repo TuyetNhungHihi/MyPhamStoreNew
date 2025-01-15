@@ -101,13 +101,6 @@
             <div class="row">
               <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                 <div class="input-group">
-                  <label class="input-group-addon" for="productName" id="basic-addon1">Mã nhãn hàng</label>
-                  <input type="text" class="form-control" id="productName" name="productName" placeholder="Mã nhãn hàng..."
-                         aria-describedby="basic-addon1" value="${coupon.brandId}">
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
-                <div class="input-group">
                   <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Code</label>
                   <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" placeholder="Code..."
                          aria-describedby="basic-addon1" value="${coupon.code}">
