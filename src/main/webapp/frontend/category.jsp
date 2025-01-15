@@ -204,8 +204,14 @@ To change this template use File | Settings | File Templates.
 															<label class="half" title="0.5 stars"></label>
 														</fieldset>
 														<ul>
-															<li><button class="ss_btn">Thêm vào giỏ</button></li>
-															<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+															<form method="post" action="/gio-hang">
+																<input type="hidden" name="action" value="add">
+																<input type="hidden" name="productId" value="${product.id}">
+																<button type="submit" class="ss_btn">Thêm vào giỏ</button>
+															</form>
+
+															<li><a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a></li>
+
 														</ul>
 													</div>
 												</div>
