@@ -52,8 +52,8 @@
                         </div><!-- /input-group -->
                       </div><!-- /.col-lg-6 -->
                       <div class="col-lg-6">
-                        <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 sản phẩm</span>
-                        <a href="add-product.jsp" class="btn btn-primary" style="float: right;">Thêm sản phẩm</a>
+                        <span style="float: left; margin-top: 5px;"><strong>Hiển thị ${pageSize}</strong> trên ${totalItems} sản phẩm</span>
+                        <a href="<c:url value="/admin/products?action=add"/> " class="btn btn-primary" style="float: right;">Thêm sản phẩm</a>
                       </div>
                 </div>
                 <table class="table table-striped ">
@@ -73,7 +73,7 @@
                     <c:forEach var="p" items="${products}">
                         <tr>
                             <td class="text-center">${p.id}</td>
-                            <td >${p.name}</td>
+                            <td style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis; max-width: 700px">${p.name}</td>
                             <td class="text-center">${p.price}đ</td>
                             <td class="text-center">${p.stock}</td>
                             <td class="text-center">${p.soldQuantity}</td>

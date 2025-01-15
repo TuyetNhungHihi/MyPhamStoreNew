@@ -16,7 +16,7 @@ public class ProductController extends HttpServlet {
     @Inject
     private IProductService productService;
     private static final long serialVersionUID = 1L;
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null || action.equalsIgnoreCase(AdminAction.DISPLAY)) {
@@ -31,4 +31,13 @@ public class ProductController extends HttpServlet {
             productService.updateProduct(request, response);
         }
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //them sua xoa san
+        String action = request.getParameter("action");
+        if(action.equalsIgnoreCase(AdminAction.INSERT)){
+            productService.insertProduct(request, response);
+        }
+    }
+
 }

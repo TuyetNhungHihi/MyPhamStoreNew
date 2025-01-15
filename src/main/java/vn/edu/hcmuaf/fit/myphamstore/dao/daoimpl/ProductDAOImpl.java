@@ -128,6 +128,21 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public Long countAllProducts() {
+        String query = "SELECT COUNT(*) FROM product";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle -> {
+                return handle.createQuery(query)
+                        .mapTo(Long.class)
+                        .one();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0L;
+    }
+
+    @Override
     public List<ProductModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào
         if (currentPage < 1) currentPage = 1;
