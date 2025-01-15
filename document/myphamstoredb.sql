@@ -171,9 +171,7 @@ CREATE TABLE `coupon` (
   `current_usage` int DEFAULT 0,
   `max_usage` int  null,
   `created_at` datetime DEFAULT (now()),
-  `is_available` boolean default true,
-  `brand_id` int null
-
+  `is_available` boolean default true
 );
 
 
@@ -217,5 +215,3 @@ ALTER TABLE `payment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 ALTER TABLE `wishlist` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 ALTER TABLE `wishlist` ADD FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
-
-ALTER TABLE `coupon` ADD FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`);

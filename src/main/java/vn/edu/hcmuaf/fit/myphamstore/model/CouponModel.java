@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CouponModel extends BaseModel{
-    private Long brandId;
     private String code;
     private Long minOrderValue;
     private DiscountType discountType;

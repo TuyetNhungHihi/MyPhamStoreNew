@@ -12,7 +12,6 @@ import java.util.Set;
 public interface ICouponService {
     CouponModel findCouponById(Long id);
 
-    List<CouponModel> findCouponsByBrandIds(Set<Long> brandIds);
 
     List<CouponModel> pagingCoupon(String keyword, int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
