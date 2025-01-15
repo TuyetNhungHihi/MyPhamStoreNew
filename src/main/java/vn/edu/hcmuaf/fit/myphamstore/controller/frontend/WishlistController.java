@@ -22,6 +22,14 @@ public class WishlistController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productId = request.getParameter("productId");
+        if (productId == null || productId.isEmpty()) {
+            response.setContentType("application/json");
+            PrintWriter out = response.getWriter();
+            out.print("{\"success\": false, \"message\": \"Product ID is missing.\"}");
+            out.flush();
+            return;
+        }
+
         HttpSession session = request.getSession();
         List<ProductModel> wishlist = (List<ProductModel>) session.getAttribute("wishlist");
 
@@ -43,5 +51,12 @@ public class WishlistController extends HttpServlet {
             out.print("{\"success\": false}");
             out.flush();
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
     }
 }
