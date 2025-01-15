@@ -11,7 +11,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
 
-@WebServlet(name = "Product-Management", value = "/admin/products")
+@WebServlet(name = "AdminProductManagement", value = "/admin/products")
 public class ProductController extends HttpServlet {
     @Inject
     private IProductService productService;

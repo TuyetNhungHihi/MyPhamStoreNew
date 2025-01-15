@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
+<%@include file="/common/tablib.jsp"%>
 <style>
   .link-admin-header:hover {
     text-decoration: underline #2c3e50;
@@ -46,63 +46,46 @@
       <!-- <span class="category">Application</span> -->
       <ul>
         <li>
-          <a class="link-admin-header" href="/src/main/webapp/admin/admin-dashboard.html"
-          ><span class="las la-balance-scale"></span>Trang Chủ</a
-          >
+          <a class="link-admin-header" href="<c:url value="/admin" />">
+            <span class="las la-balance-scale"></span>Trang Chủ
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/employee/employee-management.html"
-          ><span class="las la-users"></span>Quản lý nhân viên</a
-          >
+        <li>
+          <a class="link-admin-header" href="<c:url value="/admin-users" />">
+            <span class="las la-balance-scale"></span>Quản lý người dùng
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/order/order-management.html"
-          ><span class="las la-shopping-cart"></span>Quản lý đơn hàng</a
-          >
+        <li>
+          <a class="link-admin-header" href="<c:url value="/admin/orders" />">
+            <span class="las la-balance-scale"></span>Quản lý đơn hàng
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/product/product-management.html"
-          ><span class="fa fa-shopping-cart" style="font-size: medium"></span
-          >Quản lý sản phẩm</a
-          >
+          <a class="link-admin-header" href="<c:url value="/admin/products" />">
+            <span class="las la-balance-scale"></span>Quản lý sản phẩm
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/category/category-management.html"
-          ><span class="las fa fa-tasks" style="font-size: medium"></span>Quản
-            lý danh mục</a
-          >
+          <a class="link-admin-header" href="<c:url value="/admin/categories" />">
+            <span class="las la-balance-scale"></span>Quản lý danh mục
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/brand/brand-management.html"
-          ><span class="fa fa-sticky-note" style="font-size: medium"></span
-          >Quản lý nhãn hàng</a
-          >
+          <a class="link-admin-header" href="<c:url value="/admin/brands" />">
+            <span class="las la-balance-scale"></span>Quản lý nhãn hàng
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/customer/customer-management.html"
-          ><span class="fa fa-slide" style="font-size: medium"></span
-          >Quản lý khách hàng</a
-          >
+          <a class="link-admin-header" href="<c:url value="/admin/coupons" />">
+            <span class="las la-balance-scale"></span>Quản lý mã giảm giá
+          </a>
         </li>
         <li>
-          <a
-                  class="link-admin-header"
-                  href="/src/main/webapp/admin/coupon/coupon-management.html"
-          ><span class="fa fa-slide" style="font-size: medium"></span
-          >Quản lý Mã Giảm Giá</a
-          >
+          <a class="link-admin-header" href="<c:url value="/admin/slides" />">
+            <span class="las la-balance-scale"></span>Quản lý slide hiển thị
+          </a>
         </li>
         <li>
           <a
