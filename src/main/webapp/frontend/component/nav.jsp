@@ -79,7 +79,7 @@
             <li>
                 <div class="ss_notification_box">
                     <ul>
-                        <li><a href="/src/main/webapp/frontend/wishlist.html"><i class="fa fa-heart"
+                        <li><a href="<c:url value='/wishlist' />"><i class="fa fa-heart"
                                     aria-hidden="true"></i><span>0</span></a>
                         </li>
                         <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i><span>2</span></a>
