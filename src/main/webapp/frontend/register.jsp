@@ -99,6 +99,9 @@ Purchase:
                 />
               </div>
               <h3 class="title">Đăng kí</h3>
+              <c:if test="${!empty message}">
+                <div style="font-size: 14px" class="alert alert-warning" role="alert">${message}</div>
+              </c:if>
               <form class="form-horizontal" method="post" action="/register">
                 <div class="form-group">
                   <label>Họ và tên</label>

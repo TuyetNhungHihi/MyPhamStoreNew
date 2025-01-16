@@ -25,7 +25,7 @@ public class UserDAOImp implements IUserDAO {
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Hash password trước khi lưu
-                String hashedPassword = PasswordUtils.hashPassword(entity.getPassword());
+                String hashedPassword = PasswordUtils.hashPassword(entity.getPassword()) ;
 
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
@@ -151,8 +151,7 @@ public class UserDAOImp implements IUserDAO {
                         .mapTo(String.class)
                         .findOne()
                         .orElse(null);
-
-                return hashedPassword != null && PasswordUtils.verifyPassword(password, hashedPassword);
+                return hashedPassword != null && PasswordUtils.verifyPassword(password.trim(), hashedPassword);
             });
         } catch (Exception e) {
             log.error("Error during login", e);

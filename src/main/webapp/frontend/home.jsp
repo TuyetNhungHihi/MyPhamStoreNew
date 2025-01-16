@@ -38,8 +38,20 @@ To change this template use File | Settings | File Templates.
 	<link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
 
 </head>
-
+<style>
+	.limited-text {
+		display: -webkit-box; /* Sử dụng flexbox ẩn nội dung */
+		-webkit-box-orient: vertical; /* Đặt hướng box theo chiều dọc */
+		overflow: hidden; /* Ẩn phần văn bản bị tràn */
+		text-overflow: ellipsis; /* Thêm dấu "..." */
+		-webkit-line-clamp: 2; /* Giới hạn số dòng hiển thị */
+		line-height: 1.5; /* Đặt chiều cao dòng để tính dòng */
+		max-height: calc(1.5em * 2); /* Chiều cao tối đa tương ứng với 2 dòng */
+	}
+</style>
 <body>
+
+
 	<!-- preloader Start -->
 	<div id="preloader">
 		<div id="status">
@@ -108,7 +120,7 @@ To change this template use File | Settings | File Templates.
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-12">
 					<div class="service-img">
-						<img src="https://file.hstatic.net/1000006063/file/banner_thuong_hieu_noi_bat_pc_489_x_955_76d4bb5104914396b78f2db70ae4c231.png" alt="">
+						<img src="https://file.hstatic.net/1000006063/file/banner_thuong_hieu_noi_bat_pc_489_x_955_76d4bb5104914396b78f2db70ae4c231.png" alt="" height="500px">
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9 col-sm-12 col-12">
@@ -124,12 +136,11 @@ To change this template use File | Settings | File Templates.
 												<img src="${product.thumbnail}" alt="Product" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="<c:url value="/product-detail?id=${product.id}" />">${product.name}</a></h4>
-												<p>${product.description}</p>
+												<h4><a class="limited-text" href="<c:url value="/product-detail?id=${product.id}"  />">${product.name}</a></h4>
+
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
-												<a href="/product-detail?id=${product.id}">Chi tiết sản phẩm</a>
 												<fieldset class="rating">
 													<input type="radio" name="rating" value="5" />
 													<label class="full" title="5 stars"></label>
@@ -152,7 +163,10 @@ To change this template use File | Settings | File Templates.
 													<input type="radio" name="rating" value="half" />
 													<label class="half" title="0.5 stars"></label>
 												</fieldset>
-												<ul>
+												<ul style="    display: flex
+;
+    padding-top: 15px;
+    justify-content: center;">
 													<form method="post" action="/gio-hang">
 														<input type="hidden" name="action" value="add">
 														<input type="hidden" name="productId" value="${product.id}">
@@ -209,14 +223,15 @@ To change this template use File | Settings | File Templates.
 															 alt="Product" class="img-responsive">
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
-														<h4><a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
-														<p>${product.description}</p>
+														<h4><a  class="limited-text" href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
 														<del>${product.price}</del>
 														<ins>${product.price - (product.price * 0.2)}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
-														<a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">Chi tiết sản phẩm</a>
-														<ul>
+														<ul style="    display: flex
+;
+    padding-top: 15px;
+    justify-content: center;">
 															<form method="post" action="/gio-hang">
 																<input type="hidden" name="action" value="add">
 																<input type="hidden" name="productId" value="${product.id}">
@@ -360,13 +375,14 @@ To change this template use File | Settings | File Templates.
 												<img src="${product.thumbnail}" alt="${product.name}" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
-												<p>${product.description}</p>
+												<h4><a class="limited-text" href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
-												<a href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">Chi tiết sản phẩm</a>
-												<ul>
+												<ul style="    display: flex
+;
+    padding-top: 15px;
+    justify-content: center;">
 													<form method="post" action="/gio-hang">
 														<input type="hidden" name="action" value="add">
 														<input type="hidden" name="productId" value="${product.id}">

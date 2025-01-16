@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.RoleType;
+import vn.edu.hcmuaf.fit.myphamstore.common.SendEmail;
 import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IOtpDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IRoleDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
@@ -27,6 +29,8 @@ public class UserServiceImpl implements IUserService {
     private IUserDAO userDAO;
     @Inject
     private IRoleDAO roleDAO;
+    @Inject
+    private IOtpDAO otpDAO;
 
     @Override
     public List<UserModel> getUsersWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
@@ -67,18 +71,20 @@ public class UserServiceImpl implements IUserService {
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        boolean isAuthenticated = this.checkLogin(email, password);
+        boolean isAuthenticated = this.checkLogin(email.trim(), password.trim());
+        System.out.println(email);
+        System.out.println(password);
         if (isAuthenticated) {
             UserModel user = this.findUserByEmail(email);
             if (user != null) {
                 request.getSession().setAttribute("user", user);
                 response.sendRedirect(request.getContextPath() + "/trang-chu");
             } else {
-                request.setAttribute("errorMessage", "Sai email hoặc mật khẩu");
+                request.setAttribute("message", "Sai email hoặc mật khẩu");
                 request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
             }
         } else {
-            request.setAttribute("errorMessage", "Sai email hoặc mật khẩu");
+            request.setAttribute("message", "Sai email hoặc mật khẩu");
             request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
         }
     }
@@ -132,14 +138,16 @@ public class UserServiceImpl implements IUserService {
                 .email(email)
                 .phone(phone)
                 .status(UserStatus.INACTIVE)
-                .password(password)
+                .password(password.trim())
                 .avatar(null).build();
         Long savedUserId = userDAO.save(user);
-        System.out.println(savedUserId);
         if( savedUserId!= null && savedUserId  > 0){
             roleDAO.setRoleToUser(RoleType.CUSTOMER, savedUserId);
         }
-        request.setAttribute("message", "Đăng ký thành công");
+        String otp = otpDAO.generateOtp();
+        otpDAO.saveOtp(email, otp);
+        SendEmail.sendEmail(email, otp);
+        request.setAttribute("message", "Đăng ký thành công, Vui lòng kiểm tra email để kích hoạt tài khoản");
         request.getRequestDispatcher("/frontend/register.jsp").forward(request, response);
     }
 
@@ -228,6 +236,26 @@ public class UserServiceImpl implements IUserService {
         }
 
         this.displayListUsers(request,response);
+    }
+
+    @Override
+    public void verifyOtp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String otp = request.getParameter("otp");
+        Boolean verify = otpDAO.verifyOtp(email.trim(), otp.trim());
+        System.out.println(verify);
+        System.out.println(email);
+        System.out.println(otp);
+        if(verify) {
+            UserModel user = userDAO.getUserByEmail(email);
+            user.setStatus(UserStatus.ACTIVE);
+            userDAO.update(user);
+            request.setAttribute("message", "Kích hoạt tài khoản thành công");
+        }else {
+            request.setAttribute("message", "Mã OTP không chính xác");
+            request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
+        }
+        request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
     }
 
 

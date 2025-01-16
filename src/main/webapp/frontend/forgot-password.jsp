@@ -85,7 +85,7 @@ Purchase:
     <!-- Top Scroll Start -->
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
-    <div id="nav"></div>
+    <div id="nav"><%@include file="component/nav.jsp"%></div>
     <!-- Main Content -->
     <div class="container-fluid">
       <div class="row main-content bg-success text-center" style="width: 30%">
@@ -124,26 +124,7 @@ Purchase:
     <!-- Brandlogo Wrapper End -->
 
     <div id="footer"></div>
-    <script>
-      const header = document.getElementById("header");
-      const footer = document.getElementById("footer");
-      const nav = document.getElementById("nav");
-
-      fetch("./footer.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          footer.innerHTML = data;
-        });
-      fetch("./nav.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          nav.innerHTML = data;
-        });
-    </script>
+    
     <!--main js file start-->
     <script src="../static/js/jquery_min.js"></script>
     <script src="../static/js/wow.js"></script>

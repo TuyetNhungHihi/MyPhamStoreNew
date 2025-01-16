@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -80,8 +82,8 @@ Purchase:
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
     <!-- Header Wrapper Start -->
-    <div id="nav"></div>
-    <div id="header"></div>
+    <div id="nav"><%@include file="component/nav.jsp"%></div>
+    <div id="header"><%@include file="component/header.jsp"%></div>
     <!-- Header Wrapper End -->
     <!-- ss inner title Wrapper Start -->
     <div class="ss_inner_title_wrapper">
