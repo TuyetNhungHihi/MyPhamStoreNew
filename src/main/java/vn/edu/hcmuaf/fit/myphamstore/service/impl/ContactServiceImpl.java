@@ -27,8 +27,11 @@ public class ContactServiceImpl implements IContactService {
     }
 
     @Override
-    public List<ContactModel> pagingBrand(String keyword, int currentPage, int pageSize, String orderBy) {
-        return contactDAO.findAll(keyword, currentPage, pageSize, orderBy);
+    public List<ContactModel> getContactsWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
+        if (keyword != null && !keyword.isEmpty()) {
+            keyword = keyword.trim();
+        }
+        return this.contactDAO.findAll(keyword, currentPage, pageSize, orderBy);
     }
 
     @Override
@@ -39,8 +42,8 @@ public class ContactServiceImpl implements IContactService {
         int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
 
-        List<ContactModel> contacts = this.pagingBrand(keyword, currentPage, pageSize, orderBy);
-        Long totalPages = this.getTotalPage(5);
+        List<ContactModel> contacts = this.getContactsWithPaging(keyword, currentPage, pageSize, orderBy);
+        Long totalPages = this.contactDAO.getTotalPage(5);
 
         request.setAttribute("contacts", contacts);
         request.setAttribute("totalPages", totalPages);
