@@ -13,7 +13,7 @@ public interface ICouponService {
     CouponModel findCouponById(Long id);
 
 
-    List<CouponModel> pagingCoupon(String keyword, int currentPage, int pageSize, String orderBy);
+    List<CouponModel> getCouponsWithPaging(String keyword, int currentPage, int pageSize, String orderBy);
     Long getTotalPage(int numOfItem);
 
     void displayCoupon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;

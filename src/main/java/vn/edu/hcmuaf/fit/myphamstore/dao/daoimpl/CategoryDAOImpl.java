@@ -100,27 +100,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
 
     @Override
     public void delete(CategoryModel entity) {
-        CategoryModel categoryExisted = findCategoryById(entity.getId());
-        if (categoryExisted == null) {
-            log("Contact not found");
-            return ;
-        }
-        System.out.println(categoryExisted);
 
-        String sql = "UPDATE category SET parent_id = :parent_id, name = :name, is_available = :is_available , updated_at = :updatedAt WHERE id = :id";
-        try {
-            JDBIConnector.getJdbi().useHandle(handle -> {
-                handle.createUpdate(sql)
-                        .bind("parent_id", entity.getParentId() == null ? categoryExisted.getParentId() : entity.getParentId())
-                        .bind("name", entity.getName() == null ? categoryExisted.getName() : entity.getName().trim())
-                        .bind("is_available", Boolean.FALSE)
-                        .bind("updatedAt", LocalDateTime.now())
-                        .bind("id", entity.getId())
-                        .execute();
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -131,7 +111,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
         if (currentPage < 1) currentPage = 1;
 
         // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
-        List<String> allowedColumns = Arrays.asList("id", "parent_id", "description","created_at", "updated_at");
+        List<String> allowedColumns = Arrays.asList("id", "parent_id", "name","description","created_at", "updated_at");
         if (!allowedColumns.contains(orderBy)) {
             orderBy = "id";
         }
@@ -139,7 +119,7 @@ public class CategoryDAOImpl implements ICategoryDAO {
         // Xây dựng câu lệnh SQL
         String sql = "SELECT * FROM category ";
         if (keyword != null && !keyword.trim().isEmpty()) {
-            sql += "WHERE CONCAT(id, parent_id, description, created_at, updated_at) LIKE :keyword ";
+            sql += "WHERE CONCAT(id, parent_id, name, description, created_at, updated_at) LIKE :keyword ";
         }
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT :limit " +

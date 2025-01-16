@@ -3,6 +3,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.myphamstore.common.action.AdminAction;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 
@@ -15,23 +16,18 @@ public class CategoryController extends HttpServlet {
     private ICategoryService categoryService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/category/category-management.jsp");
-        String keyword = request.getParameter("keyword");
-        String orderBy = request.getParameter("orderBy");
-        int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
-        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
-
-        List<CategoryModel> categories = categoryService.pagingCategory(keyword, currentPage, pageSize, orderBy);
-        Long totalPages = categoryService.getTotalPage(5);
-
-        request.setAttribute("categories", categories);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("pageSize", pageSize);
-        request.setAttribute("keyword", keyword);
-        request.setAttribute("orderBy", orderBy);
-        System.out.println(categories);
-        dispatcher.forward(request, response);
+        String action = request.getParameter("action");
+        if (action == null || action.isEmpty() || action.equalsIgnoreCase(AdminAction.DISPLAY) || action.equalsIgnoreCase(AdminAction.SEARCH)) {
+            categoryService.displayCategory(request, response);
+        } else if (action.equalsIgnoreCase(AdminAction.STOP_BUYING)) {
+            categoryService.stopBuying( request, response);
+        }else if (action.equalsIgnoreCase(AdminAction.START_BUYING)) {
+            categoryService.startBuying(request, response);
+        }else if (action.equalsIgnoreCase(AdminAction.ADD)) {
+            categoryService.addCategory(request, response);
+        } else if (action.equalsIgnoreCase(AdminAction.EDIT)) {
+            categoryService.updateCategory(request, response);
+        }
     }
 
     @Override

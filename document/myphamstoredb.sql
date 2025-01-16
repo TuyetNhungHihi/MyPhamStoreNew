@@ -91,7 +91,7 @@ CREATE TABLE product_variant (
     price INT NOT NULL,
     stock INT DEFAULT 0,
     sold_quantity INT DEFAULT 0,
-    longtext DEFAULT NULL, -- Ảnh riêng cho phiên bản
+    thumnail longtext DEFAULT NULL, -- Ảnh riêng cho phiên bản
     is_available BOOLEAN NOT NULL DEFAULT TRUE,
     created_at DATETIME DEFAULT NOW(),
     updated_at DATETIME DEFAULT NOW(),

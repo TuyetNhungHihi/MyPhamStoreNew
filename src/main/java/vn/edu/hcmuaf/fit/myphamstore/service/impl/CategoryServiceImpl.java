@@ -2,11 +2,17 @@ package vn.edu.hcmuaf.fit.myphamstore.service.impl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import vn.edu.hcmuaf.fit.myphamstore.dao.ICategoryDAO;
+import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +53,10 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public List<CategoryModel> pagingCategory(String keyword, int currentPage, int pageSize, String orderBy) {
-        return categoryDAO.findAll(keyword, currentPage, pageSize, orderBy);
+        if (keyword != null && !keyword.isEmpty()) {
+            keyword = keyword.trim();
+        }
+        return this.categoryDAO.findAll(keyword, currentPage, pageSize, orderBy);
     }
 
     @Override
@@ -58,5 +67,45 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public List<CategoryModel> getAllCategories() {
         return categoryDAO.getAllCategories();
+    }
+
+    @Override
+    public void displayCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/category/category-management.jsp");
+        String keyword = request.getParameter("keyword");
+        String orderBy = request.getParameter("orderBy");
+        int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
+
+        List<CategoryModel> categories = this.pagingCategory(keyword, currentPage, pageSize, orderBy);
+        Long totalPages = this.categoryDAO.getTotalPage(pageSize);
+
+        request.setAttribute("categories", categories);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("pageSize", pageSize);
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("orderBy", orderBy);
+        dispatcher.forward(request, response);
+    }
+
+    @Override
+    public void stopBuying(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    @Override
+    public void startBuying(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    @Override
+    public void addCategory(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    @Override
+    public void updateCategory(HttpServletRequest request, HttpServletResponse response) {
+
     }
 }

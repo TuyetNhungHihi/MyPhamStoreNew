@@ -22,7 +22,10 @@ public class CouponServiceImpl implements ICouponService {
     }
 
     @Override
-    public List<CouponModel> pagingCoupon(String keyword, int currentPage, int pageSize, String orderBy) {
+    public List<CouponModel> getCouponsWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
+        if (keyword != null && !keyword.isEmpty()) {
+            keyword = keyword.trim();
+        }
         return couponDAO.findAll(keyword, currentPage, pageSize, orderBy);
     }
 
@@ -39,8 +42,8 @@ public class CouponServiceImpl implements ICouponService {
         int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
 
-        List<CouponModel> coupons = this.pagingCoupon(keyword, currentPage, pageSize, orderBy);
-        Long totalPages = this.getTotalPage(5);
+        List<CouponModel> coupons = this.getCouponsWithPaging(keyword, currentPage, pageSize, orderBy);
+        Long totalPages = this.couponDAO.getTotalPage(5);
 
         request.setAttribute("coupons", coupons);
         request.setAttribute("totalPages", totalPages);
@@ -48,7 +51,6 @@ public class CouponServiceImpl implements ICouponService {
         request.setAttribute("pageSize", pageSize);
         request.setAttribute("keyword", keyword);
         request.setAttribute("orderBy", orderBy);
-        System.out.println(coupons);
         dispatcher.forward(request, response);
     }
 

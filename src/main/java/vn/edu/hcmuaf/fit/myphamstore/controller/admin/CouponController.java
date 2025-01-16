@@ -20,7 +20,7 @@ public class CouponController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        if (action == null || action.equalsIgnoreCase(AdminAction.DISPLAY)) {
+        if (action == null || action.equalsIgnoreCase(AdminAction.DISPLAY) || action.equalsIgnoreCase(AdminAction.SEARCH) || action.isEmpty()) {
             couponService.displayCoupon(request, response);
         } else if (action.equalsIgnoreCase(AdminAction.STOP_BUYING)) {
             couponService.stopBuying( request, response);

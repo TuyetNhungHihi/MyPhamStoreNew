@@ -21,7 +21,7 @@ public class ContactController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ServletException, IOException {
         String action = request.getParameter("action");
-        if (action == null || action.equalsIgnoreCase(AdminAction.DISPLAY)) {
+        if (action == null || action.equalsIgnoreCase(AdminAction.DISPLAY) || action.equalsIgnoreCase(AdminAction.SEARCH)) {
             contactService.displayContact(request, response);
         } else if (action.equalsIgnoreCase(AdminAction.PENDING)) {
             contactService.pending( request, response);
