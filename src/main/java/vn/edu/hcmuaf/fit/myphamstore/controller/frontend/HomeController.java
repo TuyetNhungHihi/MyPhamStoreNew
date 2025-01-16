@@ -45,7 +45,7 @@ public class HomeController extends HttpServlet {
             }
 
             // Lấy danh sách sản phẩm và số trang
-            List<ProductModel> products = productService.getPagingProduct(keyword, currentPage, pageSize, orderBy);
+            List<ProductModel> products = productService.getProductsWithPaging(keyword, currentPage, pageSize, orderBy);
             Long totalPages = productService.getTotalPage(pageSize);
 
             // Lấy danh sách sản phẩm thuộc danh mục "Health & Beauty"

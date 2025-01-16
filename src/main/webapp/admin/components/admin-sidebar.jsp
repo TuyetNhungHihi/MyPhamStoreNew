@@ -87,6 +87,11 @@
             <span class="las la-balance-scale"></span>Quản lý slide hiển thị
           </a>
         </li>
+        <li>
+          <a class="link-admin-header" href="<c:url value="/admin/slides" />">
+            <span class="las la-balance-scale"></span>Quản lý Liên Hệ
+          </a>
+        </li>
       </ul>
     </div>
     <div style="height: 100px; width: 250px; position: relative">

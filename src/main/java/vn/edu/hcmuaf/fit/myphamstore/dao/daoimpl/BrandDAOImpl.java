@@ -52,6 +52,8 @@ public class BrandDAOImpl implements IBrandDAO {
         }
     }
 
+
+
     @Override
     public Long save(BrandModel entity) {
         String sql = "INSERT INTO brand (  name, logo,is_available, created_at, updated_at) " +

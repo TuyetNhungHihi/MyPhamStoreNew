@@ -12,6 +12,7 @@ import vn.edu.hcmuaf.fit.myphamstore.dao.IBrandDAO;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BrandServiceImpl implements IBrandService {
     @Inject
@@ -22,8 +23,13 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     @Override
-    public List<BrandModel> pagingBrand(String keyword, int currentPage, int pageSize, String orderBy) {
-        return brandDAO.findAll(keyword, currentPage, pageSize, orderBy);
+    public List<BrandModel> getBrandsWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
+        if (keyword != null && !keyword.isEmpty()) {
+            keyword = keyword.trim();
+        }
+        return brandDAO
+                .findAll(keyword, currentPage, pageSize, orderBy)
+                ;
     }
 
     @Override
@@ -44,8 +50,8 @@ public class BrandServiceImpl implements IBrandService {
         int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
         int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
 
-        List<BrandModel> brands = this.pagingBrand(keyword, currentPage, pageSize, orderBy);
-        Long totalPages = this.getTotalPage(5);
+        List<BrandModel> brands = this.getBrandsWithPaging(keyword, currentPage, pageSize, orderBy);
+        Long totalPages = this.brandDAO.getTotalPage(pageSize);
 
         request.setAttribute("brands", brands);
         request.setAttribute("totalPages", totalPages);

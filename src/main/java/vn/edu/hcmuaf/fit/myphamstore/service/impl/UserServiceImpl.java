@@ -157,13 +157,11 @@ public class UserServiceImpl implements IUserService {
                 .filter(u -> u.getRoles().stream()
                         .anyMatch(r -> r.getName().equalsIgnoreCase(RoleType.CUSTOMER.toString())))
                 .collect(Collectors.toList());
-        System.out.println(users);
         Long totalPages = this.userDAO.getTotalPage(pageSize);
         // Gửi danh sách sản phẩm đến trang JSP
         request.setAttribute("users", users);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("currentPage", currentPage);
-        System.out.println("currentPage: " + currentPage);
         request.setAttribute("pageSize", pageSize);
         request.setAttribute("keyword", keyword);
         request.setAttribute("orderBy", orderBy);
