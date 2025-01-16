@@ -98,9 +98,96 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void executeAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String[] listImage = request.getParameterValues("images");
+
         String thumbnail = request.getParameter("thumbnail");
-        System.out.println(thumbnail);
+        String name = request.getParameter("productName");
+        String stock = request.getParameter("stock");
+        String description = request.getParameter("description");
+        String price = request.getParameter("price");
+        String costPrice = request.getParameter("costPrice");
+        String brandId = request.getParameter("brandId");
+        String categoryId = request.getParameter("categoryId");
+
+        ProductModel productModel = ProductModel.builder()
+                .name(name)
+                .description(description)
+                .price(Long.parseLong(price))
+                .costPrice(Long.parseLong(costPrice))
+                .brandId(Long.parseLong(brandId))
+                .categoryId(Long.parseLong(categoryId))
+                .thumbnail(thumbnail)
+                .stock(Integer.parseInt(stock))
+                .isAvailable(true)
+                .build();
+        try{
+            Long isSuccess = productDAO.save(productModel);
+            if (isSuccess == null || isSuccess == 0) {
+                request.setAttribute("message", "Có lỗi xảy ra");
+            } else {
+                //tiến hành lưu ảnh sản phẩm
+                for (String image : listImage) {
+                    ProductImageModel productImageModel = ProductImageModel.builder()
+                            .productId(isSuccess)
+                            .url(image)
+                            .build();
+                    productImageDAO.save(productImageModel);
+                }
+                request.setAttribute("message", "Thêm sản phẩm thành công");
+                this.displayProduct(request, response);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void executeUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String[] listImage = request.getParameterValues("images") != null ? request.getParameterValues("images") : new String[0];
+        Long id = Long.parseLong(request.getParameter("id"));
+        String thumbnail = request.getParameter("thumbnail") != null ? request.getParameter("thumbnail") : "";
+        String name = request.getParameter("productName");
+        String stock = request.getParameter("stock");
+        String description = request.getParameter("description");
+        String price = request.getParameter("price");
+        String costPrice = request.getParameter("costPrice");
+        String brandId = request.getParameter("brandId");
+        String categoryId = request.getParameter("categoryId");
+        ProductModel productModel = ProductModel.builder()
+                .id(id)
+                .name(name)
+                .description(description)
+                .price(Long.parseLong(price))
+                .costPrice(Long.parseLong(costPrice))
+                .brandId(Long.parseLong(brandId))
+                .categoryId(Long.parseLong(categoryId))
+                .thumbnail(thumbnail)
+                .stock(Integer.parseInt(stock))
+                .isAvailable(true)
+                .soldQuantity(0)
+                .build();
+
+        try{
+            ProductModel isSuccess = productDAO.update(productModel);
+            if (isSuccess == null) {
+                request.setAttribute("message", "Có lỗi xảy ra");
+            } else {
+                //tiến hành lưu ảnh sản phẩm
+                for (String image : listImage) {
+                    ProductImageModel productImageModel = ProductImageModel.builder()
+                            .productId(id)
+                            .url(image)
+                            .build();
+                    productImageDAO.save(productImageModel);
+                }
+                request.setAttribute("message", "Cập nhật sản phẩm thành công");
+                //refresh lại trang
+                this.displayProduct(request, response);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -173,7 +260,15 @@ public class ProductServiceImpl implements IProductService {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/product/add-product.jsp");
         Long id = Long.parseLong(request.getParameter("id"));
         ProductModel product = productDAO.getProductDetail(id);
+        List<ProductImageModel> images = productImageDAO.getProductImageById(id);
+        List<BrandModel> brands = brandDAO.getAllBrands();
+        List<CategoryModel> categories = categoryDAO.getAllCategories();
+
+
+        request.setAttribute("brands", brands);
+        request.setAttribute("categories", categories);
         request.setAttribute("product", product);
+        request.setAttribute("images", images);
         dispatcher.forward(request, response);
     }
 }

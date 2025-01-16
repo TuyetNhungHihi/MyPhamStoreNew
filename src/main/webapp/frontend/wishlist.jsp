@@ -1,3 +1,13 @@
+<%@include file="/common/tablib.jsp"%>
+<%--
+Created by IntelliJ IDEA.
+User: cucsh
+Date: 12/7/2024
+Time: 10:10 AM
+To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -49,8 +59,8 @@ Purchase:
 	<a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
 	<!-- Top Scroll End -->
 	<!-- Header Wrapper Start -->
-	 <div id="nav"></div>
-	 <div id="header"></div>
+	<%@include file="component/nav.jsp"%>
+	<%@include file="component/header.jsp"%>
 	<!-- Header Wrapper End -->
 	
 
@@ -77,90 +87,58 @@ Purchase:
 					<div class="row">
 						<div class="ss_latest_products product-three-service">
 							<div class="owl-carousel owl-theme">
-								<div class="item">
-									<div class="ss_featured_products_box">
-										<div class="ss_featured_products_box_img">	<span class="ss_tag">Mới</span>
-											<span class="ss_offer">Giảm 20%</span>
-											<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-										</div>
-										<div class="ss_feat_prod_cont_heading_wrapper">
-											<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-											<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
-										</div>
-										<div class="ss_featured_products_box_footer">
-											<fieldset class="rating">
-												<input type="radio" name="rating" value="5" />
-												<label class="full" title="5 stars"></label>
-												<input type="radio" name="rating" value="4 and a half" />
-												<label class="half" title="4.5 stars"></label>
-												<input type="radio" name="rating" value="4" />
-												<label class="full" title="4 stars"></label>
-												<input type="radio" name="rating" value="3 and a half" />
-												<label class="half" title="3.5 stars"></label>
-												<input type="radio" name="rating" value="3" />
-												<label class="full" title="3 stars"></label>
-												<input type="radio" name="rating" value="2 and a half" />
-												<label class="half" title="2.5 stars"></label>
-												<input type="radio" name="rating" value="2" />
-												<label class="full" title="2 stars"></label>
-												<input type="radio" name="rating" value="1 and a half" />
-												<label class="half" title="1.5 stars"></label>
-												<input type="radio" name="rating" value="1" />
-												<label class="full" title="1 star"></label>
-												<input type="radio" name="rating" value="half" />
-												<label class="half" title="0.5 stars"></label>
-											</fieldset>
-											<ul>
-												<li>
-													<button class="ss_btn">Thêm vào giỏ</button>
-												</li>
-												<li><a style="background-color: red; color: white;" href="#"><i  class="fa fa-heart" aria-hidden="true"></i></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="ss_featured_products_box">
-										<div class="ss_featured_products_box_img">	<span class="ss_tag">Mới</span>
-											<span class="ss_offer">Giảm 20%</span>
-											<img src="https://www.guardian.com.vn/media/catalog/product/cache/8abedaa231e51c424533dabd39634738/8/8/889d1d9cc2b2074823850bc9e51e91dda8bbafe1838bd8e7c12dd85bc261b503.jpeg" alt="Product" class="img-responsive">
-										</div>
-										<div class="ss_feat_prod_cont_heading_wrapper">
-											<h4><a href="product_detail.jsp">Bông Tẩy Trang Jomi 120</a></h4>
-											<p>JOMI</p>	<del>28,000đ</del>  <ins>22,000đ</ins>
-										</div>
-										<div class="ss_featured_products_box_footer">
-											<fieldset class="rating">
-												<input type="radio" name="rating" value="5" />
-												<label class="full" title="5 stars"></label>
-												<input type="radio" name="rating" value="4 and a half" />
-												<label class="half" title="4.5 stars"></label>
-												<input type="radio" name="rating" value="4" />
-												<label class="full" title="4 stars"></label>
-												<input type="radio" name="rating" value="3 and a half" />
-												<label class="half" title="3.5 stars"></label>
-												<input type="radio" name="rating" value="3" />
-												<label class="full" title="3 stars"></label>
-												<input type="radio" name="rating" value="2 and a half" />
-												<label class="half" title="2.5 stars"></label>
-												<input type="radio" name="rating" value="2" />
-												<label class="full" title="2 stars"></label>
-												<input type="radio" name="rating" value="1 and a half" />
-												<label class="half" title="1.5 stars"></label>
-												<input type="radio" name="rating" value="1" />
-												<label class="full" title="1 star"></label>
-												<input type="radio" name="rating" value="half" />
-												<label class="half" title="0.5 stars"></label>
-											</fieldset>
-											<ul>
-												<li>
-													<button class="ss_btn">Thêm vào giỏ</button>
-												</li>
-												<li><a href="#"  style="background-color: red; color: white;" ><i class="fa fa-heart" aria-hidden="true"></i></a>
-												</li>
-											</ul>
+								<c:forEach var="product" items="${sessionScope.wishlist}">
+									<div class="item">
+										<div class="ss_featured_products_box">
+											<div class="ss_featured_products_box_img">
+												<span class="ss_tag">Mới</span>
+												<img src="${product.thumbnail}" alt="${product.name}" class="img-responsive">
+											</div>
+											<div class="ss_feat_prod_cont_heading_wrapper">
+												<h4><a href="product_detail.jsp">${product.name}</a></h4>
+												<p>${product.description}</p>
+												<del>${product.price}</del> <ins>${product.price}</ins>
+											</div>
+											<div class="ss_featured_products_box_footer">
+												<fieldset class="rating">
+													<input type="radio" name="rating" value="5" />
+													<label class="full" title="5 stars"></label>
+													<input type="radio" name="rating" value="4 and a half" />
+													<label class="half" title="4.5 stars"></label>
+													<input type="radio" name="rating" value="4" />
+													<label class="full" title="4 stars"></label>
+													<input type="radio" name="rating" value="3 and a half" />
+													<label class="half" title="3.5 stars"></label>
+													<input type="radio" name="rating" value="3" />
+													<label class="full" title="3 stars"></label>
+													<input type="radio" name="rating" value="2 and a half" />
+													<label class="half" title="2.5 stars"></label>
+													<input type="radio" name="rating" value="2" />
+													<label class="full" title="2 stars"></label>
+													<input type="radio" name="rating" value="1 and a half" />
+													<label class="half" title="1.5 stars"></label>
+													<input type="radio" name="rating" value="1" />
+													<label class="full" title="1 star"></label>
+													<input type="radio" name="rating" value="half" />
+													<label class="half" title="0.5 stars"></label>
+												</fieldset>
+												<ul>
+													<li>
+														<button class="ss_btn">Thêm vào giỏ</button>
+													</li>
+													<li><a style="background-color: red; color: white;" href="#"><i  class="fa fa-heart" aria-hidden="true"></i></a>
+													</li>
+												</ul>
+											</div>
+											<div class="ss_featured_products_box_footer">
+												<ul>
+													<li><button class="ss_btn">Thêm vào giỏ</button></li>
+													<li><a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a></li>
+												</ul>
+											</div>
 										</div>
 									</div>
-								</div>
+								</c:forEach>
 							</div>
               <div style="width: 100%;" class="text-center">
                 <nav aria-label="Page navigation">
@@ -193,7 +171,8 @@ Purchase:
 	
 	
 	
-	<div id="footer">
+	<!-- Footer Wrapper Start -->
+	<%@include file="component/footer.jsp"%>
 
 	</div>
 	<script>
@@ -284,6 +263,73 @@ Purchase:
 				}
 				run_clock('clockdiv',deadline);
 	</script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			document.querySelectorAll('.fa-heart').forEach(function(heartIcon) {
+				heartIcon.addEventListener('click', function(event) {
+					event.preventDefault();
+					const productId = this.dataset.productId;
+					addToWishlist(productId, this);
+				});
+			});
+		});
+
+		function addToWishlist(productId, heartIcon) {
+			fetch(`/add-to-wishlist?productId=${productId}`, {
+				method: 'POST'
+			})
+					.then(response => response.json())
+					.then(data => {
+						if (data.success) {
+							heartIcon.style.color = 'red';
+							showToast('Product added to wishlist!');
+							refreshWishlist();
+						} else {
+							showToast('Failed to add product to wishlist.');
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						showToast('An error occurred. Please try again.');
+					});
+		}
+
+		function refreshWishlist() {
+			fetch('/wishlist')
+					.then(response => response.text())
+					.then(html => {
+						document.querySelector('.ss_latest_products').innerHTML = html;
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+		}
+
+		function showToast(message) {
+			const toast = document.createElement('div');
+			toast.className = 'toast';
+			toast.innerText = message;
+			document.body.appendChild(toast);
+			setTimeout(() => {
+				toast.remove();
+			}, 3000);
+		}
+	</script>
+
+	<script>
+		function refreshWishlist() {
+			fetch('/wishlist')
+					.then(response => response.text())
+					.then(html => {
+						document.querySelector('.ss_latest_products').innerHTML = html;
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+		}
+	</script>
+
 	<!--main js file end-->
 </body>
 

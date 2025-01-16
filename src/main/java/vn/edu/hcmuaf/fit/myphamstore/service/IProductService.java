@@ -31,5 +31,6 @@ public interface IProductService {
 
     List<ReviewModel> getReviewsByProductId(Long id);
 
-    void insertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void executeAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void executeUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }
