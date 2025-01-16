@@ -54,8 +54,11 @@
         <div class="row">
           <h1 style="color: #337ab7">Đăng nhập</h1>
         </div>
+        <c:if test="${!empty message}">
+          <div style="font-size: 14px" class="alert alert-warning" role="alert">${message}</div>
+        </c:if>
         <div class="row">
-          <form id="form-login" class="form-group" action=<c:url value="/login"> method="post">
+          <form id="form-login" class="form-group" action=<c:url value="/login" /> method="post"/>
             <div class="row">
               <input type="text" name="email" id="email" class="form__input" placeholder="Email" required />
             </div>
@@ -85,11 +88,11 @@
         <div class="row">
           <p>
             Bạn quên mật khẩu?
-            <a style="color: #337ab7" href="<%= request.getContextPath() %>/forgot-password.jsp">Quên mật khẩu</a>
+            <a style="color: #337ab7" href="<%= request.getContextPath() %>/forgot-password ">"Quên mật khẩu</a>
           </p>
           <p>
             Bạn không có tài khoản?
-            <a style="color: #337ab7" href="<%= request.getContextPath() %>/register.jsp">Đăng kí</a>
+            <a style="color: #337ab7" href="<%= request.getContextPath() %>/register?action=register">Đăng kí</a>
           </p>
         </div>
       </div>
@@ -98,14 +101,7 @@
 </div>
 
   <%@include file="component/footer.jsp"%>
-<script>
-  const footer = document.getElementById("footer");
-  fetch("<%= request.getContextPath() %>/footer.jsp")
-          .then((response) => response.text())
-          .then((data) => {
-            footer.innerHTML = data;
-          });
-</script>
+
 
 <!-- Include JS files dynamically using JSP -->
 <script src="<%= request.getContextPath() %>/static/js/jquery_min.js"></script>
@@ -123,6 +119,5 @@
 <script src="<%= request.getContextPath() %>/static/js/custom.js"></script>
 
 <!-- demo login feature -->
-<script src="<%= request.getContextPath() %>/static/js/demo/login.js"></script>
 </body>
 </html>

@@ -155,7 +155,7 @@ Purchase:
                       <td>
                         <div class="table_cart_img">
                           <figure>
-                            <img src="${i.product.thumbnail}" alt="${i.product.name}" />
+                            <img src="${i.product.thumbnail}" alt="${i.product.name}" style="max-height: 80px" />
                           </figure>
                         </div>
                       </td>

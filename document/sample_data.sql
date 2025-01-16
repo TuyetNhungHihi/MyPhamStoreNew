@@ -68,42 +68,6 @@ INSERT INTO `address` (`id`, `user_id`, `recipient_name`, `recipient_phone`, `ci
 (19, 19, 'Nguyen Van S', '0808765432', 'Hanoi', 'Hoang Mai', 'Tam Trinh', null, false, NOW(), NOW()),
 (20, 20, 'Tran Thi T', '0797654321', 'Ho Chi Minh', 'District 8', 'Pham The Hien', null, true, NOW(), NOW());
 
--- Dữ liệu mẫu cho bảng `brand`
-
-INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Electronics', 'Devices like phones, laptops, and accessories', NOW(), NOW()),
-(2, 'Fashion', 'Clothing, shoes, and accessories', NOW(), NOW()),
-(3, 'Home Appliances', 'Appliances for daily use in the home', NOW(), NOW()),
-(4, 'Health & Beauty', 'Skincare, haircare, and wellness products', NOW(), NOW()),
-(5, 'Books', 'Fiction, non-fiction, and academic books', NOW(), NOW()),
-(6, 'Sports & Outdoors', 'Outdoor gear and sports equipment', NOW(), NOW()),
-(7, 'Toys', 'Toys for children of all ages', NOW(), NOW()),
-(8, 'Furniture', 'Furniture for living rooms, bedrooms, and offices', NOW(), NOW()),
-(9, 'Food & Beverage', 'Groceries, snacks, and drinks', NOW(), NOW()),
-(10, 'Automotive', 'Car accessories, tools, and parts', NOW(), NOW()),
-(11, 'Baby Products', 'Diapers, bottles, and baby essentials', NOW(), NOW()),
-(12, 'Music & Movies', 'CDs, DVDs, and entertainment media', NOW(), NOW()),
-(13, 'Computers', 'Laptops, desktops, and computer accessories', NOW(), NOW()),
-(14, 'Garden & Outdoors', 'Gardening tools, plants, and outdoor furniture', NOW(), NOW()),
-(15, 'Pets', 'Food, toys, and accessories for pets', NOW(), NOW()),
-(16, 'Jewelry', 'Rings, necklaces, and watches', NOW(), NOW()),
-(17, 'Stationery', 'Pens, notebooks, and office supplies', NOW(), NOW()),
-(18, 'Tools', 'Power tools, hand tools, and hardware', NOW(), NOW()),
-(19, 'Music Instruments', 'Guitars, drums, and other musical instruments', NOW(), NOW()),
-(20, 'Art & Craft', 'Art supplies and DIY craft materials', NOW(), NOW());
-
-INSERT INTO `brand` (`name`, `logo`, `is_available`, `created_at`, `updated_at`)
-VALUES 
-('L\'Oreal', 'https://example.com/logos/loreal.png', TRUE, NOW(), NOW()),
-('Nivea', 'https://example.com/logos/nivea.png', TRUE, NOW(), NOW()),
-('The Body Shop', 'https://example.com/logos/thebodyshop.png', TRUE, NOW(), NOW()),
-('Clinique', 'https://example.com/logos/clinique.png', TRUE, NOW(), NOW()),
-('Neutrogena', 'https://example.com/logos/neutrogena.png', TRUE, NOW(), NOW()),
-('Maybelline', 'https://example.com/logos/maybelline.png', TRUE, NOW(), NOW()),
-('Estee Lauder', 'https://example.com/logos/esteelauder.png', TRUE, NOW(), NOW()),
-('MAC Cosmetics', 'https://example.com/logos/mac.png', TRUE, NOW(), NOW()),
-('Shiseido', 'https://example.com/logos/shiseido.png', TRUE, NOW(), NOW()),
-('Dove', 'https://example.com/logos/dove.png', TRUE, NOW(), NOW());
 
 
 
@@ -173,28 +137,6 @@ VALUES
 ('WEEKEND15', 100000, 'PERCENTAGE', 15, '2025-01-01', '2025-12-31', 0, 100, NOW(), TRUE),
 ('SPECIAL100', 300000, 'FIXED', 100000, '2025-01-01', '2025-03-31', 0, 50, NOW(), TRUE);
 
--- Dữ liệu mẫu cho bảng `product`
-INSERT INTO `product` (`id`, `name`, `price`, `cost_price`, `stock`, `sold_quantity`, `description`, `is_available`, `thumbnail`, `brand_id`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'Oreal Face Wash', 200000, 150000, 500, 120, 'Deep cleansing face wash', true, 'loreal_face_wash.png', 1, 2, NOW(), NOW()),
-(2, 'Maybelline Lipstick', 300000, 200000, 300, 90, 'Matte finish lipstick', true, 'maybelline_lipstick.png', 2, 5, NOW(), NOW()),
-(3, 'MAC Foundation', 600000, 450000, 100, 45, 'Long-lasting foundation', true, 'mac_foundation.png', 3, 6, NOW(), NOW()),
-(4, 'Dior Perfume - Women', 1200000, 1000000, 50, 30, 'Elegant fragrance for women', true, 'dior_perfume_women.png', 5, 12, NOW(), NOW()),
-(5, 'Chanel Perfume - Men', 1300000, 1100000, 40, 20, 'Sophisticated scent for men', true, 'chanel_perfume_men.png', 6, 11, NOW(), NOW()),
-(6, 'Lancome Moisturizer', 500000, 400000, 200, 80, 'Hydrating moisturizer', true, 'lancome_moisturizer.png', 7, 3, NOW(), NOW()),
-(7, 'Clinique Shampoo', 300000, 250000, 150, 60, 'Gentle shampoo for all hair types', true, 'clinique_shampoo.png', 8, 8, NOW(), NOW()),
-(8, 'Bobbi Brown Brushes', 400000, 300000, 200, 75, 'Professional makeup brushes', true, 'bobbi_brown_brushes.png', 9, 20, NOW(), NOW()),
-(9, 'Urban Decay Nail Polish', 150000, 100000, 300, 110, 'Vibrant nail polish colors', true, 'urban_decay_nail_polish.png', 10, 17, NOW(), NOW()),
-(10, 'Benefit Lotions', 450000, 350000, 150, 50, 'Soothing body lotions', true, 'benefit_lotions.png', 9, 15, NOW(), NOW()),
-(11, 'Sephora Lipstick', 320000, 250000, 180, 70, 'Rich pigment lipstick', true, 'sephora_lipstick.png', 8, 5, NOW(), NOW()),
-(12, 'Fenty Beauty Foundation', 550000, 450000, 90, 35, 'Flawless finish foundation', true, 'fenty_beauty_foundation.png', 7, 6, NOW(), NOW()),
-(13, 'Huda Beauty Eyeshadow', 700000, 600000, 120, 65, 'High-pigment eyeshadow', true, 'huda_beauty_eyeshadow.png', 6, 4, NOW(), NOW()),
-(14, 'Anastasia Brow Pencil', 300000, 250000, 200, 90, 'Perfect brow pencil', true, 'anastasia_brow_pencil.png', 5, 19, NOW(), NOW()),
-(15, 'Too Faced Conditioner', 350000, 300000, 180, 50, 'Nourishing hair conditioner', true, 'too_faced_conditioner.png', 4, 9, NOW(), NOW()),
-(16, 'Charlotte Tilbury Blush', 600000, 500000, 80, 40, 'Soft-focus blush', true, 'charlotte_tilbury_blush.png', 3, 4, NOW(), NOW()),
-(17, 'Shiseido Nail Remover', 200000, 150000, 300, 120, 'Quick nail polish remover', true, 'shiseido_nail_remover.png', 2, 18, NOW(), NOW()),
-(18, 'Tarte Body Wash', 400000, 300000, 140, 70, 'Gentle body wash', true, 'tarte_body_wash.png', 1, 14, NOW(), NOW()),
-(19, 'Benefit Hair Serum', 550000, 450000, 100, 45, 'Silky hair serum', true, 'benefit_hair_serum.png', 5, 7, NOW(), NOW()),
-(20, 'MAC Compact Powder', 500000, 400000, 150, 60, 'Smooth compact powder', true, 'mac_compact_powder.png', 3, 4, NOW(), NOW());
 
 INSERT INTO `product_variant` (`id`, `product_id`, `name`, `price`, `stock`, `sold_quantity`, `thumbnail`, `is_available`, `created_at`, `updated_at`)
 VALUES
@@ -244,22 +186,7 @@ INSERT INTO `review` (`id`, `user_id`, `product_id`, `rating`, `comment`, `creat
 (2, 2, 2, 4, 'Nice product.', NOW(), NOW()),
 (3, 3, 3, 3, 'Average.', NOW(), NOW()),
 (4, 4, 4, 5, 'Highly recommend!', NOW(), NOW()),
-(5, 5, 5, 2, 'Not satisfied.', NOW(), NOW()),
-(6, 6, 6, 4, 'Worth the price.', NOW(), NOW()),
-(7, 7, 7, 5, 'Amazing!', NOW(), NOW()),
-(8, 8, 8, 3, 'Okay.', NOW(), NOW()),
-(9, 9, 9, 5, 'Fantastic!', NOW(), NOW()),
-(10, 10, 10, 1, 'Bad experience.', NOW(), NOW()),
-(11, 11, 11, 5, 'Loved it!', NOW(), NOW()),
-(12, 12, 12, 4, 'Good.', NOW(), NOW()),
-(13, 13, 13, 2, 'Not as expected.', NOW(), NOW()),
-(14, 14, 14, 5, 'Perfect!', NOW(), NOW()),
-(15, 15, 15, 3, 'Fine.', NOW(), NOW()),
-(16, 16, 16, 4, 'Very good.', NOW(), NOW()),
-(17, 17, 17, 5, 'Amazing experience.', NOW(), NOW()),
-(18, 18, 18, 2, 'Below average.', NOW(), NOW()),
-(19, 19, 19, 4, 'Decent.', NOW(), NOW()),
-(20, 20, 20, 5, 'Excellent!', NOW(), NOW());
+(5, 5, 5, 2, 'Not satisfied.', NOW(), NOW());
 
 INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `total_price`) VALUES
 (1, 1, 1, 2, 400000),

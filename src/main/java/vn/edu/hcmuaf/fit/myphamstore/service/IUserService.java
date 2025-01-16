@@ -22,4 +22,5 @@ public interface IUserService {
     void lockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void detailUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void unlockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+    void verifyOtp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

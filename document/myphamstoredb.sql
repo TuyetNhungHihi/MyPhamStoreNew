@@ -182,6 +182,15 @@ CREATE TABLE `wishlist` (
   `created_at` datetime DEFAULT (now())
 );
 
+CREATE TABLE otp (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY, -- Khóa chính tự tăng
+    email VARCHAR(255) NOT NULL,          -- Email (giới hạn 255 ký tự)
+    otp VARCHAR(10) NOT NULL,             -- OTP (giới hạn 10 ký tự, bạn có thể thay đổi nếu cần)
+    time_expire DATETIME NOT NULL,        -- Thời gian hết hạn
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP, -- Thời gian tạo (mặc định là thời gian hiện tại)
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Thời gian cập nhật (tự động cập nhật)
+);
+
 ALTER TABLE `user_has_role` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 ALTER TABLE `user_has_role` ADD FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
