@@ -93,7 +93,16 @@ public class ProductImageDAOImpl implements IProductImageDAO {
 
     @Override
     public void delete(ProductImageModel entity) {
-
+        String query = "DELETE FROM product_image WHERE id = :id";
+        try{
+            JDBIConnector.getJdbi().useHandle(handle -> {
+                handle.createUpdate(query)
+                        .bind("id", entity.getId())
+                        .execute();
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
