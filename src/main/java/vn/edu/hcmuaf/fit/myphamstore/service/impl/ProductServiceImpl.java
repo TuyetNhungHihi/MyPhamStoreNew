@@ -173,6 +173,11 @@ public class ProductServiceImpl implements IProductService {
             if (isSuccess == null) {
                 request.setAttribute("message", "Có lỗi xảy ra");
             } else {
+                //xóa ảnh cũ
+                List<ProductImageModel> oldImages = productImageDAO.getProductImageById(id);
+                for (ProductImageModel image : oldImages) {
+                    productImageDAO.delete(image);
+                }
                 //tiến hành lưu ảnh sản phẩm
                 for (String image : listImage) {
                     ProductImageModel productImageModel = ProductImageModel.builder()

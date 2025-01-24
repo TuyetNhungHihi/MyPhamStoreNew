@@ -65,7 +65,7 @@ CREATE TABLE `category` (
 
 CREATE TABLE `product_image` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `url` varchar(500) NOT NULL,
+  `url` longtext NOT NULL,
   `product_id` int
 );
 
