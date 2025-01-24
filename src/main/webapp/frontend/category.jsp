@@ -36,7 +36,17 @@ To change this template use File | Settings | File Templates.
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
 </head>
-
+<style>
+	.limited-text {
+		display: -webkit-box; /* Sử dụng flexbox ẩn nội dung */
+		-webkit-box-orient: vertical; /* Đặt hướng box theo chiều dọc */
+		overflow: hidden; /* Ẩn phần văn bản bị tràn */
+		text-overflow: ellipsis; /* Thêm dấu "..." */
+		-webkit-line-clamp: 2; /* Giới hạn số dòng hiển thị */
+		line-height: 1.5; /* Đặt chiều cao dòng để tính dòng */
+		max-height: calc(1.5em * 2); /* Chiều cao tối đa tương ứng với 2 dòng */
+	}
+</style>
 <body>
 	<!-- preloader Start -->
 	<div id="preloader">
@@ -175,8 +185,7 @@ To change this template use File | Settings | File Templates.
 														<img src="${product.thumbnail}" alt="Product" class="img-responsive">
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
-														<h4><a href="product_detail.jsp">${product.name}</a></h4>
-														<p>${product.description}</p>
+														<h4><a class="limited-text" href="product_detail.jsp">${product.name}</a></h4>
 														<del>${product.price}</del> <ins>${product.price}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
