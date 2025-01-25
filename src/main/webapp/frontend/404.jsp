@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -69,15 +69,15 @@ Purchase:
 
   <body>
     <!-- preloader Start -->
-    <div id="preloader">
-      <div id="status">
-        <img
-          src="../static/images/header/preloader.gif"
-          id="preloader_image"
-          alt="loader"
-        />
-      </div>
-    </div>
+<%--    <div id="preloader">--%>
+<%--      <div id="status">--%>
+<%--        <img--%>
+<%--          src="../static/images/header/preloader.gif"--%>
+<%--          id="preloader_image"--%>
+<%--          alt="loader"--%>
+<%--        />--%>
+<%--      </div>--%>
+<%--    </div>--%>
     <!-- Top Scroll Start -->
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
@@ -141,34 +141,10 @@ Purchase:
     <!-- jp 404 error wrapper end -->
 
     <!-- Footer Wrapper Start -->
-    <div id="footer"></div>
-    <script>
-      const header = document.getElementById("header");
-      const footer = document.getElementById("footer");
-      const nav = document.getElementById("nav");
 
-      fetch("./header.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          header.innerHTML = data;
-        });
-      fetch("./footer.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          footer.innerHTML = data;
-        });
-      fetch("./nav.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          nav.innerHTML = data;
-        });
-    </script>
+    <div id="footer"><%@include file="component/footer.jsp"%></div>
+
+
     <!-- Footer Wrapper End -->
     <script src="../static/js/jquery_min.js"></script>
     <script src="../static/js/wow.js"></script>
