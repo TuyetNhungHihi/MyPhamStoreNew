@@ -72,33 +72,33 @@ To change this template use File | Settings | File Templates.
 	<div class="ss_top_slider_wrapper">
 		<div id="theme-main-banner">
 			<div data-src="../static/images/slider/slider1.jpg">
-				<div class="camera_caption">
-					<div class="container ss_slider_wrapper">
-						<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Ưu đãi hấp dẫn</h3>
-						<div class="clearfix"></div>
-						<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm mới</h2>
-						<div class="clearfix"></div>
-						<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm 1</h1>
-						<div class="clearfix"></div>
-						<p class="wow fadeInUp animated" data-wow-delay="0.4s">mô tả</p>
-						<div class="clearfix"></div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">Mua Ngay!</a>
-					</div>
-					<!-- /.container -->
-				</div>
+<%--				<div class="camera_caption">--%>
+<%--					<div class="container ss_slider_wrapper">--%>
+<%--						<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Ưu đãi hấp dẫn</h3>--%>
+<%--						<div class="clearfix"></div>--%>
+<%--						<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm mới</h2>--%>
+<%--						<div class="clearfix"></div>--%>
+<%--						<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm 1</h1>--%>
+<%--						<div class="clearfix"></div>--%>
+<%--						<p class="wow fadeInUp animated" data-wow-delay="0.4s">mô tả</p>--%>
+<%--						<div class="clearfix"></div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">Mua Ngay!</a>--%>
+<%--					</div>--%>
+<%--					<!-- /.container -->--%>
+<%--				</div>--%>
 				<!-- /.camera_caption -->
 			</div>
 			<div data-src="../static/images/slider/slider2.jpg">
 				<div class="camera_caption">
-					<div class="container ss_slider_wrapper">
-						<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Ưu đãi hấp dẫn</h3>
-						<div class="clearfix"></div>
-						<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm mới</h2>
-						<div class="clearfix"></div>
-						<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm 2</h1>
-						<div class="clearfix"></div>
-						<p class="wow fadeInUp animated" data-wow-delay="0.4s">mô tả</p>
-						<div class="clearfix"></div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">Mua Ngay!</a>
-					</div>
+<%--					<div class="container ss_slider_wrapper">--%>
+<%--						<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Ưu đãi hấp dẫn</h3>--%>
+<%--						<div class="clearfix"></div>--%>
+<%--						<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm mới</h2>--%>
+<%--						<div class="clearfix"></div>--%>
+<%--						<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm 2</h1>--%>
+<%--						<div class="clearfix"></div>--%>
+<%--						<p class="wow fadeInUp animated" data-wow-delay="0.4s">mô tả</p>--%>
+<%--						<div class="clearfix"></div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">Mua Ngay!</a>--%>
+<%--					</div>--%>
 					<!-- /.container -->
 				</div>
 				<!-- /.camera_caption -->
@@ -201,19 +201,19 @@ To change this template use File | Settings | File Templates.
 								<h3>Danh Mục Hot</h3>
 							</div>
 							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Healthy and Beauty</a></li>
-								<li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Chống Nắng</a></li>
-								<li role="presentation"><a href="#trand" aria-controls="trand" role="tab" data-toggle="tab">Sữa Rửa Mặt</a></li>
+								<li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Da Mặt</a></li>
+								<li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Body</a></li>
+								<li role="presentation"><a href="#trand" aria-controls="trand" role="tab" data-toggle="tab">Trang Điểm</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="best">
 								<div class="ss_featured_products">
 									<div class="owl-carousel owl-theme">
-										<c:if test="${empty healthBeautyProducts}">
+										<c:if test="${empty skinCareProducts}">
 											<p>Không có sản phẩm nào để hiển thị trong danh mục này.</p>
 										</c:if>
-										<c:forEach var="product" items="${healthBeautyProducts}">
+										<c:forEach var="product" items="${skinCareProducts}">
 											<div class="item">
 												<div class="ss_featured_products_box">
 													<div class="ss_featured_products_box_img">
