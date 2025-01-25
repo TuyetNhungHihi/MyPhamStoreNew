@@ -61,9 +61,14 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("categories", categories);
 
             // Lấy danh sách sản phẩm thuộc danh mục
-//            Long categoryId = Long.parseLong(request.getParameter("id"));
-//            List<ProductModel> productsByCategory = productService.getProductsByCategory(categoryId);
-//            request.setAttribute("productsByCategory", productsByCategory);
+            Long categoryId = Long.parseLong(request.getParameter("id"));
+            List<ProductModel> productsByCategory = productService.getProductsByCategory(categoryId);
+            request.setAttribute("productsByCategory", productsByCategory);
+
+            List<ProductModel>skinCare = productService.getProductsByCategory(1);
+            List<ProductModel>bodyCare = productService.getProductsByCategory(2);
+            List<ProductModel>makeUp = productService.getProductsByCategory(3);
+
 
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);
@@ -74,6 +79,10 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("orderBy", orderBy);
             request.setAttribute("categories", categories);
             request.setAttribute("brands", brands);
+            request.setAttribute("skinCare", skinCare);
+            request.setAttribute("bodyCare", bodyCare);
+            request.setAttribute("makeUp", makeUp);
+
             //request.setAttribute("productsByCategory", productsByCategory);
 
 
