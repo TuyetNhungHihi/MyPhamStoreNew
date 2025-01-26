@@ -210,36 +210,34 @@ To change this template use File | Settings | File Templates.
 							<div role="tabpanel" class="tab-pane fade in active" id="best">
 								<div class="ss_featured_products">
 									<div class="owl-carousel owl-theme">
-										<c:if test="${empty skinCareProducts}">
+										<c:if test="${empty skinCare}">
 											<p>Không có sản phẩm nào để hiển thị trong danh mục này.</p>
 										</c:if>
-										<c:forEach var="product" items="${skinCareProducts}">
+										<c:forEach var="product" items="${skinCare}">
 											<div class="item">
 												<div class="ss_featured_products_box">
 													<div class="ss_featured_products_box_img">
 														<span class="ss_tag">Mới</span>
 														<span class="ss_offer">Giảm 20%</span>
-														<img src="${product.thumbnail != null ? product.thumbnail : '/path/to/default/image.jpg'}"
-															 alt="Product" class="img-responsive">
+														<img src="${product.thumbnail != null ? product.thumbnail : '/path/to/default/image.jpg'}" alt="Product" class="img-responsive">
 													</div>
 													<div class="ss_feat_prod_cont_heading_wrapper">
-														<h4><a  class="limited-text" href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
+														<h4>
+															<a class="limited-text" href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a>
+														</h4>
 														<del>${product.price}</del>
 														<ins>${product.price - (product.price * 0.2)}</ins>
 													</div>
 													<div class="ss_featured_products_box_footer">
-														<ul style="    display: flex
-;
-    padding-top: 15px;
-    justify-content: center;">
+														<ul style="display: flex; padding-top: 15px; justify-content: center;">
 															<form method="post" action="/gio-hang">
 																<input type="hidden" name="action" value="add">
 																<input type="hidden" name="productId" value="${product.id}">
 																<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 															</form>
-
-															<li><a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a></li>
-
+															<li>
+																<a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a>
+															</li>
 														</ul>
 													</div>
 												</div>
