@@ -29,11 +29,23 @@ public class ProductDAOImpl implements IProductDAO {
     @Override
     public List<ProductModel> getProductsByCategory(Long categoryId) {
         String sql = "SELECT * FROM product WHERE category_id = ?";
-        return JDBIConnector.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind(0, categoryId)
-                        .mapToBean(ProductModel.class)
-                        .list());
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.select(
+                            sql,categoryId
+                    ).mapToBean(ProductModel.class)
+                    .list());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+//        String sql = "SELECT * FROM product WHERE category_id = :categoryId";
+//        return JDBIConnector.getJdbi().withHandle(handle ->
+//                handle.createQuery(sql)
+//                        .bind("categoryId", categoryId)
+//                        .mapToBean(ProductModel.class)
+//                        .list()
+//        );
     }
 
     @Override
