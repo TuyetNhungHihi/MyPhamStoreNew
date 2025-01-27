@@ -48,10 +48,6 @@ public class HomeController extends HttpServlet {
             List<ProductModel> products = productService.getProductsWithPaging(keyword, currentPage, pageSize, orderBy);
             Long totalPages = productService.getTotalPage(pageSize);
 
-            // Lấy danh sách sản phẩm thuộc danh mục "Health & Beauty"
-            Long categoryId = 4L; // Health & Beauty
-            List<ProductModel> healthBeautyProducts = productService.getProductsByCategory(categoryId);
-
             // Lấy danh sách sản phẩm mới nhất
             List<ProductModel> latestProducts = productService.getLatestProducts();
             request.setAttribute("latestProducts", latestProducts);
@@ -62,6 +58,14 @@ public class HomeController extends HttpServlet {
             // lấy danh sách các loại sản phẩm
             List<CategoryModel> categories = categoryService.getAllCategories();
 
+            List<ProductModel>skinCare = productService.getProductsByCategory(1);
+
+            List<ProductModel>bodyCare = productService.getProductsByCategory(2);
+
+            List<ProductModel>makeUp = productService.getProductsByCategory(3);
+
+
+
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);
             request.setAttribute("totalPages", totalPages);
@@ -69,10 +73,13 @@ public class HomeController extends HttpServlet {
             request.setAttribute("pageSize", pageSize);
             request.setAttribute("keyword", keyword);
             request.setAttribute("orderBy", orderBy);
-            request.setAttribute("healthBeautyProducts", healthBeautyProducts);
             request.setAttribute("latestProducts", latestProducts);
             request.setAttribute("brands", brands);
             request.setAttribute("categories", categories);
+            request.setAttribute("skinCare", skinCare);
+            request.setAttribute("bodyCare", bodyCare);
+            request.setAttribute("makeUp", makeUp);
+
             // Chuyển hướng đến trang JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/home.jsp");
             dispatcher.forward(request, response);
