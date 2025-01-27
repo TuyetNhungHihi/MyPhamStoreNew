@@ -2,19 +2,49 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
-import vn.edu.hcmuaf.fit.myphamstore.common.PasswordUtils;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 @ApplicationScoped
 public class ProductDAOImpl implements IProductDAO {
+
+    @Override
+    public List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy) {
+        String sql = "SELECT * FROM product WHERE 1=1";
+        if (keyword != null && !keyword.isEmpty()) {
+            sql += " AND name LIKE :keyword";
+        }
+        if (categories != null && categories.length > 0) {
+            sql += " AND category_id IN (<categories>)";
+        }
+        if (brands != null && brands.length > 0) {
+            sql += " AND brand_id IN (<brands>)";
+        }
+        if (priceRange != null && !priceRange.isEmpty()) {
+            String[] prices = priceRange.split("-");
+            sql += " AND price BETWEEN :minPrice AND :maxPrice";
+        }
+        if (orderBy != null && !orderBy.isEmpty()) {
+            sql += " ORDER BY " + orderBy;
+        }
+        sql += " LIMIT :limit OFFSET :offset";
+
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("keyword", "%" + keyword + "%")
+                        .bindList("categories", Arrays.asList(categories))
+                        .bindList("brands", Arrays.asList(brands))
+                        .bind("minPrice", prices[0])
+                        .bind("maxPrice", prices[1])
+                        .bind("limit", pageSize)
+                        .bind("offset", (currentPage - 1) * pageSize)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
     @Override
     public ProductModel getProductDetail(Long id) {
         String sql = "select * from product where id=?";

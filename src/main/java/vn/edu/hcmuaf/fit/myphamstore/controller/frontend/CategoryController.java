@@ -47,6 +47,11 @@ public class CategoryController extends HttpServlet {
                 pageSize = Integer.parseInt(request.getParameter("pageSize"));
             }
 
+            //lọc sản phaarm theo danh mục, thương hiệu, giá
+            String[] selectedCategories = request.getParameterValues("category");
+            String[] selectedBrands = request.getParameterValues("brand");
+            String priceRange = request.getParameter("priceRange");
+
             // Lấy danh sách sản phẩm và số trang
             List<ProductModel> products = productService.getProductsWithPaging(keyword, currentPage, pageSize, orderBy);
             Long totalPages = productService.getTotalPage(pageSize);
@@ -74,6 +79,9 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("orderBy", orderBy);
             request.setAttribute("categories", categories);
             request.setAttribute("brands", brands);
+            request.setAttribute("selectedCategories", selectedCategories);
+            request.setAttribute("selectedBrands", selectedBrands);
+            request.setAttribute("priceRange", priceRange);
 
 
 
