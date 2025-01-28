@@ -195,6 +195,10 @@ public class ProductServiceImpl implements IProductService {
         }
     }
 
+    @Override
+    public List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy) {
+        return productDAO.getFilteredProducts(keyword, categories, brands, priceRange, currentPage, pageSize, orderBy);
+    }
 
     @Override
     public void stopBuying(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

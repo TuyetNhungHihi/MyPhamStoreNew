@@ -32,13 +32,16 @@ public class CategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            // Lấy các tham số từ request
+            // Get filter parameters from request
             String keyword = request.getParameter("keyword");
             String orderBy = request.getParameter("orderBy");
+            String[] selectedCategories = request.getParameterValues("category");
+            String[] selectedBrands = request.getParameterValues("brand");
+            String priceRange = request.getParameter("priceRange");
 
-            // Xử lý giá trị null cho currentPage và pageSize
+            // Handle null values for currentPage and pageSize
             int currentPage = 1;
-            int pageSize = 5;
+            int pageSize = 6;
 
             if (request.getParameter("currentPage") != null) {
                 currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -47,45 +50,34 @@ public class CategoryController extends HttpServlet {
                 pageSize = Integer.parseInt(request.getParameter("pageSize"));
             }
 
-            //lọc sản phaarm theo danh mục, thương hiệu, giá
-            String[] selectedCategories = request.getParameterValues("category");
-            String[] selectedBrands = request.getParameterValues("brand");
-            String priceRange = request.getParameter("priceRange");
-
-            // Lấy danh sách sản phẩm và số trang
-            List<ProductModel> products = productService.getProductsWithPaging(keyword, currentPage, pageSize, orderBy);
+            // Fetch filtered products and total pages
+            List<ProductModel> products = productService.getFilteredProducts(keyword, selectedCategories, selectedBrands, priceRange, currentPage, pageSize, orderBy);
             Long totalPages = productService.getTotalPage(pageSize);
 
-
-            // Lấy danh sách thương hiệu
+            // Fetch brands and categories
             List<BrandModel> brands = brandService.getAllBrands();
             request.setAttribute("brands", brands);
 
-            // Lấy danh sách danh mục
             List<CategoryModel> categories = categoryService.getAllCategories();
             request.setAttribute("categories", categories);
 
-            // Lấy danh sách sản phẩm thuộc danh mục
-//            Long categoryId = Long.parseLong(request.getParameter("id"));
-//            List<ProductModel> productsByCategory = productService.getProductsByCategory(categoryId);
-//            request.setAttribute("productsByCategory", productsByCategory);
-
-            // Set các attribute để gửi đến JSP
+            // Set attributes to send to JSP
             request.setAttribute("products", products);
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("currentPage", currentPage);
             request.setAttribute("pageSize", pageSize);
             request.setAttribute("keyword", keyword);
             request.setAttribute("orderBy", orderBy);
-            request.setAttribute("categories", categories);
-            request.setAttribute("brands", brands);
             request.setAttribute("selectedCategories", selectedCategories);
             request.setAttribute("selectedBrands", selectedBrands);
             request.setAttribute("priceRange", priceRange);
 
+            // Check if no products found
+            if (products.isEmpty()) {
+                request.setAttribute("noProductsFound", true);
+            }
 
-
-            // Hiển thị trang chủ
+            // Forward to JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/category.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {
