@@ -41,7 +41,7 @@ public class CategoryController extends HttpServlet {
 
             // Handle null values for currentPage and pageSize
             int currentPage = 1;
-            int pageSize = 5;
+            int pageSize = 6;
 
             if (request.getParameter("currentPage") != null) {
                 currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -71,6 +71,11 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("selectedCategories", selectedCategories);
             request.setAttribute("selectedBrands", selectedBrands);
             request.setAttribute("priceRange", priceRange);
+
+            // Check if no products found
+            if (products.isEmpty()) {
+                request.setAttribute("noProductsFound", true);
+            }
 
             // Forward to JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/category.jsp");
