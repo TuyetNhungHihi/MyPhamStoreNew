@@ -72,8 +72,6 @@ public class UserServiceImpl implements IUserService {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean isAuthenticated = this.checkLogin(email.trim(), password.trim());
-        System.out.println(email);
-        System.out.println(password);
         if (isAuthenticated) {
             UserModel user = this.findUserByEmail(email);
             if (user != null) {
@@ -104,7 +102,9 @@ public class UserServiceImpl implements IUserService {
         RequestDispatcher dispatcher = null;
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
+        email = email.trim();
         String password = request.getParameter("password");
+        password = password.trim();
         String confirmPassword = request.getParameter("rePassword");
         String phone  = request.getParameter("phone");
         LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));

@@ -147,17 +147,24 @@ public class UserDAOImp implements IUserDAO {
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 String hashedPassword = handle.createQuery(sql)
-                        .bind("email", email.trim())
+                        .bind("email", email)
                         .mapTo(String.class)
                         .findOne()
                         .orElse(null);
-                return hashedPassword != null && PasswordUtils.verifyPassword(password.trim(), hashedPassword);
+
+                System.out.println("Email: " + email);
+                System.out.println("Hashed password from DB: " + hashedPassword);
+
+                boolean result = hashedPassword != null && PasswordUtils.verifyPassword(password, hashedPassword);
+                System.out.println("Password verification result: " + result);
+                return result;
             });
         } catch (Exception e) {
-            log.error("Error during login", e);
+            e.printStackTrace(); // Log lỗi ra console
             return false;
         }
     }
+
 
     @Override
     public boolean checkEmailExist(String email) {
