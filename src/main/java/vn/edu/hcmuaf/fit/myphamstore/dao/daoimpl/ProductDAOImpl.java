@@ -23,8 +23,9 @@ public class ProductDAOImpl implements IProductDAO {
         if (brands != null && brands.length > 0) {
             sql += " AND brand_id IN (<brands>)";
         }
+        String[] prices = new String[2];
         if (priceRange != null && !priceRange.isEmpty()) {
-            String[] prices = priceRange.split("-");
+            prices = priceRange.split("-");
             sql += " AND price BETWEEN :minPrice AND :maxPrice";
         }
         if (orderBy != null && !orderBy.isEmpty()) {
@@ -32,13 +33,16 @@ public class ProductDAOImpl implements IProductDAO {
         }
         sql += " LIMIT :limit OFFSET :offset";
 
+        final String finalSql = sql;
+        final String[] finalPrices = prices;
+
         return JDBIConnector.getJdbi().withHandle(handle ->
-                handle.createQuery(sql)
+                handle.createQuery(finalSql)
                         .bind("keyword", "%" + keyword + "%")
                         .bindList("categories", Arrays.asList(categories))
                         .bindList("brands", Arrays.asList(brands))
-                        .bind("minPrice", prices[0])
-                        .bind("maxPrice", prices[1])
+                        .bind("minPrice", finalPrices[0])
+                        .bind("maxPrice", finalPrices[1])
                         .bind("limit", pageSize)
                         .bind("offset", (currentPage - 1) * pageSize)
                         .mapToBean(ProductModel.class)

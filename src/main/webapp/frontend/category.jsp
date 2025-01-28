@@ -89,20 +89,12 @@ To change this template use File | Settings | File Templates.
 								<li class="default open">
 									<div class="link cc_product_heading">Loại sản phẩm<i class="fa fa-chevron-down"></i></div>
 									<ul class="submenu">
-										<div class="wpb_wrapper">
-											<div class="wpb_text_column wpb_content_element">
-												<div class="wpb_wrapper">
-													<ul>
-														<c:forEach var="category" items="${categories}">
-															<li>
-																<input type="checkbox" id="c${category.id}" name="cb">
-																<label for="c${category.id}">${category.name}</label>
-															</li>
-														</c:forEach>
-													</ul>
-												</div>
-											</div>
-										</div>
+										<c:forEach var="category" items="${categories}">
+											<li>
+												<input type="checkbox" id="c${category.id}" name="cb">
+												<label for="c${category.id}">${category.name}</label>
+											</li>
+										</c:forEach>
 									</ul>
 								</li>
 							</ul>
@@ -128,8 +120,7 @@ To change this template use File | Settings | File Templates.
 						<div class="cc_pc_accordion">
 							<ul id="accordion4" class="accordion">
 								<li class="default open">
-									<div class="link cc_product_heading">Thương Hiệu<i class="fa fa-chevron-down"></i>
-									</div>
+									<div class="link cc_product_heading">Thương Hiệu<i class="fa fa-chevron-down"></i></div>
 									<ul class="submenu">
 										<c:forEach var="brand" items="${brands}">
 											<li>
@@ -137,7 +128,6 @@ To change this template use File | Settings | File Templates.
 												<label for="c${brand.id}">${brand.name}</label>
 											</li>
 										</c:forEach>
-
 									</ul>
 								</li>
 							</ul>
@@ -840,6 +830,34 @@ To change this template use File | Settings | File Templates.
 
 
 	<!-- Footer Wrapper End -->
+	<script>
+		$(function() {
+			var Accordion = function(el, multiple) {
+				this.el = el || {};
+				this.multiple = multiple || false;
+
+				// Private variables
+				var links = this.el.find('.link');
+				// Event
+				links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown);
+			}
+
+			Accordion.prototype.dropdown = function(e) {
+				var $el = e.data.el;
+				var $this = $(this),
+						$next = $this.next();
+
+				$next.slideToggle();
+				$this.parent().toggleClass('open');
+
+				if (!e.data.multiple) {
+					$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+				}
+			}
+
+			var accordion = new Accordion($('#accordion1, #accordion4'), false);
+		});
+	</script>
 	<script>
 		const header = document.getElementById("header");
 		const footer = document.getElementById("footer");
