@@ -36,18 +36,25 @@ public class ProductDAOImpl implements IProductDAO {
         final String finalSql = sql;
         final String[] finalPrices = prices;
 
-        return JDBIConnector.getJdbi().withHandle(handle ->
-                handle.createQuery(finalSql)
-                        .bind("keyword", "%" + keyword + "%")
-                        .bindList("categories", Arrays.asList(categories))
-                        .bindList("brands", Arrays.asList(brands))
-                        .bind("minPrice", finalPrices[0])
-                        .bind("maxPrice", finalPrices[1])
-                        .bind("limit", pageSize)
-                        .bind("offset", (currentPage - 1) * pageSize)
-                        .mapToBean(ProductModel.class)
-                        .list()
-        );
+        return JDBIConnector.getJdbi().withHandle(handle -> {
+            var query = handle.createQuery(finalSql);
+            if (keyword != null && !keyword.isEmpty()) {
+                query.bind("keyword", "%" + keyword + "%");
+            }
+            if (categories != null && categories.length > 0) {
+                query.bindList("categories", Arrays.asList(categories));
+            }
+            if (brands != null && brands.length > 0) {
+                query.bindList("brands", Arrays.asList(brands));
+            }
+            if (priceRange != null && !priceRange.isEmpty()) {
+                query.bind("minPrice", finalPrices[0])
+                        .bind("maxPrice", finalPrices[1]);
+            }
+            query.bind("limit", pageSize)
+                    .bind("offset", (currentPage - 1) * pageSize);
+            return query.mapToBean(ProductModel.class).list();
+        });
     }
     @Override
     public ProductModel getProductDetail(Long id) {
