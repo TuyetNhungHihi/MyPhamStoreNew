@@ -54,7 +54,7 @@
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
                     <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 5)</strong> trên ${coupons.size() * totalPages} Mã giảm giá</span>
-                    <a href="add-brand.jsp" class="btn btn-primary" style="float: right;">Thêm Mã giảm giá</a>
+                    <a href="<c:url value="/admin/coupons?action=add" /> " class="btn btn-primary" style="float: right;">Thêm Mã giảm giá</a>
                 </div>
             </div>
             <table class="table table-striped ">

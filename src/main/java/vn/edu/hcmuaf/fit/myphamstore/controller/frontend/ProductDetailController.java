@@ -3,16 +3,13 @@ package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 import jakarta.inject.Inject;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.ProductDAOImpl;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.*;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.myphamstore.model.ReviewModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
@@ -41,6 +38,9 @@ public class ProductDetailController extends HttpServlet {
         request.setAttribute("productImages", productImages);
         List<ReviewModel> reviews = productService.getReviewsByProductId(id);
         request.setAttribute("reviews", reviews);
+        List<ProductVariant> productVariants = productService.getProductVariantsByProductId(id);
+        request.setAttribute("variants", productVariants);
+
         for (int i = 0; i < reviews.size(); i++) {
             totalReview += reviews.get(i).getRating() / reviews.size();
             if(reviews.get(i).getRating() == 5){

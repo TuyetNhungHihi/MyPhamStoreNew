@@ -42,6 +42,8 @@ public class ProductServiceImpl implements IProductService {
     private IReviewDAO reviewDAO;
     @Inject
     private ICategoryDAO categoryDAO;
+    @Inject
+    private IProductVariantDAO productVariantDAO;
 
 
     @Override
@@ -154,6 +156,34 @@ public class ProductServiceImpl implements IProductService {
         String costPrice = request.getParameter("costPrice");
         String brandId = request.getParameter("brandId");
         String categoryId = request.getParameter("categoryId");
+
+        // phần get data products variant ở đây
+        String[] variantNames = request.getParameterValues("variantName");
+        String[] variantStocks = request.getParameterValues("variantStock");
+        String[] variantCostPrices = request.getParameterValues("variantCostPrice");
+        String[] variantPrices = request.getParameterValues("variantPrice");
+
+        // Kiểm tra xem dữ liệu có null không
+        if (variantNames != null && variantStocks != null && variantCostPrices != null && variantPrices != null) {
+            for (int i = 0; i < variantNames.length; i++) {
+                String variantName = variantNames[i];
+                int variantStock = Integer.parseInt(variantStocks[i]);
+                double variantCostPrice = Double.parseDouble(variantCostPrices[i]);
+                double variantPrice = Double.parseDouble(variantPrices[i]);
+
+                // Xử lý dữ liệu, có thể lưu vào database
+                ProductVariant productVariant = ProductVariant.builder()
+                        .productId(id)
+                        .name(variantName)
+                        .stock(variantStock)
+                        .costPrice(variantCostPrice)
+                        .price(variantPrice)
+                        .isAvailable(true)
+                        .build();
+                productVariantDAO.save(productVariant);
+            }
+        }
+
         ProductModel productModel = ProductModel.builder()
                 .id(id)
                 .name(name)
@@ -198,6 +228,16 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy) {
         return productDAO.getFilteredProducts(keyword, categories, brands, priceRange, currentPage, pageSize, orderBy);
+    }
+
+    @Override
+    public List<ProductVariant> getProductVariantsByProductId(Long id) {
+        try{
+            return productVariantDAO.findAllByProduct(ProductModel.builder().id(id).build());
+        }catch (Exception e){
+            e.printStackTrace();
+            return List.of();
+        }
     }
 
     @Override
@@ -272,8 +312,9 @@ public class ProductServiceImpl implements IProductService {
         List<ProductImageModel> images = productImageDAO.getProductImageById(id);
         List<BrandModel> brands = brandDAO.getAllBrands();
         List<CategoryModel> categories = categoryDAO.getAllCategories();
+        List<ProductVariant> productVariants = productVariantDAO.findAllByProduct(product);
 
-
+        request.setAttribute("variants", productVariants);
         request.setAttribute("brands", brands);
         request.setAttribute("categories", categories);
         request.setAttribute("product", product);

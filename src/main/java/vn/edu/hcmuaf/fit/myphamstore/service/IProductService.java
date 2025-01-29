@@ -3,10 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.service;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ReviewModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,4 +31,5 @@ public interface IProductService {
     void executeAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void executeUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy);
+    List<ProductVariant> getProductVariantsByProductId(Long id);
 }

@@ -67,6 +67,44 @@
 
                     <c:choose>
                         <c:when test="${!empty product}">
+                             <!-- add variant -->
+                             <button id="add-variant" class="btn btn-primary">Thêm biến thể</button>
+                             <div id="variantContainer">
+                                 <c:if test="${!empty variants}">
+                                 <c:forEach items="${variants}" var="v">
+                                     <div class="row">
+                                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                             <div class="input-group">
+                                                 <label class="input-group-addon" for="variantName2">Tên Biến Thể</label>
+                                                 <input type="text" class="form-control" name="variantName2" placeholder="Tên biến thể..." readonly value="${v.name}">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                             <div class="input-group">
+                                                 <label for="variantStock2" class="input-group-addon">Số lượng</label>
+                                                 <input type="text" name="variantStock2" class="form-control" placeholder="Số lượng..." readonly value="${v.stock}">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row" style="maggin-bottom:10px">
+                                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                             <div class="input-group">
+                                                 <label class="input-group-addon" for="variantCostPrice2">Giá nhập</label>
+                                                 <input type="text" name="variantCostPrice2" class="form-control" placeholder="Giá nhập..." readonly value="${v.costPrice}">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                                             <div class="input-group">
+                                                 <label for="variantPrice2" class="input-group-addon">Giá bán</label>
+                                                 <input type="text" name="variantPrice2" class="form-control" placeholder="Giá bán..." readonly value="${v.price}">
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <!-- Nút hủy bỏ -->
+                        </c:forEach>
+                        </c:if>
+                             </div>
+
                             <div class="row">
                                 <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                                     <div class="input-group">
@@ -310,6 +348,52 @@
     </div>
     <script>
         CKEDITOR.replace('description');
+    </script>
+    <script>
+        document.querySelector('#add-variant').addEventListener('click', () => {
+    const formContainer = document.querySelector('#variantContainer');
+
+    // Tạo phần tử div chứa mẫu
+    const newDiv = document.createElement('div');
+    newDiv.innerHTML = `
+        <div class="row">
+            <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                    <label class="input-group-addon" for="variantName">Tên Biến Thể</label>
+                    <input type="text" class="form-control" name="variantName" placeholder="Tên biến thể..." required>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                    <label for="variantStock" class="input-group-addon">Số lượng</label>
+                    <input type="text" name="variantStock" class="form-control" placeholder="Số lượng..." required>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="maggin-bottom:10px">
+            <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                    <label class="input-group-addon" for="variantCostPrice">Giá nhập</label>
+                    <input type="text" name="variantCostPrice" class="form-control" placeholder="Giá nhập..." required>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
+                <div class="input-group">
+                    <label for="variantPrice" class="input-group-addon">Giá bán</label>
+                    <input type="text" name="variantPrice" class="form-control" placeholder="Giá bán..." required>
+                </div>
+            </div>
+        </div>
+        <!-- Nút hủy bỏ -->
+        <button class="remove-variant btn btn-danger " >Hủy bỏ</button>
+    `;
+    newDiv.querySelector('.remove-variant').addEventListener('click', () => {
+        newDiv.remove();
+    });
+
+    // Thêm phần tử mới vào đầu container
+    formContainer.prepend(newDiv);
+});
     </script>
     <script>
         document.getElementById('imageInput').addEventListener('change', function (event) {
