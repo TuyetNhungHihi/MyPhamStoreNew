@@ -105,6 +105,7 @@ public class UserServiceImpl implements IUserService {
         email = email.trim();
         String password = request.getParameter("password");
         password = password.trim();
+        System.out.println(password);
         String confirmPassword = request.getParameter("rePassword");
         String phone  = request.getParameter("phone");
         LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));
@@ -242,10 +243,9 @@ public class UserServiceImpl implements IUserService {
     public void verifyOtp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String otp = request.getParameter("otp");
-        Boolean verify = otpDAO.verifyOtp(email.trim(), otp.trim());
-        System.out.println(verify);
         System.out.println(email);
         System.out.println(otp);
+        Boolean verify = otpDAO.verifyOtp(email.trim(), otp.trim());
         if(verify) {
             UserModel user = userDAO.getUserByEmail(email);
             user.setStatus(UserStatus.ACTIVE);
