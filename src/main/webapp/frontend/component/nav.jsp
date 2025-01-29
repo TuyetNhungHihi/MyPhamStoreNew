@@ -87,30 +87,36 @@
                     </ul>
                 </div>
             </li>
-            <li id="" style="height: 82px;
-                display: flex;align-items: center;">
-                <div class="ss_login_box">
-                <a href="<c:url value="/login" />">
-                    <span>Đăng nhập/Đăng ký</span>
-                    <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive">
-                </a>
-            </div>
-            <c:if test="${not empty user}">
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Nguyễn Ngọc Hân <strong>#12</strong>
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121; text-decoration: none;">
-                        <li><a href="change-password.jsp" style="text-decoration: none;">Đổi mật khẩu</a></li>
-                        <li><a href="../frontend/profile.html" style="text-decoration: none;">Thông tin cá nhân</a></li>
-                        <li><a href="#" style="text-decoration: none;">Lịch sử đơn hàng</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#" style="text-decoration: none;">Đăng xuất</a></li>
-                    </ul>
-                </div>
-            </c:if>
+            <li id="" style="height: 82px; display: flex; align-items: center;">
+                <c:choose>
+                    <c:when test="${empty user}">
+                        <!-- Người dùng chưa đăng nhập -->
+                        <div class="ss_login_box">
+                            <a href="<c:url value='/login' />">
+                                <span>Đăng nhập/Đăng ký</span>
+                                <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive">
+                            </a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- Người dùng đã đăng nhập -->
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    ${user.fullName} <strong>#${user.id}</strong>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121;">
+                                <li><a href="change-password.jsp">Đổi mật khẩu</a></li>
+                                <li><a href="../frontend/profile.html">Thông tin cá nhân</a></li>
+                                <li><a href="#">Lịch sử đơn hàng</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="logout.jsp">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </li>
+
             <li>
                 <div class="ss_cart_value dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

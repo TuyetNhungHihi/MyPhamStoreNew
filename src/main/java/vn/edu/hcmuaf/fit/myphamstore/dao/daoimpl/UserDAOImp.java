@@ -25,8 +25,9 @@ public class UserDAOImp implements IUserDAO {
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Hash password trước khi lưu
+                System.out.println("Password before hash: " + entity.getPassword());
                 String hashedPassword = PasswordUtils.hashPassword(entity.getPassword()) ;
-
+                System.out.println("Hashed password: " + hashedPassword);
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
                         .bind("email", entity.getEmail().trim())
@@ -72,7 +73,9 @@ public class UserDAOImp implements IUserDAO {
                         .bind("status", entity.getStatus() != null ? entity.getStatus().name() : user.getStatus().name())
                         .bind("lastLogin", Timestamp.valueOf(user.getLastLogin()))
                         .bind("avatar", entity.getAvatar() != null ? entity.getAvatar() : user.getAvatar())
-                        .bind("password", entity.getPassword() != null ? PasswordUtils.hashPassword(entity.getPassword()) : user.getPassword())
+                        .bind("password", (entity.getPassword() != null && !entity.getPassword().startsWith("$2a$"))
+                                ? PasswordUtils.hashPassword(entity.getPassword())
+                                : user.getPassword())
                         .bind("id", entity.getId())
                         .execute(); // Thực thi câu lệnh UPDATE và trả về số bản ghi bị ảnh hưởng
             });
