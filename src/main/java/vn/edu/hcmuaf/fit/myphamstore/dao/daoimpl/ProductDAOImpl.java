@@ -12,49 +12,72 @@ import java.util.List;
 public class ProductDAOImpl implements IProductDAO {
 
     @Override
-    public List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy) {
-        String sql = "SELECT * FROM product WHERE 1=1";
-        if (keyword != null && !keyword.isEmpty()) {
-            sql += " AND name LIKE :keyword";
-        }
-        if (categories != null && categories.length > 0) {
-            sql += " AND category_id IN (<categories>)";
-        }
-        if (brands != null && brands.length > 0) {
-            sql += " AND brand_id IN (<brands>)";
-        }
-        String[] prices = new String[2];
-        if (priceRange != null && !priceRange.isEmpty()) {
-            prices = priceRange.split("-");
-            sql += " AND price BETWEEN :minPrice AND :maxPrice";
-        }
-        if (orderBy != null && !orderBy.isEmpty()) {
-            sql += " ORDER BY " + orderBy;
-        }
-        sql += " LIMIT :limit OFFSET :offset";
+    public List<ProductModel> getFilteredProducts(String keyword, String[] selectedCategories, String[] selectedBrands, String priceRange, int currentPage, int pageSize, String orderBy) {
+        // Sàng lọc dữ liệu đầu vào
+        if (currentPage < 1) currentPage = 1;
 
-        final String finalSql = sql;
-        final String[] finalPrices = prices;
+        // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
+        List<String> allowedColumns = Arrays.asList("id", "name", "price", "stock", "soldQuantity", "description", "isAvailable", "thumbnail", "created_at", "updated_at", "categoryId", "brandId");
+        if (!allowedColumns.contains(orderBy)) {
+            orderBy = "id";
+        }
 
-        return JDBIConnector.getJdbi().withHandle(handle -> {
-            var query = handle.createQuery(finalSql);
-            if (keyword != null && !keyword.isEmpty()) {
+        // Xây dựng câu lệnh SQL
+        StringBuilder sql = new StringBuilder("SELECT * FROM product WHERE 1=1 ");
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            sql.append("AND CONCAT(id, name, price, stock, sold_quantity, description, is_available, thumbnail, category_id, brand_id, created_at, updated_at) LIKE :keyword ");
+        }
+        if (selectedCategories != null && selectedCategories.length > 0) {
+            sql.append("AND category_id IN (").append(String.join(",", selectedCategories)).append(") ");
+        }
+        if (selectedBrands != null && selectedBrands.length > 0) {
+            sql.append("AND brand_id IN (").append(String.join(",", selectedBrands)).append(") ");
+        }
+        if (priceRange != null && !priceRange.trim().isEmpty()) {
+            String[] prices = priceRange.split("-");
+            if (prices.length == 2) {
+                try {
+                    int minPrice = Integer.parseInt(prices[0].trim().replaceAll("[^\\d]", ""));
+                    int maxPrice = Integer.parseInt(prices[1].trim().replaceAll("[^\\d]", ""));
+                    sql.append("AND price BETWEEN :minPrice AND :maxPrice ");
+                } catch (NumberFormatException e) {
+                    // Handle invalid price range input
+                    e.printStackTrace();
+                }
+            }
+        }
+        sql.append("ORDER BY ").append(orderBy).append(" LIMIT :limit OFFSET :offset");
+
+        // Sử dụng JDBI để thực hiện truy vấn
+        int finalCurrentPage = currentPage;
+        String finalSql = sql.toString();
+
+        List<ProductModel> products = JDBIConnector.getJdbi().withHandle(handle -> {
+            var query = handle.createQuery(finalSql)
+                    .bind("limit", pageSize)
+                    .bind("offset", (finalCurrentPage - 1) * pageSize);
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
                 query.bind("keyword", "%" + keyword + "%");
             }
-            if (categories != null && categories.length > 0) {
-                query.bindList("categories", Arrays.asList(categories));
+            if (priceRange != null && !priceRange.trim().isEmpty()) {
+                String[] prices = priceRange.split("-");
+                if (prices.length == 2) {
+                    try {
+                        int minPrice = Integer.parseInt(prices[0].trim().replaceAll("[^\\d]", ""));
+                        int maxPrice = Integer.parseInt(prices[1].trim().replaceAll("[^\\d]", ""));
+                        query.bind("minPrice", minPrice);
+                        query.bind("maxPrice", maxPrice);
+                    } catch (NumberFormatException e) {
+                        // Handle invalid price range input
+                        e.printStackTrace();
+                    }
+                }
             }
-            if (brands != null && brands.length > 0) {
-                query.bindList("brands", Arrays.asList(brands));
-            }
-            if (priceRange != null && !priceRange.isEmpty()) {
-                query.bind("minPrice", finalPrices[0])
-                        .bind("maxPrice", finalPrices[1]);
-            }
-            query.bind("limit", pageSize)
-                    .bind("offset", (currentPage - 1) * pageSize);
+
             return query.mapToBean(ProductModel.class).list();
         });
+        return products;
     }
     @Override
     public ProductModel getProductDetail(Long id) {

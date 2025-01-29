@@ -35,8 +35,8 @@ public class CategoryController extends HttpServlet {
             // Get filter parameters from request
             String keyword = request.getParameter("keyword");
             String orderBy = request.getParameter("orderBy");
-            String[] selectedCategories = request.getParameterValues("category");
-            String[] selectedBrands = request.getParameterValues("brand");
+            String[] selectedCategories = request.getParameterValues("selectedCategories");
+            String[] selectedBrands = request.getParameterValues("selectedBrands");
             String priceRange = request.getParameter("priceRange");
 
             // Handle null values for currentPage and pageSize
