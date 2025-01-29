@@ -85,7 +85,7 @@ To change this template use File | Settings | File Templates.
 			<div class="row">
 				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 					<div class="cc_pc_first_accordion_wrapper cc_pc_second_accordion_wrapper2">
-						<form method="get" action="/danh-muc">
+						<form id="filterForm" method="get" action="/danh-muc">
 							<div class="cc_pc_accordion">
 								<ul id="accordion1" class="accordion">
 									<li class="default open">
@@ -93,7 +93,7 @@ To change this template use File | Settings | File Templates.
 										<ul class="submenu">
 											<c:forEach var="category" items="${categories}">
 												<li>
-													<input type="checkbox" id="category${category.id}" name="category" value="${category.id}" <c:if test="${fn:contains(selectedCategories, category.id)}">checked</c:if>>
+													<input type="checkbox" id="category${category.id}" name="selectedCategories" value="${category.id}" <c:if test="${fn:contains(selectedCategories, category.id)}">checked</c:if>>
 													<label for="category${category.id}">${category.name}</label>
 												</li>
 											</c:forEach>
@@ -108,7 +108,7 @@ To change this template use File | Settings | File Templates.
 										<ul class="submenu">
 											<c:forEach var="brand" items="${brands}">
 												<li>
-													<input type="checkbox" id="brand${brand.id}" name="brand" value="${brand.id}" <c:if test="${fn:contains(selectedBrands, brand.id)}">checked</c:if>>
+													<input type="checkbox" id="brand${brand.id}" name="selectedBrands" value="${brand.id}" <c:if test="${fn:contains(selectedBrands, brand.id)}">checked</c:if>>
 													<label for="brand${brand.id}">${brand.name}</label>
 												</li>
 											</c:forEach>
@@ -122,7 +122,8 @@ To change this template use File | Settings | File Templates.
 										<div class="link cc_product_heading">Giá<i class="fa fa-chevron-down"></i></div>
 										<ul class="submenu price-range">
 											<li class="range">
-												<input type="text" id="priceRange" name="priceRange" value="${priceRange}" readonly/>
+												<div id="range-price" class="range-box"></div>
+												<input type="text" id="price" name="priceRange" readonly style="border:0; color:#f6931f; font-weight:bold;" value="${priceRange}">
 											</li>
 										</ul>
 									</li>
@@ -130,11 +131,10 @@ To change this template use File | Settings | File Templates.
 							</div>
 							<button type="submit" class="btn btn-primary">Lọc sản phẩm</button>
 						</form>
-
-						<c:if test="${noProductsFound}">
-							<p>Không có sản phẩm nào phù hợp với các điều kiện lọc.</p>
-						</c:if>
 					</div>
+					<c:if test="${noProductsFound}">
+						<p>Không có sản phẩm nào phù hợp với các điều kiện lọc.</p>
+					</c:if>
 				</div>
 				<div class="col-lg-9  col-md-9 col-sm-12 col-xs-12 sidebar2_main_wrapper">
 					<div class="sidebar_widget2">
@@ -246,39 +246,6 @@ To change this template use File | Settings | File Templates.
 									<div class="link cc_product_heading">Loại sản phẩm<i class="fa fa-chevron-down"></i>
 									</div>
 									<ul class="submenu">
-										<li>
-											<div class="content">
-												<div class="box">
-													<p class="cc_pc_color1">
-														<input type="checkbox" id="c201" name="cb">
-														<label for="c201">Sữa rữa mặt (55)</label>
-														<p class="cc_pc_color2">
-															<input type="checkbox" id="c202" name="cb">
-															<label for="c202">Kem dưỡng ẩm (245)</label>
-														</p>
-														<p class="cc_pc_color3">
-															<input type="checkbox" id="c203" name="cb">
-															<label for="c203">Tẩy trang</label>
-														</p>
-														<p class="cc_pc_color4">
-															<input type="checkbox" id="c204" name="cb">
-															<label for="c204">Son môi</label>
-														</p>
-														<p class="cc_pc_color5">
-															<input type="checkbox" id="c205" name="cb">
-															<label for="c205">Chống nắng (36)</label>
-														</p>
-														<p class="cc_pc_color6">
-															<input type="checkbox" id="c206" name="cb">
-															<label for="c206">Sữa tắm (23)</label>
-														</p>
-														<p class="cc_pc_color6">
-															<input type="checkbox" id="c207" name="cb">
-															<label for="c207">Xà phòng (124)</label>
-														</p>
-												</div>
-											</div>
-										</li>
 									</ul>
 								</li>
 							</ul>
@@ -307,39 +274,7 @@ To change this template use File | Settings | File Templates.
 									<div class="link cc_product_heading">Thương hiệu<i class="fa fa-chevron-down"></i>
 									</div>
 									<ul class="submenu">
-										<li>
-											<div class="content">
-												<div class="box">
-													<p>
-														<input type="checkbox" id="c12" name="cb">
-														<label for="c12">16PLAIN</label>
-														<p>
-															<input type="checkbox" id="c13" name="cb">
-															<label for="c13">2080</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c14" name="cb">
-															<label for="c14">3CE</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c15" name="cb">
-															<label for="c15">9WHISHES</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c16" name="cb">
-															<label for="c16">ACNES</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c17" name="cb">
-															<label for="c17">ADOPT'</label>
-														</p>
-														<p>
-															<input type="checkbox" id="c18" name="cb">
-															<label for="c18">AHC</label>
-														</p>
-												</div>
-											</div>
-										</li>
+
 									</ul>
 								</li>
 							</ul>
@@ -353,20 +288,7 @@ To change this template use File | Settings | File Templates.
 					<div class="col-lg-12 col-md-12 visible-sm visible-xs">
 						<!-- blog_pagination_section start -->
 						<div class="pager_wrapper gc_blog_pagination">
-							<ul class="pagination">
-								<li><a href="#">Trước</a>
-								</li>
-								<li><a href="#">1</a>
-								</li>
-								<li><a href="#">2</a>
-								</li>
-								<li class="third_pagger"><a href="#">3</a>
-								</li>
-								<li class="hidden-xs"><a href="#">4</a>
-								</li>
-								<li><a href="#">Sau</a>
-								</li>
-							</ul>
+
 						</div>
 						<!-- blog_pagination_section end -->
 					</div>
@@ -450,69 +372,72 @@ To change this template use File | Settings | File Templates.
 	<script src="../static/js/jquery-ui.min.js"></script>
 	<script src="../static/js/custom.js"></script>
 	<script>
-		$(window).on("load", function() {
-				var wow = new WOW({
-					boxClass: 'wow',
-					animateClass: 'animated',
-					offset: 0,
-					mobile: true,
-					live: true
-				});
-				wow.init();
-			});
-			
-					$(function() {
+		$(function() {
 			var Accordion = function(el, multiple) {
 				this.el = el || {};
 				this.multiple = multiple || false;
-		
-				// Variables privadas
+
+				// Private variables
 				var links = this.el.find('.link');
-				// Evento
-				links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+				// Event
+				links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown);
 			}
-		
+
 			Accordion.prototype.dropdown = function(e) {
 				var $el = e.data.el;
-					$this = $(this),
-					$next = $this.next();
-		
+				var $this = $(this),
+						$next = $this.next();
+
 				$next.slideToggle();
 				$this.parent().toggleClass('open');
-		
+
 				if (!e.data.multiple) {
 					$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
-				};
-			}	
-		
-			var accordion = new Accordion($('#accordion2, #accordion3, #accordion4, #accordion5, #accordion6, #accordion7, #accordion8, #accordion9, #accordion10, #accordion11, #accordion12, #accordion13'), false);
-		});	
-		
+				}
+			}
+
+			var accordion = new Accordion($('#accordion1, #accordion4'), false);
+		});
+
 		$( "#range-price" ).slider({
-				range: true,
-				min: 50_000,
-				max: 10_000_000,
-				values: [ 50_000, 10_000_000 ],
-				slide: function( event, ui ) {
-			$( "#price" ).val( ui.values[ 0 ]+"đ" + " - "  + ui.values[ 1 ] + "đ");
+			range: true,
+			min: 0,
+			max: 1_000_000,
+			values: [ 0, 1_000_000 ],
+			slide: function( event, ui ) {
+				$( "#price" ).val( ui.values[ 0 ] + "đ" + " - " + ui.values[ 1 ] + "đ");
 			}
-			});
-		
-			$( "#price" ).val(  $( "#range-price").slider( "values", 0 ) +"đ" +
-			" - "  + $( "#range-price" ).slider( "values", 1 ) + "đ"); 
-			
-			$( "#range-price2" ).slider({
-				range: true,
-				min: 50_000,
-				max: 10_000_000,
-				values: [ 50_000, 10_000_000 ],
-				slide: function( event, ui ) {
-			$( "#price2" ).val( ui.values[ 0 ] +"đ"+ " - "  + ui.values[ 1 ] +" đ" );
+		});
+
+		$( "#price" ).val( $( "#range-price" ).slider( "values", 0 ) + "đ" +
+				" - " + $( "#range-price" ).slider( "values", 1 ) + "đ");
+
+		$( "#range-price2" ).slider({
+			range: true,
+			min: 0,
+			max: 1_000_000,
+			values: [ 0, 1_000_000 ],
+			slide: function( event, ui ) {
+				$( "#price2" ).val( ui.values[ 0 ] + "đ" + " - " + ui.values[ 1 ] + "đ");
 			}
-			});
-		
-			$( "#price2" ).val(  $( "#range-price2" ).slider( "values", 0 )+"đ" +
-			" - "  + $( "#range-price2" ).slider( "values", 1 ) + "đ");
+		});
+
+		$( "#price2" ).val( $( "#range-price2" ).slider( "values", 0 ) + "đ" +
+				" - " + $( "#range-price2" ).slider( "values", 1 ) + "đ");
+	</script>
+	<script>
+		document.getElementById('filterForm').addEventListener('submit', function(event) {
+			// Get selected categories and brands
+			const selectedCategories = document.querySelectorAll('input[name="selectedCategories"]:checked');
+			const selectedBrands = document.querySelectorAll('input[name="selectedBrands"]:checked');
+			const priceRange = document.getElementById('price').value;
+
+			// Check if at least one category or brand is selected
+			if (selectedCategories.length === 0 && selectedBrands.length === 0 && !priceRange) {
+				alert('Please select at least one filter option.');
+				event.preventDefault(); // Prevent form submission
+			}
+		});
 	</script>
 	<!--main js file end-->
 </body>
