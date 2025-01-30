@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.myphamstore.common.OrderStatus;
 import vn.edu.hcmuaf.fit.myphamstore.common.PaymentMethod;
+import vn.edu.hcmuaf.fit.myphamstore.common.SendEmail;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IAddressDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOrderDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.*;
@@ -15,9 +16,12 @@ import vn.edu.hcmuaf.fit.myphamstore.service.ICheckoutService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
 
 @ApplicationScoped
@@ -124,8 +128,16 @@ public class CheckoutServiceImpl implements ICheckoutService {
         //updatet total price
         order.setTotalPrice(totalAmount);
         orderDAO.updateOrder(order);
+
+        // lấy user từ session
+        UserModel user = (UserModel) session.getAttribute("user");
+        //gửi email thông báo đơn hàng
+        order.setId(orderId);
+        SendEmail.notifyOrderToUser(user.getEmail(), order, listCartDisplay, address);
+
         response.sendRedirect("/trang-chu");
     }
+
 
     private AddressModel getAddressFromRequest(HttpServletRequest request) {
         //get user id from session

@@ -3,8 +3,16 @@ package vn.edu.hcmuaf.fit.myphamstore.common;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeUtility;
+import vn.edu.hcmuaf.fit.myphamstore.model.AddressModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.CartModelHelper;
+import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
 
+import java.text.NumberFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 
 public class SendEmail {
@@ -154,6 +162,165 @@ public class SendEmail {
             return false;
         }
     }
+    public static void notifyOrderToUser(String toEmail, OrderModel order, List<CartModelHelper> listCartDisplay, AddressModel address){
+        // Sử dụng NumberFormat với locale cho Việt Nam
+        NumberFormat numberFormat = NumberFormat.getInstance(new Locale("vi", "VN"));
 
+        String items = "";
+
+        for (CartModelHelper cartItem : listCartDisplay) {
+            items += "<tr>\n" +
+                    "                    <td>" + cartItem.getProduct().getName() + "</td>\n" +
+                    "                    <td>" + cartItem.getQuantity() + "</td>\n" +
+                    "                    <td>" + numberFormat.format(cartItem.getProduct().getPrice()) + " VNĐ</td>\n" +
+                    "                </tr>\n";
+        }
+
+        String template = "<!DOCTYPE html>\n" +
+                "<html lang=\"vi\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                "    <title>Đặt Hàng Thành Công</title>\n" +
+                "    <style>\n" +
+                "        body {\n" +
+                "            font-family: Arial, sans-serif;\n" +
+                "            background-color: #e3f2fd;\n" +
+                "            padding: 20px;\n" +
+                "        }\n" +
+                "        .container {\n" +
+                "            max-width: 600px;\n" +
+                "            margin: auto;\n" +
+                "            background: #ffffff;\n" +
+                "            padding: 20px;\n" +
+                "            border-radius: 20px;\n" +
+                "            box-shadow: 0px 4px 20px rgba(0, 123, 255, 0.2);\n" +
+                "        }\n" +
+                "        h2 {\n" +
+                "            text-align: center;\n" +
+                "            color: #007bff;\n" +
+                "            border-bottom: 3px solid #90caf9;\n" +
+                "            padding-bottom: 10px;\n" +
+                "        }\n" +
+                "        h3 {\n" +
+                "            color: #0056b3;\n" +
+                "            border-left: 5px solid #90caf9;\n" +
+                "            padding-left: 10px;\n" +
+                "        }\n" +
+                "        .table-container {\n" +
+                "            border-radius: 12px;\n" +
+                "            overflow: hidden;\n" +
+                "            margin-bottom: 20px;\n" +
+                "        }\n" +
+                "        table {\n" +
+                "            width: 100%;\n" +
+                "            border-collapse: collapse;\n" +
+                "        }\n" +
+                "        table, th, td {\n" +
+                "            border: none;\n" +
+                "            padding: 12px;\n" +
+                "            text-align: left;\n" +
+                "        }\n" +
+                "        th {\n" +
+                "            background-color: #bbdefb;\n" +
+                "            color: #0d47a1;\n" +
+                "        }\n" +
+                "        td {\n" +
+                "            background-color: #e3f2fd;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <div class=\"container\">\n" +
+                "        <h2>Đặt Hàng Thành Công</h2>\n" +
+                "        \n" +
+                "        <div class=\"table-container\">\n" +
+                "            <table>\n" +
+                "                <tr><td><strong>Ghi Chú:</strong></td><td>"+order.getNote()+"</td></tr>\n" +
+                "                <tr><td><strong>Phương Thức Thanh Toán:</strong></td><td>"+order.getPaymentMethod().name()+"</td></tr>\n" +
+                "                <tr><td><strong>Tổng Tiền:</strong></td><td>"+numberFormat.format(order.getTotalPrice())+" VNĐ</td></tr>\n" +
+                "                <tr><td><strong>Ngày Đặt Hàng:</strong></td><td>"+order.getOrderDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+"</td></tr>\n" +
+                "            </table>\n" +
+                "        </div>\n" +
+                "        \n" +
+                "        <h3>Thông Tin Giao Hàng</h3>\n" +
+                "        <div class=\"table-container\">\n" +
+                "            <table>\n" +
+                "                <tr><td><strong>Người Nhận:</strong></td><td>"+address.getRecipientName()+"</td></tr>\n" +
+                "                <tr><td><strong>Số Điện Thoại:</strong></td><td>"+address.getRecipientPhone()+"</td></tr>\n" +
+                "                <tr><td><strong>Thành Phố:</strong></td><td>"+address.getCity()+"</td></tr>\n" +
+                "                <tr><td><strong>Quận/Huyện:</strong></td><td>"+address.getDistrict()+"</td></tr>\n" +
+                "                <tr><td><strong>Phường/Xã:</strong></td><td>"+address.getWard()+"</td></tr>\n" +
+                "                <tr><td><strong>Ghi Chú Địa Chỉ:</strong></td><td>"+address.getNote()+"</td></tr>\n" +
+                "            </table>\n" +
+                "        </div>\n" +
+                "        \n" +
+                "        <h3>Chi Tiết Đơn Hàng</h3>\n" +
+                "        <div class=\"table-container\">\n" +
+                "            <table>\n" +
+                "                <tr>\n" +
+                "                    <th>Tên Sản Phẩm</th>\n" +
+                "                    <th>Số Lượng</th>\n" +
+                "                    <th>Đơn Giá</th>\n" +
+                "                </tr>\n" +
+                items +
+                "                \n" +
+                "            </table>\n" +
+                "        </div>\n" +
+                "    </div>\n" +
+                "</body>\n" +
+                "</html>\n";
+
+        String tieuDe = "Thông báo đặt đơn hàng #" + order.getId();
+        // Properties : khai báo các thuộc tính
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP HOST
+        props.put("mail.smtp.port", "587"); // TLS 587 SSL 465
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        // create Authenticator
+        Authenticator auth = new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                // TODO Auto-generated method stub
+                return new PasswordAuthentication(EMAIL, PASSWORD);
+            }
+        };
+
+        // Phiên làm việc
+        Session session = Session.getInstance(props, auth);
+
+        // Tạo một tin nhắn
+        MimeMessage msg = new MimeMessage(session);
+
+        try {
+            // Kiểu nội dung
+            msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+            // Người gửi
+
+            // Người nhận
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+
+            // Tiêu đề email
+            msg.setSubject(tieuDe, "UTF-8");
+
+            // Quy đinh ngày gửi
+            msg.setSentDate(new Date());
+
+            // Quy định email nhận phản hồi
+            // msg.setReplyTo(InternetAddress.parse(from, false))
+
+            // Nội dung
+            msg.setContent(template, "text/HTML; charset=UTF-8");
+
+            // Gửi email
+            Transport.send(msg);
+            System.out.println("Gửi email thành công");
+        } catch (Exception e) {
+            System.out.println("Gặp lỗi trong quá trình gửi email");
+            e.printStackTrace();
+        }
+    }
 
 }
