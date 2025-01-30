@@ -503,7 +503,7 @@
     setTimeout(()=>{
       //submit form
         document.querySelector(".checkout-form").submit();
-    }, 5000);
+    }, 1000);
   })
 </script>
 </body>
