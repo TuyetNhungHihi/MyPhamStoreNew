@@ -105,7 +105,6 @@ public class UserServiceImpl implements IUserService {
         email = email.trim();
         String password = request.getParameter("password");
         password = password.trim();
-        System.out.println(password);
         String confirmPassword = request.getParameter("rePassword");
         String phone  = request.getParameter("phone");
         LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));

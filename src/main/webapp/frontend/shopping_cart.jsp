@@ -248,7 +248,7 @@ Purchase:
                 </table>
                 <div class="shop_btn_wrapper shop_btn_wrapper_shipping">
                   <ul>
-                    <li><a href="/src/main/webapp/frontend/checkout.html">Thanh toán</a></li>
+                    <li><a href="<c:url value="/checkout?action=display"/> ">Thanh toán</a></li>
                   </ul>
                 </div>
               </div>
