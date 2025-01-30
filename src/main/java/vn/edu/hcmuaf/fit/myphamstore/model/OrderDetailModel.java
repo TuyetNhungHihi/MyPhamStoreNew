@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @Setter
 @Getter
-public class OrderDetail extends BaseModel{
+public class OrderDetailModel extends BaseModel{
     private Long orderId;
     private Long productId;
     private Integer quantity;

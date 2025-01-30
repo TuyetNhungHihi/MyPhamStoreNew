@@ -72,7 +72,7 @@ INSERT INTO `address` (`id`, `user_id`, `recipient_name`, `recipient_phone`, `ci
 
 
 
-INSERT INTO `order` (`id`, `address_id`, `user_id`, `status`, `payment_method`, `shipping_fee`, `note`, `total_price`, `order_date`, `confirm_at`) VALUES
+INSERT INTO `orders` (`id`, `address_id`, `user_id`, `status`, `payment_method`, `shipping_fee`, `note`, `total_price`, `order_date`, `confirm_at`) VALUES
 (1, 1, 1, 'PENDING', 'COD', 30000, 'Handle with care', 500000, NOW(), NOW()),
 (2, 2, 2, 'CONFIRMED', 'Online', 25000, 'Deliver ASAP', 800000, NOW(), NOW()),
 (3, 3, 3, 'DELIVERED', 'COD', 20000, 'No special instructions', 1200000, NOW(), NOW()),

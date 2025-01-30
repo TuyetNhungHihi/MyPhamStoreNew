@@ -164,15 +164,14 @@
             <!--Form Group-->
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
               <div class="field-label">Tên người nhận</div>
-              <input type="text" name="recipientName"  placeholder="nhập tên nguời nhận" >
+              <input type="text" name="recipientName"  placeholder="nhập tên nguời nhận " required >
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
               <div class="field-label">Số điện thoại người nhận <sup>*</sup></div>
-              <input type="text" name="recipientPhone"  placeholder="nhập số điện thoại người nhận" >
+              <input type="text" name="recipientPhone"  placeholder="nhập số điện thoại người nhận" required >
             </div>
-
             <!-- Form Group
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                 <div class="field-label">Tên công ty</div>
@@ -188,25 +187,30 @@
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-12 col-xs-12">
               <div class="field-label">Thành phố/Tỉnh thành </div>
-              <input type="text" name="city"  placeholder="nhập tên thành phố/tỉnh thành" >
+              <input type="text" name="city"  placeholder="nhập tên thành phố/tỉnh thành" required >
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-12 col-xs-12">
               <div class="field-label">Quận/huyện </div>
-              <input type="text" name="district"   placeholder="nhập tên quận/huyện" >
+              <input type="text" name="district"   placeholder="nhập tên quận/huyện" required >
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-6 col-xs-12">
               <div class="field-label">Phường/xã</div>
-              <input type="text" name="ward"  placeholder="nhập tên phường/xã" >
+              <input type="text" name="ward"  placeholder="nhập tên phường/xã"  required>
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-6 col-xs-12">
               <div class="field-label">Chi tiết địa chỉ </div>
-              <input type="text" name="note"  placeholder="nhập chi tiết địa chỉ" >
+              <input type="text" name="note"  placeholder="nhập chi tiết địa chỉ" required >
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+              <div class="field-label">Ghi chú của khách hàng </div>
+              <input type="text" name="customerNote"  placeholder="ghi chú của bạn" required >
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ public class OrderModel extends BaseModel{
     private Integer shippingFee;
     private String note;
     private PaymentMethod paymentMethod;
-    private Double totalAmount;
+    private Double totalPrice;
     private LocalDateTime orderDate;
     private LocalDateTime confirmedAt;
 }

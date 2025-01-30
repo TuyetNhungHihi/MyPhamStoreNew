@@ -3,6 +3,8 @@ package vn.edu.hcmuaf.fit.myphamstore.model;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Objects;
+
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,12 +28,25 @@ public class AddressModel extends BaseModel {
   `updated_at` datetime DEFAULT (now())
 );
      */
+    private Long userId;
     private String recipientName;
     private String recipientPhone;
     private String city;
     private String district;
     private String ward;
     private String note;
-    private boolean is_default;
-    private boolean is_active;
+    private Boolean isDefault;
+    private Boolean isActive;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressModel that = (AddressModel) o;
+        return Objects.equals(recipientName, that.recipientName)
+                && Objects.equals(recipientPhone, that.recipientPhone)
+                && Objects.equals(city, that.city)
+                && Objects.equals(district, that.district)
+                && Objects.equals(ward, that.ward) &&
+                Objects.equals(note, that.note);
+    }
 }

@@ -107,7 +107,7 @@ CREATE TABLE `review` (
   `updated_at` datetime DEFAULT (now())
 );
 
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `address_id` int NOT NULL,
   `user_id` int NOT NULL,
@@ -117,10 +117,10 @@ CREATE TABLE `order` (
   `note` varchar(500) null,
   `total_price` int NOT NULL,
   `order_date` datetime NOT NULL DEFAULT (now()),
-  `confirm_at` datetime DEFAULT (now())
+  `confirmed_at` datetime null
 );
 
-CREATE TABLE `order_detail` (
+CREATE TABLE `order_details` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `product_id` int NOT NULL,
