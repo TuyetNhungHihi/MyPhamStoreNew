@@ -8,7 +8,6 @@ import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import java.util.List;
 
 public interface IProductDAO extends GenericDAO<ProductModel> {
-    List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy);
 
     ProductModel getProductDetail(Long id);
     List<ProductModel> getProductsByCategory(Long categoryId);
@@ -16,5 +15,6 @@ public interface IProductDAO extends GenericDAO<ProductModel> {
     List<ProductModel> getAllProducts();
     List<ProductModel> findVariantsByProductId(Long productId);
     List<ProductModel> getLatestProducts();
+    List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy);
     Long countAllProducts();
    }
