@@ -46,11 +46,11 @@ public class ProductServiceImpl implements IProductService {
     private IProductVariantDAO productVariantDAO;
 
 
-    @Override
-    public Long getTotalPage(int numOfItems) {
-        return productDAO.getTotalPage(numOfItems);
-    }
 
+    @Override
+    public Long getTotalPage(int pageSize) {
+        return productDAO.countAllProducts() / pageSize;
+    }
     @Override
     public List<ProductModel> getProductsWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
         if (keyword != null && !keyword.isEmpty()) {
@@ -229,6 +229,7 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy) {
         return productDAO.getFilteredProducts(keyword, categories, brands, priceRange, currentPage, pageSize, orderBy);
     }
+
 
     @Override
     public List<ProductVariant> getProductVariantsByProductId(Long id) {
