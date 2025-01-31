@@ -6,22 +6,11 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.RequestContext;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import vn.edu.hcmuaf.fit.myphamstore.common.UploadUtil;
 import vn.edu.hcmuaf.fit.myphamstore.dao.*;
 import vn.edu.hcmuaf.fit.myphamstore.model.*;
-import vn.edu.hcmuaf.fit.myphamstore.service.IProductImageService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 @ApplicationScoped
 public class ProductServiceImpl implements IProductService {
@@ -226,7 +215,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy) {
+    public List<ProductModel> getFilteredProducts(String keyword, List<String> categories, List<String> brands, String priceRange, int currentPage, int pageSize, String orderBy) {
         return productDAO.getFilteredProducts(keyword, categories, brands, priceRange, currentPage, pageSize, orderBy);
     }
 

@@ -30,6 +30,6 @@ public interface IProductService {
 
     void executeAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void executeUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
-    List<ProductModel> getFilteredProducts(String keyword, String[] categories, String[] brands, String priceRange, int currentPage, int pageSize, String orderBy);
+    List<ProductModel> getFilteredProducts(String keyword, List<String> categories, List<String> brands, String priceRange, int currentPage, int pageSize, String orderBy);
     List<ProductVariant> getProductVariantsByProductId(Long id);
 }
