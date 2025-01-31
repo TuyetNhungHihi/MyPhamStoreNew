@@ -62,9 +62,9 @@ To change this template use File | Settings | File Templates.
       <!-- Top Scroll Start -->
       <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
       <!-- Top Scroll End -->
-      <div id="nav"></div>
+      <%@include file="component/nav.jsp"%>
+      <%@include file="component/header.jsp"%>
       <!-- Header Wrapper Start -->
-      <div id="header"></div>
       <div class="ss_inner_title_wrapper">
         <div class="container">
           <div class="row">
@@ -178,154 +178,148 @@ To change this template use File | Settings | File Templates.
       </div>
       <!-- end content -->
       <!-- Footer Wrapper End -->
-      <div id="footer"></div>
-     <script>
-        const header = document.getElementById("header");
-        const footer = document.getElementById("footer");
-        const nav = document.getElementById("nav");
-  
-        fetch("./header.html")
-          .then((response) => {
-            return response.text();
-          })
-          .then((data) => {
-            header.innerHTML = data;
-          });
-        fetch("./footer.html")
-          .then((response) => {
-            return response.text();
-          })
-          .then((data) => {
-            footer.innerHTML = data;
-          });
-        fetch("./nav.html")
-          .then((response) => {
-            return response.text();
-          })
-          .then((data) => {
-            nav.innerHTML = data;
-          })
-          .then(() =>{
-            ul = document.querySelector('ul')
-            ul.style.height = 'max-content'
-            
-          })
-          </script>
-          <script src="../static/js/jquery_min.js"></script>
-          <script src="../static/js/wow.js"></script>
-          <script src="../static/js/bootstrap.js"></script>
-          <script src="../static/js/owl.carousel.js"></script>
-          <script src="../static/js/modernizr.js"></script>
-          <script src="../static/js/jquery.magnific-popup.js"></script>
-          <script src="../static/js/jquery.dlmenu.js"></script>
-          <script src="../static/js/jquery.sticky.js"></script>
-          <script src="../static/js/jquery.menu-aim.js"></script>
-          <script src="../static/js/camera.min.js"></script>
-          <script src="../static/js/jquery.easing.1.3.js"></script>
-          <script src="../static/js/jquery.inview.min.js"></script>
-          <script src="../static/js/custom.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-          <!-- Link to Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <%@include file="component/footer.jsp"%>
 
-      <!-- Link to Bootstrap JavaScript -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <%--     <script>--%>
+<%--        const header = document.getElementById("header");--%>
+<%--        const footer = document.getElementById("footer");--%>
+<%--        const nav = document.getElementById("nav");--%>
+<%--  --%>
+<%--        fetch("./header.html")--%>
+<%--          .then((response) => {--%>
+<%--            return response.text();--%>
+<%--          })--%>
+<%--          .then((data) => {--%>
+<%--            header.innerHTML = data;--%>
+<%--          });--%>
+<%--        fetch("./footer.html")--%>
+<%--          .then((response) => {--%>
+<%--            return response.text();--%>
+<%--          })--%>
+<%--          .then((data) => {--%>
+<%--            footer.innerHTML = data;--%>
+<%--          });--%>
+<%--        fetch("./nav.html")--%>
+<%--          .then((response) => {--%>
+<%--            return response.text();--%>
+<%--          })--%>
+<%--          .then((data) => {--%>
+<%--            nav.innerHTML = data;--%>
+<%--          })--%>
+<%--          .then(() =>{--%>
+<%--            ul = document.querySelector('ul')--%>
+<%--            ul.style.height = 'max-content'--%>
+<%--            --%>
+<%--          })--%>
+<%--          </script>--%>
+      <script src="../static/js/jquery_min.js"></script>
+      <script src="../static/js/wow.js"></script>
+      <script src="../static/js/bootstrap.js"></script>
+      <script src="../static/js/owl.carousel.js"></script>
+      <script src="../static/js/modernizr.js"></script>
+      <script src="../static/js/jquery.magnific-popup.js"></script>
+      <script src="../static/js/jquery.dlmenu.js"></script>
+      <script src="../static/js/jquery.sticky.js"></script>
+      <script src="../static/js/jquery.menu-aim.js"></script>
+      <script src="../static/js/camera.min.js"></script>
+      <script src="../static/js/jquery.easing.1.3.js"></script>
+      <script src="../static/js/jquery.inview.min.js"></script>
+      <script src="../static/js/custom.js"></script>
 
+<%--    <script>--%>
+<%--      $(window).on("load", function () {--%>
+<%--        var wow = new WOW({--%>
+<%--          boxClass: "wow",--%>
+<%--          animateClass: "animated",--%>
+<%--          offset: 0,--%>
+<%--          mobile: true,--%>
+<%--          live: true,--%>
+<%--        });--%>
+<%--        wow.init();--%>
+<%--      });--%>
+<%--      // CountDown Js--%>
+<%--			var deadline = 'December 31 2018 23:59:59 GMT+0530';--%>
+<%--				function time_remaining(endtime){--%>
+<%--					var t = Date.parse(endtime) - Date.parse(new Date());--%>
+<%--					var seconds = Math.floor( (t/1000) % 60 );--%>
+<%--					var minutes = Math.floor( (t/1000/60) % 60 );--%>
+<%--					var hours = Math.floor( (t/(1000*60*60)) % 24 );--%>
+<%--					var days = Math.floor( t/(1000*60*60*24) );--%>
+<%--					return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};--%>
+<%--				}--%>
+<%--				function run_clock(id,endtime){--%>
+<%--					var clock = document.getElementById(id);--%>
+<%--					--%>
+<%--					// get spans where our clock numbers are held--%>
+<%--					var days_span = clock.querySelector('.days');--%>
+<%--					var hours_span = clock.querySelector('.hours');--%>
+<%--					var minutes_span = clock.querySelector('.minutes');--%>
+<%--					var seconds_span = clock.querySelector('.seconds');--%>
+<%--		--%>
+<%--					function update_clock(){--%>
+<%--						var t = time_remaining(endtime);--%>
+<%--						--%>
+<%--						// update the numbers in each part of the clock--%>
+<%--						days_span.innerHTML = t.days;--%>
+<%--						hours_span.innerHTML = ('0' + t.hours).slice(-2);--%>
+<%--						minutes_span.innerHTML = ('0' + t.minutes).slice(-2);--%>
+<%--						seconds_span.innerHTML = ('0' + t.seconds).slice(-2);--%>
+<%--						--%>
+<%--						if(t.total<=0){ clearInterval(timeinterval); }--%>
+<%--					}--%>
+<%--					update_clock();--%>
+<%--					var timeinterval = setInterval(update_clock,1000);--%>
+<%--				}--%>
+<%--				run_clock('clockdiv',deadline);--%>
+<%--      </script>--%>
+<%--      <script>--%>
+<%--        document.getElementById('editButton').addEventListener('click', function() {--%>
+<%--          const usernameInput = document.getElementById('username');--%>
+<%--    const lastnameInput = document.getElementById('lastname');--%>
+<%--    const locationInput = document.getElementById('inputLocation');--%>
+<%--    const emailInput = document.getElementById('inputEmailAddress');--%>
+<%--    const phoneInput = document.getElementById('inputPhone');--%>
+<%--    const birthdayInput = document.getElementById('ngaysinh');--%>
+<%--    const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender--%>
 
-    <script>
-      $(window).on("load", function () {
-        var wow = new WOW({
-          boxClass: "wow",
-          animateClass: "animated",
-          offset: 0,
-          mobile: true,
-          live: true,
-        });
-        wow.init();
-      });
-      // CountDown Js
-			var deadline = 'December 31 2018 23:59:59 GMT+0530';
-				function time_remaining(endtime){
-					var t = Date.parse(endtime) - Date.parse(new Date());
-					var seconds = Math.floor( (t/1000) % 60 );
-					var minutes = Math.floor( (t/1000/60) % 60 );
-					var hours = Math.floor( (t/(1000*60*60)) % 24 );
-					var days = Math.floor( t/(1000*60*60*24) );
-					return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
-				}
-				function run_clock(id,endtime){
-					var clock = document.getElementById(id);
-					
-					// get spans where our clock numbers are held
-					var days_span = clock.querySelector('.days');
-					var hours_span = clock.querySelector('.hours');
-					var minutes_span = clock.querySelector('.minutes');
-					var seconds_span = clock.querySelector('.seconds');
-		
-					function update_clock(){
-						var t = time_remaining(endtime);
-						
-						// update the numbers in each part of the clock
-						days_span.innerHTML = t.days;
-						hours_span.innerHTML = ('0' + t.hours).slice(-2);
-						minutes_span.innerHTML = ('0' + t.minutes).slice(-2);
-						seconds_span.innerHTML = ('0' + t.seconds).slice(-2);
-						
-						if(t.total<=0){ clearInterval(timeinterval); }
-					}
-					update_clock();
-					var timeinterval = setInterval(update_clock,1000);
-				}
-				run_clock('clockdiv',deadline);
-      </script>
-      <script>
-        document.getElementById('editButton').addEventListener('click', function() {
-          const usernameInput = document.getElementById('username');
-    const lastnameInput = document.getElementById('lastname');
-    const locationInput = document.getElementById('inputLocation');
-    const emailInput = document.getElementById('inputEmailAddress');
-    const phoneInput = document.getElementById('inputPhone');
-    const birthdayInput = document.getElementById('ngaysinh');
-    const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender
+<%--    const isReadonly = usernameInput.readOnly;--%>
 
-    const isReadonly = usernameInput.readOnly;
+<%--    if (isReadonly) {--%>
+<%--        // Enable editing--%>
+<%--        editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'--%>
+<%--        usernameInput.readOnly = false;--%>
+<%--        lastnameInput.readOnly = false;--%>
+<%--        locationInput.readOnly = false;--%>
+<%--        emailInput.readOnly = false;--%>
+<%--        phoneInput.readOnly = false;--%>
+<%--        birthdayInput.readOnly = false;--%>
 
-    if (isReadonly) {
-        // Enable editing
-        editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'
-        usernameInput.readOnly = false;
-        lastnameInput.readOnly = false;
-        locationInput.readOnly = false;
-        emailInput.readOnly = false;
-        phoneInput.readOnly = false;
-        birthdayInput.readOnly = false;
+<%--        // Enable gender radio buttons--%>
+<%--        genderInputs.forEach((radio) => {--%>
+<%--            radio.disabled = false;--%>
+<%--        });--%>
 
-        // Enable gender radio buttons
-        genderInputs.forEach((radio) => {
-            radio.disabled = false;
-        });
+<%--    } else {--%>
+<%--        // Save changes--%>
+<%--        usernameInput.readOnly = true;--%>
+<%--        lastnameInput.readOnly = true;--%>
+<%--        locationInput.readOnly = true;--%>
+<%--        emailInput.readOnly = true;--%>
+<%--        phoneInput.readOnly = true;--%>
+<%--        birthdayInput.readOnly = true;--%>
+<%--        editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'--%>
 
-    } else {
-        // Save changes
-        usernameInput.readOnly = true;
-        lastnameInput.readOnly = true;
-        locationInput.readOnly = true;
-        emailInput.readOnly = true;
-        phoneInput.readOnly = true;
-        birthdayInput.readOnly = true;
-        editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'
+<%--        // Disable gender radio buttons--%>
+<%--        genderInputs.forEach((radio) => {--%>
+<%--            radio.disabled = true;--%>
+<%--        });--%>
 
-        // Disable gender radio buttons
-        genderInputs.forEach((radio) => {
-            radio.disabled = true;
-        });
+<%--        // You can add logic to save the updated values here--%>
+<%--        console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);--%>
+<%--    }--%>
+<%--});--%>
 
-        // You can add logic to save the updated values here
-        console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);
-    }
-});
-
-      </script>
-      
+<%--      </script>--%>
+<%--      --%>
     </body>
 </html>
