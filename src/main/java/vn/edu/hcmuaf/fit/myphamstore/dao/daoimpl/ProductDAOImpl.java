@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductDAOImpl implements IProductDAO {
 
     @Override
-    public List<ProductModel> getFilteredProducts(String keyword, String[] selectedCategories, String[] selectedBrands, String priceRange, int currentPage, int pageSize, String orderBy) {
+    public List<ProductModel> getFilteredProducts(String keyword, List<String> selectedCategories, List<String> selectedBrands, String priceRange, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào
         if (currentPage < 1) currentPage = 1;
 
@@ -27,10 +27,10 @@ public class ProductDAOImpl implements IProductDAO {
         if (keyword != null && !keyword.trim().isEmpty()) {
             sql.append("AND CONCAT(id, name, price, stock, sold_quantity, description, is_available, thumbnail, category_id, brand_id, created_at, updated_at) LIKE :keyword ");
         }
-        if (selectedCategories != null && selectedCategories.length > 0) {
+        if (selectedCategories != null && selectedCategories.size()> 0) {
             sql.append("AND category_id IN (").append(String.join(",", selectedCategories)).append(") ");
         }
-        if (selectedBrands != null && selectedBrands.length > 0) {
+        if (selectedBrands != null && selectedBrands.size()> 0) {
             sql.append("AND brand_id IN (").append(String.join(",", selectedBrands)).append(") ");
         }
         if (priceRange != null && !priceRange.trim().isEmpty()) {
