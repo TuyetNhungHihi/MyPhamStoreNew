@@ -15,7 +15,6 @@ import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,15 +34,10 @@ public class CategoryController extends HttpServlet {
         try {
             String keyword = request.getParameter("keyword");
             String orderBy = request.getParameter("orderBy");
-//            String[] selectedCategories = request.getParameterValues("selectedCategories");
-//            String[] selectedBrands = request.getParameterValues("selectedBrands");
+            String[] selectedCategoriesArray = request.getParameterValues("selectedCategories");
+            String[] selectedBrandsArray = request.getParameterValues("selectedBrands");
             String priceRange = request.getParameter("priceRange");
-            List<String> selectedCategories = request.getParameterValues("selectedCategories") != null
-                    ? Arrays.asList(request.getParameterValues("selectedCategories"))
-                    : new ArrayList<>();
-            List<String> selectedBrands = request.getParameterValues("selectedBrands") != null
-                    ? Arrays.asList(request.getParameterValues("selectedBrands"))
-                    : new ArrayList<>();
+
             int currentPage = 1;
             int pageSize = 6;
 
@@ -54,6 +48,9 @@ public class CategoryController extends HttpServlet {
                 pageSize = Integer.parseInt(request.getParameter("pageSize"));
             }
 
+            List<String> selectedCategories = selectedCategoriesArray != null ? Arrays.asList(selectedCategoriesArray) : null;
+            List<String> selectedBrands = selectedBrandsArray != null ? Arrays.asList(selectedBrandsArray) : null;
+
             List<ProductModel> products = productService.getFilteredProducts(keyword, selectedCategories, selectedBrands, priceRange, currentPage, pageSize, orderBy);
             Long totalPages = productService.getTotalPage(pageSize);
 
@@ -62,7 +59,7 @@ public class CategoryController extends HttpServlet {
 
             List<CategoryModel> categories = categoryService.getAllCategories();
             request.setAttribute("categories", categories);
-            
+
             request.setAttribute("products", products);
             request.setAttribute("totalPages", totalPages);
             request.setAttribute("currentPage", currentPage);
@@ -74,7 +71,7 @@ public class CategoryController extends HttpServlet {
             request.setAttribute("priceRange", priceRange);
 
             if (products.isEmpty()) {
-                request.setAttribute("noProductsFound", true);
+                request.setAttribute("noProductsFound", "No products found for the given search criteria.");
             }
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/frontend/category.jsp");
@@ -82,8 +79,5 @@ public class CategoryController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
     }
 }

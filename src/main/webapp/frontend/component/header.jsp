@@ -407,22 +407,25 @@
 				<div class="prs_menu_main_wrapper">
 					<div class="search-three">
 						<div class="ss_search_box search-box-three visible-xl visible-lg visible-md hidden-sm">
-							<!-- Dropdown danh sách loại sản phẩm -->
-							<select>
-								<option value="">Loại sản phẩm</option>
-								<!-- Lặp qua danh sách categories -->
-								<c:forEach var="category" items="${categories}">
-									<option value="${category.id}">${category.name}</option>
-								</c:forEach>
-							</select>
-							<span>
-								<!-- Ô nhập liệu -->
-            					<input type="text" placeholder="Tìm sản phẩm...">
-								<!-- Nút tìm kiếm -->
-            					<button>
+							<!-- Search form -->
+							<form action="/danh-muc" method="get">
+								<!-- Dropdown danh sách loại sản phẩm -->
+								<select name="selectedCategories">
+									<option value="">Loại sản phẩm</option>
+									<!-- Lặp qua danh sách categories -->
+									<c:forEach var="category" items="${categories}">
+										<option value="${category.id}">${category.name}</option>
+									</c:forEach>
+								</select>
+								<span>
+									<!-- Ô nhập liệu -->
+           							 <input type="text" name="keyword" placeholder="Tìm sản phẩm...">
+									<!-- Nút tìm kiếm -->
+            						<button type="submit">
                						 <i class="fa fa-search" aria-hidden="true"></i>
-            					</button>
-        					</span>
+           							 </button>
+        						</span>
+							</form>
 
 						</div>
 					</div>
