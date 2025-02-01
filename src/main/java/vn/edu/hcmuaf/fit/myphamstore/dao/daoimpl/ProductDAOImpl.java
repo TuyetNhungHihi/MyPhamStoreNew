@@ -12,26 +12,26 @@ import java.util.List;
 public class ProductDAOImpl implements IProductDAO {
 
     @Override
-    public List<ProductModel> getFilteredProducts(String keyword, List<String> selectedCategories, List<String> selectedBrands, String priceRange, int currentPage, int pageSize, String orderBy) {
-        // Sàng lọc dữ liệu đầu vào
+    public List<ProductModel> getFilteredProducts(String keyword, String[] selectedCategories, String[] selectedBrands, String priceRange, int currentPage, int pageSize, String orderBy) {
+        // Input validation
         if (currentPage < 1) currentPage = 1;
 
-        // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
+        // Prevent SQL Injection by validating the orderBy column
         List<String> allowedColumns = Arrays.asList("id", "name", "price", "stock", "soldQuantity", "description", "isAvailable", "thumbnail", "created_at", "updated_at", "categoryId", "brandId");
         if (!allowedColumns.contains(orderBy)) {
             orderBy = "id";
         }
 
-        // Xây dựng câu lệnh SQL
+        // Build the SQL query
         StringBuilder sql = new StringBuilder("SELECT * FROM product WHERE 1=1 ");
         if (keyword != null && !keyword.trim().isEmpty()) {
             sql.append("AND CONCAT(id, name, price, stock, sold_quantity, description, is_available, thumbnail, category_id, brand_id, created_at, updated_at) LIKE :keyword ");
         }
-        if (selectedCategories != null && selectedCategories.size()> 0) {
-            sql.append("AND category_id IN (").append(String.join(",", selectedCategories)).append(") ");
+        if (selectedCategories != null && selectedCategories.length > 0) {
+            sql.append("AND category_id IN (<categories>) ");
         }
-        if (selectedBrands != null && selectedBrands.size()> 0) {
-            sql.append("AND brand_id IN (").append(String.join(",", selectedBrands)).append(") ");
+        if (selectedBrands != null && selectedBrands.length > 0) {
+            sql.append("AND brand_id IN (<brands>) ");
         }
         if (priceRange != null && !priceRange.trim().isEmpty()) {
             String[] prices = priceRange.split("-");
@@ -41,14 +41,13 @@ public class ProductDAOImpl implements IProductDAO {
                     int maxPrice = Integer.parseInt(prices[1].trim().replaceAll("[^\\d]", ""));
                     sql.append("AND price BETWEEN :minPrice AND :maxPrice ");
                 } catch (NumberFormatException e) {
-                    // Handle invalid price range input
                     e.printStackTrace();
                 }
             }
         }
         sql.append("ORDER BY ").append(orderBy).append(" LIMIT :limit OFFSET :offset");
 
-        // Sử dụng JDBI để thực hiện truy vấn
+        // Use JDBI to execute the query
         int finalCurrentPage = currentPage;
         String finalSql = sql.toString();
 
@@ -60,6 +59,12 @@ public class ProductDAOImpl implements IProductDAO {
             if (keyword != null && !keyword.trim().isEmpty()) {
                 query.bind("keyword", "%" + keyword + "%");
             }
+            if (selectedCategories != null && selectedCategories.length > 0) {
+                query.bindList("categories", Arrays.asList(selectedCategories));
+            }
+            if (selectedBrands != null && selectedBrands.length > 0) {
+                query.bindList("brands", Arrays.asList(selectedBrands));
+            }
             if (priceRange != null && !priceRange.trim().isEmpty()) {
                 String[] prices = priceRange.split("-");
                 if (prices.length == 2) {
@@ -69,7 +74,6 @@ public class ProductDAOImpl implements IProductDAO {
                         query.bind("minPrice", minPrice);
                         query.bind("maxPrice", maxPrice);
                     } catch (NumberFormatException e) {
-                        // Handle invalid price range input
                         e.printStackTrace();
                     }
                 }
@@ -79,6 +83,7 @@ public class ProductDAOImpl implements IProductDAO {
         });
         return products;
     }
+
     @Override
     public ProductModel getProductDetail(Long id) {
         String sql = "select * from product where id=?";

@@ -6,12 +6,13 @@ import java.util.List;
 
 public interface IProductDAO extends GenericDAO<ProductModel> {
 
+    List<ProductModel> getFilteredProducts(String keyword, String[] selectedCategories, String[] selectedBrands, String priceRange, int currentPage, int pageSize, String orderBy);
+
     ProductModel getProductDetail(Long id);
     List<ProductModel> getProductsByCategory(Long categoryId);
     List<ProductModel> getLatestProductsByCategory(Long categoryId, int limit);
     List<ProductModel> getAllProducts();
     List<ProductModel> findVariantsByProductId(Long productId);
     List<ProductModel> getLatestProducts();
-    List<ProductModel> getFilteredProducts(String keyword, List<String> categories, List<String> brands, String priceRange, int currentPage, int pageSize, String orderBy);
-    Long countAllProducts();
+     Long countAllProducts();
    }

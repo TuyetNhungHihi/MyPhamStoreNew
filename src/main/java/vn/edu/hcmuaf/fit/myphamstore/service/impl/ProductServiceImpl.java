@@ -216,9 +216,10 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public List<ProductModel> getFilteredProducts(String keyword, List<String> categories, List<String> brands, String priceRange, int currentPage, int pageSize, String orderBy) {
-        return productDAO.getFilteredProducts(keyword, categories, brands, priceRange, currentPage, pageSize, orderBy);
+        String[] categoriesArray = categories != null ? categories.toArray(new String[0]) : new String[0];
+        String[] brandsArray = brands != null ? brands.toArray(new String[0]) : new String[0];
+        return productDAO.getFilteredProducts(keyword, categoriesArray, brandsArray, priceRange, currentPage, pageSize, orderBy);
     }
-
 
     @Override
     public List<ProductVariant> getProductVariantsByProductId(Long id) {
