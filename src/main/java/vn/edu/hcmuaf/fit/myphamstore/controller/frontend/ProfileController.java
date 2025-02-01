@@ -16,10 +16,13 @@ import java.util.List;
 
 @WebServlet(name = "ProfileController", value = "/profile")
 public class ProfileController extends HttpServlet {
+    @Inject
+    private IUserService userService;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
-
+//       request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
+        userService.profile(request, response);
     }
 
     @Override

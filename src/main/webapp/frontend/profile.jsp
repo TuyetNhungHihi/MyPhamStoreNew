@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.UserModel" %>
 <%@include file="/common/tablib.jsp"%>
 <%--
 Created by IntelliJ IDEA.
@@ -86,6 +87,8 @@ To change this template use File | Settings | File Templates.
         <div style="height: 50px; background-color: white;z-index: 10;; width: 100vw;"></div>
           <div class="container px-4 mt-4">
             <h1>Thông tin cá nhân </h1>
+              <% UserModel user = (UserModel) request.getAttribute("user");
+                  if (user != null) {%>
             <hr class="mt-0 mb-4">
               <hr class="container">
                 <div class="row d-flex">

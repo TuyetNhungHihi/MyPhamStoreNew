@@ -257,5 +257,16 @@ public class UserServiceImpl implements IUserService {
         request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
     }
 
+    @Override
+    public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        System.out.println(user);
+        if(user != null) {
+            request.setAttribute("user", user);
+        }
+        request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
+
+    }
+
 
 }
