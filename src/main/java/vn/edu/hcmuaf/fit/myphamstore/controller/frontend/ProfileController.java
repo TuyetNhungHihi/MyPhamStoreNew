@@ -22,7 +22,12 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //       request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
-        userService.profile(request, response);
+        String action = request.getParameter("action");
+        if (action != null && action.equals("edit")) {
+            userService.profile(request, response);
+        } else {
+            userService.profile(request, response);
+        }
     }
 
     @Override
