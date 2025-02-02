@@ -111,291 +111,291 @@
 						<h2><a href="#">big basket</a></h2>
 						<a href="#0" class="cd-close">Close</a>
 						<ul class="cd-dropdown-content">
-							<li class="has-children">	<a href="#">Mens</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Womens</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Furniture</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Cooking</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Accessories</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Fashion</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Clocks</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Lighting</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Toys</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Sports</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Hand Made</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Electronics</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
-							<!-- .has-children -->
-							<li class="has-children">	<a href="#">Cars</a>
-								<ul class="cd-secondary-dropdown is-hidden">
-									<li class="go-back"><a href="#0">Menu</a>
-									</li>
-									<li><a href="#">Shart</a>
-									</li>
-									<li><a href="#">T-Shart</a>
-									</li>
-									<li><a href="#">Belts</a>
-									</li>
-									<li><a href="#">Wallets</a>
-									</li>
-									<li><a href="#">Hates & Caps</a>
-									</li>
-									<li><a href="#">Sunglasses</a>
-									</li>
-									<li><a href="#">Neckties</a>
-									</li>
-								</ul>
-								<!-- .cd-secondary-dropdown -->
-							</li>
+<%--							<li class="has-children">	<a href="#">Mens</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Womens</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Furniture</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Cooking</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Accessories</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Fashion</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Clocks</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Lighting</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Toys</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Sports</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Hand Made</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Electronics</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
+<%--							<!-- .has-children -->--%>
+<%--							<li class="has-children">	<a href="#">Cars</a>--%>
+<%--								<ul class="cd-secondary-dropdown is-hidden">--%>
+<%--									<li class="go-back"><a href="#0">Menu</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">T-Shart</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Belts</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Wallets</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Hates & Caps</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Sunglasses</a>--%>
+<%--									</li>--%>
+<%--									<li><a href="#">Neckties</a>--%>
+<%--									</li>--%>
+<%--								</ul>--%>
+<%--								<!-- .cd-secondary-dropdown -->--%>
+<%--							</li>--%>
 							<!-- .has-children -->
 							<li>	<a href="../contact.jsp">More Category</a>
 							</li>
@@ -455,7 +455,7 @@
 										</li>
 										<li><a href="../shopping_cart.jsp">Shopping-Cart</a>
 										</li>
-										<li><a href="checkout.html">Checkout</a>
+										<li><a href="checkout.jsp">Checkout</a>
 										</li>
 									</ul>
 								</li>

@@ -13,7 +13,6 @@ import vn.edu.hcmuaf.fit.myphamstore.service.impl.WishlistServiceImpl;
 import org.jdbi.v3.core.Jdbi;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "WishlistController", value = "/wishlist")
@@ -28,34 +27,6 @@ public class WishlistController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String productId = request.getParameter("productId");
-        if (productId == null || productId.isEmpty()) {
-            response.setContentType("application/json");
-            PrintWriter out = response.getWriter();
-            out.print("{\"success\": false, \"message\": \"Product ID is missing.\"}");
-            out.flush();
-            return;
-        }
-
-        HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userId");
-
-        if (userId != null) {
-            wishlistService.addToWishlist(userId, Long.parseLong(productId));
-            response.setContentType("application/json");
-            PrintWriter out = response.getWriter();
-            out.print("{\"success\": true}");
-            out.flush();
-        } else {
-            response.setContentType("application/json");
-            PrintWriter out = response.getWriter();
-            out.print("{\"success\": false}");
-            out.flush();
-        }
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("userId");
@@ -65,7 +36,25 @@ public class WishlistController extends HttpServlet {
             request.setAttribute("wishlist", wishlist);
             request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/fontend/login");
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("userId");
+
+        if (userId == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+        long productId = Long.parseLong(request.getParameter("productId"));
+        wishlistService.addToWishlist(userId, productId);
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("{\"success\": true}");
     }
 }

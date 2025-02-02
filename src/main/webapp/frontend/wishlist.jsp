@@ -84,10 +84,10 @@ Purchase:
           </div>
         </div>
       </div>
-					<div class="row">
+			<div class="row">
 						<div class="ss_latest_products product-three-service">
 							<div class="owl-carousel owl-theme">
-								<c:forEach var="product" items="${sessionScope.wishlist}">
+								<c:forEach var="product" items="${wishlist}">
 									<div class="item">
 										<div class="ss_featured_products_box">
 											<div class="ss_featured_products_box_img">
@@ -95,45 +95,14 @@ Purchase:
 												<img src="${product.thumbnail}" alt="${product.name}" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a href="product_detail.jsp">${product.name}</a></h4>
+												<h4><a href="product_detail.jsp?id=${product.id}">${product.name}</a></h4>
 												<p>${product.description}</p>
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
-												<fieldset class="rating">
-													<input type="radio" name="rating" value="5" />
-													<label class="full" title="5 stars"></label>
-													<input type="radio" name="rating" value="4 and a half" />
-													<label class="half" title="4.5 stars"></label>
-													<input type="radio" name="rating" value="4" />
-													<label class="full" title="4 stars"></label>
-													<input type="radio" name="rating" value="3 and a half" />
-													<label class="half" title="3.5 stars"></label>
-													<input type="radio" name="rating" value="3" />
-													<label class="full" title="3 stars"></label>
-													<input type="radio" name="rating" value="2 and a half" />
-													<label class="half" title="2.5 stars"></label>
-													<input type="radio" name="rating" value="2" />
-													<label class="full" title="2 stars"></label>
-													<input type="radio" name="rating" value="1 and a half" />
-													<label class="half" title="1.5 stars"></label>
-													<input type="radio" name="rating" value="1" />
-													<label class="full" title="1 star"></label>
-													<input type="radio" name="rating" value="half" />
-													<label class="half" title="0.5 stars"></label>
-												</fieldset>
-												<ul>
-													<li>
-														<button class="ss_btn">Thêm vào giỏ</button>
-													</li>
-													<li><a style="background-color: red; color: white;" href="#"><i  class="fa fa-heart" aria-hidden="true"></i></a>
-													</li>
-												</ul>
-											</div>
-											<div class="ss_featured_products_box_footer">
 												<ul>
 													<li><button class="ss_btn">Thêm vào giỏ</button></li>
-													<li><a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a></li>
+													<li><button class="remove-wishlist-btn" data-product-id="${product.id}">Remove</button></li>
 												</ul>
 											</div>
 										</div>
@@ -330,6 +299,66 @@ Purchase:
 		}
 	</script>
 
+	<script>
+		document.querySelectorAll('.remove-wishlist-btn').forEach(button => {
+			button.addEventListener('click', function() {
+				const productId = this.getAttribute('data-product-id');
+				fetch('/wishlist?action=remove&productId=' + productId, {
+					method: 'POST'
+				})
+						.then(response => response.json())
+						.then(data => {
+							if (data.success) {
+								alert('Product removed from wishlist');
+								location.reload();
+							} else {
+								alert('Failed to remove product from wishlist');
+							}
+						});
+			});
+		});
+	</script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			document.querySelectorAll('.fa-heart').forEach(function(heartIcon) {
+				heartIcon.addEventListener('click', function(event) {
+					event.preventDefault();
+					const productId = this.dataset.productId;
+					addToWishlist(productId, this);
+				});
+			});
+		});
+
+		function addToWishlist(productId, heartIcon) {
+			fetch(`/add-to-wishlist?productId=${productId}`, {
+				method: 'POST'
+			})
+					.then(response => response.json())
+					.then(data => {
+						if (data.success) {
+							heartIcon.style.color = 'red';
+							showToast('Product added to wishlist!');
+							refreshWishlist();
+						} else {
+							showToast('Failed to add product to wishlist.');
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						showToast('An error occurred. Please try again.');
+					});
+		}
+
+		function showToast(message) {
+			const toast = document.createElement('div');
+			toast.className = 'toast';
+			toast.innerText = message;
+			document.body.appendChild(toast);
+			setTimeout(() => {
+				toast.remove();
+			}, 3000);
+		}
+	</script>
 	<!--main js file end-->
 </body>
 
