@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.myphamstore.service.impl;
 
-
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.WishlistDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
@@ -19,5 +18,9 @@ public class WishlistServiceImpl {
 
     public List<ProductModel> getWishlist(long userId) {
         return wishlistDao.getWishlist(userId);
+    }
+
+    public void removeFromWishlist(Long userId, long productId) {
+        wishlistDao.removeFromWishlist(userId, productId);
     }
 }

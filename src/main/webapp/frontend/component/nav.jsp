@@ -79,9 +79,7 @@
             <li>
                 <div class="ss_notification_box">
                     <ul>
-                        <li><a href="<c:url value='/wishlist' />"><i class="fa fa-heart"
-                                    aria-hidden="true"></i><span>0</span></a>
-                        </li>
+                        <li><a href="<c:url value='/wishlist' />"><i class="fa fa-heart" aria-hidden="true"></i> </a></li>
                         <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i><span>2</span></a>
                         </li>
                     </ul>
@@ -124,28 +122,7 @@
                         <a href="<c:url value='/gio-hang' />"><img src="../static/images/header/cart_icon.png" alt="Cart" title="Yêu thích">
                             <span>Giỏ hàng: <ins style="text-transform: lowercase;">đ</ins></span>
                         </a>
-<%--                        <ul class="dropdown-menu">--%>
-<%--                            <c:forEach var="entry" items="${cart}">--%>
-<%--                                <c:set var="product" value="${productService.findProductById(entry.key)}"/>--%>
-<%--                                <li>--%>
-<%--                                    <div class="ss_cart_inner_main_section ss_cart_inner_main_section2">--%>
-<%--                                        <div class="ss_cart_img_wrapper">--%>
-<%--                                            <img src="${product.thumbnail}" alt="${product.name}">--%>
-<%--                                        </div>--%>
-<%--                                        <div class="ss_cart_img_cont_wrapper">--%>
-<%--                                            <h3>${product.name}</h3>--%>
-<%--                                            <h4>${product.categoryName}</h4>--%>
-<%--                                            <span>x${entry.value}</span>--%>
-<%--                                            <ins>${product.price * entry.value} đ</ins>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </li>--%>
-<%--                            </c:forEach>--%>
-<%--                            <li>--%>
-<%--                                <a href="<c:url value='' />" class="ss_check_btn">Thanh Toán</a>--%>
-<%--                            </li>--%>
-<%--                        </ul>--%>
-<%--                    </a>--%>
+                    </a>
                 </div>
             </li>
         </ul>
@@ -155,4 +132,5 @@
     </ul>
 </div>
 </div>
+
 <!-- Header Wrapper End -->
