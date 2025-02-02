@@ -89,7 +89,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+        request.getSession().removeAttribute("user");
+        response.sendRedirect(request.getContextPath() + "/trang-chu");
     }
 
     @Override
@@ -258,14 +259,30 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserModel user = (UserModel) request.getSession().getAttribute("user");
-        System.out.println(user);
-        if(user != null) {
-            request.setAttribute("user", user);
-        }
+    public void updateProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        userDAO.update((UserModel) request.getSession().getAttribute("user"));
         request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
+    }
 
+    @Override
+    public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Giả sử thông tin user đã được lưu trong session sau khi đăng nhập
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+
+        if (user == null) {
+            // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
+            response.sendRedirect("/login");
+            return;
+        }
+
+        // Đưa thông tin user vào request để hiển thị trên JSP
+        request.setAttribute("user", user);
+
+        try {
+            request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
