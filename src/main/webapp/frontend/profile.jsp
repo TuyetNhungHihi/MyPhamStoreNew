@@ -142,18 +142,18 @@ To change this template use File | Settings | File Templates.
                           </div>
                           <!-- Address -->
                           <div class="mb-3">
-                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: <%user.get%></label>
+                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: <%%></label>
                             <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
                           </div>
                           <!-- Email -->
                           <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email</label>
+                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email: <%=user.getEmail()%></label>
                             <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="22130xxx@st.hcmuaf.edu.vn" readonly required>
                           </div>
                           <!-- Phone Number and Birthday -->
                           <div class="row gx-3 mb-3">
                             <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Số điện thoại</label>
+                                <label class="small mb-1" for="inputPhone">Số điện thoại: <%=user.getPhone()%></label>
                                 <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="0123456789" readonly required>                                        </div>
                             <div class="col-md-6">
                                 <label for="ngaysinh">Ngày sinh</label>
