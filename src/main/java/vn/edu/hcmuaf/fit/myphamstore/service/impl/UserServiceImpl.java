@@ -13,6 +13,7 @@ import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOtpDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IRoleDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
+import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.UserDAOImp;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.RoleModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
+
 public class UserServiceImpl implements IUserService {
     @Inject
     private IUserDAO userDAO;
@@ -31,6 +33,11 @@ public class UserServiceImpl implements IUserService {
     private IRoleDAO roleDAO;
     @Inject
     private IOtpDAO otpDAO;
+
+
+    public UserServiceImpl() {
+        this.userDAO = new UserDAOImp();
+    }
 
     @Override
     public List<UserModel> getUsersWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
@@ -284,6 +291,7 @@ public class UserServiceImpl implements IUserService {
             throw new RuntimeException(e);
         }
     }
-
-
+    public Long authenticate(String email, String password) {
+        return userDAO.getUserIdByEmailAndPassword(email, password);
+    }
 }
