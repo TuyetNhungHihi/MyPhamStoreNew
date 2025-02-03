@@ -6,6 +6,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.RoleType;
 import vn.edu.hcmuaf.fit.myphamstore.common.SendEmail;
@@ -292,6 +293,10 @@ public class UserServiceImpl implements IUserService {
         }
     }
     public Long authenticate(String email, String password) {
-        return userDAO.getUserIdByEmailAndPassword(email, password);
+        UserModel user = userDAO.getUserByEmail(email);
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            return user.getId();
+        }
+        return null;
     }
 }
