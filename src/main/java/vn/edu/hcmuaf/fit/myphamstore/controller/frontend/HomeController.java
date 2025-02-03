@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IBrandService;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
@@ -29,6 +30,10 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            UserModel user = (UserModel) request.getSession().getAttribute("user");
+            if (user != null) {
+                request.setAttribute("user", user);
+            }
             // Lấy các tham số từ request
             String keyword = request.getParameter("keyword");
             String orderBy = request.getParameter("orderBy");

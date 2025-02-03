@@ -251,8 +251,6 @@ public class UserServiceImpl implements IUserService {
     public void verifyOtp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String otp = request.getParameter("otp");
-        System.out.println(email);
-        System.out.println(otp);
         Boolean verify = otpDAO.verifyOtp(email.trim(), otp.trim());
         if(verify) {
             UserModel user = userDAO.getUserByEmail(email);

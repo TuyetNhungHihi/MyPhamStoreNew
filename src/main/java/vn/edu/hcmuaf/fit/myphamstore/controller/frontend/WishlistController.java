@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.WishlistDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.impl.WishlistServiceImpl;
 
 import org.jdbi.v3.core.Jdbi;
@@ -17,36 +19,31 @@ import java.util.List;
 
 @WebServlet(name = "WishlistController", value = "/wishlist")
 public class WishlistController extends HttpServlet {
+    @Inject
     private WishlistServiceImpl wishlistService;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-        Jdbi jdbi = Jdbi.create("jdbc:postgresql://localhost:5432/yourdb", "username", "password");
-        wishlistService = new WishlistServiceImpl(new WishlistDAOImpl(jdbi));
-    }
-
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userId");
-
-        if (userId != null) {
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        System.out.println(user);
+        Long userId = user.getId();
+        if (userId!= null) {
             List<ProductModel> wishlist = wishlistService.getWishlist(userId);
             request.setAttribute("wishlist", wishlist);
-            request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
+            request.getRequestDispatcher("/wishlist").forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/frontend/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userId");
 
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        System.out.println(user);
+        Long userId = user.getId();
         if (userId == null) {
-            response.sendRedirect(request.getContextPath() + "/frontend/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
