@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
+import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.myphamstore.common.*;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
@@ -13,10 +14,11 @@ import java.util.Arrays;
 import java.util.List;
 
 
+
 @Slf4j
 @ApplicationScoped
 public class UserDAOImp implements IUserDAO {
-
+    private final Jdbi jdbi = JDBIConnector.getJdbi();
     @Override
     public Long save(UserModel entity) {
         String sql = "INSERT INTO user (email, full_name, phone, date_of_birth, gender, status, created_at, updated_at, avatar, password, last_login) " +
@@ -226,7 +228,7 @@ public class UserDAOImp implements IUserDAO {
 
     @Override
     public boolean updateUserPassword(UserModel user) {
-        String sql = "UPDATE users SET password = ? WHERE id = ?";
+        String sql = "UPDATE user SET password = ? WHERE id = ?";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle ->
                     handle.createUpdate(sql)
@@ -240,7 +242,17 @@ public class UserDAOImp implements IUserDAO {
             return false;
         }
     }
-
+    @Override
+    public Long getUserIdByEmailAndPassword(String email, String password) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT id FROM user WHERE email = :email AND password = :password")
+                        .bind("email", email)
+                        .bind("password", password)
+                        .mapTo(Long.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
 
     /**
      * Lấy số lượng page dựa trên số lượng item cần hiển thị

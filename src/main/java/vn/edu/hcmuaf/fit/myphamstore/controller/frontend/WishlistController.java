@@ -36,7 +36,7 @@ public class WishlistController extends HttpServlet {
             request.setAttribute("wishlist", wishlist);
             request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/frontend/login.jsp");
         }
     }
 
@@ -46,7 +46,7 @@ public class WishlistController extends HttpServlet {
         Long userId = (Long) session.getAttribute("userId");
 
         if (userId == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/frontend/login.jsp");
             return;
         }
 

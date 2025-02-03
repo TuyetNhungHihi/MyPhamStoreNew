@@ -6,6 +6,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.RoleType;
 import vn.edu.hcmuaf.fit.myphamstore.common.SendEmail;
@@ -13,6 +14,7 @@ import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOtpDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IRoleDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
+import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.UserDAOImp;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.RoleModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
@@ -24,6 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
+
 public class UserServiceImpl implements IUserService {
     @Inject
     private IUserDAO userDAO;
@@ -31,6 +34,11 @@ public class UserServiceImpl implements IUserService {
     private IRoleDAO roleDAO;
     @Inject
     private IOtpDAO otpDAO;
+
+
+    public UserServiceImpl() {
+        this.userDAO = new UserDAOImp();
+    }
 
     @Override
     public List<UserModel> getUsersWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
@@ -284,6 +292,11 @@ public class UserServiceImpl implements IUserService {
             throw new RuntimeException(e);
         }
     }
-
-
+    public Long authenticate(String email, String password) {
+        UserModel user = userDAO.getUserByEmail(email);
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            return user.getId();
+        }
+        return null;
+    }
 }
