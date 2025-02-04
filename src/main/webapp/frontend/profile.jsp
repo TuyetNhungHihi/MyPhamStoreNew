@@ -148,13 +148,13 @@ To change this template use File | Settings | File Templates.
                           <!-- Email -->
                           <div class="mb-3">
                             <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email: <%=user.getEmail()%></label>
-                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="22130xxx@st.hcmuaf.edu.vn" readonly required>
+                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="<%=user.getEmail()%>" readonly required>
                           </div>
                           <!-- Phone Number and Birthday -->
                           <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputPhone">Số điện thoại: <%=user.getPhone()%></label>
-                                <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="0123456789" readonly required>                                        </div>
+                                <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="<%=user.getPhone()%>" readonly required>                                        </div>
                             <div class="col-md-6">
                                 <label for="ngaysinh">Ngày sinh</label>
                                 <input type="date" name="ngaysinh" id="ngaysinh" class="form-control" value="2000-11-20" readonly>
@@ -164,7 +164,7 @@ To change this template use File | Settings | File Templates.
                           <div class="d-flex justify-content-end mb-3">
                             <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
                             <!-- Button to open modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" href="/change-password">
                             Đổi mật khẩu
                              </button>
                           </div>
