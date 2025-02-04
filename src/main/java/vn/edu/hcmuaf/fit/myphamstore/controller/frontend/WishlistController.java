@@ -6,13 +6,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.WishlistDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.impl.WishlistServiceImpl;
-
-import org.jdbi.v3.core.Jdbi;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,34 +19,49 @@ import java.util.List;
 public class WishlistController extends HttpServlet {
     @Inject
     private WishlistServiceImpl wishlistService;
+    @Inject
+    private WishlistDAOImpl wishlistDAO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = (UserModel) request.getSession().getAttribute("user");
-        System.out.println(user);
-        Long userId = user.getId();
-        if (userId!= null) {
-            List<ProductModel> wishlist = wishlistService.getWishlist(userId);
-            request.setAttribute("wishlist", wishlist);
-            request.getRequestDispatcher("/wishlist").forward(request, response);
-        } else {
-            response.sendRedirect(request.getContextPath() + "/login");
-        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        UserModel user = (UserModel) request.getSession().getAttribute("user");
-        System.out.println(user);
-        Long userId = user.getId();
-        if (userId == null) {
+        if (user == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 
+        Long userId = user.getId();
+        List<ProductModel> wishlist = wishlistDAO.getWishlistByUserId(userId);
+        request.setAttribute("wishlist", wishlist);
+        request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        Long userId = user.getId();
         long productId = Long.parseLong(request.getParameter("productId"));
-        wishlistService.addToWishlist(userId, productId);
+        wishlistDAO.addToWishlist(userId, productId);
+
+        response.sendRedirect(request.getContextPath() + "/wishlist");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        if (user == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+
+        Long userId = user.getId();
+        long productId = Long.parseLong(request.getParameter("productId"));
+        wishlistDAO.removeFromWishlist(userId, productId);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

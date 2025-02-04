@@ -1,5 +1,4 @@
 <%@include file="/common/tablib.jsp"%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -204,8 +203,12 @@
 	});
 
 	function addToWishlist(productId, heartIcon) {
-		fetch(`/add-to-wishlist?productId=${productId}`, {
-			method: 'POST'
+		fetch(`/wishlist`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: `productId=${productId}`
 		})
 				.then(response => response.json())
 				.then(data => {

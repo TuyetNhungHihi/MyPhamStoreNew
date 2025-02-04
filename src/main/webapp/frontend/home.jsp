@@ -172,9 +172,7 @@ To change this template use File | Settings | File Templates.
 														<input type="hidden" name="productId" value="${product.id}">
 														<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 													</form>
-
-													<li><a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a></li>
-
+													<li><a href="#" class="fa fa-heart add-to-wishlist" data-product-id="${product.id}" aria-hidden="true"></a></li>
 												</ul>
 											</div>
 
@@ -427,8 +425,9 @@ To change this template use File | Settings | File Templates.
 	<script src="../static/js/jquery.inview.min.js"></script>
 	<script src="../static/js/custom.js"></script>
 	<!--main js file end-->
-
 	<!-- demo feature -->
 	 <script src="../static/js/demo/login-label.js"></script>
+
+
 </body>
 </html>
