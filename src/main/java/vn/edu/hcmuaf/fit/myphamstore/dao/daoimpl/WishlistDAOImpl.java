@@ -43,7 +43,7 @@ public class WishlistDAOImpl implements IWishlistDAO {
 
     @Override
     public List<ProductModel> getWishlistByUserId(Long userId) {
-        String sql = "SELECT p.* FROM products p JOIN wishlist w ON p.id = w.product_id WHERE w.user_id = :userId";
+        String sql = "SELECT p.* FROM product p JOIN wishlist w ON p.id = w.product_id WHERE w.user_id = :userId";
         try {
             return JDBIConnector.getJdbi().withHandle(handle ->
                     handle.createQuery(sql)
