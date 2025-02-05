@@ -19,8 +19,6 @@ import java.util.List;
 public class WishlistController extends HttpServlet {
     @Inject
     private WishlistServiceImpl wishlistService;
-    @Inject
-    private WishlistDAOImpl wishlistDAO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +29,7 @@ public class WishlistController extends HttpServlet {
         }
 
         Long userId = user.getId();
-        List<ProductModel> wishlist = wishlistDAO.getWishlistByUserId(userId);
+        List<ProductModel> wishlist = wishlistService.getWishlistByUserId(userId);
         request.setAttribute("wishlist", wishlist);
         request.getRequestDispatcher("/frontend/wishlist.jsp").forward(request, response);
     }
@@ -46,7 +44,7 @@ public class WishlistController extends HttpServlet {
 
         Long userId = user.getId();
         long productId = Long.parseLong(request.getParameter("productId"));
-        wishlistDAO.addToWishlist(userId, productId);
+        wishlistService.addToWishlist(userId, productId);
 
         response.sendRedirect(request.getContextPath() + "/wishlist");
     }
@@ -61,7 +59,7 @@ public class WishlistController extends HttpServlet {
 
         Long userId = user.getId();
         long productId = Long.parseLong(request.getParameter("productId"));
-        wishlistDAO.removeFromWishlist(userId, productId);
+        wishlistService.removeFromWishlist(userId, productId);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
