@@ -13,6 +13,7 @@ public class WishlistServiceImpl implements IWishlistService {
 
     @Override
     public void addToWishlist(long userId, long productId) {
+        System.out.println(userId+ ""+productId);
         wishlistDao.addToWishlist(userId, productId);
     }
 
