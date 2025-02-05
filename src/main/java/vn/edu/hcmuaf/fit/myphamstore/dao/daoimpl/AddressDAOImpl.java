@@ -12,7 +12,7 @@ public class AddressDAOImpl implements IAddressDAO {
 
 
     @Override
-    public List<AddressModel> findByUserId(int userId) {
+    public List<AddressModel> findByUserId(Long userId) {
         String sql = "SELECT * FROM address WHERE user_id = :user_id AND is_active = 1";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(sql)
@@ -27,7 +27,7 @@ public class AddressDAOImpl implements IAddressDAO {
     @Override
     public boolean checkAddressIsExist(AddressModel addressModel, Long userId) {
         //get all address of user
-        List<AddressModel> addressList = findByUserId( Integer.parseInt(userId.toString()));
+        List<AddressModel> addressList = findByUserId((long) Integer.parseInt(userId.toString()));
         for (AddressModel address : addressList) {
             if (address.getRecipientName().equals(addressModel.getRecipientName()) &&
                     address.getRecipientPhone().equals(addressModel.getRecipientPhone()) &&

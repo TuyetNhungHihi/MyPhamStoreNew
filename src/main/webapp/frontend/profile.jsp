@@ -141,10 +141,12 @@ To change this template use File | Settings | File Templates.
                             </div>
                           </div>
                           <!-- Address -->
+                            <c:forEach var="address" items="${addresses}">
                           <div class="mb-3">
-                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: <%%></label>
+                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: ${address}</label>
                             <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
                           </div>
+                            </c:forEach>
                           <!-- Email -->
                           <div class="mb-3">
                             <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email: <%=user.getEmail()%></label>

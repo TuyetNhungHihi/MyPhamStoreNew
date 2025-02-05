@@ -11,10 +11,12 @@ import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.RoleType;
 import vn.edu.hcmuaf.fit.myphamstore.common.SendEmail;
 import vn.edu.hcmuaf.fit.myphamstore.common.UserStatus;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IAddressDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOtpDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IRoleDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.UserDAOImp;
+import vn.edu.hcmuaf.fit.myphamstore.model.AddressModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.RoleModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
@@ -34,7 +36,8 @@ public class UserServiceImpl implements IUserService {
     private IRoleDAO roleDAO;
     @Inject
     private IOtpDAO otpDAO;
-
+    @Inject
+    private IAddressDAO addressDAO;
 
     public UserServiceImpl() {
         this.userDAO = new UserDAOImp();
@@ -274,6 +277,7 @@ public class UserServiceImpl implements IUserService {
     public void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Giả sử thông tin user đã được lưu trong session sau khi đăng nhập
         UserModel user = (UserModel) request.getSession().getAttribute("user");
+        List<AddressModel>  addresss = addressDAO.findByUserId(user.getId());
 
         if (user == null) {
             // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
@@ -283,7 +287,7 @@ public class UserServiceImpl implements IUserService {
 
         // Đưa thông tin user vào request để hiển thị trên JSP
         request.setAttribute("user", user);
-
+        request.setAttribute("addresss", addresss);
         try {
             request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
         } catch (ServletException e) {

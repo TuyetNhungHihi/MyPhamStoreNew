@@ -159,7 +159,7 @@ public class CheckoutServiceImpl implements ICheckoutService {
         if (!addressExist) {
             addressId = addressDAO.save(address);
         }else {
-           List<AddressModel> listAddress = addressDAO.findByUserId( Integer.parseInt(userId.toString()));
+           List<AddressModel> listAddress = addressDAO.findByUserId((long) Integer.parseInt(userId.toString()));
               for (AddressModel addressModel : listAddress) {
                 if (addressModel.getRecipientName().equals(address.getRecipientName()) &&
                           addressModel.getRecipientPhone().equals(address.getRecipientPhone()) &&
