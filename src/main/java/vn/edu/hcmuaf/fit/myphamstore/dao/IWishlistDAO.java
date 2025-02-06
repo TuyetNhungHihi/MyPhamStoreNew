@@ -25,4 +25,8 @@ public interface IWishlistDAO {
     List<WishlistModel> findAll(String keyword, int currentPage, int pageSize, String orderBy);
 
     Long getTotalPage(int numOfItems);
+
+    List<ProductModel> getWishlistByUserId(Long userId, int page, int size);
+
+    int getWishlistCountByUserId(Long userId);
 }

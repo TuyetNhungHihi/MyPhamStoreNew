@@ -5,7 +5,6 @@ import vn.edu.hcmuaf.fit.myphamstore.dao.IWishlistDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.WishlistModel;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -211,5 +210,39 @@ public class WishlistDAOImpl implements IWishlistDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    @Override
+    public List<ProductModel> getWishlistByUserId(Long userId, int limit, int offset) {
+        String sql = "SELECT p.* FROM product p JOIN wishlist w ON p.id = w.product_id WHERE w.user_id = ? LIMIT ? OFFSET ?";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind(0, userId)
+                            .bind(1, limit)
+                            .bind(2, offset)
+                            .mapToBean(ProductModel.class)
+                            .list()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    @Override
+    public int getWishlistCountByUserId(Long userId) {
+        String sql = "SELECT COUNT(*) FROM wishlist WHERE user_id = ?";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind(0, userId)
+                            .mapTo(Integer.class)
+                            .one()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }
