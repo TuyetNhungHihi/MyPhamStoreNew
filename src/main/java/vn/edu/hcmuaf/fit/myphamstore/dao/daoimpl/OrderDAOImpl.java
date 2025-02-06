@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.myphamstore.common.PaymentMethod;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOrderDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -158,5 +159,92 @@ public class OrderDAOImpl implements IOrderDAO {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Long countAllProducts() {
+        String query = "SELECT COUNT(*) FROM orders";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(query)
+                    .mapTo(Long.class)
+                    .one());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Long save(OrderModel entity) {
+        return 0L;
+    }
+
+    @Override
+    public OrderModel update(OrderModel entity) {
+        return null;
+    }
+
+    @Override
+    public void delete(OrderModel entity) {
+
+    }
+
+    @Override
+    public List<OrderModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
+        // Sàng lọc dữ liệu đầu vào
+        if (currentPage < 1) currentPage = 1;
+        // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
+        if (orderBy == null || !List.of("id", "address_id", "user_id", "status", "shipping_fee", "note", "payment_method", "total_price", "order_date", "confirmed_at").contains(orderBy)) {
+            orderBy = "order_date, status";
+        }
+        // Xây dựng câu lệnh SQL
+        String sql = "SELECT * FROM orders ";
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            sql += "WHERE id LIKE :keyword OR address_id LIKE :keyword OR user_id LIKE :keyword OR status LIKE :keyword OR shipping_fee LIKE :keyword OR note LIKE :keyword OR payment_method LIKE :keyword OR total_price LIKE :keyword OR order_date LIKE :keyword OR confirmed_at LIKE :keyword ";
+        }
+        sql += "ORDER BY " + orderBy + " LIMIT :limit OFFSET :offset";
+        // Sử dụng JDBI để thực hiện truy vấn
+        int finalCurrentPage = currentPage;
+        String finalSql = sql;
+        List<OrderModel> orders = JDBIConnector.getJdbi().withHandle(handle -> {
+            // Tạo truy vấn và gán các tham số
+            var query = handle.createQuery(finalSql)
+                    .bind("limit", pageSize)
+                    .bind("offset", (finalCurrentPage - 1) * pageSize);
+
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                query.bind("keyword", "%" + keyword + "%");
+            }
+
+            // Ánh xạ kết quả truy vấn thành đối tượng OrderModel
+            return query.mapToBean(OrderModel.class).list();
+        });
+
+        return orders;
+    }
+
+    @Override
+    public Long getTotalPage(int numOfItems) {
+        String query = "SELECT COUNT(*) FROM orders";
+
+        try {
+            // Dùng withHandle để thực hiện câu lệnh SQL
+            Long totalOrder = JDBIConnector.getJdbi().withHandle(handle -> {
+                return handle.createQuery(query)
+                        .mapTo(Long.class)  // Ánh xạ kết quả thành kiểu Long
+                        .one();  // Chỉ lấy một kết quả duy nhất
+            });
+            // Tính toán số trang
+            if (totalOrder != null) {
+                long countPage = totalOrder / numOfItems;
+                if (countPage % numOfItems != 0) {
+                    countPage++;
+                }
+                return countPage;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

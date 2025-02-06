@@ -1,3 +1,5 @@
+
+
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -6,6 +8,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%--import DateTimeFormatter--%>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <html lang="en">
 
 <head>
@@ -68,129 +72,52 @@
                     <th class="text-center">Mã khách hàng</th>
                     <th class="text-center">Tên người nhận</th>
                     <th class="text-center">Số điện thoại</th>
-                    <th class="text-center">Địa chỉ nhận hàng</th>
                     <th class="text-center">Thanh toán</th>
+                    <th class="text-center">Ngày đặt hàng</th>
                     <th class="text-center">Trạng thái</th>
                     <th class="text-center">Hành Động</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center" >2</td>
-                    <td class="text-center">Nguyễn Ngọc Hân</td>
-                    <td class="text-center">0123456789</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">MOMO</td>
-                    <td class="text-center"  >Chờ thanh toán</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                        <button class="btn btn-primary">Xác nhận</button>
-                        <button class="btn btn-danger">Huỷ đơn</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center" >1</td>
-                    <td class="text-center">Nguyễn Hân Ngọc</td>
-                    <td class="text-center">9876543210</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">Paypal</td>
-                    <td class="text-center"  >Đã thanh toán(Chờ xác nhận)</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                        <button class="btn btn-primary">Xác nhận</button>
-                        <button class="btn btn-danger">Huỷ đơn</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center" >1</td>
-                    <td class="text-center">Nguyễn Hân Ngọc</td>
-                    <td class="text-center">9876543210</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">Paypal</td>
-                    <td class="text-center"  >Chưa thanh toán</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                        <button class="btn btn-primary">Xác nhận</button>
-                        <button class="btn btn-danger">Huỷ đơn</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center" >3</td>
-                    <td class="text-center">Hân Nguyễn Ngọc</td>
-                    <td class="text-center">9876543210</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">Paypal</td>
-                    <td class="text-center"  > Đã xác nhận</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                        <button class="btn btn-danger">Huỷ đơn</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">4</td>
-                    <td class="text-center" >3</td>
-                    <td class="text-center">Ngọc Hân Nguyễn </td>
-                    <td class="text-center">9876543210</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">COD</td>
-                    <td class="text-center"  >Trả về</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">5</td>
-                    <td class="text-center" >3</td>
-                    <td class="text-center">Ngọc Nguyễn Hân  </td>
-                    <td class="text-center">9876543210</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">COD</td>
-                    <td class="text-center"  > Đã huỷ</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">5</td>
-                    <td class="text-center" >3</td>
-                    <td class="text-center">Ngọc Nguyễn Hân  </td>
-                    <td class="text-center">9876543210</td>
-                    <td class="text-center">linh trung, thủ đức, tp.hcm</td>
-                    <td class="text-center">COD</td>
-                    <td class="text-center"  > Giao thành công</td>
-                    <td class="text-center">
-                        <a href="/src/main/webapp/admin/order/order-detail.html" class="btn btn-success">Chi tiết</a>
-                    </td>
-                </tr>
+                <!-- Duyệt qua danh sách các đơn hàng -->
+                <c:forEach var="entry" items="${orderUserMap}">
+                    <c:set var="order" value="${entry.key}"/>
+                    <c:set var="user" value="${entry.value}"/>
+                    <tr>
+                        <td class="text-center">${order.id}</td>
+                        <td class="text-center">${user.id}</td>
+                        <td class="text-center">${user.fullName}</td>
+                        <td class="text-center">${user.phone}</td>
+                        <td class="text-center">${order.paymentMethod}</td>
+                        <td class="text-center">${order.orderDate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}</td>
+
+                        <c:if test="${order.status == 'PENDING'}">
+                            <td class="text-center">Chờ xác nhận</td>
+                        </c:if>
+                        <c:if test="${order.status == 'SHIPPING'}">
+                            <td class="text-center">Đang giao</td>
+                        </c:if>
+                        <c:if test="${order.status == 'DELIVERED'}">
+                            <td class="text-center">Đã giao</td>
+                        </c:if>
+                        <c:if test="${order.status == 'CANCELLED'}">
+                            <td class="text-center">Đã hủy</td>
+                        </c:if>
+                        <td class="text-center">
+                            <a href="/admin/order/order-detail.jsp?action=displayDetail&id=${order.id}" class="btn btn-success">Chi tiết</a>
+                            <c:if test="${order.status == 'PENDING'}">
+                                <button class="btn btn-primary">Xác nhận</button>
+                                <button class="btn btn-danger">Huỷ đơn</button>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+
                 </tbody>
             </table>
         </div>
-        <div style="width: 100%;" class="text-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li >
-                        <a class="previous-btn" href="#" aria-label="Previous" >
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li class="active"><a  href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a class="next-btn" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <%@include file="/common/paging.jsp"%>
     </main>
     <label for="sidebar" class="body-label" id="body-label"></label>
 </div>
