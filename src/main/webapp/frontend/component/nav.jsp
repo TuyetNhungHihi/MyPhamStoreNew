@@ -90,7 +90,7 @@
                     <c:when test="${empty user}">
                         <!-- Người dùng chưa đăng nhập -->
                         <div class="ss_login_box">
-                            <a href="<c:url value='/login' />">
+                            <a href="<c:url value='/login?' />">
                                 <span>Đăng nhập/Đăng ký</span>
                                 <img src="../static/images/header/user_icon.png" alt="Đăng nhập" title="Đăng nhập" class="img-responsive">
                             </a>
@@ -108,7 +108,17 @@
                                 <li><a href="<c:url value='/profile' />">Thông tin cá nhân</a></li>
                                 <li><a href="#">Lịch sử đơn hàng</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="logout.jsp">Đăng xuất</a></li>
+<%--                                <form id="form-login" class="form-group" action=<c:url value="/login?action=logout" /> method="post"/>--%>
+<%--                                <li><a href="<c:url value='/login?action=logout' />" methods="post">Đăng xuất</a></li>--%>
+<%--                                </form>--%>
+                                <li>
+                                    <form id="logout-form" action="<c:url value='/login?action=logout' />" method="post">
+                                        <button type="submit" style="border: none; background: none; padding: 0; color: inherit; cursor: pointer;">
+                                            Đăng xuất
+                                        </button>
+                                    </form>
+                                </li>
+
                             </ul>
                         </div>
                     </c:otherwise>

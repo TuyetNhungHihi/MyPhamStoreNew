@@ -47,7 +47,9 @@
 <div class="container-fluid">
   <div class="row main-content bg-success text-center">
     <div class="col-md-4 text-center company__info">
-      <img src="<%= request.getContextPath() %>/static/images/logo/logo3.svg" alt="Logo" title="big basket" class="img-responsive" />
+      <a href="<c:url value="/trang-chu" />">
+      <img src="<%= request.getContextPath() %>/static/images/logo/logo3.svg" alt="Logo" title="big basket" class="img-responsive" href="/trang-chu" />
+        </a>
     </div>
     <div class="col-md-8 col-xs-12 col-sm-12 login_form">
       <div class="container-fluid">
@@ -58,7 +60,7 @@
           <div style="font-size: 14px" class="alert alert-warning" role="alert">${message}</div>
         </c:if>
         <div class="row">
-          <form id="form-login" class="form-group" action=<c:url value="/login" /> method="post"/>
+          <form id="form-login" class="form-group" action=<c:url value="/login?action=login" /> method="post"/>
             <div class="row">
               <input type="text" name="email" id="email" class="form__input" placeholder="Email" required />
             </div>

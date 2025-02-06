@@ -39,9 +39,6 @@ public class UserServiceImpl implements IUserService {
     @Inject
     private IAddressDAO addressDAO;
 
-    public UserServiceImpl() {
-        this.userDAO = new UserDAOImp();
-    }
 
     @Override
     public List<UserModel> getUsersWithPaging(String keyword, int currentPage, int pageSize, String orderBy) {
@@ -101,6 +98,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getSession().removeAttribute("user");
+        request.getSession().invalidate();
         response.sendRedirect(request.getContextPath() + "/trang-chu");
     }
 
