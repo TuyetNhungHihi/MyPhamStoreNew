@@ -12,18 +12,28 @@ public class WishlistServiceImpl implements IWishlistService {
     private IWishlistDAO wishlistDao;
 
     @Override
+    public List<ProductModel> getWishlistByUserId(Long userId) {
+        return wishlistDao.getWishlistByUserId(userId);
+    }
+
+    @Override
     public void addToWishlist(long userId, long productId) {
         System.out.println(userId+ ""+productId);
         wishlistDao.addToWishlist(userId, productId);
     }
 
-    @Override
-    public List<ProductModel> getWishlistByUserId(Long userId) {
-        return wishlistDao.getWishlistByUserId(userId);
+    public List<ProductModel> getWishlistByUserId(Long userId, int currentPage, int pageSize) {
+        int offset = (currentPage - 1) * pageSize;
+        return wishlistDao.getWishlistByUserId(userId, pageSize, offset);
+    }
+
+    public int getWishlistCountByUserId(Long userId) {
+        return wishlistDao.getWishlistCountByUserId(userId);
     }
 
     @Override
     public void removeFromWishlist(Long userId, long productId) {
         wishlistDao.removeFromWishlist(userId, productId);
     }
+
 }

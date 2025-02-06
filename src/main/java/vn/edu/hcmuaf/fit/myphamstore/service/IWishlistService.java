@@ -9,4 +9,6 @@ public interface IWishlistService {
     List<ProductModel> getWishlistByUserId(Long userId);
     void addToWishlist(long userId, long productId);
     void removeFromWishlist(Long userId, long productId);
+
+    int getWishlistCountByUserId(Long id);
 }

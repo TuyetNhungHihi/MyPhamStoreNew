@@ -234,7 +234,7 @@ To change this template use File | Settings | File Templates.
 															<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 														</form>
 														<li>
-															<a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a>
+															<button class="fa fa-heart add-to-wishlist" data-product-id="${product.id}"></button>
 														</li>
 													</ul>
 												</div>
