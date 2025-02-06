@@ -55,52 +55,58 @@
 		<div class="row">
 			<div class="ss_latest_products product-three-service">
 				<div class="owl-carousel owl-theme">
-					<c:forEach var="product" items="${wishlist}">
+					<c:forEach var="product" items="${productsWishlist}">
 						<div class="item">
 							<div class="ss_featured_products_box">
 								<div class="ss_featured_products_box_img">
 									<span class="ss_tag">Mới</span>
-									<img src="${product.thumbnail}" alt="${product.name}" class="img-responsive">
+									<span class="ss_offer">Giảm 20%</span>
+									<img src="${product.thumbnail != null ? product.thumbnail : '/path/to/default/image.jpg'}" alt="Product" class="img-responsive">
 								</div>
 								<div class="ss_feat_prod_cont_heading_wrapper">
-									<h4><a href="product_detail.jsp?id=${product.id}">${product.name}</a></h4>
-									<p>${product.description}</p>
-									<del>${product.price}</del> <ins>${product.price}</ins>
+									<h4>
+										<a class="limited-text" href="<c:url value='/chi-tiet-san-pham?id=${product.id}' />">${product.name}</a>
+									</h4>
+									<del>${product.price}</del>
+									<ins>${product.price - (product.price * 0.2)}</ins>
 								</div>
 								<div class="ss_featured_products_box_footer">
-									<ul>
-										<li><button class="ss_btn">Thêm vào giỏ</button></li>
-										<li><button class="remove-wishlist-btn" data-product-id="${product.id}">Remove</button></li>
+									<ul style="display: flex; padding-top: 15px; justify-content: center;">
+										<form method="post" action="/gio-hang">
+											<input type="hidden" name="action" value="add">
+											<input type="hidden" name="productId" value="${product.id}">
+											<button type="submit" class="ss_btn">Thêm vào giỏ</button>
+										</form>
+										<li>
+											<!-- Nút xóa khỏi wishlist -->
+											<button class="remove-wishlist-btn" data-product-id="${product.id}">Remove</button>
+										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
 				</div>
-				<div style="width: 100%;" class="text-center">
-					<nav aria-label="Page navigation">
+				<!-- Phân trang -->
+				<div class="col-lg-12 col-md-12 hidden-sm hidden-xs">
+					<div class="pager_wrapper gc_blog_pagination">
 						<ul class="pagination">
-							<li >
-								<a class="previous-btn" href="#" aria-label="Previous" >
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li class="active"><a  href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-								<a class="next-btn" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
+							<c:if test="${currentPage > 1}">
+								<li><a href="?currentPage=${currentPage - 1}&pageSize=6">Previous</a></li>
+							</c:if>
+							<c:forEach var="i" begin="1" end="${totalPages}">
+								<li class="${i == currentPage ? 'active' : ''}">
+									<a href="?currentPage=${i}&pageSize=6">${i}</a>
+								</li>
+							</c:forEach>
+							<c:if test="${currentPage < totalPages}">
+								<li><a href="?currentPage=${currentPage + 1}&pageSize=6">Next</a></li>
+							</c:if>
 						</ul>
-					</nav>
+					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 </div>
@@ -191,62 +197,50 @@
 	run_clock('clockdiv',deadline);
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		document.querySelectorAll('.fa-heart').forEach(function(heartIcon) {
-			heartIcon.addEventListener('click', function(event) {
-				event.preventDefault();
-				const productId = this.dataset.productId;
-				addToWishlist(productId, this);
+	$(document).ready(function() {
+		// Xử lý sự kiện khi nhấn nút thêm vào wishlist
+		$('.add-to-wishlist').on('click', function(e) {
+			e.preventDefault();
+			var productId = $(this).data('product-id');
+			$.ajax({
+				url: '<c:url value="/wishlist" />',
+				type: 'POST',
+				data: { productId: productId },
+				success: function(response) {
+					if(response.success) {
+						alert('Sản phẩm đã được thêm vào danh sách yêu thích!');
+
+					}
+				},
+				error: function() {
+					alert('Đã xảy ra lỗi khi thêm sản phẩm vào wishlist.');
+				}
+			});
+		});
+
+		$('.remove-wishlist-btn').on('click', function(e) {
+			e.preventDefault();
+			var productId = $(this).data('product-id');
+			$.ajax({
+				url: '<c:url value="/wishlist" />',
+				type: 'DELETE',
+				data: { productId: productId },
+				success: function(response) {
+					if(response.success) {
+						alert('Sản phẩm đã được xóa khỏi danh sách yêu thích!');
+						location.reload();
+					}
+				},
+				error: function() {
+					alert('Đã xảy ra lỗi khi xóa sản phẩm khỏi wishlist.');
+				}
 			});
 		});
 	});
-
-	function addToWishlist(productId, heartIcon) {
-		fetch(`/wishlist`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: `productId=${productId}`
-		})
-				.then(response => response.json())
-				.then(data => {
-					if (data.success) {
-						heartIcon.style.color = 'red';
-						showToast('Product added to wishlist!');
-						refreshWishlist();
-					} else {
-						showToast('Failed to add product to wishlist.');
-					}
-				})
-				.catch(error => {
-					console.error('Error:', error);
-					showToast('An error occurred. Please try again.');
-				});
-	}
-
-	function refreshWishlist() {
-		fetch('/wishlist')
-				.then(response => response.text())
-				.then(html => {
-					document.querySelector('.ss_latest_products').innerHTML = html;
-				})
-				.catch(error => {
-					console.error('Error:', error);
-				});
-	}
-
-	function showToast(message) {
-		const toast = document.createElement('div');
-		toast.className = 'toast';
-		toast.innerText = message;
-		document.body.appendChild(toast);
-		setTimeout(() => {
-			toast.remove();
-		}, 3000);
-	}
 </script>
+
 
 <script>
 	document.querySelectorAll('.remove-wishlist-btn').forEach(button => {
