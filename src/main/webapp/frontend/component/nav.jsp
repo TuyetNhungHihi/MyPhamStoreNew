@@ -106,7 +106,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121;">
                                 <li><a href="<c:url value='/change-password' />">Đổi mật khẩu</a></li>
                                 <li><a href="<c:url value='/profile' />">Thông tin cá nhân</a></li>
-                                <li><a href="#">Lịch sử đơn hàng</a></li>
+                                <li><a href="<c:url value='/order-history' />">Lịch sử đơn hàng</a></li>
                                 <li role="separator" class="divider"></li>
 <%--                                <form id="form-login" class="form-group" action=<c:url value="/login?action=logout" /> method="post"/>--%>
 <%--                                <li><a href="<c:url value='/login?action=logout' />" methods="post">Đăng xuất</a></li>--%>

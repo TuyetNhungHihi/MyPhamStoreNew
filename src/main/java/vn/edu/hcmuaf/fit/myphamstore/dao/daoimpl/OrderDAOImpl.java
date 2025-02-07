@@ -7,7 +7,6 @@ import vn.edu.hcmuaf.fit.myphamstore.common.PaymentMethod;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOrderDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -172,6 +171,22 @@ public class OrderDAOImpl implements IOrderDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<OrderModel> findByUserId(Long userId, int currentPage, int pageSize) {
+        String sql = "SELECT * FROM `order` WHERE user_id = :userId LIMIT :limit OFFSET :offset";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                    .bind("userId", userId)
+                    .bind("limit", pageSize)
+                    .bind("offset", (currentPage - 1) * pageSize)
+                    .mapToBean(OrderModel.class)
+                    .list());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.service;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
 
 import java.io.IOException;
@@ -15,4 +16,9 @@ public interface IOrderService {
     Long getTotalOrder();
     OrderModel findOrderById(Long id);
     List<OrderModel> getOrdersWithPaging(String keyword,int currentPage, int pageSize, String orderBy);
+
+    List<OrderDetailModel> getOrderDetailsByOrderId(Long orderId);
+
+
+    List<OrderModel> getOrderHistoryByUserId(Long userId, int currentPage, int pageSize);
 }
