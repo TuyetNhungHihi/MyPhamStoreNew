@@ -17,4 +17,6 @@ public interface IOrderDAO extends GenericDAO<OrderModel> {
     void changeStatus(Long orderId, OrderStatus status);
 
     Long countAllProducts();
+
+    List<OrderModel> findByUserId(Long userId, int currentPage, int pageSize);
 }

@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOrderDAO;
+import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IOrderService;
@@ -79,5 +80,24 @@ public class OrderServiceImpl implements IOrderService {
             keyword = keyword.trim();
         }
         return orderDAO.findAll(keyword, currentPage, pageSize, orderBy);
+    }
+
+    @Override
+    public List<OrderDetailModel> getOrderDetailsByOrderId(Long orderId) {
+        return orderDAO.findOrderDetailByOrderId(orderId);
+    }
+
+
+    @Override
+    public List<OrderModel> getOrderHistoryByUserId(Long userId, int currentPage, int pageSize) {
+        return orderDAO.findByUserId(userId, currentPage, pageSize);
+    }
+
+    public List<OrderModel> getOrdersByUserId(Long userId) {
+        return orderDAO.findByUserId(userId, 1, 10);
+    }
+
+    public OrderModel getOrderDetails(Long orderId) {
+        return orderDAO.findOrderById(orderId);
     }
 }
