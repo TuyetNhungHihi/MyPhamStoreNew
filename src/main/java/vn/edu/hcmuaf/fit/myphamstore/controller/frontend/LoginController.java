@@ -21,7 +21,14 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        userService.login(request, response);
+        String action = request.getParameter("action");
+        if (action != null && action.equals("login")) {
+            userService.login(request, response);
+        } else if (action != null && action.equals("logout")) {
+            userService.logout(request, response);
+
+        }
+
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
