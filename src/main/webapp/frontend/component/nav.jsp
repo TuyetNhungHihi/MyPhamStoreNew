@@ -104,21 +104,26 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider" style="left: 0; z-index: 111121;">
-                                <li><a href="change-password.jsp">Đổi mật khẩu</a></li>
+                                <li><a href="<c:url value='/change-password' />">Đổi mật khẩu</a></li>
                                 <li><a href="<c:url value='/profile' />">Thông tin cá nhân</a></li>
                                 <li><a href="#">Lịch sử đơn hàng</a></li>
                                 <li role="separator" class="divider"></li>
 <%--                                <form id="form-login" class="form-group" action=<c:url value="/login?action=logout" /> method="post"/>--%>
 <%--                                <li><a href="<c:url value='/login?action=logout' />" methods="post">Đăng xuất</a></li>--%>
 <%--                                </form>--%>
+<%--                                <li>--%>
+<%--                                    <form id="logout-form" action="<c:url value='/login?action=logout' />" method="post">--%>
+<%--                                        <button type="submit" style="border: none; background: none; padding: 0; color: inherit; cursor: pointer;">--%>
+<%--                                            Đăng xuất--%>
+<%--                                        </button>--%>
+<%--                                    </form>--%>
+<%--                                </li>--%>
                                 <li>
-                                    <form id="logout-form" action="<c:url value='/login?action=logout' />" method="post">
-                                        <button type="submit" style="border: none; background: none; padding: 0; color: inherit; cursor: pointer;">
-                                            Đăng xuất
-                                        </button>
-                                    </form>
+                                    <a href="#" onclick="document.getElementById('logout-form').submit();" style="cursor: pointer;">
+                                        Đăng xuất
+                                    </a>
+                                    <form id="logout-form" action="<c:url value='/login?action=logout' />" method="post" style="display: none;"></form>
                                 </li>
-
                             </ul>
                         </div>
                     </c:otherwise>

@@ -104,7 +104,7 @@ INSERT INTO `review` (`id`, `user_id`, `product_id`, `rating`, `comment`, `creat
 (4, 4, 4, 5, 'Highly recommend!', NOW(), NOW()),
 (5, 5, 5, 2, 'Not satisfied.', NOW(), NOW());
 
-INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `total_price`) VALUES
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `quantity`, `total_price`) VALUES
 (1, 1, 1, 2, 400000),
 (2, 1, 2, 1, 100000),
 (3, 2, 3, 3, 900000),
