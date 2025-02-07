@@ -175,7 +175,7 @@ public class OrderDAOImpl implements IOrderDAO {
 
     @Override
     public List<OrderModel> findByUserId(Long userId, int currentPage, int pageSize) {
-        String sql = "SELECT * FROM `order` WHERE user_id = :userId LIMIT :limit OFFSET :offset";
+        String sql = "SELECT * FROM `orders` WHERE user_id = :userId LIMIT :limit OFFSET :offset";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(sql)
                     .bind("userId", userId)
