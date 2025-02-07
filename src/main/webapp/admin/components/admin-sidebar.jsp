@@ -58,7 +58,7 @@
         </li>
         <li>
         <li>
-          <a class="link-admin-header" href="<c:url value="/admin/orders" />">
+          <a class="link-admin-header" href="<c:url value="/admin/orders?action=display" />">
             <span class="las la-balance-scale"></span>Quản lý đơn hàng
           </a>
         </li>

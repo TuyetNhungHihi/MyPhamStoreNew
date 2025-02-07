@@ -6,7 +6,7 @@ import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
 
 import java.util.List;
 
-public interface IOrderDAO {
+public interface IOrderDAO extends GenericDAO<OrderModel> {
     Long saveOrder(OrderModel orderModel);
     void saveOrderDetail(OrderDetailModel orderDetailModel);
     void updateOrder(OrderModel orderModel);
@@ -15,4 +15,6 @@ public interface IOrderDAO {
     List<OrderDetailModel> findOrderDetailByOrderId(Long orderId);
     void updateOrderDetail(OrderDetailModel orderDetailModel);
     void changeStatus(Long orderId, OrderStatus status);
+
+    Long countAllProducts();
 }
