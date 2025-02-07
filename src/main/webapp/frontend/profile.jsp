@@ -1,4 +1,5 @@
 <%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.UserModel" %>
+<%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.AddressModel" %>
 <%@include file="/common/tablib.jsp"%>
 <%--
 Created by IntelliJ IDEA.
@@ -88,6 +89,8 @@ To change this template use File | Settings | File Templates.
           <div class="container px-4 mt-4">
             <h1>Thông tin cá nhân </h1>
               <% UserModel user = (UserModel) request.getAttribute("user");
+                    AddressModel address = (AddressModel) request.getAttribute("address");
+                  System.out.println(address);
                   System.out.println(user);%>
             <hr class="mt-0 mb-4">
               <hr class="container">
@@ -108,9 +111,14 @@ To change this template use File | Settings | File Templates.
                         <div class="small font-italic text-muted mb-4">
                             Loại ảnh JPG hoặc PNG không lớn hơn 5 MB
                         </div>
-                        <button class="btn btn-primary" type="button" style="background-color: blue;">
-                            <font color="white"> Đăng xuất </font>
-                        </button>
+<%--                        <button class="btn btn-primary" type="button" style="background-color: blue;">--%>
+<%--                            <font color="white"> Đăng xuất </font>--%>
+<%--                        </button>--%>
+                          <form id="logout-form" action="<c:url value='/login?action=logout' />" method="post">
+                              <button class="btn btn-primary" type="submit" style="background-color: blue;">
+                                  <font color="white"> Đăng xuất </font>
+                              </button>
+                          </form>
                       </div>
                     </div>
                   </div>
@@ -141,13 +149,11 @@ To change this template use File | Settings | File Templates.
                             </div>
                           </div>
                           <!-- Address -->
-
-                            <c:forEach var="address" items="${addresss}">
                           <div class="mb-3">
                             <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: ${address}</label>
                             <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
                           </div>
-                            </c:forEach>
+
                           <!-- Email -->
                           <div class="mb-3">
                             <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email: <%=user.getEmail()%></label>
@@ -198,5 +204,53 @@ To change this template use File | Settings | File Templates.
       <script src="../static/js/jquery.easing.1.3.js"></script>
       <script src="../static/js/jquery.inview.min.js"></script>
       <script src="../static/js/custom.js"></script>
+      <script>
+          document.getElementById('editButton').addEventListener('click', function() {
+              const usernameInput = document.getElementById('username');
+              const lastnameInput = document.getElementById('lastname');
+              const locationInput = document.getElementById('inputLocation');
+              const emailInput = document.getElementById('inputEmailAddress');
+              const phoneInput = document.getElementById('inputPhone');
+              const birthdayInput = document.getElementById('ngaysinh');
+              const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender
+
+              const isReadonly = usernameInput.readOnly;
+
+              if (isReadonly) {
+                  // Enable editing
+                  editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'
+                  usernameInput.readOnly = false;
+                  lastnameInput.readOnly = false;
+                  locationInput.readOnly = false;
+                  emailInput.readOnly = false;
+                  phoneInput.readOnly = false;
+                  birthdayInput.readOnly = false;
+
+                  // Enable gender radio buttons
+                  genderInputs.forEach((radio) => {
+                      radio.disabled = false;
+                  });
+
+              } else {
+                  // Save changes
+                  usernameInput.readOnly = true;
+                  lastnameInput.readOnly = true;
+                  locationInput.readOnly = true;
+                  emailInput.readOnly = true;
+                  phoneInput.readOnly = true;
+                  birthdayInput.readOnly = true;
+                  editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'
+
+                  // Disable gender radio buttons
+                  genderInputs.forEach((radio) => {
+                      radio.disabled = true;
+                  });
+
+                  // You can add logic to save the updated values here
+                  console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);
+              }
+          });
+
+      </script>
     </body>
 </html>
