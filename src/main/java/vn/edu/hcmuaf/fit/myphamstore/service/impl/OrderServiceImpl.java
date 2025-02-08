@@ -6,6 +6,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.common.OrderStatus;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IAddressDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOrderDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.*;
@@ -14,6 +15,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IUserService;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,14 +74,6 @@ public class OrderServiceImpl implements IOrderService {
             orderDetails.put(orderDetail, product);
         }
 
-        System.out.println("Order detail");
-        System.out.println(orderDetails);
-        System.out.println("User");
-        System.out.println(user);
-        System.out.println("Address");
-        System.out.println(address);
-        System.out.println("Order");
-        System.out.println(order);
         req.setAttribute("order", order);
         req.setAttribute("orderDetails", orderDetails);
         req.setAttribute("address", address);
@@ -119,6 +113,19 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public List<OrderModel> getOrderHistoryByUserId(Long userId, int currentPage, int pageSize) {
         return orderDAO.findByUserId(userId, currentPage, pageSize);
+    }
+
+    @Override
+    public void changeStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Long orderId = Long.parseLong(req.getParameter("id"));
+        OrderStatus status = OrderStatus.valueOf(req.getParameter("status"));
+        orderDAO.changeStatus(orderId, status);
+        if(status == OrderStatus.CONFIRMED){
+            OrderModel order = orderDAO.findOrderById(orderId);
+            order.setConfirmedAt(LocalDateTime.now());
+            orderDAO.update(order);
+        }
+        resp.sendRedirect(req.getContextPath() + "/admin/orders?action=display");
     }
 
     public List<OrderModel> getOrdersByUserId(Long userId) {

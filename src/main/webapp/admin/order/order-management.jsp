@@ -98,6 +98,9 @@
                         <c:if test="${order.status == 'SHIPPING'}">
                             <td class="text-center">Đang giao</td>
                         </c:if>
+                        <c:if test="${order.status == 'CONFIRMED'}">
+                            <td class="text-center">Đã xác nhận</td>
+                        </c:if>
                         <c:if test="${order.status == 'DELIVERED'}">
                             <td class="text-center">Đã giao</td>
                         </c:if>
@@ -107,8 +110,12 @@
                         <td class="text-center">
                             <a href="/admin/orders?action=displayDetail&id=${order.id}" class="btn btn-success">Chi tiết</a>
                             <c:if test="${order.status == 'PENDING'}">
-                                <button class="btn btn-primary">Xác nhận</button>
-                                <button class="btn btn-danger">Huỷ đơn</button>
+                                <a class="btn btn-primary" href="<c:url value="/admin/orders?action=edit&id=${order.id}&status=CONFIRMED" />">Xác nhận</a>
+                                <a class="btn btn-danger" href="<c:url value="/admin/orders?action=edit&id=${order.id}&status=CANCELLED" />">Huỷ đơn</a>
+                            </c:if>
+                            <c:if test="${order.status == 'CONFIRMED'}">
+                                <a class="btn btn-primary" href="<c:url value="/admin/orders?action=edit&id=${order.id}&status=SHIPPING" />">Giao hàng</a>
+                                <a class="btn btn-danger" href="<c:url value="/admin/orders?action=edit&id=${order.id}&status=CANCELLED" />">Huỷ đơn</a>
                             </c:if>
                         </td>
                     </tr>

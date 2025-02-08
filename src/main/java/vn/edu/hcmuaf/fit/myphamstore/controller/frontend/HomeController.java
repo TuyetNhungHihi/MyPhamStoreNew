@@ -7,19 +7,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.*;
 import vn.edu.hcmuaf.fit.myphamstore.service.IBrandService;
 import vn.edu.hcmuaf.fit.myphamstore.service.ICategoryService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
+import vn.edu.hcmuaf.fit.myphamstore.service.ISlideService;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "HomeController", value = "/trang-chu")
 public class HomeController extends HttpServlet {
+    @Inject
+    private ISlideService slideService;
     @Inject
     private IProductService productService;
     @Inject
@@ -69,7 +69,10 @@ public class HomeController extends HttpServlet {
 
             List<ProductModel>makeUp = productService.getProductsByCategory(3);
 
+            // Lấy danh sách slide
+            List<SlideModel> slides = slideService.findAll();
 
+            request.setAttribute("slides", slides);
 
             // Set các attribute để gửi đến JSP
             request.setAttribute("products", products);

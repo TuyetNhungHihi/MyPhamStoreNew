@@ -24,4 +24,24 @@ public class SlideServiceImpl implements ISlideService {
     public Long getTotalPage(int numOfItem) {
         return slideDAO.getTotalPage(numOfItem);
     }
+
+    @Override
+    public void save(SlideModel slideModel) {
+        slideDAO.save(slideModel);
+    }
+
+    @Override
+    public void delete(SlideModel id) {
+        slideDAO.delete(id);
+    }
+
+    @Override
+    public List<SlideModel> findAll() {
+        return slideDAO.findAll();
+    }
+
+    @Override
+    public void deleteAll() {
+        slideDAO.deleteAll();
+    }
 }

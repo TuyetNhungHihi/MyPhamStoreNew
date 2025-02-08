@@ -83,8 +83,14 @@ public class UserServiceImpl implements IUserService {
         if (isAuthenticated) {
             UserModel user = this.findUserByEmail(email);
             if (user != null) {
-                request.getSession().setAttribute("user", user);
-                response.sendRedirect(request.getContextPath() + "/trang-chu");
+                if(user.getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(RoleType.ADMIN))){
+                    request.getSession().setAttribute("user", user);
+                    response.sendRedirect(request.getContextPath() + "/admin");
+                }else{
+                    request.getSession().setAttribute("user", user);
+                    response.sendRedirect(request.getContextPath() + "/trang-chu");
+                }
+
             } else {
                 request.setAttribute("message", "Sai email hoặc mật khẩu");
                 request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
@@ -256,6 +262,7 @@ public class UserServiceImpl implements IUserService {
         if(verify) {
             UserModel user = userDAO.getUserByEmail(email);
             user.setStatus(UserStatus.ACTIVE);
+            roleDAO.setRoleToUser(RoleType.CUSTOMER, user.getId());
             userDAO.update(user);
             request.setAttribute("message", "Kích hoạt tài khoản thành công");
         }else {

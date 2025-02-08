@@ -15,15 +15,13 @@ public class SlideDAOImpl implements ISlideDAO {
 
     @Override
     public Long save(SlideModel entity) {
-        String sql = "INSERT INTO slide ( image,url,is_available, created_at, updated_at) " +
-                "VALUES ( :image, :url, :createdAt, :updatedAt)";
+        String sql = "INSERT INTO slide ( image, created_at, updated_at) " +
+                "VALUES ( :image, :createdAt, :updatedAt)";
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
                 // Thực hiện câu lệnh INSERT và lấy id tự động sinh
                 return handle.createUpdate(sql)
                         .bind("image", entity.getImage().trim())
-                        .bind("url", entity.getUrl().trim())
-                        .bind("is_available", entity.getIsAvailable())
                         .bind("createdAt", LocalDateTime.now())
                         .bind("updatedAt", LocalDateTime.now())
                         .executeAndReturnGeneratedKeys("id") // Lấy giá trị khóa chính tự động sinh
@@ -43,13 +41,11 @@ public class SlideDAOImpl implements ISlideDAO {
             log("Contact not found");
             return null;
         }
-        String sql = "UPDATE slide SET image = :image, url = :url,is_available=:isAvailable, updated_at = :updatedAt WHERE id = :id";
+        String sql = "UPDATE slide SET updated_at = :updatedAt WHERE id = :id";
         try {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
                         .bind("name", entity.getImage() == null ? slideExisted.getImage() : entity.getImage().trim())
-                        .bind("url", entity.getUrl() == null ? slideExisted.getUrl() : entity.getUrl())
-                        .bind("isAvailable", entity.getIsAvailable() == null ? slideExisted.getIsAvailable() : entity.getIsAvailable())
                         .bind("updatedAt", LocalDateTime.now())
                         .bind("id", entity.getId())
                         .execute();
@@ -67,7 +63,16 @@ public class SlideDAOImpl implements ISlideDAO {
 
     @Override
     public void delete(SlideModel entity) {
-
+        String sql = "DELETE FROM slide WHERE id = :id";
+        try {
+            JDBIConnector.getJdbi().withHandle(handle -> {
+                return handle.createUpdate(sql)
+                        .bind("id", entity.getId())
+                        .execute();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -76,7 +81,7 @@ public class SlideDAOImpl implements ISlideDAO {
         if (currentPage < 1) currentPage = 1;
 
         // Tránh SQL Injection bằng cách kiểm tra cột hợp lệ
-        List<String> allowedColumns = Arrays.asList("id", "image", "url","is_available","created_at", "updated_at");
+        List<String> allowedColumns = Arrays.asList("id", "image","created_at", "updated_at");
         if (!allowedColumns.contains(orderBy)) {
             orderBy = "id";
         }
@@ -84,7 +89,7 @@ public class SlideDAOImpl implements ISlideDAO {
         // Xây dựng câu lệnh SQL
         String sql = "SELECT * FROM slide ";
         if (keyword != null && !keyword.trim().isEmpty()) {
-            sql += "WHERE CONCAT(id,image,url,is_available, created_at, updated_at) LIKE :keyword ";
+            sql += "WHERE CONCAT(id, created_at, updated_at) LIKE :keyword ";
         }
         sql += "ORDER BY " + orderBy + " " +
                 "LIMIT :limit " +
@@ -112,28 +117,6 @@ public class SlideDAOImpl implements ISlideDAO {
 
     @Override
     public Long getTotalPage(int numOfItems) {
-        String query = "SELECT COUNT(*) FROM slide";
-
-        try {
-            // Dùng withHandle để thực hiện câu lệnh SQL
-            Long totalUser = JDBIConnector.getJdbi().withHandle(handle -> {
-                return handle.createQuery(query)
-                        .mapTo(Long.class)  // Ánh xạ kết quả thành kiểu Long
-                        .one();  // Chỉ lấy một kết quả duy nhất
-            });
-
-            // Tính toán số trang
-            if (totalUser != null) {
-                long countPage = totalUser / numOfItems;
-                if (totalUser % numOfItems != 0) {
-                    countPage++;
-                }
-                return countPage;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return null;
 
@@ -153,5 +136,31 @@ public class SlideDAOImpl implements ISlideDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<SlideModel> findAll() {
+        String query = "SELECT * FROM slide";
+        try {
+            List<SlideModel> result = JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(query)
+                    .mapToBean(SlideModel.class)
+                    .list());
+            return result;
+        } catch (Exception e) {
+            log("slide not found");
+            e.printStackTrace();
+        }
+        return List.of();
+    }
+
+    @Override
+    public void deleteAll() {
+        String query = "DELETE FROM slide";
+        try {
+            JDBIConnector.getJdbi().withHandle(handle -> handle.createUpdate(query).execute());
+        } catch (Exception e) {
+            log("slide not found");
+            e.printStackTrace();
+        }
     }
 }

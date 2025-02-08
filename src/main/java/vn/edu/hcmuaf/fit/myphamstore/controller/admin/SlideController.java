@@ -4,6 +4,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.myphamstore.common.Arlert;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.SlideModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.ISlideService;
@@ -18,25 +19,36 @@ public class SlideController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/slide/slide-management.jsp");
-        String keyword = request.getParameter("keyword");
-        String orderBy = request.getParameter("orderBy");
-        int currentPage = Integer.parseInt(request.getParameter("currentPage")==null?"1": request.getParameter("currentPage"));
-        int pageSize = Integer.parseInt(request.getParameter("pageSize") == null?"5": request.getParameter("pageSize"));
-
-        List<SlideModel> slides = slideService.pagingSlide(keyword, currentPage, pageSize, orderBy);
-        Long totalPages = slideService.getTotalPage(5);
+        List<SlideModel> slides = slideService.findAll();
 
         request.setAttribute("slides", slides);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("pageSize", pageSize);
-        request.setAttribute("keyword", keyword);
-        request.setAttribute("orderBy", orderBy);
-        System.out.println(slides);
         dispatcher.forward(request, response);
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String[] images = request.getParameterValues("images");
+        if(images==null ||  List.of(images).isEmpty()) {
+            Arlert alert = new Arlert();
+            alert.setMessage("Vui lòng chọn hình ảnh");
+            alert.setType(Arlert.TYPE_WARNING);
+            request.setAttribute("alert", alert);
+            request.getRequestDispatcher("/admin/slide/slide-management.jsp").forward(request, response);
+            return;
+        }
 
+        //xóa hình ảnh cũ
+        slideService.deleteAll();
+
+        //lưu hình anảnh vào db
+        for (String image : images) {
+            SlideModel slide = new SlideModel();
+            slide.setImage(image);
+            slideService.save(slide);
+        }
+        Arlert alert = new Arlert();
+        alert.setMessage("Cập nhật slide thành công!");
+        alert.setType(Arlert.TYPE_SUCCESS);
+        request.setAttribute("alert", alert);
+        request.getRequestDispatcher("/admin/slide/slide-management.jsp").forward(request, response);
     }
 
 }
