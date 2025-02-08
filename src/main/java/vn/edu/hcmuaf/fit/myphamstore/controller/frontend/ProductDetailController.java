@@ -41,24 +41,42 @@ public class ProductDetailController extends HttpServlet {
         List<ProductVariant> productVariants = productService.getProductVariantsByProductId(id);
         request.setAttribute("variants", productVariants);
 
-        for (int i = 0; i < reviews.size(); i++) {
-            totalReview += reviews.get(i).getRating() / reviews.size();
-            if(reviews.get(i).getRating() == 5){
-                totalReview5 += 1;
-                totalReview5 = totalReview5/reviews.size();
-            } else if (reviews.get(i).getRating() == 4) {
-                totalReview4 += 1;
-                totalReview4 = totalReview4/reviews.size();
-            } else if (reviews.get(i).getRating() == 3) {
-                totalReview3 += 1;
-                totalReview3 = totalReview3/reviews.size();
-            } else if (reviews.get(i).getRating() == 2) {
-                totalReview2 += 1;
-                totalReview2 = totalReview2/reviews.size();
-            } else if (reviews.get(i).getRating() == 1) {
-                totalReview1 += 1;
-                totalReview1 = totalReview1 / reviews.size();
+        for (ReviewModel review : reviews) {
+            totalReview += review.getRating();
+            switch (review.getRating()) {
+                case 5:
+                    totalReview5 += 1;
+                    break;
+                case 4:
+                    totalReview4 += 1;
+                    break;
+                case 3:
+                    totalReview3 += 1;
+                    break;
+                case 2:
+                    totalReview2 += 1;
+                    break;
+                case 1:
+                    totalReview1 += 1;
+                    break;
             }
+        }
+
+        int reviewCount = reviews.size();
+        if (reviewCount > 0) {
+            totalReview /= reviewCount;
+            totalReview5 = (totalReview5 / reviewCount) * 100;
+            totalReview4 = (totalReview4 / reviewCount) * 100;
+            totalReview3 = (totalReview3 / reviewCount) * 100;
+            totalReview2 = (totalReview2 / reviewCount) * 100;
+            totalReview1 = (totalReview1 / reviewCount) * 100;
+        } else {
+            totalReview = 0;
+            totalReview5 = 0;
+            totalReview4 = 0;
+            totalReview3 = 0;
+            totalReview2 = 0;
+            totalReview1 = 0;
         }
         request.setAttribute("total", totalReview);
         request.setAttribute("total1", totalReview1);

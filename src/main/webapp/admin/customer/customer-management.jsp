@@ -53,8 +53,7 @@
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
                     <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 khách hàng</span>
-                    <a href="<c:url value="/admin/users"/>" class="btn btn-primary" style="float: right;">Thêm khách hàng</a>
-                </div>
+                    </div>
             </div>
             <table class="table table-striped ">
                 <thead >

@@ -25,6 +25,8 @@
   <link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -214,10 +216,10 @@
                         <div class="progress-item">
                           <span class="progress-title">5 sao</span>
                           <span class="progress-percent pull-right">
-                              50%</span>
+                              <c:out value="${total5}% "/></span>
                           <div class="progress">
-                            <div class="progress-bar progress-bar-dealy" role="progressbar" aria-valuenow="50"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-dealy" role="progressbar" aria-valuenow="${total5}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width: ${total5}%;"></div>
                           </div>
                           <!-- /.progress -->
                         </div>
@@ -225,10 +227,10 @@
                         <div class="progress-item">
                           <span class="progress-title">4 sao</span>
                           <span class="progress-percent pull-right">
-                              92%</span>
+                              <c:out value="${total4}% "/></span>
                           <div class="progress">
                             <div class="progress-bar progress-bar-success progress-bar-dealy" role="progressbar"
-                                 aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                                 aria-valuenow="${total4}" aria-valuemin="0" aria-valuemax="100" style="width: ${total4}%;"></div>
                           </div>
                           <!-- /.progress -->
                         </div>
@@ -236,10 +238,10 @@
                         <div class="progress-item">
                           <span class="progress-title">3 sao </span>
                           <span class="progress-percent pull-right">
-                              55%</span>
+                               <c:out value="${total3} "/>%</span>
                           <div class="progress">
                             <div class="progress-bar progress-bar-danger progress-bar-dealy" role="progressbar"
-                                 aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+                                 aria-valuenow="${total3}" aria-valuemin="0" aria-valuemax="100" style="width: ${total3}%;"></div>
                           </div>
                           <!-- /.progress -->
                         </div>
@@ -247,10 +249,10 @@
                         <div class="progress-item">
                           <span class="progress-title">2 sao</span>
                           <span class="progress-percent pull-right">
-                              45%</span>
+                              <c:out value="${total2} "/>%</span>
                           <div class="progress">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${total2}"
+                                 aria-valuemin="0" aria-valuemax="100" style="width: ${total2}%;"></div>
                           </div>
                           <!-- /.progress -->
                         </div>
@@ -258,10 +260,10 @@
                         <div class="progress-item">
                           <span class="progress-title">1 sao</span>
                           <span class="progress-percent pull-right">
-                              25%</span>
+                               <c:out value="${total1} "/>%</span>
                           <div class="progress">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${total1} "
+                                 aria-valuemin="0" aria-valuemax="100" style="width: ${total1}%;"></div>
                           </div>
                           <!-- /.progress -->
                         </div>
@@ -273,21 +275,26 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="comment_box_blog">
                     <div class="sp_comment1_wrapper cmnt_wraper_2">
+                      <c:forEach var="review" items="${reviews}">
                       <div class="sp_comment1_img text-center">
                         <i class="fa fa-user"  style="font-size: 70px;" aria-hidden="true"></i>
                       </div>
                       <div class="sp_comment1_cont">
-                        <c:forEach var="review" items="${reviews}">
+
                           <h3><c:out value="${review.userId}"/></h3>
                           <p>
                             <span><c:out value="${review.createdAt}"/></span>
                           </p>
                           <p>
+                            <span><c:out value="${review.rating}⭐"/></span>
+                          </p>
+                          <p>
                             <c:out value="${review.comment}"/>
                           </p>
-                        </c:forEach>
+
 
                       </div>
+                      </c:forEach>
                     </div>
                   </div>
                 </div>
