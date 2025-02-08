@@ -132,8 +132,6 @@ CREATE TABLE `order_details` (
 CREATE TABLE `slide` (
                          `id` int PRIMARY KEY AUTO_INCREMENT,
                          `image` longtext NOT NULL,
-                         `url` varchar(500) NOT NULL,
-                         `is_available` BOOLEAN NOT NULL DEFAULT TRUE,
                          `created_at` datetime DEFAULT (now()),
                          `updated_at` datetime DEFAULT (now())
 );
