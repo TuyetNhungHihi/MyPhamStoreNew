@@ -169,7 +169,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void displayListUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/customer/customer-management.jsp");
         String keyword = request.getParameter("keyword");
         String orderBy = request.getParameter("orderBy");
@@ -181,6 +180,7 @@ public class UserServiceImpl implements IUserService {
                 .filter(u -> u.getRoles().stream()
                         .anyMatch(r -> r.getName().equalsIgnoreCase(RoleType.CUSTOMER.toString())))
                 .collect(Collectors.toList());
+        System.out.println("Users: " + users);
         Long totalPages = this.userDAO.getTotalPage(pageSize);
         // Gửi danh sách sản phẩm đến trang JSP
         request.setAttribute("users", users);

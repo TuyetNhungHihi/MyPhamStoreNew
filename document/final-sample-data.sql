@@ -368,4 +368,4 @@ INSERT INTO `myphamstoredb`.`product_image` (`url`, `product_id`) VALUES ('https
 
 INSERT INTO `myphamstoredb`.`user` (`id`, `full_name`, `email`, `password`, `phone`, `date_of_birth`, `gender`, `status`, `last_login`, `created_at`, `updated_at`) VALUES ('1', 'admin', 'admin@gmail.com', '$2a$10$JNKRA4nCHtm9f/bR8JOK1esDVwRKulplrtAhdvRppfvqskmgR1/3u', '0123012301', '2025-02-06', 'MALE', 'ACTIVE', '2025-02-08 09:26:34', '2025-02-08 09:26:34', '2025-02-08 09:26:34');
 
-insert into user_has_role values(1,1)
+insert into user_has_role values(1,1),(2,3),(3,3),(4,3),(5,3),(6,3),(7,3),(8,3),(9,3),(10,3),(11,3),(12,3),(13,3),(14,3),(15,3),(16,3),(17,3),(18,3),(19,3),(20,3);
