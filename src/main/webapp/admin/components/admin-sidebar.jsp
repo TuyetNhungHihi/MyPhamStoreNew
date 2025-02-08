@@ -52,7 +52,7 @@
         </li>
         <li>
         <li>
-          <a class="link-admin-header" href="<c:url value="/admin-users" />">
+          <a class="link-admin-header" href="<c:url value="/admin/users" />">
             <span class="las la-balance-scale"></span>Quản lý người dùng
           </a>
         </li>
@@ -85,11 +85,6 @@
         <li>
           <a class="link-admin-header" href="<c:url value="/admin/slides" />">
             <span class="las la-balance-scale"></span>Quản lý slide hiển thị
-          </a>
-        </li>
-        <li>
-          <a class="link-admin-header" href="<c:url value="/admin/slides" />">
-            <span class="las la-balance-scale"></span>Quản lý Liên Hệ
           </a>
         </li>
       </ul>

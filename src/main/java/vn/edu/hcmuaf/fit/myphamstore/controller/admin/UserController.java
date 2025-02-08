@@ -12,7 +12,7 @@ import vn.edu.hcmuaf.fit.myphamstore.service.impl.UserServiceImpl;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "User-Management", value = "/admin-users")
+@WebServlet(name = "User-Management", value = "/admin/users")
 public class UserController extends HttpServlet {
     @Inject
     private UserServiceImpl userService;

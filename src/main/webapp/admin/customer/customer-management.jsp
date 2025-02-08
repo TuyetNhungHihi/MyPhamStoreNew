@@ -53,7 +53,7 @@
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
                     <span style="float: left; margin-top: 5px;"><strong>Hiển thị (1- 10)</strong> trên 100 khách hàng</span>
-                    <a href="add-product.jsp" class="btn btn-primary" style="float: right;">Thêm khách hàng</a>
+                    <a href="<c:url value="/admin/users"/>" class="btn btn-primary" style="float: right;">Thêm khách hàng</a>
                 </div>
             </div>
             <table class="table table-striped ">
@@ -83,13 +83,13 @@
                             </c:choose>
                         </td>
                         <td class="text-center">
-                            <a href="<c:url value="/admin-users?action=displayDetail&id=${u.id}"/>" class="btn btn-primary">Chi Tiết</a>
+                            <a href="<c:url value="/admin/users?action=displayDetail&id=${u.id}"/>" class="btn btn-primary">Chi Tiết</a>
                             <c:choose>
                                 <c:when test="${u.status eq 'ACTIVE'}">
-                                    <a href="<c:url value="/admin-users?action=lockUser&id=${u.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Khóa</a>
+                                    <a href="<c:url value="/admin/users?action=lockUser&id=${u.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-warning">Khóa</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value="/admin-users?action=unlockUser&id=${u.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Mở khóa</a>
+                                    <a href="<c:url value="/admin/users?action=unlockUser&id=${u.id}&currentPage=${currentPage}&pageSize=${pageSize}&keyword=${keyword}&orderBy=${orderBy}"/>" class="btn btn-success">Mở khóa</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>
