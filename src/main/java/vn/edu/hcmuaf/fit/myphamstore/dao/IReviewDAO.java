@@ -11,4 +11,5 @@ public interface IReviewDAO extends GenericDAO<ReviewModel> {
 
     List<ReviewModel> getAllReviewsByProductId(Long id);
 
+    Long saveReview(ReviewModel entity, Long userId, Long productId);
 }

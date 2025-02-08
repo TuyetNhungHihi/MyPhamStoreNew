@@ -10,4 +10,8 @@ public interface IUserDAO extends GenericDAO<UserModel> {
     UserModel getUserById(Long id);
     boolean updateUserPassword(UserModel user);
     Long getUserIdByEmailAndPassword(String email, String password);
+
+    void updateAvatar(Long id, String newAvatarUrl);
+
+    String getAvatar(int userId);
 }

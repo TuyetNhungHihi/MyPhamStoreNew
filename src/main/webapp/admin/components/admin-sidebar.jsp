@@ -9,11 +9,15 @@
 
 <div class="sidebar-brand">
   <div class="brand-flex">
+    <a href="<c:url value="/trang-chu" />">
+
     <img
-            src="/src/main/webapp/static/images/logo/logo5.svg"
+            src="../../static/images/logo/logo2.svg"
             class="img-logo"
             alt="logo"
+
     />
+    </a>
 
     <div class="brand-icons">
       <span class="las la-bell"></span>
@@ -52,7 +56,7 @@
         </li>
         <li>
         <li>
-          <a class="link-admin-header" href="<c:url value="/admin-users" />">
+          <a class="link-admin-header" href="<c:url value="/admin/users" />">
             <span class="las la-balance-scale"></span>Quản lý người dùng
           </a>
         </li>
@@ -85,11 +89,6 @@
         <li>
           <a class="link-admin-header" href="<c:url value="/admin/slides" />">
             <span class="las la-balance-scale"></span>Quản lý slide hiển thị
-          </a>
-        </li>
-        <li>
-          <a class="link-admin-header" href="<c:url value="/admin/slides" />">
-            <span class="las la-balance-scale"></span>Quản lý Liên Hệ
           </a>
         </li>
       </ul>

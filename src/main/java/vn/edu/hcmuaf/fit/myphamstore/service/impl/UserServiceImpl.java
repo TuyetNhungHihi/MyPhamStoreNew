@@ -6,6 +6,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import vn.edu.hcmuaf.fit.myphamstore.common.Gender;
 import vn.edu.hcmuaf.fit.myphamstore.common.RoleType;
@@ -22,8 +23,11 @@ import vn.edu.hcmuaf.fit.myphamstore.model.RoleModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IUserService;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -169,7 +173,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void displayListUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/customer/customer-management.jsp");
         String keyword = request.getParameter("keyword");
         String orderBy = request.getParameter("orderBy");
@@ -181,6 +184,7 @@ public class UserServiceImpl implements IUserService {
                 .filter(u -> u.getRoles().stream()
                         .anyMatch(r -> r.getName().equalsIgnoreCase(RoleType.CUSTOMER.toString())))
                 .collect(Collectors.toList());
+        System.out.println("Users: " + users);
         Long totalPages = this.userDAO.getTotalPage(pageSize);
         // Gửi danh sách sản phẩm đến trang JSP
         request.setAttribute("users", users);
@@ -379,6 +383,41 @@ public class UserServiceImpl implements IUserService {
         } else {
             response.getWriter().write("{\"success\": false, \"message\": \"Failed to add address.\"}");
 
+        }
+    }
+
+    @Override
+    public void uploadAvatar(HttpServletRequest request, HttpServletResponse response, Part filePart) throws IOException {
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        // Đọc dữ liệu ảnh và chuyển thành Base64
+        InputStream inputStream = filePart.getInputStream();
+        byte[] imageData = inputStream.readAllBytes();
+        String base64Image = Base64.getEncoder().encodeToString(imageData);
+
+        // Lưu Base64 vào database
+        userDAO.updateAvatar(user.getId(), base64Image);
+
+        // Cập nhật session
+        user.setAvatar(base64Image);
+        request.getSession().setAttribute("user", user);
+
+        response.sendRedirect("profile");
+    }
+
+    @Override
+    public void showAvatar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String base64Image = userDAO.getAvatar(userId);
+
+        if (base64Image != null) {
+            response.setContentType("text/plain"); // Trả về chuỗi Base64
+            response.getWriter().write(base64Image);
         }
     }
 

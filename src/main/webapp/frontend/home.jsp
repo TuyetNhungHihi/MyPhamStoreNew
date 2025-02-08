@@ -220,7 +220,7 @@ To change this template use File | Settings | File Templates.
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
 													<h4>
-														<a class="limited-text" href="<c:url value='/chi-tiet-san-pham?id=${product.id}' />">${product.name}</a>
+														<a class="limited-text" href="<c:url value='/product-detail?id=${product.id}' />">${product.name}</a>
 													</h4>
 													<del>${product.price}</del>
 													<ins>${product.price - (product.price * 0.2)}</ins>
@@ -263,7 +263,7 @@ To change this template use File | Settings | File Templates.
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
 													<h4>
-														<a class="limited-text" href="<c:url value='/chi-tiet-san-pham?id=${product.id}' />">${product.name}</a>
+														<a class="limited-text" href="<c:url value='/product-detail?id=${product.id}' />">${product.name}</a>
 													</h4>
 													<del>${product.price}</del>
 													<ins>${product.price - (product.price * 0.2)}</ins>
@@ -306,7 +306,7 @@ To change this template use File | Settings | File Templates.
 												</div>
 												<div class="ss_feat_prod_cont_heading_wrapper">
 													<h4>
-														<a class="limited-text" href="<c:url value='/chi-tiet-san-pham?id=${product.id}' />">${product.name}</a>
+														<a class="limited-text" href="<c:url value='/product-detail?id=${product.id}' />">${product.name}</a>
 													</h4>
 													<del>${product.price}</del>
 													<ins>${product.price - (product.price * 0.2)}</ins>
@@ -358,7 +358,7 @@ To change this template use File | Settings | File Templates.
 												<img src="${product.thumbnail}" alt="${product.name}" class="img-responsive">
 											</div>
 											<div class="ss_feat_prod_cont_heading_wrapper">
-												<h4><a class="limited-text" href="<c:url value="/chi-tiet-san-pham?id=${product.id}" />">${product.name}</a></h4>
+												<h4><a class="limited-text" href="<c:url value="/product-detail?id=${product.id}" />">${product.name}</a></h4>
 												<del>${product.price}</del> <ins>${product.price}</ins>
 											</div>
 											<div class="ss_featured_products_box_footer">
