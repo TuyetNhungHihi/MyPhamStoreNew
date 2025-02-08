@@ -75,7 +75,7 @@ To change this template use File | Settings | File Templates.
 				</div>
 		</div>
 	</div> -->
-	<div class="bs-example">
+	<div class="bs-example" style="margin-top: 210px">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Carousel indicators -->
 			<ol class="carousel-indicators">

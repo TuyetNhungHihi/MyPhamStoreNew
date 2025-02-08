@@ -96,6 +96,9 @@ VALUES
 (22, 8, 'Travel Set', 350000, 100, 30,  true, NOW(), NOW()),
 (23, 8, 'Professional Set', 450000, 80, 30, true, NOW(), NOW()),
 (24, 8, 'Limited Edition Set', 550000, 20, 15, true, NOW(), NOW());
+INSERT INTO `myphamstoredb`.`role` (`id`, `name`, `description`) VALUES ('1', 'ADMIN', 'người quản trị');
+INSERT INTO `myphamstoredb`.`role` (`id`, `name`, `description`) VALUES ('2', 'EMPLOYEE', 'nhân viên');
+INSERT INTO `myphamstoredb`.`role` (`id`, `name`, `description`) VALUES ('3', 'CUSTOMER', 'Khách hàng');
 
 INSERT INTO `review` (`id`, `user_id`, `product_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 5, 'Good quality!', NOW(), NOW()),

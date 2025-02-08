@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString
 @Setter
 @Getter
 public class RoleModel extends BaseModel{
