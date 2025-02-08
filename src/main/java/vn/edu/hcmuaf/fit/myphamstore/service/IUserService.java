@@ -27,4 +27,6 @@ public interface IUserService {
     void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
     boolean updateUserPassword(UserModel user);
+
+    void addAddress(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

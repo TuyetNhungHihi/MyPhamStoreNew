@@ -1,5 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.UserModel" %>
 <%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.AddressModel" %>
+<%@ page import="java.util.List" %>
 <%@include file="/common/tablib.jsp"%>
 <%--
 Created by IntelliJ IDEA.
@@ -56,11 +57,11 @@ To change this template use File | Settings | File Templates.
     </head>
     <body>
       
-<%--      <div id="preloader">--%>
-<%--        <div id="status">--%>
-<%--            <img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">--%>
-<%--        </div>--%>
-<%--      </div>--%>
+      <div id="preloader">
+        <div id="status">
+            <img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">
+        </div>
+      </div>
       <!-- Top Scroll Start -->
       <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
       <!-- Top Scroll End -->
@@ -89,7 +90,7 @@ To change this template use File | Settings | File Templates.
           <div class="container px-4 mt-4">
             <h1>Thông tin cá nhân </h1>
               <% UserModel user = (UserModel) request.getAttribute("user");
-                    AddressModel address = (AddressModel) request.getAttribute("address");
+                    List<AddressModel> addresss = (List<AddressModel>) request.getAttribute("addresss");
                   %>
             <hr class="mt-0 mb-4">
               <hr class="container">
@@ -143,12 +144,20 @@ To change this template use File | Settings | File Templates.
                                   </select>
                               </div>
 
-                              <!-- Address -->
                               <div class="mb-3">
                                   <label for="inputLocation">Địa chỉ giao hàng:</label>
-                                  <input type="text" name="address" id="inputLocation" class="form-control"
-                                         value="<%= (address == null) ? "Chưa cập nhật" : (address.getNote()+","+address.getWard()+", "+address.getDistrict()+", "+address.getCity()) %>" readonly>
+                                  <select name="address" id="inputLocation" class="form-control" disabled>
+                                      <% if (addresss != null) { %>
+                                      <% for (AddressModel addr : addresss) { %>
+                                      <option value="<%= addr.getId() %>" <%= addr.getIsDefault() ? "selected" : "" %>>
+                                          <%= addr.getNote() + ", " + addr.getWard() + ", " + addr.getDistrict() + ", " + addr.getCity() %>
+                                      </option>
+                                      <% } %>
+                                      <% } %>
+                                  </select>
                               </div>
+
+
 
                               <!-- Email -->
                               <div class="mb-3">
@@ -167,6 +176,20 @@ To change this template use File | Settings | File Templates.
                                       <input type="date" name="dob" id="ngaysinh" class="form-control" value="<%=user.getDateOfBirth()%>" readonly>
                                   </div>
                               </div>
+                              <%
+                                  String successMessage = (String) session.getAttribute("successMessage");
+                                  String errorMessage = (String) session.getAttribute("errorMessage");
+                                  session.removeAttribute("successMessage");
+                                  session.removeAttribute("errorMessage");
+                              %>
+
+                              <% if (successMessage != null) { %>
+                              <div class="alert alert-success"><%= successMessage %></div>
+                              <% } %>
+
+                              <% if (errorMessage != null) { %>
+                              <div class="alert alert-danger"><%= errorMessage %></div>
+                              <% } %>
 
                               <!-- Buttons -->
                               <div class="d-flex justify-content-end mb-3">
@@ -177,6 +200,9 @@ To change this template use File | Settings | File Templates.
 
                               </div>
                           </form>
+                          <!-- Button để mở modal -->
+                          <button class="btn btn-primary" id="addAddressButton">Thêm địa chỉ mới</button>
+
                       </div>
                     </div>
                 </div>
@@ -185,10 +211,39 @@ To change this template use File | Settings | File Templates.
           </div>
         </div>
       </div>
+
       <!-- end content -->
       <!-- Footer Wrapper End -->
       <%@include file="component/footer.jsp"%>
 
+      <!-- Modal thêm địa chỉ -->
+      <div id="addAddressModal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Thêm địa chỉ mới</h2>
+              <form id="addAddressForm">
+                  <label for="note">Ghi chú (Số nhà, đường):</label>
+                  <input type="text" id="note" name="note" required>
+
+                  <label for="ward">Phường/Xã:</label>
+                  <input type="text" id="ward" name="ward" required>
+
+                  <label for="district">Quận/Huyện:</label>
+                  <input type="text" id="district" name="district" required>
+
+                  <label for="city">Thành phố/Tỉnh:</label>
+                  <input type="text" id="city" name="city" required>
+
+                  <label>
+                      <input type="hidden" name="setDefault" value="false"> <!-- Giá trị mặc định -->
+                      <input type="checkbox" id="setDefault" name="setDefault" value="true"> Đặt làm địa chỉ mặc định
+                  </label>
+
+
+                  <button type="submit" class="btn btn-success">Lưu địa chỉ</button>
+              </form>
+          </div>
+      </div>
 
       <script src="../static/js/jquery_min.js"></script>
       <script src="../static/js/wow.js"></script>
@@ -208,6 +263,7 @@ To change this template use File | Settings | File Templates.
               let inputs = document.querySelectorAll('#editProfileForm input, #editProfileForm select');
               inputs.forEach(input => input.removeAttribute('readonly'));
               document.querySelector("select[name='gender']").disabled = false;
+              document.querySelector("select[name='address']").disabled = false;
 
               // Hiển thị nút "Lưu" và "Hủy"
               document.getElementById('saveButton').style.display = "inline-block";
@@ -218,6 +274,49 @@ To change this template use File | Settings | File Templates.
           document.getElementById('cancelButton').addEventListener('click', function () {
               location.reload(); // Reload trang để hủy chỉnh sửa
           });
+          // Mở modal khi bấm "Thêm địa chỉ mới"
+          document.getElementById('addAddressButton').addEventListener('click', function() {
+              document.getElementById('addAddressModal').style.display = 'block';
+          });
+
+          // Đóng modal khi bấm "x"
+          document.querySelector('.close').addEventListener('click', function() {
+              document.getElementById('addAddressModal').style.display = 'none';
+          });
+
+          // Gửi dữ liệu khi submit form
+          document.getElementById('addAddressForm').addEventListener('submit', function(event) {
+              event.preventDefault(); // Ngăn chặn reload trang
+
+              let formData = new FormData(this);
+
+              // Kiểm tra trạng thái của checkbox và cập nhật giá trị
+              formData.set("setDefault", document.getElementById("setDefault").checked ? "true" : "false");
+
+              fetch('/profile?action=addAddress', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded' // Đảm bảo server nhận đúng kiểu dữ liệu
+                  },
+                  body: new URLSearchParams(formData).toString()
+              })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          alert('Đã thêm địa chỉ thành công!');
+                          location.reload(); // Tải lại trang để cập nhật danh sách địa chỉ
+                      } else {
+                          alert(`Lỗi: ${data.message}`);
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Lỗi:', error);
+                      alert('Có lỗi xảy ra, vui lòng thử lại!');
+                  });
+          });
+
+
+
       </script>
 
 

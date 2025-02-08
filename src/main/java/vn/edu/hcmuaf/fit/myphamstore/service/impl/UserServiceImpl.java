@@ -268,13 +268,15 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void updateProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserModel user = (UserModel) request.getSession().getAttribute("user");
-        System.out.println(user);
+        AddressModel addressModel = addressDAO.findAddressById(user.getId());
+
         String fullName = request.getParameter("fullname");
         String gender = request.getParameter("gender");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String dob = request.getParameter("dob");
-        String address = request.getParameter("address");
+
+        Long addressId = Long.parseLong(request.getParameter("address"));
 
 
         // Cập nhật thông tin người dùng
@@ -283,14 +285,22 @@ public class UserServiceImpl implements IUserService {
         user.setEmail(email);
         user.setPhone(phone);
         user.setDateOfBirth(LocalDate.parse(dob));
-        System.out.println(user);
+        List<AddressModel> addresses = addressDAO.findByUserId(user.getId());
+        for (AddressModel addr : addresses) {
+            addr.setIsDefault(addr.getId().equals(addressId));
+            addressDAO.update(addr);
+        }
+
+
         UserModel isUpdated = userDAO.update(user);
 
         if (isUpdated != null) {
-            response.sendRedirect(request.getContextPath() + "/profile?success=true");
+            request.getSession().setAttribute("successMessage", "Cập nhật hồ sơ thành công!");
         } else {
-            response.sendRedirect(request.getContextPath() + "/profile?error=true");
+            request.getSession().setAttribute("errorMessage", "Cập nhật hồ sơ thất bại!");
         }
+        response.sendRedirect(request.getContextPath() + "/profile");
+
     }
 
     @Override
@@ -318,6 +328,51 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean updateUserPassword(UserModel user) {
         return userDAO.updateUserPassword(user);
+    }
+
+    @Override
+    public void addAddress(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        String recipientName = user.getFullName();
+        String recipientPhone = user.getPhone();
+        String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String note = request.getParameter("note");
+        System.out.println("setDefault parameter: " + request.getParameter("setDefault"));
+        Boolean isDefault = Boolean.parseBoolean(request.getParameter("setDefault"));
+        System.out.println("isDefault parsed: " + isDefault);
+
+        AddressModel address = AddressModel.builder()
+                .userId(user.getId())
+                .recipientName(recipientName)
+                .recipientPhone(recipientPhone)
+                .city(city)
+                .district(district)
+                .ward(ward)
+                .note(note)
+                .isDefault(isDefault)
+                .isActive(true)
+                .build();
+
+        Long savedAddress = addressDAO.save(address);
+        if (isDefault) {
+            List<AddressModel> addresses = addressDAO.findByUserId(user.getId());
+            for (AddressModel addr : addresses) {
+                if (!addr.getId().equals(savedAddress)) {
+                    addr.setIsDefault(false);
+                    addressDAO.update(addr);
+                }
+            }
+        }
+        if (savedAddress != null) {
+            response.getWriter().write("{\"success\": true}");
+        } else {
+            response.getWriter().write("{\"success\": false, \"message\": \"Failed to add address.\"}");
+
+        }
     }
 
     public Long authenticate(String email, String password) {

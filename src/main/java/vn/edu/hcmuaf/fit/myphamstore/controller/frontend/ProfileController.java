@@ -23,10 +23,12 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //       request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
         String action = request.getParameter("action");
-        System.out.println(action);
         if ("edit".equalsIgnoreCase(action)) {
             userService.updateProfile(request, response);
-        } else {
+        }else if("addAddress".equalsIgnoreCase(action)){
+            userService.addAddress(request, response);
+        }
+        else {
             userService.profile(request, response);
         }
     }
