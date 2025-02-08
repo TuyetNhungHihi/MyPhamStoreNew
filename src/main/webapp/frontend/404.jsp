@@ -95,8 +95,6 @@ Purchase:
                 <li>
                   <a href="#"><i class="fa fa-home"></i></a>&nbsp;&nbsp; >
                 </li>
-                <li>Sản phẩm&nbsp;&nbsp; ></li>
-                <li>Mua sắm&nbsp;&nbsp; ></li>
                 <li>404</li>
               </ul>
             </div>

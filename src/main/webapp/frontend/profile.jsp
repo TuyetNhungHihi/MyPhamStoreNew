@@ -90,8 +90,7 @@ To change this template use File | Settings | File Templates.
             <h1>Thông tin cá nhân </h1>
               <% UserModel user = (UserModel) request.getAttribute("user");
                     AddressModel address = (AddressModel) request.getAttribute("address");
-                  System.out.println(address);
-                  System.out.println(user);%>
+                  %>
             <hr class="mt-0 mb-4">
               <hr class="container">
                 <div class="row d-flex">
@@ -131,12 +130,21 @@ To change this template use File | Settings | File Templates.
                           <!-- Username and Name -->
                           <div class="mb-3">
                             <label for="lastname">Họ và tên:<%=user.getFullName()%></label>
-                            <input type="text" placeholder="Nhập họ tên của bạn vào đây" name="lastname" id="lastname" value="Nguyen Van A" readonly class="form-control">
+                            <input type="text" placeholder="Nhập họ tên của bạn vào đây" name="lastname" id="lastname"  readonly class="form-control">
                           </div>
                           <!-- Gender -->
                           <div class="mb-4">
                             <div class="form-group">
-                              <label>Giới tính :<%=user.getGender()%> </label>
+                              <label>Giới tính :<%
+
+                                  if ("MALE".equalsIgnoreCase(String.valueOf(user.getGender()))){
+                                    out.print("Nam");
+                                }else if ("FEMALE".equalsIgnoreCase(String.valueOf(user.getGender()))){
+                                    out.print("Nữ");
+                              }else {
+                                    out.print("Khác");
+                              }
+                              %> </label>
 <%--                              <span style="margin-left: 20px">--%>
 <%--                                <input type="radio" id="Nam" name="gender" value="Nam" disabled />--%>
 <%--                                <label for="Nam">Nam</label>--%>
@@ -150,8 +158,12 @@ To change this template use File | Settings | File Templates.
                           </div>
                           <!-- Address -->
                           <div class="mb-3">
-                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: ${address}</label>
-                            <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
+                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: <%if (address == null){
+                                out.print("Chưa cập nhật");
+                            } else {
+                                out.print(address.getNote()+","+address.getWard() + ", " + address.getDistrict() + ", " + address.getCity());
+                            }%></label>
+                            <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" readonly>
                           </div>
 
                           <!-- Email -->
@@ -165,19 +177,18 @@ To change this template use File | Settings | File Templates.
                                 <label class="small mb-1" for="inputPhone">Số điện thoại: <%=user.getPhone()%></label>
                                 <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="<%=user.getPhone()%>" readonly required>                                        </div>
                             <div class="col-md-6">
-                                <label for="ngaysinh">Ngày sinh</label>
-                                <input type="date" name="ngaysinh" id="ngaysinh" class="form-control" value="2000-11-20" readonly>
+                                <label for="ngaysinh">Ngày sinh <%=user.getDateOfBirth()%></label>
+                                <input type="date" name="ngaysinh" id="ngaysinh" class="form-control"  readonly>
                             </div>
-                          </div>        
+                          </div>
+                        </form>
                           <!-- Existing "Edit Info" and new "Change Password" button -->
                           <div class="d-flex justify-content-end mb-3">
                             <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
-                            <!-- Button to open modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" href="/change-password">
-                            Đổi mật khẩu
-                             </button>
+                              <a href="<c:url value='/change-password' />" class="btn btn-primary">Đổi mật khẩu</a>
+
                           </div>
-                        </form>   
+
                       </div>
                     </div>
                 </div>
@@ -204,53 +215,53 @@ To change this template use File | Settings | File Templates.
       <script src="../static/js/jquery.easing.1.3.js"></script>
       <script src="../static/js/jquery.inview.min.js"></script>
       <script src="../static/js/custom.js"></script>
-      <script>
-          document.getElementById('editButton').addEventListener('click', function() {
-              const usernameInput = document.getElementById('username');
-              const lastnameInput = document.getElementById('lastname');
-              const locationInput = document.getElementById('inputLocation');
-              const emailInput = document.getElementById('inputEmailAddress');
-              const phoneInput = document.getElementById('inputPhone');
-              const birthdayInput = document.getElementById('ngaysinh');
-              const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender
+<%--      <script>--%>
+<%--          document.getElementById('editButton').addEventListener('click', function() {--%>
+<%--              const usernameInput = document.getElementById('username');--%>
+<%--              const lastnameInput = document.getElementById('lastname');--%>
+<%--              const locationInput = document.getElementById('inputLocation');--%>
+<%--              const emailInput = document.getElementById('inputEmailAddress');--%>
+<%--              const phoneInput = document.getElementById('inputPhone');--%>
+<%--              const birthdayInput = document.getElementById('ngaysinh');--%>
+<%--              const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender--%>
 
-              const isReadonly = usernameInput.readOnly;
+<%--              const isReadonly = usernameInput.readOnly;--%>
 
-              if (isReadonly) {
-                  // Enable editing
-                  editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'
-                  usernameInput.readOnly = false;
-                  lastnameInput.readOnly = false;
-                  locationInput.readOnly = false;
-                  emailInput.readOnly = false;
-                  phoneInput.readOnly = false;
-                  birthdayInput.readOnly = false;
+<%--              if (isReadonly) {--%>
+<%--                  // Enable editing--%>
+<%--                  editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'--%>
+<%--                  usernameInput.readOnly = false;--%>
+<%--                  lastnameInput.readOnly = false;--%>
+<%--                  locationInput.readOnly = false;--%>
+<%--                  emailInput.readOnly = false;--%>
+<%--                  phoneInput.readOnly = false;--%>
+<%--                  birthdayInput.readOnly = false;--%>
 
-                  // Enable gender radio buttons
-                  genderInputs.forEach((radio) => {
-                      radio.disabled = false;
-                  });
+<%--                  // Enable gender radio buttons--%>
+<%--                  genderInputs.forEach((radio) => {--%>
+<%--                      radio.disabled = false;--%>
+<%--                  });--%>
 
-              } else {
-                  // Save changes
-                  usernameInput.readOnly = true;
-                  lastnameInput.readOnly = true;
-                  locationInput.readOnly = true;
-                  emailInput.readOnly = true;
-                  phoneInput.readOnly = true;
-                  birthdayInput.readOnly = true;
-                  editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'
+<%--              } else {--%>
+<%--                  // Save changes--%>
+<%--                  usernameInput.readOnly = true;--%>
+<%--                  lastnameInput.readOnly = true;--%>
+<%--                  locationInput.readOnly = true;--%>
+<%--                  emailInput.readOnly = true;--%>
+<%--                  phoneInput.readOnly = true;--%>
+<%--                  birthdayInput.readOnly = true;--%>
+<%--                  editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'--%>
 
-                  // Disable gender radio buttons
-                  genderInputs.forEach((radio) => {
-                      radio.disabled = true;
-                  });
+<%--                  // Disable gender radio buttons--%>
+<%--                  genderInputs.forEach((radio) => {--%>
+<%--                      radio.disabled = true;--%>
+<%--                  });--%>
 
-                  // You can add logic to save the updated values here
-                  console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);
-              }
-          });
+<%--                  // You can add logic to save the updated values here--%>
+<%--                  console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);--%>
+<%--              }--%>
+<%--          });--%>
 
-      </script>
+<%--      </script>--%>
     </body>
 </html>

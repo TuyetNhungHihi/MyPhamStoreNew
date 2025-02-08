@@ -292,6 +292,12 @@ public class UserServiceImpl implements IUserService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean updateUserPassword(UserModel user) {
+        return userDAO.updateUserPassword(user);
+    }
+
     public Long authenticate(String email, String password) {
         UserModel user = userDAO.getUserByEmail(email);
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
