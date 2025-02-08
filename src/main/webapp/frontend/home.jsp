@@ -165,7 +165,13 @@ To change this template use File | Settings | File Templates.
 														<input type="hidden" name="productId" value="${product.id}">
 														<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 													</form>
-													<li><a href="#" class="fa fa-heart add-to-wishlist" data-product-id="${product.id}" aria-hidden="true"></a></li>
+													<li>
+														<form method="post" action="<c:url value='/wishlist' />">
+															<input type="hidden" name="action" value="add">
+															<input type="hidden" name="productId" value="${product.id}">
+															<button type="submit" class="fa fa-heart" aria-hidden="true"></button>
+														</form>
+													</li>
 												</ul>
 											</div>
 
@@ -227,7 +233,11 @@ To change this template use File | Settings | File Templates.
 															<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 														</form>
 														<li>
-															<button class="fa fa-heart add-to-wishlist" data-product-id="${product.id}"></button>
+															<form method="post" action="<c:url value='/wishlist' />">
+																<input type="hidden" name="action" value="add">
+																<input type="hidden" name="productId" value="${product.id}">
+																<button type="submit" class="fa fa-heart" aria-hidden="true"></button>
+															</form>
 														</li>
 													</ul>
 												</div>
@@ -266,7 +276,11 @@ To change this template use File | Settings | File Templates.
 															<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 														</form>
 														<li>
-															<a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a>
+															<form method="post" action="<c:url value='/wishlist' />">
+																<input type="hidden" name="action" value="add">
+																<input type="hidden" name="productId" value="${product.id}">
+																<button type="submit" class="fa fa-heart" aria-hidden="true"></button>
+															</form>
 														</li>
 													</ul>
 												</div>
@@ -305,7 +319,11 @@ To change this template use File | Settings | File Templates.
 															<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 														</form>
 														<li>
-															<a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a>
+															<form method="post" action="<c:url value='/wishlist' />">
+																<input type="hidden" name="action" value="add">
+																<input type="hidden" name="productId" value="${product.id}">
+																<button type="submit" class="fa fa-heart" aria-hidden="true"></button>
+															</form>
 														</li>
 													</ul>
 												</div>
@@ -354,8 +372,13 @@ To change this template use File | Settings | File Templates.
 														<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 													</form>
 
-													<li><a href="#" class="fa fa-heart" data-product-id="${product.id}" aria-hidden="true"></a></li>
-
+													<li>
+														<form method="post" action="<c:url value='/wishlist' />">
+															<input type="hidden" name="action" value="add">
+															<input type="hidden" name="productId" value="${product.id}">
+															<button type="submit" class="fa fa-heart" aria-hidden="true"></button>
+														</form>
+													</li>
 												</ul>
 											</div>
 										</div>
