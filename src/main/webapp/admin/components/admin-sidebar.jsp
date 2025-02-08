@@ -98,8 +98,8 @@
       <a
               class="link-admin-header"
               style="position: absolute; right: 20px; bottom: 30px; color: #efefef"
-              href="#"
-      ><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất
+              href="<c:url value="/trang-chu" />"
+      ><i class="fa fa-sign-out" aria-hidden="true"></i> Trờ về trang chủ
       </a>
     </div>
   </div>

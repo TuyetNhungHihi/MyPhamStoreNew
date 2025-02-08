@@ -138,3 +138,6 @@ VALUES
 ('SPECIAL100', 300000, 'FIXED', 100000, '2025-01-01', '2025-03-31', 0, 50, NOW(), TRUE);
 
 
+INSERT INTO `myphamstoredb`.`user` (`id`, `full_name`, `email`, `password`, `phone`, `date_of_birth`, `gender`, `status`, `last_login`, `created_at`, `updated_at`)
+VALUES ('1', 'admin', 'admin@gmail.com', '$2a$10$JNKRA4nCHtm9f/bR8JOK1esDVwRKulplrtAhdvRppfvqskmgR1/3u', '012123123', '2025-02-06', 'MALE', 'ACTIVE', '2025-02-08 09:26:34', '2025-02-08 09:26:34', '2025-02-08 09:26:34');
+insert into user_has_role values(1,1);
