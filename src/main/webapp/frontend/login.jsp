@@ -69,20 +69,7 @@
             </div>
             <div id="message" class="alert alert-danger" role="alert" hidden></div>
             <div class="row">
-              <input type="checkbox" name="remember_me" id="remember_me" />
-              <label for="remember_me">Lưu đăng nhập</label>
-            </div>
-            <div class="row">
               <input type="submit" value="Đăng nhập" class="btn" />
-            </div>
-            <div class="row">
-              <p style="margin: 0">Hoặc</p>
-              <button type="button" onclick="facebookLogin()" class="social-login-btn" style="color: blue">
-                <i class="fa fa-facebook"></i> Đăng nhập bằng Facebook
-              </button>
-              <button type="button" onclick="googleLogin()" class="social-login-btn" style="color: red; margin-top: 0%">
-                <i class="fa fa-google"></i> Đăng nhập bằng Google
-              </button>
             </div>
           </form>
         </div>

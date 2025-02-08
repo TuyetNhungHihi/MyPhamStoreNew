@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import vn.edu.hcmuaf.fit.myphamstore.common.ContactStatus;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IContactDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.BrandModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ContactModel;
 
 import java.time.LocalDateTime;

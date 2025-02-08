@@ -1,7 +1,5 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao;
 
-import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
-
 import java.util.List;
 
 public interface GenericDAO <T>{

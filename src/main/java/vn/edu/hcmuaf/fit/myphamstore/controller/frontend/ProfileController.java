@@ -23,15 +23,18 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //       request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
         String action = request.getParameter("action");
-        if (action != null && action.equals("edit")) {
-            userService.profile(request, response);
-        } else {
+        if ("edit".equalsIgnoreCase(action)) {
+            userService.updateProfile(request, response);
+        }else if("addAddress".equalsIgnoreCase(action)){
+            userService.addAddress(request, response);
+        }
+        else {
             userService.profile(request, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
+        doGet(request, response);
     }
 }
