@@ -56,11 +56,11 @@ To change this template use File | Settings | File Templates.
     </head>
     <body>
       
-      <div id="preloader">
-        <div id="status">
-            <img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">
-        </div>
-      </div>
+<%--      <div id="preloader">--%>
+<%--        <div id="status">--%>
+<%--            <img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">--%>
+<%--        </div>--%>
+<%--      </div>--%>
       <!-- Top Scroll Start -->
       <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
       <!-- Top Scroll End -->
@@ -126,69 +126,57 @@ To change this template use File | Settings | File Templates.
                     <div class="card mb-4">
                       <div class="card-header">Chi tiết tài khoản</div>
                       <div class="card-body">
-                        <form>
-                          <!-- Username and Name -->
-                          <div class="mb-3">
-                            <label for="lastname">Họ và tên:<%=user.getFullName()%></label>
-                            <input type="text" placeholder="Nhập họ tên của bạn vào đây" name="lastname" id="lastname"  readonly class="form-control">
-                          </div>
-                          <!-- Gender -->
-                          <div class="mb-4">
-                            <div class="form-group">
-                              <label>Giới tính :<%
+                          <form id="editProfileForm" action="<c:url value='/profile?action=edit' />" method="post">
+                              <!-- Username and Name -->
+                              <div class="mb-3">
+                                  <label for="fullname">Họ và tên:</label>
+                                  <input type="text" name="fullname" id="fullname" class="form-control" value="<%=user.getFullName()%>" readonly>
+                              </div>
 
-                                  if ("MALE".equalsIgnoreCase(String.valueOf(user.getGender()))){
-                                    out.print("Nam");
-                                }else if ("FEMALE".equalsIgnoreCase(String.valueOf(user.getGender()))){
-                                    out.print("Nữ");
-                              }else {
-                                    out.print("Khác");
-                              }
-                              %> </label>
-<%--                              <span style="margin-left: 20px">--%>
-<%--                                <input type="radio" id="Nam" name="gender" value="Nam" disabled />--%>
-<%--                                <label for="Nam">Nam</label>--%>
-<%--                              </span>--%>
-<%--                          --%>
-<%--                              <span style="margin-left: 15px">--%>
-<%--                                <input type="radio" id="Nu" name="gender" value="Nữ" disabled checked />--%>
-<%--                                <label for="Nu">Nữ</label>--%>
-<%--                              </span>--%>
-                            </div>
-                          </div>
-                          <!-- Address -->
-                          <div class="mb-3">
-                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: <%if (address == null){
-                                out.print("Chưa cập nhật");
-                            } else {
-                                out.print(address.getNote()+","+address.getWard() + ", " + address.getDistrict() + ", " + address.getCity());
-                            }%></label>
-                            <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" readonly>
-                          </div>
+                              <!-- Gender -->
+                              <div class="mb-3">
+                                  <label>Giới tính:</label>
+                                  <select name="gender" class="form-control" disabled>
+                                      <option value="MALE" <%= "MALE".equalsIgnoreCase(String.valueOf(user.getGender())) ? "selected" : "" %>>Nam</option>
+                                      <option value="FEMALE" <%= "FEMALE".equalsIgnoreCase(String.valueOf(user.getGender())) ? "selected" : "" %>>Nữ</option>
+                                      <option value="OTHER" <%= "OTHER".equalsIgnoreCase(String.valueOf(user.getGender())) ? "selected" : "" %>>Khác</option>
+                                  </select>
+                              </div>
 
-                          <!-- Email -->
-                          <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email: <%=user.getEmail()%></label>
-                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="<%=user.getEmail()%>" readonly required>
-                          </div>
-                          <!-- Phone Number and Birthday -->
-                          <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Số điện thoại: <%=user.getPhone()%></label>
-                                <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="<%=user.getPhone()%>" readonly required>                                        </div>
-                            <div class="col-md-6">
-                                <label for="ngaysinh">Ngày sinh <%=user.getDateOfBirth()%></label>
-                                <input type="date" name="ngaysinh" id="ngaysinh" class="form-control"  readonly>
-                            </div>
-                          </div>
-                        </form>
-                          <!-- Existing "Edit Info" and new "Change Password" button -->
-                          <div class="d-flex justify-content-end mb-3">
-                            <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
-                              <a href="<c:url value='/change-password' />" class="btn btn-primary">Đổi mật khẩu</a>
+                              <!-- Address -->
+                              <div class="mb-3">
+                                  <label for="inputLocation">Địa chỉ giao hàng:</label>
+                                  <input type="text" name="address" id="inputLocation" class="form-control"
+                                         value="<%= (address == null) ? "Chưa cập nhật" : (address.getNote()+","+address.getWard()+", "+address.getDistrict()+", "+address.getCity()) %>" readonly>
+                              </div>
 
-                          </div>
+                              <!-- Email -->
+                              <div class="mb-3">
+                                  <label for="inputEmailAddress">Địa chỉ Email:</label>
+                                  <input type="email" name="email" class="form-control" id="inputEmailAddress" value="<%=user.getEmail()%>" readonly>
+                              </div>
 
+                              <!-- Phone Number and Birthday -->
+                              <div class="row gx-3 mb-3">
+                                  <div class="col-md-6">
+                                      <label for="inputPhone">Số điện thoại:</label>
+                                      <input type="tel" name="phone" class="form-control" id="inputPhone" value="<%=user.getPhone()%>" readonly>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <label for="ngaysinh">Ngày sinh:</label>
+                                      <input type="date" name="dob" id="ngaysinh" class="form-control" value="<%=user.getDateOfBirth()%>" readonly>
+                                  </div>
+                              </div>
+
+                              <!-- Buttons -->
+                              <div class="d-flex justify-content-end mb-3">
+                                  <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
+                                  <button id="saveButton" class="btn btn-success me-2" type="submit" style="display: none;">Lưu</button>
+                                  <button id="cancelButton" class="btn btn-danger" type="button" style="display: none;">Hủy</button>
+                                  <a href="<c:url value='/change-password' />" class="btn btn-primary">Đổi mật khẩu</a>
+
+                              </div>
+                          </form>
                       </div>
                     </div>
                 </div>
@@ -215,53 +203,23 @@ To change this template use File | Settings | File Templates.
       <script src="../static/js/jquery.easing.1.3.js"></script>
       <script src="../static/js/jquery.inview.min.js"></script>
       <script src="../static/js/custom.js"></script>
-<%--      <script>--%>
-<%--          document.getElementById('editButton').addEventListener('click', function() {--%>
-<%--              const usernameInput = document.getElementById('username');--%>
-<%--              const lastnameInput = document.getElementById('lastname');--%>
-<%--              const locationInput = document.getElementById('inputLocation');--%>
-<%--              const emailInput = document.getElementById('inputEmailAddress');--%>
-<%--              const phoneInput = document.getElementById('inputPhone');--%>
-<%--              const birthdayInput = document.getElementById('ngaysinh');--%>
-<%--              const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender--%>
+      <script>
+          document.getElementById('editButton').addEventListener('click', function () {
+              let inputs = document.querySelectorAll('#editProfileForm input, #editProfileForm select');
+              inputs.forEach(input => input.removeAttribute('readonly'));
+              document.querySelector("select[name='gender']").disabled = false;
 
-<%--              const isReadonly = usernameInput.readOnly;--%>
+              // Hiển thị nút "Lưu" và "Hủy"
+              document.getElementById('saveButton').style.display = "inline-block";
+              document.getElementById('cancelButton').style.display = "inline-block";
+              this.style.display = "none"; // Ẩn nút "Chỉnh sửa"
+          });
 
-<%--              if (isReadonly) {--%>
-<%--                  // Enable editing--%>
-<%--                  editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'--%>
-<%--                  usernameInput.readOnly = false;--%>
-<%--                  lastnameInput.readOnly = false;--%>
-<%--                  locationInput.readOnly = false;--%>
-<%--                  emailInput.readOnly = false;--%>
-<%--                  phoneInput.readOnly = false;--%>
-<%--                  birthdayInput.readOnly = false;--%>
+          document.getElementById('cancelButton').addEventListener('click', function () {
+              location.reload(); // Reload trang để hủy chỉnh sửa
+          });
+      </script>
 
-<%--                  // Enable gender radio buttons--%>
-<%--                  genderInputs.forEach((radio) => {--%>
-<%--                      radio.disabled = false;--%>
-<%--                  });--%>
 
-<%--              } else {--%>
-<%--                  // Save changes--%>
-<%--                  usernameInput.readOnly = true;--%>
-<%--                  lastnameInput.readOnly = true;--%>
-<%--                  locationInput.readOnly = true;--%>
-<%--                  emailInput.readOnly = true;--%>
-<%--                  phoneInput.readOnly = true;--%>
-<%--                  birthdayInput.readOnly = true;--%>
-<%--                  editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'--%>
-
-<%--                  // Disable gender radio buttons--%>
-<%--                  genderInputs.forEach((radio) => {--%>
-<%--                      radio.disabled = true;--%>
-<%--                  });--%>
-
-<%--                  // You can add logic to save the updated values here--%>
-<%--                  console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);--%>
-<%--              }--%>
-<%--          });--%>
-
-<%--      </script>--%>
     </body>
 </html>

@@ -267,8 +267,30 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void updateProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        userDAO.update((UserModel) request.getSession().getAttribute("user"));
-        request.getRequestDispatcher("/frontend/profile.jsp").forward(request, response);
+        UserModel user = (UserModel) request.getSession().getAttribute("user");
+        System.out.println(user);
+        String fullName = request.getParameter("fullname");
+        String gender = request.getParameter("gender");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String dob = request.getParameter("dob");
+        String address = request.getParameter("address");
+
+
+        // Cập nhật thông tin người dùng
+        user.setFullName(fullName);
+        user.setGender(Gender.valueOf(gender));
+        user.setEmail(email);
+        user.setPhone(phone);
+        user.setDateOfBirth(LocalDate.parse(dob));
+        System.out.println(user);
+        UserModel isUpdated = userDAO.update(user);
+
+        if (isUpdated != null) {
+            response.sendRedirect(request.getContextPath() + "/profile?success=true");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/profile?error=true");
+        }
     }
 
     @Override
