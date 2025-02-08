@@ -32,4 +32,7 @@ public interface IProductService {
     void executeUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     List<ProductModel> getFilteredProducts(String keyword, List<String> categories, List<String> brands, String priceRange, int currentPage, int pageSize, String orderBy);
     List<ProductVariant> getProductVariantsByProductId(Long id);
+
+
+    List<ProductModel> findProduct(Long orderDetailId);
 }

@@ -242,6 +242,17 @@ public class ProductDAOImpl implements IProductDAO {
     }
 
     @Override
+    public List<ProductModel> findProduct(Long productId) {
+        String sql = "SELECT * FROM product WHERE id = :productId";
+        return JDBIConnector.getJdbi().withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("productId", productId)
+                        .mapToBean(ProductModel.class)
+                        .list()
+        );
+    }
+
+    @Override
     public List<ProductModel> findAll(String keyword, int currentPage, int pageSize, String orderBy) {
         // Sàng lọc dữ liệu đầu vào
         if (currentPage < 1) currentPage = 1;

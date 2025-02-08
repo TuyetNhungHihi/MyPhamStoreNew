@@ -6,12 +6,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IOrderService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "OrderHistoryController", value = "/order-history")
 public class OrderHistoryController extends HttpServlet {
@@ -38,8 +43,29 @@ public class OrderHistoryController extends HttpServlet {
         }
 
         List<OrderModel> orderHistory = orderService.getOrderHistoryByUserId(userId, currentPage, pageSize);
+        Map<Long, List<OrderDetailModel>> orderDetailsMap = new HashMap<>();
+        Map<Long, List<ProductModel>> productsMap = new HashMap<>();
 
+        for (OrderModel order : orderHistory) {
+            List<OrderDetailModel> orderDetails = orderService.getOrderDetailsByOrderId(order.getId());
+            orderDetailsMap.put(order.getId(), orderDetails);
+
+            List<ProductModel> products = new ArrayList<>();
+            for (OrderDetailModel orderDetail : orderDetails) {
+                List<ProductModel> productList = orderService.getProductByOrderDetail(orderDetail);
+                products.addAll(productList);  // Lưu tất cả sản phẩm thay vì ghi đè
+            }
+            productsMap.put(order.getId(), products);
+        }
         request.setAttribute("orderHistory", orderHistory);
+        request.setAttribute("orderDetailsMap", orderDetailsMap);
+        request.setAttribute("productsMap", productsMap);
+
         request.getRequestDispatcher("/frontend/history.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }
