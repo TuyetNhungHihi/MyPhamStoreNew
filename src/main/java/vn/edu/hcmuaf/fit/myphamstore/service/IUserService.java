@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.service;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
 import java.io.IOException;
@@ -29,4 +30,8 @@ public interface IUserService {
     boolean updateUserPassword(UserModel user);
 
     void addAddress(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+    void uploadAvatar(HttpServletRequest request, HttpServletResponse response, Part filePart) throws IOException;
+
+    void showAvatar(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

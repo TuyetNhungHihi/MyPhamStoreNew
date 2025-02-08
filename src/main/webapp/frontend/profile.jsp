@@ -101,17 +101,21 @@ To change this template use File | Settings | File Templates.
                       <div class="card-header">Ảnh đại diện</div>
                       <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="<%=user.getAvatar()%>" alt="">
-                        <!-- Profile picture help block-->
+                          <img src="data:image/png;base64,${sessionScope.user.avatar}" alt="Avatar" width="150">
+                          <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4"> 
                             Ngày thiết lập tài khoản: <%=user.getCreatedAt()%>
                         </div>
                         <!-- Profile picture upload button-->
-                        <input type="file" class="form-control" id="uploadProfilePicture" accept="image/png, image/jpeg">
-                        <div class="small font-italic text-muted mb-4">
-                            Loại ảnh JPG hoặc PNG không lớn hơn 5 MB
-                        </div>
-<%--                        <button class="btn btn-primary" type="button" style="background-color: blue;">--%>
+                          <form id="uploadAvatarForm" action="<c:url value='/profile?action=uploadAvatar' />" method="post" enctype="multipart/form-data">
+                              <input type="file" class="form-control" id="uploadProfilePicture" name="avatar" accept="image/png, image/jpeg">
+                              <div class="small font-italic text-muted mb-4">
+                                  Loại ảnh JPG hoặc PNG không lớn hơn 5 MB
+                              </div>
+                              <button class="btn btn-success" type="submit">Tải lên</button>
+                          </form>
+
+                      <%--                        <button class="btn btn-primary" type="button" style="background-color: blue;">--%>
 <%--                            <font color="white"> Đăng xuất </font>--%>
 <%--                        </button>--%>
                           <form id="logout-form" action="<c:url value='/login?action=logout' />" method="post">

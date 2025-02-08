@@ -308,7 +308,15 @@
                         </c:forEach>
 
                         <div class="sp_comment1_img text-center">
-                          <i class="fa fa-user" style="font-size: 70px;" aria-hidden="true"></i>
+                          <c:choose>
+                            <c:when test="${not empty matchedUser.avatar}">
+                              <img src="data:image/png;base64,${matchedUser.avatar}" alt="Avatar" class="user-avatar" width="70" height="70">
+
+                            </c:when>
+                            <c:otherwise>
+                              <i class="fa fa-user" style="font-size: 70px;" aria-hidden="true"></i>
+                            </c:otherwise>
+                          </c:choose>
                         </div>
                         <div class="sp_comment1_cont">
                           <h3><c:out value="${matchedUser.fullName}"/></h3>

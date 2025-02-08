@@ -253,6 +253,37 @@ public class UserDAOImp implements IUserDAO {
         );
     }
 
+    @Override
+    public void updateAvatar(Long id, String avatarBase64) {
+        String sql = "UPDATE user SET avatar = :avatar WHERE id = :id";
+        try {
+            JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind("avatar", avatarBase64)
+                            .bind("id", id)
+                            .execute()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+    }}
+
+    @Override
+    public String getAvatar(int userId) {
+        String sql = "SELECT avatar FROM user WHERE id = :id";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle ->
+                    handle.createQuery(sql)
+                            .bind("id", userId)
+                            .mapTo(String.class)
+                            .findOne()
+                            .orElse(null)
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /**
      * Lấy số lượng page dựa trên số lượng item cần hiển thị
      * @param numOfItems
