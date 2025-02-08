@@ -6,11 +6,11 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.myphamstore.dao.IAddressDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IOrderDAO;
-import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.*;
 import vn.edu.hcmuaf.fit.myphamstore.service.IOrderService;
+import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
 import vn.edu.hcmuaf.fit.myphamstore.service.IUserService;
 
 import java.io.IOException;
@@ -24,6 +24,10 @@ public class OrderServiceImpl implements IOrderService {
     private IOrderDAO orderDAO;
     @Inject
     private IUserService userService;
+    @Inject
+    private IAddressDAO addressDAO;
+    @Inject
+    private IProductService productService;
 
     @Override
     public void displayOrders(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
@@ -56,6 +60,30 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void displayOrderDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin/order/order-detail.jsp");
+        Long orderId = Long.parseLong(req.getParameter("id"));
+
+        OrderModel order = getOrderDetails(orderId);
+        UserModel user = userService.findUserById(order.getUserId());
+        AddressModel address = addressDAO.findAddressById(order.getAddressId());
+        List<OrderDetailModel> listOrderDetails = getOrderDetailsByOrderId(orderId);
+        Map<OrderDetailModel, ProductModel> orderDetails = new HashMap<>();
+        for (OrderDetailModel orderDetail : listOrderDetails) {
+            ProductModel product = productService.findProductById(orderDetail.getProductId());
+            orderDetails.put(orderDetail, product);
+        }
+
+        System.out.println("Order detail");
+        System.out.println(orderDetails);
+        System.out.println("User");
+        System.out.println(user);
+        System.out.println("Address");
+        System.out.println(address);
+        System.out.println("Order");
+        System.out.println(order);
+        req.setAttribute("order", order);
+        req.setAttribute("orderDetails", orderDetails);
+        req.setAttribute("address", address);
+        req.setAttribute("user", user);
         requestDispatcher.forward(req, resp);
     }
 

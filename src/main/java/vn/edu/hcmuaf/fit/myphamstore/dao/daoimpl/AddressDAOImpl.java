@@ -42,6 +42,19 @@ public class AddressDAOImpl implements IAddressDAO {
     }
 
     @Override
+    public AddressModel findAddressById(Long addressId) {
+        String sql = "SELECT * FROM address WHERE id = :id";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle -> handle.createQuery(sql)
+                    .bind("id", addressId)
+                    .mapToBean(AddressModel.class)
+                    .one());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
     public Long save(AddressModel entity) {
         String sql = "INSERT INTO address (user_id, recipient_name, recipient_phone, city, district, ward, note, is_default, is_active, created_at, updated_at) " +
                 "VALUES(:user_id, :recipient_name, :recipient_phone, :city, :district, :ward, :note, :is_default, :is_active, :created_at, :updated_at)";

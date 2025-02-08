@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="vn.edu.hcmuaf.fit.myphamstore.common.FormatMoney" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,20 +52,27 @@
     <main class="main-content row my-table-custom">
         <!--style="display: flex; position: relative; height: min-content;"> -->
         <div class=" " style="width: 100%;">
-            <h1 class="text-center " style="margin-bottom: 20px;">Chi tiết đơn đặt hàng <strong>#12</strong></h1>
+            <h1 class="text-center " style="margin-bottom: 20px;">Chi tiết đơn đặt hàng <strong>#${order.id}</strong></h1>
             <form class="" action="#" method="post" style="padding: 0 100px 0 100px;">
                 <div class="row">
                     <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" for="recipientName" id="basic-addon1">Tên Người Nhận</label>
-                            <input readonly type="text" class="form-control" id="recipientName" name="recipientName"  value="Nguyễn Ngọc Hân"
+                            <input readonly type="text" class="form-control" id="recipientName" name="recipientName"  value="${address.recipientName}"
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
-                            <label for="soldQuantity" class="input-group-addon" id="basic-addon1">Địa chỉ nhận hàng</label>
-                            <input type="text" name="soldQuantity" id="soldQuantity" class="form-control" readonly value="Số 1, Đại Cồ Việt, Hai Bà Trưng, Hà Nội"
+                            <label class="input-group-addon" for="recipientPhone" id="basic-addon1">Số Điện Thoại Người Nhận</label>
+                            <input readonly type="text" class="form-control" id="recipientPhone" name="recipientPhone"  value="${address.recipientPhone}"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
+                        <div class="input-group">
+                            <label for="recipientAddress" class="input-group-addon" id="basic-addon1">Địa chỉ nhận hàng</label>
+                            <input type="text" name="recipientAddress" id="recipientAddress" class="form-control" readonly value="${address.ward}, ${address.district}, ${address.city}, ${address.city}"
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -72,50 +81,72 @@
                     <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" id="basic-addon1" for="createdAt">Ngày đặt đơn</label>
-                            <input type="text" id="createdAt" name="createdAt" class="form-control" value="01-11-2024 11:11:11" readonly
+                            <input type="text" id="createdAt" name="createdAt" class="form-control" value='${order.orderDate.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}' readonly
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" id="basic-addon1" for="confirmAt">Ngày xác nhận</label>
-                            <input type="text" id="confirmAt" name="confirmAt" class="form-control" value="01-12-2024 11:11:11" readonly
-                                   aria-describedby="basic-addon1">
+
+                            <c:if test="${order.confirmedAt != null}">
+                                <input type="text" id="confirmAt" name="confirmAt" class="form-control" value='${order.confirmedAt.format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"))}' readonly
+                                       aria-describedby="basic-addon1">
+                            </c:if>
+                            <c:if test="${order.confirmedAt == null}">
+                                <input type="text" id="confirmAt" name="confirmAt" class="form-control" value="Chưa xác nhận" readonly
+                                       aria-describedby="basic-addon1">
+                            </c:if>
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" id="basic-addon1" for="status">Trạng thái</label>
-                            <input type="text" id="status" name="status" class="form-control" value="Đã giao hàng" readonly
-                                   aria-describedby="basic-addon1">
+
+                            <c:if test="${order.status == 'PENDING'}">
+                                <input type="text" id="status" name="status" class="form-control" value="Chờ xác nhận" readonly
+                                       aria-describedby="basic-addon1">
+                            </c:if>
+                            <c:if test="${order.status == 'SHIPPING'}">
+                                <input type="text" id="status" name="status" class="form-control" value="Đang giao" readonly
+                                       aria-describedby="basic-addon1">
+                            </c:if>
+                            <c:if test="${order.status == 'DELIVERED'}">
+                                <input type="text" id="status" name="status" class="form-control" value="Đã giao" readonly
+                                       aria-describedby="basic-addon1">
+                            </c:if>
+                            <c:if test="${order.status == 'CANCELLED'}">
+                                <input type="text" id="status" name="status" class="form-control" value="Đã hủy" readonly
+                                       aria-describedby="basic-addon1">
+                            </c:if>
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" id="basic-addon1" for="paymentMethod">Thanh toán</label>
-                            <input type="text" id="paymentMethod" name="paymentMethod" class="form-control" value="Momo" readonly
+                            <input type="text" id="paymentMethod" name="paymentMethod" class="form-control" value="${order.paymentMethod}" readonly
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" id="basic-addon1" for="shippingFee">Phí vận chuyển</label>
-                            <input type="text" id="shippingFee" name="shippingFee" class="form-control" value="2,000đ" readonly
+                            <input type="text" id="shippingFee" name="shippingFee" class="form-control" value="${FormatMoney.formatCurrency(order.shippingFee)}" readonly
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12" style="margin-top: 20px;">
                         <div class="input-group">
                             <label class="input-group-addon" id="basic-addon1" for="totalPrice">Tổng tiền</label>
-                            <input type="text" id="totalPrice" name="totalPrice" class="form-control" value="202,000đ" readonly
+                            <input type="text" id="totalPrice" name="totalPrice" class="form-control" value="${FormatMoney.formatCurrency(order.totalPrice)}" readonly
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
-                    <div class="col-md-12 col-xs-12"" style="margin-top: 20px;">
+                    <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
                     <div class="input-group">
                         <label for="note" class="input-group-addon" id="basic-addon1">Ghi chú của khách hàng</label>
-                        <input id="note" type="text"  class="form-control" readonly value="Nhìu hành tí nha chú!"
-                               aria-describedby="basic-addon1"></input>
+                        <input id="note" type="text"  class="form-control" readonly value="${order.note}"
+                               aria-describedby="basic-addon1"/>
                     </div>
                 </div>
         </div>
@@ -134,20 +165,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th class="text-center" scope="row">1</th>
-                            <td class="text-center">Son môi tung của</td>
-                            <td class="text-center">2</td>
-                            <td class="text-center">50,000đ</td>
-                            <td class="text-center">100,000đ</td>
-                        </tr>
-                        <tr>
-                            <th class="text-center" scope="row">2</th>
-                            <td class="text-center">Tẩy trang</td>
-                            <td class="text-center">2</td>
-                            <td class="text-center">50,000đ</td>
-                            <td class="text-center">100,000đ</td>
-                        </tr>
+                        <c:forEach items="${orderDetails}" var="map">
+                            <c:set var="orderDetail" value="${map.key}"/>
+                            <c:set var="product" value="${map.value}"/>
+                            <tr>
+                                <th class="text-center" scope="row">${product.id}</th>
+                                <td class="text-center">${product.name}</td>
+                                <td class="text-center">${orderDetail.quantity}</td>
+                                <td class="text-center">${FormatMoney.formatCurrency(product.price)}</td>
+                                <td class="text-center">${FormatMoney.formatCurrency(product.price * orderDetail.quantity)}</td>
+                            </tr>
+                        </c:forEach>
+
                         </tbody>
                     </table>
                 </div>

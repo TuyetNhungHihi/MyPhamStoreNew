@@ -105,7 +105,7 @@
                             <td class="text-center">Đã hủy</td>
                         </c:if>
                         <td class="text-center">
-                            <a href="/admin/order/order-detail.jsp?action=displayDetail&id=${order.id}" class="btn btn-success">Chi tiết</a>
+                            <a href="/admin/orders?action=displayDetail&id=${order.id}" class="btn btn-success">Chi tiết</a>
                             <c:if test="${order.status == 'PENDING'}">
                                 <button class="btn btn-primary">Xác nhận</button>
                                 <button class="btn btn-danger">Huỷ đơn</button>
