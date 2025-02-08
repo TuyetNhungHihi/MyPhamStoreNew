@@ -6,8 +6,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.WishlistDAOImpl;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 import vn.edu.hcmuaf.fit.myphamstore.service.IProductService;
@@ -31,7 +29,7 @@ public class WishlistController extends HttpServlet {
             return;
         }
         int currentPage = 1;
-        int pageSize = 6;
+        int pageSize = 4;
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));
         }
@@ -39,10 +37,11 @@ public class WishlistController extends HttpServlet {
             pageSize = Integer.parseInt(request.getParameter("pageSize"));
         }
         List<ProductModel> productsWishlist = wishlistService.getWishlistByUserId(user.getId(), currentPage, pageSize);
+        System.out.println(productsWishlist.size());
         int totalItems = wishlistService.getWishlistCountByUserId(user.getId());
+
         int totalPages = (int) Math.ceil((double) totalItems / pageSize);
 
-        // Sử dụng attribute name nhất quán
         request.setAttribute("productsWishlist", productsWishlist);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("totalPages", totalPages);
@@ -51,18 +50,21 @@ public class WishlistController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Thêm sản phẩm vào wishlist
         UserModel user = (UserModel) request.getSession().getAttribute("user");
         if (user == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
+        String action = request.getParameter("action");
         long productId = Long.parseLong(request.getParameter("productId"));
-        wishlistService.addToWishlist(user.getId(), productId);
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"success\": true}");
+        if ("add".equals(action)) {
+            wishlistService.addToWishlist(user.getId(), productId);
+        } else if ("remove".equals(action)) {
+            wishlistService.removeFromWishlist(user.getId(), productId);
+        }
+
+        response.sendRedirect(request.getHeader("Referer"));
     }
 
     @Override

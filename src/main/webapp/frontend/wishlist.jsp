@@ -1,16 +1,25 @@
-<%@include file="/common/tablib.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%--
+Created by IntelliJ IDEA.
+User: cucsh
+Date: 12/7/2024
+Time: 10:10 AM
+To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<title>Danh Sách Yêu Thích</title>
+	<meta charset="UTF-8">
+	<title>Thể loại</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta name="description" content="big basket" />
 	<meta name="keywords" content="big basket, Ecommerce, Store, Mall, online Shopping" />
 	<meta name="author" content="" />
 	<meta name="MobileOptimized" content="320" />
+	<!--srart theme style -->
 	<link rel="stylesheet" type="text/css" href="../static/css/animate.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.css" />
@@ -21,24 +30,41 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/dl-menu.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/camera.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
+	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
 </head>
-
+<style>
+	.limited-text {
+		display: -webkit-box; /* Sử dụng flexbox ẩn nội dung */
+		-webkit-box-orient: vertical; /* Đặt hướng box theo chiều dọc */
+		overflow: hidden; /* Ẩn phần văn bản bị tràn */
+		text-overflow: ellipsis; /* Thêm dấu "..." */
+		-webkit-line-clamp: 2; /* Giới hạn số dòng hiển thị */
+		line-height: 1.5; /* Đặt chiều cao dòng để tính dòng */
+		max-height: calc(1.5em * 2); /* Chiều cao tối đa tương ứng với 2 dòng */
+	}
+</style>
 <body>
+<!-- preloader Start -->
 <div id="preloader">
 	<div id="status">
 		<img src="../static/images/header/preloader.gif" id="preloader_image" alt="loader">
 	</div>
 </div>
+<!-- Top Scroll Start -->
 <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
+<!-- Header Wrapper Start -->
 <%@include file="component/nav.jsp"%>
 <%@include file="component/header.jsp"%>
+<!-- Header Wrapper End -->
+<!-- ss inner title Wrapper Start -->
 
-<div class="ss_services_wrapper" style="padding-bottom: 0;">
-	<div class="container custom-container">
+<div class="cc_pc_accordion_main_wrapper">
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="ss_inner_title_cont_wrapper">
@@ -52,7 +78,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="col-lg-9  col-md-9 col-sm-12 col-xs-12 sidebar2_main_wrapper">
 			<div class="ss_latest_products product-three-service">
 				<div class="owl-carousel owl-theme">
 					<c:forEach var="product" items="${productsWishlist}">
@@ -77,10 +103,11 @@
 											<input type="hidden" name="productId" value="${product.id}">
 											<button type="submit" class="ss_btn">Thêm vào giỏ</button>
 										</form>
-										<li>
-											<!-- Nút xóa khỏi wishlist -->
-											<button class="remove-wishlist-btn" data-product-id="${product.id}">Remove</button>
-										</li>
+										<form method="post" action="<c:url value='/wishlist' />">
+											<input type="hidden" name="action" value="remove">
+											<input type="hidden" name="productId" value="${product.id}">
+											<button type="submit" class="remove-wishlist-btn">Xóa</button>
+										</form>
 									</ul>
 								</div>
 							</div>
@@ -96,7 +123,7 @@
 							</c:if>
 							<c:forEach var="i" begin="1" end="${totalPages}">
 								<li class="${i == currentPage ? 'active' : ''}">
-									<a href="?currentPage=${i}&pageSize=6">${i}</a>
+									<a href="?currentPage=${i}&pageSize=4">${i}</a>
 								</li>
 							</c:forEach>
 							<c:if test="${currentPage < totalPages}">
@@ -108,37 +135,10 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <%@include file="component/footer.jsp"%>
 
-<script>
-	const header = document.getElementById("header");
-	const footer = document.getElementById("footer");
-	const nav = document.getElementById("nav");
-
-	fetch('./header.html')
-			.then(response => {
-				return response.text()
-			})
-			.then(data => {
-				header.innerHTML = data;
-			});
-	fetch('./footer.html')
-			.then(response => {
-				return response.text()
-			})
-			.then(data => {
-				footer.innerHTML = data;
-			});
-	fetch('./nav.html')
-			.then(response => {
-				return response.text()
-			}).then(data => {
-		nav.innerHTML = data;
-	});
-</script>
 <script src="../static/js/jquery_min.js"></script>
 <script src="../static/js/wow.js"></script>
 <script src="../static/js/bootstrap.js"></script>
@@ -163,103 +163,14 @@
 		});
 		wow.init();
 	});
+	$(".owl-carousel").owlCarousel({
+		loop: false, // Tắt vòng lặp
+	});
 
-	var deadline = 'December 31 2018 23:59:59 GMT+0530';
-	function time_remaining(endtime){
-		var t = Date.parse(endtime) - Date.parse(new Date());
-		var seconds = Math.floor( (t/1000) % 60 );
-		var minutes = Math.floor( (t/1000/60) % 60 );
-		var hours = Math.floor( (t/(1000*60*60)) % 24 );
-		var days = Math.floor( t/(1000*60*60*24) );
-		return {'total':t, 'days':days, 'hours':hours, 'minutes':minutes, 'seconds':seconds};
-	}
-	function run_clock(id,endtime){
-		var clock = document.getElementById(id);
 
-		var days_span = clock.querySelector('.days');
-		var hours_span = clock.querySelector('.hours');
-		var minutes_span = clock.querySelector('.minutes');
-		var seconds_span = clock.querySelector('.seconds');
 
-		function update_clock(){
-			var t = time_remaining(endtime);
-
-			days_span.innerHTML = t.days;
-			hours_span.innerHTML = ('0' + t.hours).slice(-2);
-			minutes_span.innerHTML = ('0' + t.minutes).slice(-2);
-			seconds_span.innerHTML = ('0' + t.seconds).slice(-2);
-
-			if(t.total<=0){ clearInterval(timeinterval); }
-		}
-		update_clock();
-		var timeinterval = setInterval(update_clock,1000);
-	}
-	run_clock('clockdiv',deadline);
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(document).ready(function() {
-		// Xử lý sự kiện khi nhấn nút thêm vào wishlist
-		$('.add-to-wishlist').on('click', function(e) {
-			e.preventDefault();
-			var productId = $(this).data('product-id');
-			$.ajax({
-				url: '<c:url value="/wishlist" />',
-				type: 'POST',
-				data: { productId: productId },
-				success: function(response) {
-					if(response.success) {
-						alert('Sản phẩm đã được thêm vào danh sách yêu thích!');
-
-					}
-				},
-				error: function() {
-					alert('Đã xảy ra lỗi khi thêm sản phẩm vào wishlist.');
-				}
-			});
-		});
-
-		$('.remove-wishlist-btn').on('click', function(e) {
-			e.preventDefault();
-			var productId = $(this).data('product-id');
-			$.ajax({
-				url: '<c:url value="/wishlist" />',
-				type: 'DELETE',
-				data: { productId: productId },
-				success: function(response) {
-					if(response.success) {
-						alert('Sản phẩm đã được xóa khỏi danh sách yêu thích!');
-						location.reload();
-					}
-				},
-				error: function() {
-					alert('Đã xảy ra lỗi khi xóa sản phẩm khỏi wishlist.');
-				}
-			});
-		});
-	});
-</script>
-
-
-<script>
-	document.querySelectorAll('.remove-wishlist-btn').forEach(button => {
-		button.addEventListener('click', function() {
-			const productId = this.getAttribute('data-product-id');
-			fetch('/wishlist?action=remove&productId=' + productId, {
-				method: 'POST'
-			})
-					.then(response => response.json())
-					.then(data => {
-						if (data.success) {
-							alert('Product removed from wishlist');
-							location.reload();
-						} else {
-							alert('Failed to remove product from wishlist');
-						}
-					});
-		});
-	});
 </script>
 </body>
 </html>
