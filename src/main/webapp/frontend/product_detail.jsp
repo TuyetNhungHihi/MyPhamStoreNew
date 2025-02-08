@@ -26,9 +26,21 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .btc_shop_sin_pro_icon_wrapper i {
+      font-family: FontAwesome !important;
+      color: gray; /* Màu mặc định */
+      font-size: 24px;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out; /* Hiệu ứng mượt khi đổi màu */
+    }
 
+    .btc_shop_sin_pro_icon_wrapper i.fa-star {
+      color: gold !important; /* Màu khi được chọn */
+    }
+  </style>
 </head>
-
 <body>
 <div id="preloader">
   <div id="status">
@@ -77,14 +89,9 @@
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="btc_shop_single_prod_right_section">
           <h1><a href="#">${product.name}"</h1>
-          <div class="btc_shop_sin_pro_icon_wrapper">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-            <i class="fa fa-star-o"></i>
+            <div class="btc_shop_single_prod_right_section_cont">
             <p>
-              10 Đánh Giá <span><a href="#collapseFiveLeftfive">Đánh giá của bạn</a></span>
+              <c:out value="${reviewCount} "/> Đánh Giá <span><a href="#collapseFiveLeftfive"></a></span>
             </p>
             <div class="ss_featured_products_box_img_list_cont ss_featured_products_box_img_list_cont_single">
 
@@ -120,6 +127,11 @@
                     </div>
                 </div>
               </div>
+              <form method="post" action="/gio-hang">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="productId" value="${product.id}">
+                <button type="submit" class="ss_btn">Thêm vào giỏ</button>
+              </form>
             </div>
           </div>
         </div>
@@ -171,11 +183,11 @@
                     <input type="hidden" name="productId" value="${product.id}" />
                     <input type="hidden" name="userId" value="${user.id}" />
                     <div class="btc_shop_sin_pro_icon_wrapper">
-                      <i class="fa fa-star" data-value="1"></i>
-                      <i class="fa fa-star" data-value="2"></i>
-                      <i class="fa fa-star" data-value="3"></i>
-                      <i class="fa fa-star" data-value="4"></i>
-                      <i class="fa fa-star" data-value="5"></i>
+                      <i class="fa fa-star-o" data-value="1"></i>
+                      <i class="fa fa-star-o" data-value="2"></i>
+                      <i class="fa fa-star-o" data-value="3"></i>
+                      <i class="fa fa-star-o" data-value="4"></i>
+                      <i class="fa fa-star-o" data-value="5"></i>
                     </div>
                     <input type="hidden" name="rating" id="rating" value="0"> <!-- Input ẩn để lưu số sao -->
 
@@ -345,36 +357,41 @@
   <script src="../static/js/demo/cart.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script chạy!");
+
     const stars = document.querySelectorAll(".btc_shop_sin_pro_icon_wrapper i");
     const ratingInput = document.getElementById("rating");
 
     function updateStars(rating) {
-      ratingInput.value = rating; // Cập nhật input ẩn
+      // Cập nhật giá trị input ẩn
+      ratingInput.value = rating;
+      console.log("Đánh giá:", rating);
 
-      // Reset tất cả sao
-      stars.forEach(s => s.classList.remove("fa-star"));
-      stars.forEach(s => s.classList.add("fa-star-o"));
-
-      // Đánh dấu các sao đã chọn
-      for (let i = 0; i < rating; i++) {
-        stars[i].classList.add("fa-star");
-        stars[i].classList.remove("fa-star-o");
-      }
+      // Reset tất cả sao về trạng thái mặc định
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.remove("fa-star-o");
+          star.classList.add("fa-star");
+        } else {
+          star.classList.remove("fa-star");
+          star.classList.add("fa-star-o");
+        }
+      });
     }
 
     stars.forEach(star => {
       star.addEventListener("click", function () {
-        const rating = this.getAttribute("data-value");
+        const rating = parseInt(this.getAttribute("data-value"), 10);
+        console.log("Click sao:", rating);
         updateStars(rating);
       });
     });
 
-    // Đặt mặc định giá trị là 1 sao
-    if (stars.length > 0) {
-      updateStars(1);
-    }
+    // Đặt mặc định là 1 sao
+    updateStars(1);
   });
-
 </script>
+
+
 </body>
 </html>

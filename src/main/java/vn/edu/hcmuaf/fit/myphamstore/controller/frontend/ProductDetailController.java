@@ -43,6 +43,7 @@ public class ProductDetailController extends HttpServlet {
         List<ProductImageModel> productImages = productService.getProductImageById(id);
         request.setAttribute("productImages", productImages);
         List<ReviewModel> reviews = productService.getReviewsByProductId(id);
+        request.setAttribute("reviewCount", reviews.size());
         request.setAttribute("reviews", reviews);
         List<UserModel> users = new ArrayList<>();
         for (ReviewModel review : reviews) {

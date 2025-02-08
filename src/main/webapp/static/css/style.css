@@ -8001,3 +8001,14 @@ a.navbar-brand img {
 .product-three-service .owl-carousel .owl-stage-outer {
   padding-top: 0px;
 }
+.btc_shop_sin_pro_icon_wrapper i {
+   font-family: FontAwesome !important;
+   color: gray; /* Màu mặc định */
+   font-size: 24px;
+   cursor: pointer;
+   transition: color 0.2s ease-in-out; /* Hiệu ứng mượt khi đổi màu */
+ }
+
+.btc_shop_sin_pro_icon_wrapper i.fa-star {
+  color: gold !important; /* Màu khi được chọn */
+}
