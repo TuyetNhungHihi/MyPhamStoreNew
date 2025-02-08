@@ -214,7 +214,6 @@ To change this template use File | Settings | File Templates.
             </hr>
           </div>
         </div>
-      </div>
 
       <!-- end content -->
       <!-- Footer Wrapper End -->

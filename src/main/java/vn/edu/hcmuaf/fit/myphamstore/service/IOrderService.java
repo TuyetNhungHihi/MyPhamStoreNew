@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderDetailModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.OrderModel;
+import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,4 +24,6 @@ public interface IOrderService {
     List<OrderModel> getOrderHistoryByUserId(Long userId, int currentPage, int pageSize);
 
     void changeStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException;
+
+    List<ProductModel> getProductByOrderDetail(OrderDetailModel orderDetail);
 }

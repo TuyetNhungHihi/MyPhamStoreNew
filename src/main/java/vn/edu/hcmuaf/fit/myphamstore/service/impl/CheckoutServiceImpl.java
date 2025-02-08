@@ -38,6 +38,7 @@ public class CheckoutServiceImpl implements ICheckoutService {
     @Override
     public void displayCheckout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        UserModel user = (UserModel) session.getAttribute("user");
         List<CartModel> listCartItems = (List<CartModel>) session.getAttribute("cart");
         if (listCartItems == null) {
             request.setAttribute("errorMessage", "Your cart is empty.");
@@ -62,6 +63,14 @@ public class CheckoutServiceImpl implements ICheckoutService {
             request.getRequestDispatcher("/frontend/shopping_cart.jsp").forward(request, response);
             return;
         }
+        List<AddressModel> addresss = addressDAO.findByUserId(user.getId());
+        for (AddressModel addressModel : addresss) {
+            if (addressModel.getIsDefault()) {
+                request.setAttribute("address", addressModel);
+                break;
+            }
+        }
+
         request.setAttribute("listCart", listCartDisplay);
         request.setAttribute("totalAmount", totalAmount);
         request.getRequestDispatcher("/frontend/checkout.jsp").forward(request, response);

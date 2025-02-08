@@ -164,13 +164,13 @@
             <!--Form Group-->
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
               <div class="field-label">Tên người nhận</div>
-              <input type="text" name="recipientName"  placeholder="nhập tên nguời nhận " required >
+              <input type="text" name="recipientName"  placeholder="nhập tên nguời nhận " value="${user.fullName}" required >
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
               <div class="field-label">Số điện thoại người nhận <sup>*</sup></div>
-              <input type="text" name="recipientPhone"  placeholder="nhập số điện thoại người nhận" required >
+              <input type="text" name="recipientPhone"  placeholder="nhập số điện thoại người nhận" value="${user.phone}" required >
             </div>
             <!-- Form Group
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
@@ -187,25 +187,25 @@
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-12 col-xs-12">
               <div class="field-label">Thành phố/Tỉnh thành </div>
-              <input type="text" name="city"  placeholder="nhập tên thành phố/tỉnh thành" required >
+              <input type="text" name="city"  placeholder="nhập tên thành phố/tỉnh thành" value="${address.city}" required >
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-12 col-xs-12">
               <div class="field-label">Quận/huyện </div>
-              <input type="text" name="district"   placeholder="nhập tên quận/huyện" required >
+              <input type="text" name="district"   placeholder="nhập tên quận/huyện" value="${address.district}" required >
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-6 col-xs-12">
               <div class="field-label">Phường/xã</div>
-              <input type="text" name="ward"  placeholder="nhập tên phường/xã"  required>
+              <input type="text" name="ward"  placeholder="nhập tên phường/xã" value="${address.ward}"  required>
             </div>
 
             <!--Form Group-->
             <div class="form-group col-md-6 col-sm-6 col-xs-12">
               <div class="field-label">Chi tiết địa chỉ </div>
-              <input type="text" name="note"  placeholder="nhập chi tiết địa chỉ" required >
+              <input type="text" name="note"  placeholder="nhập chi tiết địa chỉ" value="${address.note}" required >
             </div>
 
             <div class="form-group col-md-6 col-sm-6 col-xs-12">

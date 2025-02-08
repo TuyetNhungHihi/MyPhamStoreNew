@@ -128,6 +128,11 @@ public class OrderServiceImpl implements IOrderService {
         resp.sendRedirect(req.getContextPath() + "/admin/orders?action=display");
     }
 
+    @Override
+    public List<ProductModel> getProductByOrderDetail(OrderDetailModel orderDetail) {
+        return productService.findProduct(orderDetail.getProductId());
+    }
+
     public List<OrderModel> getOrdersByUserId(Long userId) {
         return orderDAO.findByUserId(userId, 1, 10);
     }

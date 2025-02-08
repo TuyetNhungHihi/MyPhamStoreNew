@@ -232,6 +232,11 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public List<ProductModel> findProduct(Long productId) {
+        return productDAO.findProduct(productId);
+    }
+
+    @Override
     public void stopBuying(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         //tến hành cập nhật trạng thái sản phẩm
