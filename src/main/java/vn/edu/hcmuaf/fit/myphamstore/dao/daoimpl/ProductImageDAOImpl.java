@@ -3,9 +3,7 @@ package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductImageDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductImageModel;
-import vn.edu.hcmuaf.fit.myphamstore.model.ReviewModel;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 

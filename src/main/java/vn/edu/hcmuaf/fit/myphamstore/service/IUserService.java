@@ -25,4 +25,8 @@ public interface IUserService {
     void verifyOtp(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void updateProfile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     void profile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    boolean updateUserPassword(UserModel user);
+
+    void addAddress(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

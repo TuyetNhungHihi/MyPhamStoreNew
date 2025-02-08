@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.myphamstore.controller.frontend;
 
+import jakarta.inject.Inject;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.UserDAOImp;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
@@ -11,11 +12,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.edu.hcmuaf.fit.myphamstore.service.IUserService;
+
 import java.io.IOException;
 
 @WebServlet("/change-password")
 public class ChangePassController extends HttpServlet {
-    private final IUserDAO userDAO = new UserDAOImp();
+    @Inject
+    private IUserService userService;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,14 +27,13 @@ public class ChangePassController extends HttpServlet {
         UserModel user = (UserModel) session.getAttribute("user");
 
         if (user == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/login");
             return;
         }
 
         String oldPassword = request.getParameter("password");
         String newPassword = request.getParameter("new-password");
         String reNewPassword = request.getParameter("re-new-password");
-
 
         if (oldPassword == null || newPassword == null || reNewPassword == null ||
                 oldPassword.isEmpty() || newPassword.isEmpty() || reNewPassword.isEmpty()) {
@@ -53,7 +56,7 @@ public class ChangePassController extends HttpServlet {
 
         // Update the password in the database
         user.setPassword(PasswordUtils.hashPassword(newPassword));
-        boolean isUpdated = userDAO.updateUserPassword(user);
+        boolean isUpdated = userService.updateUserPassword(user);
 
         if (isUpdated) {
             request.setAttribute("successMessage", "Your password has been changed successfully.");
@@ -61,5 +64,14 @@ public class ChangePassController extends HttpServlet {
             request.setAttribute("errorMessage", "Password change failed. Please try again.");
         }
         request.getRequestDispatcher("/frontend/change-password.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("user") == null) {
+            resp.sendRedirect("/login");
+            return;
+        }
+        req.getRequestDispatcher("/frontend/change-password.jsp").forward(req, resp);
     }
 }

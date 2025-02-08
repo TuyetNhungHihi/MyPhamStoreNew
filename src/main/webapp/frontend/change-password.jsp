@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/tablib.jsp"%>
 <!DOCTYPE html>
 <!-- 
 Template Name: big basket
@@ -27,47 +28,32 @@ Purchase:
     <!--srart theme style -->
     <link rel="stylesheet" type="text/css" href="../static/css/animate.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/font-awesome.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/owl.carousel.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/owl.theme.default.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/magnific-popup.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/owl.theme.default.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/magnific-popup.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/dl-menu.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/camera.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/responsive.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/sidebar.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/change-pass.css" />
+    <!-- favicon links -->
+    <link rel="shortcut icon" type="image/png" href="../static/images/header/favicon.png" />
     <link
-      rel="stylesheet"
-      type="text/css"
-      href="../static/css/change-pass.css"
+            rel="stylesheet"
+            type="text/css"
+            href="../static/css/responsive.css"
     />
+    <link rel="stylesheet" type="text/css" href="../static/css/style2.css" />
     <!-- favicon links -->
     <link
-      rel="shortcut icon"
-      type="image/png"
-      href="../static/images/header/favicon.png"
+            rel="shortcut icon"
+            type="image/png"
+            href="../static/images/header/favicon.png"
     />
   </head>
 
@@ -86,9 +72,10 @@ Purchase:
     <a href="javascript:" id="return-to-top"><i class="fa fa-angle-up"></i></a>
     <!-- Top Scroll End -->
     <!-- Header Wrapper Start -->
-    <div id="nav"></div>
+    <%@include file="component/nav.jsp"%>
     <!-- Header Wrapper End -->
     <!-- Main Content -->
+
     <div class="container-fluid">
       <div class="row main-content bg-success text-center" style="width: 30%">
         <div class="col-md-12 col-xs-12 col-sm-12 login_form">
@@ -97,74 +84,37 @@ Purchase:
               <h2>Đổi mật khẩu</h2>
             </div>
             <div class="row">
-              <form control="" class="form-group">
-                <div class="row">
-                  <input
-                    type="text"
-                    name="password"
-                    id="password"
-                    class="form__input"
-                    placeholder="Mật khẩu cũ"
-                  />
+              <form action="/change-password" method="post">
+                <div class="form-group">
+                  <label for="password">Mật khẩu cũ:</label>
+                  <input type="password" id="password" name="password" class="form-control" required>
                 </div>
-                <div class="row">
-                  <!-- <span class="fa fa-lock"></span> -->
-                  <input
-                    type="password"
-                    name="new-password"
-                    id="new-password"
-                    class="form__input"
-                    placeholder="Mật khẩu mới"
-                  />
+                <div class="form-group">
+                  <label for="new-password">Mật khẩu mới:</label>
+                  <input type="password" id="new-password" name="new-password" class="form-control" required>
                 </div>
-                <div class="row">
-                  <!-- <span class="fa fa-lock"></span> -->
-                  <input
-                    type="password"
-                    name="re-new-password"
-                    id="re-new-password"
-                    class="form__input"
-                    placeholder="Nhập lại mật khẩu mới"
-                  />
+                <div class="form-group">
+                  <label for="re-new-password">Nhập lại mật khẩu mới:</label>
+                  <input type="password" id="re-new-password" name="re-new-password" class="form-control" required>
                 </div>
-                <div
-                  id="error-message"
-                  class="alert alert-danger"
-                  hidden
-                  role="alert"
-                ></div>
                 <div class="row">
                   <input type="submit" value="Đổi mật khẩu" class="btn" />
                 </div>
               </form>
+              <c:if test="${not empty errorMessage}">
+                <div class="alert alert-danger">${errorMessage}</div>
+              </c:if>
+              <c:if test="${not empty successMessage}">
+                <div class="alert alert-success">${successMessage}</div>
+              </c:if>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Brandlogo Wrapper End -->
+    <%@include file="component/footer.jsp"%>
 
-    <div id="footer"></div>
-    <script>
-      const header = document.getElementById("header");
-      const footer = document.getElementById("footer");
-      const nav = document.getElementById("nav");
-
-      fetch("./footer.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          footer.innerHTML = data;
-        });
-      fetch("./nav.html")
-        .then((response) => {
-          return response.text();
-        })
-        .then((data) => {
-          nav.innerHTML = data;
-        });
-    </script>
     <!--main js file start-->
     <script src="../static/js/jquery_min.js"></script>
     <script src="../static/js/wow.js"></script>
