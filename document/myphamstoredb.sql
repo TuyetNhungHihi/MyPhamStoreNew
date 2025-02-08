@@ -11,6 +11,7 @@ CREATE TABLE `user` (
                         `date_of_birth` date NOT NULL,
                         `gender` ENUM ('MALE', 'FEMALE', 'OTHER') NOT NULL,
                         `avatar` longtext,
+                        `avatar` longtext,
                         `status` ENUM ('NONE', 'ACTIVE', 'INACTIVE') not null,
                         `last_login` datetime,
                         `created_at` datetime DEFAULT (now()),

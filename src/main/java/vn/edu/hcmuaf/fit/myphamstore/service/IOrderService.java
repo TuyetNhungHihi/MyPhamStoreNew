@@ -21,4 +21,6 @@ public interface IOrderService {
 
 
     List<OrderModel> getOrderHistoryByUserId(Long userId, int currentPage, int pageSize);
+
+    void changeStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException;
 }
