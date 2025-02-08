@@ -9,11 +9,15 @@
 
 <div class="sidebar-brand">
   <div class="brand-flex">
+    <a href="<c:url value="/trang-chu" />">
+
     <img
-            src="/src/main/webapp/static/images/logo/logo5.svg"
+            src="../../static/images/logo/logo2.svg"
             class="img-logo"
             alt="logo"
+
     />
+    </a>
 
     <div class="brand-icons">
       <span class="las la-bell"></span>

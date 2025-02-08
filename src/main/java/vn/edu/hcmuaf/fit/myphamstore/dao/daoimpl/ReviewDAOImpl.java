@@ -77,6 +77,28 @@ public class ReviewDAOImpl implements IReviewDAO {
             return null;
         }
     }
+    @Override
+    public Long saveReview(ReviewModel entity, Long userId, Long productId) {
+        String sql = "INSERT INTO review (user_id, product_id, rating, comment, created_at, updated_at) " +
+                "VALUES (:userId, :productId, :rating, :comment, :createdAt, :updatedAt)";
+        try {
+            return JDBIConnector.getJdbi().withHandle(handle -> {
+                return handle.createUpdate(sql)
+                        .bind("userId", userId)  // Đúng tên tham số trong SQL
+                        .bind("productId", productId)  // Đúng tên tham số trong SQL
+                        .bind("rating", entity.getRating())
+                        .bind("comment", entity.getComment())
+                        .bind("createdAt", LocalDateTime.now())
+                        .bind("updatedAt", LocalDateTime.now())
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one();
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public ReviewModel update(ReviewModel entity) {

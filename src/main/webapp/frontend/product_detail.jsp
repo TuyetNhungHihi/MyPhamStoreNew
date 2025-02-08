@@ -157,38 +157,49 @@
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion_oneLeft" href="#review"
                    aria-expanded="false">
-                  Đánh giá (03)
+                  Đánh giá
                 </a>
               </h4>
             </div>
             <div id="review" class="panel-collapse collapse in" aria-expanded="false" role="tablist">
               <div class="panel-body">
                 <div class="col-lg-6 col-md-6 col-sm-12">
+                  <form action="<c:url value='/product-detail' />" method="post">
                   <div class="btc_shop_single_prod_right_section shop_product_single_head">
                     <h1>Thêm đánh giá của bạn</h1>
+                    <input type="hidden" name="action" value="addReview" />
+                    <input type="hidden" name="productId" value="${product.id}" />
+                    <input type="hidden" name="userId" value="${user.id}" />
                     <div class="btc_shop_sin_pro_icon_wrapper">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star" data-value="1"></i>
+                      <i class="fa fa-star" data-value="2"></i>
+                      <i class="fa fa-star" data-value="3"></i>
+                      <i class="fa fa-star" data-value="4"></i>
+                      <i class="fa fa-star" data-value="5"></i>
                     </div>
+                    <input type="hidden" name="rating" id="rating" value="0"> <!-- Input ẩn để lưu số sao -->
+
                   </div>
                   <div class="text-accordion shop_pdt_form">
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="contect2_form1">
-                          <input type="text" placeholder=" Your Name" /><i class="fa fa-user"></i>
+                          <input type="text" name="userName" placeholder="Your Name"  value="${user.fullName}"/>
+                          <i class="fa fa-user"></i>
+
+
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="contect2_form1">
-                          <input type="email" placeholder="Your Email" /><i class="fa fa-envelope"></i>
+                          <input type="text" name="userName" placeholder="Your Name" value="${user.email}" />
+                          <i class="fa fa-user"></i>
+
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="contect2_form4">
-                          <textarea rows="4" placeholder=" Your comment"></textarea><i
+                          <textarea  name="comment" rows="4" placeholder=" Your comment"></textarea><i
                                 class="fa fa-question-circle"></i>
                         </div>
                       </div>
@@ -196,19 +207,20 @@
                         <div class="pdt_single_page_btn">
                           <div class="shop_btn_wrapper">
                             <ul>
-                              <li><a href="#">Đánh Giá</a></li>
+                              <li><button class="btn btn-primary" type="submit">Đánh Giá</button></li>
                             </ul>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                    </form>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
                   <div
                           class="btc_shop_single_prod_right_section shop_product_single_head shop_product_single_head_respon">
                     <h1>Đánh giá sản phẩm</h1>
-                    <h4><c:out value="${total}* "/><span>đánh giá tổng</span></h4>
+                    <h4><c:out value="${total}⭐ "/><span>đánh giá tổng</span></h4>
                   </div>
                   <div class="text-accordion shop_pdt_form">
                     <div class="progress_section">
@@ -276,25 +288,30 @@
                   <div class="comment_box_blog">
                     <div class="sp_comment1_wrapper cmnt_wraper_2">
                       <c:forEach var="review" items="${reviews}">
-                      <div class="sp_comment1_img text-center">
-                        <i class="fa fa-user"  style="font-size: 70px;" aria-hidden="true"></i>
-                      </div>
-                      <div class="sp_comment1_cont">
+                        <c:set var="matchedUser" value="" />
+                        <c:forEach var="user" items="${users}">
+                          <c:if test="${user.id == review.userId}">
+                            <c:set var="matchedUser" value="${user}" />
+                          </c:if>
+                        </c:forEach>
 
-                          <h3><c:out value="${review.userId}"/></h3>
+                        <div class="sp_comment1_img text-center">
+                          <i class="fa fa-user" style="font-size: 70px;" aria-hidden="true"></i>
+                        </div>
+                        <div class="sp_comment1_cont">
+                          <h3><c:out value="${matchedUser.fullName}"/></h3>
                           <p>
                             <span><c:out value="${review.createdAt}"/></span>
                           </p>
                           <p>
-                            <span><c:out value="${review.rating}⭐"/></span>
+                            <span><c:out value="${review.rating}"/>⭐</span>
                           </p>
                           <p>
                             <c:out value="${review.comment}"/>
                           </p>
-
-
-                      </div>
+                        </div>
                       </c:forEach>
+
                     </div>
                   </div>
                 </div>
@@ -326,5 +343,38 @@
   <script src="../static/js/custom.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="../static/js/demo/cart.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const stars = document.querySelectorAll(".btc_shop_sin_pro_icon_wrapper i");
+    const ratingInput = document.getElementById("rating");
+
+    function updateStars(rating) {
+      ratingInput.value = rating; // Cập nhật input ẩn
+
+      // Reset tất cả sao
+      stars.forEach(s => s.classList.remove("fa-star"));
+      stars.forEach(s => s.classList.add("fa-star-o"));
+
+      // Đánh dấu các sao đã chọn
+      for (let i = 0; i < rating; i++) {
+        stars[i].classList.add("fa-star");
+        stars[i].classList.remove("fa-star-o");
+      }
+    }
+
+    stars.forEach(star => {
+      star.addEventListener("click", function () {
+        const rating = this.getAttribute("data-value");
+        updateStars(rating);
+      });
+    });
+
+    // Đặt mặc định giá trị là 1 sao
+    if (stars.length > 0) {
+      updateStars(1);
+    }
+  });
+
+</script>
 </body>
 </html>
