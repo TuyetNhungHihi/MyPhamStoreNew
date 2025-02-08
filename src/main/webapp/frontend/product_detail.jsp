@@ -96,7 +96,7 @@
             <div class="ss_featured_products_box_img_list_cont ss_featured_products_box_img_list_cont_single">
 
 <%--              <p class="shop_pera"><c:out value="${product.brandName}"/></p>--%>
-              <del><c:out value="${product.price}"/>đ</del> <ins><c:out value="${product.costPrice}"/>đ</ins>
+              <del><c:out value="${product.costPrice}"/>đ</del> <ins><c:out value="${product.price}"/>đ</ins>
 <%--              <h5>--%>
 <%--                Giới Thiệu:--%>
 <%--                <c:out value="${product.description}"/>--%>

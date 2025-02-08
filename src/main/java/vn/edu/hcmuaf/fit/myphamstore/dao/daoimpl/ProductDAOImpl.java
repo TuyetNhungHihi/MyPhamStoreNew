@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import vn.edu.hcmuaf.fit.myphamstore.common.FormatMoney;
 import vn.edu.hcmuaf.fit.myphamstore.common.JDBIConnector;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
@@ -8,6 +9,7 @@ import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+
 @ApplicationScoped
 public class ProductDAOImpl implements IProductDAO {
 
@@ -101,20 +103,13 @@ public class ProductDAOImpl implements IProductDAO {
         try {
             return JDBIConnector.getJdbi().withHandle(handle ->
                     handle.select(
-                            sql,categoryId
-                    ).mapToBean(ProductModel.class)
-                    .list());
+                                    sql,categoryId
+                            ).mapToBean(ProductModel.class)
+                            .list());
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-//        String sql = "SELECT * FROM product WHERE category_id = :categoryId";
-//        return JDBIConnector.getJdbi().withHandle(handle ->
-//                handle.createQuery(sql)
-//                        .bind("categoryId", categoryId)
-//                        .mapToBean(ProductModel.class)
-//                        .list()
-//        );
     }
 
     @Override
@@ -134,24 +129,24 @@ public class ProductDAOImpl implements IProductDAO {
         String sql = "INSERT INTO product (name, price, cost_price, stock, sold_quantity, description, is_available, thumbnail, brand_id, category_id, created_at, updated_at) " +
                 "VALUES (:name, :price, :costPrice, :stock, :soldQuantity, :description, :isAvailable, :thumbnail, :brandId, :categoryId, :createdAt, :updatedAt)";
         try{
-         return JDBIConnector.getJdbi().withHandle(handle -> {
-             return handle.createUpdate(sql)
-                     .bind("name", entity.getName() != null ? entity.getName().trim() : "")
-                     .bind("price", entity.getPrice() != null ? entity.getPrice() : 0)
-                     .bind("costPrice", entity.getCostPrice() != null ? entity.getCostPrice() : 0)
-                     .bind("stock", entity.getStock() != null ? entity.getStock() : 0)
-                     .bind("soldQuantity", entity.getSoldQuantity() != null ? entity.getSoldQuantity() : 0)
-                     .bind("description", entity.getDescription() != null ? entity.getDescription().trim() : "")
-                     .bind("isAvailable", entity.getIsAvailable() != null ? entity.getIsAvailable() : true)
-                     .bind("thumbnail", entity.getThumbnail() != null ? entity.getThumbnail().trim() : "")
-                     .bind("brandId", entity.getBrandId() != null ? entity.getBrandId() : 1)
-                     .bind("categoryId", entity.getCategoryId() != null ? entity.getCategoryId() : 1)
-                     .bind("createdAt", new Timestamp(System.currentTimeMillis()))
-                     .bind("updatedAt", new Timestamp(System.currentTimeMillis()))
-                     .executeAndReturnGeneratedKeys("id")
-                     .mapTo(Long.class)
-                     .one();
-         });
+            return JDBIConnector.getJdbi().withHandle(handle -> {
+                return handle.createUpdate(sql)
+                        .bind("name", entity.getName() != null ? entity.getName().trim() : "")
+                        .bind("price", entity.getPrice() != null ? FormatMoney.formatCurrency(entity.getPrice()) : FormatMoney.formatCurrency(0L))
+                        .bind("costPrice", entity.getCostPrice() != null ? FormatMoney.formatCurrency(entity.getCostPrice()) : FormatMoney.formatCurrency(0L))
+                        .bind("stock", entity.getStock() != null ? entity.getStock() : 0)
+                        .bind("soldQuantity", entity.getSoldQuantity() != null ? entity.getSoldQuantity() : 0)
+                        .bind("description", entity.getDescription() != null ? entity.getDescription().trim() : "")
+                        .bind("isAvailable", entity.getIsAvailable() != null ? entity.getIsAvailable() : true)
+                        .bind("thumbnail", entity.getThumbnail() != null ? entity.getThumbnail().trim() : "")
+                        .bind("brandId", entity.getBrandId() != null ? entity.getBrandId() : 1)
+                        .bind("categoryId", entity.getCategoryId() != null ? entity.getCategoryId() : 1)
+                        .bind("createdAt", new Timestamp(System.currentTimeMillis()))
+                        .bind("updatedAt", new Timestamp(System.currentTimeMillis()))
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Long.class)
+                        .one();
+            });
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -173,8 +168,8 @@ public class ProductDAOImpl implements IProductDAO {
             int result = JDBIConnector.getJdbi().withHandle(handle -> {
                 return handle.createUpdate(sql)
                         .bind("name", entity.getName() != null ? entity.getName().trim() : productModel.getName())
-                        .bind("price", entity.getPrice() != null ? entity.getPrice() : productModel.getPrice())
-                        .bind("costPrice", entity.getCostPrice() != null ? entity.getCostPrice() : productModel.getCostPrice())
+                        .bind("price", entity.getPrice() != null ? FormatMoney.formatCurrency(entity.getPrice()) : FormatMoney.formatCurrency(productModel.getPrice()))
+                        .bind("costPrice", entity.getCostPrice() != null ? FormatMoney.formatCurrency(entity.getCostPrice()) : FormatMoney.formatCurrency(productModel.getCostPrice()))
                         .bind("stock", entity.getStock() != null ? entity.getStock() : productModel.getStock())
                         .bind("soldQuantity", entity.getSoldQuantity() != null ? entity.getSoldQuantity() : productModel.getSoldQuantity())
                         .bind("description", entity.getDescription() != null ? entity.getDescription().trim() : productModel.getDescription())
