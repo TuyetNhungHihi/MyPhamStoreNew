@@ -7,4 +7,6 @@ import java.util.List;
 public interface IAddressDAO extends GenericDAO<AddressModel> {
     List<AddressModel> findByUserId(Long userId);
     boolean checkAddressIsExist(AddressModel addressModel, Long userId);
+
+    AddressModel findAddressById(Long addressId);
 }
