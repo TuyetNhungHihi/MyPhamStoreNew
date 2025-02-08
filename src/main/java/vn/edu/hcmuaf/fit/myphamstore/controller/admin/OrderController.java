@@ -23,6 +23,8 @@ public class OrderController extends HttpServlet {
         if (action == null || AdminAction.DISPLAY.equals(action)){
             orderService.displayOrders(req, resp);
         }else if(AdminAction.DISPLAY_DETAIL.equals(action)) {
+            System.out.println("Display order detail");
+            System.out.println(req.getParameter("id"));
             orderService.displayOrderDetail(req, resp);
         }
     }
