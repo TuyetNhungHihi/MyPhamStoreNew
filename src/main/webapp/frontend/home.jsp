@@ -69,45 +69,38 @@ To change this template use File | Settings | File Templates.
 
 
 	<!-- Slider Wrapper End -->
-	<div class="ss_top_slider_wrapper">
+	<!-- <div class="ss_top_slider_wrapper">
 		<div id="theme-main-banner">
-			<div data-src="../static/images/slider/slider1.jpg">
-<%--				<div class="camera_caption">--%>
-<%--					<div class="container ss_slider_wrapper">--%>
-<%--						<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Ưu đãi hấp dẫn</h3>--%>
-<%--						<div class="clearfix"></div>--%>
-<%--						<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm mới</h2>--%>
-<%--						<div class="clearfix"></div>--%>
-<%--						<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm 1</h1>--%>
-<%--						<div class="clearfix"></div>--%>
-<%--						<p class="wow fadeInUp animated" data-wow-delay="0.4s">mô tả</p>--%>
-<%--						<div class="clearfix"></div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">Mua Ngay!</a>--%>
-<%--					</div>--%>
-<%--					<!-- /.container -->--%>
-<%--				</div>--%>
-				<!-- /.camera_caption -->
-			</div>
-			<div data-src="../static/images/slider/slider2.jpg">
-				<div class="camera_caption">
-<%--					<div class="container ss_slider_wrapper">--%>
-<%--						<h3 class="wow fadeInUp animated" data-wow-delay="0.1s">Ưu đãi hấp dẫn</h3>--%>
-<%--						<div class="clearfix"></div>--%>
-<%--						<h2 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm mới</h2>--%>
-<%--						<div class="clearfix"></div>--%>
-<%--						<h1 class="wow fadeInUp animated" data-wow-delay="0.1s">Sản phẩm 2</h1>--%>
-<%--						<div class="clearfix"></div>--%>
-<%--						<p class="wow fadeInUp animated" data-wow-delay="0.4s">mô tả</p>--%>
-<%--						<div class="clearfix"></div>	<a href="#" class="wow fadeInUp animated" data-wow-delay="0.4s">Mua Ngay!</a>--%>
-<%--					</div>--%>
-					<!-- /.container -->
+				<div data-src="../static/images/slider/slider1.jpg">
 				</div>
-				<!-- /.camera_caption -->
-			</div>
-				<!-- /.camera_caption -->
-			</div>
-			</div>
 		</div>
-		<!-- /#theme-main-banner -->
+	</div> -->
+	<div class="bs-example" style="margin-top: 210px">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Carousel indicators -->
+			<ol class="carousel-indicators">
+				<c:forEach var="slide" items="${slides}" varStatus="status">
+					<li data-target="#myCarousel" data-slide-to="${status.index}" class="${status.first ? 'active' : ''}"></li>
+				</c:forEach>
+			</ol>
+
+			<!-- Wrapper for carousel items -->
+			<div class="carousel-inner">
+				<c:forEach var="slide" items="${slides}" varStatus="status">
+					<div class="item ${status.first ? 'active' : ''}">
+						<img src="${slide.image}" width="100%" class="img-fluid" alt="Slide ${status.index + 1}">
+					</div>
+				</c:forEach>
+			</div>
+
+			<!-- Carousel controls -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
 	</div>
 	<!-- Slider Wrapper End -->
 

@@ -1,5 +1,6 @@
 <%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.UserModel" %>
 <%@ page import="vn.edu.hcmuaf.fit.myphamstore.model.AddressModel" %>
+<%@ page import="java.util.List" %>
 <%@include file="/common/tablib.jsp"%>
 <%--
 Created by IntelliJ IDEA.
@@ -89,9 +90,8 @@ To change this template use File | Settings | File Templates.
           <div class="container px-4 mt-4">
             <h1>Thông tin cá nhân </h1>
               <% UserModel user = (UserModel) request.getAttribute("user");
-                    AddressModel address = (AddressModel) request.getAttribute("address");
-                  System.out.println(address);
-                  System.out.println(user);%>
+                    List<AddressModel> addresss = (List<AddressModel>) request.getAttribute("addresss");
+                  %>
             <hr class="mt-0 mb-4">
               <hr class="container">
                 <div class="row d-flex">
@@ -127,57 +127,82 @@ To change this template use File | Settings | File Templates.
                     <div class="card mb-4">
                       <div class="card-header">Chi tiết tài khoản</div>
                       <div class="card-body">
-                        <form>
-                          <!-- Username and Name -->
-                          <div class="mb-3">
-                            <label for="lastname">Họ và tên:<%=user.getFullName()%></label>
-                            <input type="text" placeholder="Nhập họ tên của bạn vào đây" name="lastname" id="lastname" value="Nguyen Van A" readonly class="form-control">
-                          </div>
-                          <!-- Gender -->
-                          <div class="mb-4">
-                            <div class="form-group">
-                              <label>Giới tính :<%=user.getGender()%> </label>
-<%--                              <span style="margin-left: 20px">--%>
-<%--                                <input type="radio" id="Nam" name="gender" value="Nam" disabled />--%>
-<%--                                <label for="Nam">Nam</label>--%>
-<%--                              </span>--%>
-<%--                          --%>
-<%--                              <span style="margin-left: 15px">--%>
-<%--                                <input type="radio" id="Nu" name="gender" value="Nữ" disabled checked />--%>
-<%--                                <label for="Nu">Nữ</label>--%>
-<%--                              </span>--%>
-                            </div>
-                          </div>
-                          <!-- Address -->
-                          <div class="mb-3">
-                            <label class="small mb-1" for="inputLocation">Địa chỉ giao hàng: ${address}</label>
-                            <input class="form-control" id="inputLocation" type="text" placeholder="Nhập địa chỉ giao hàng của bạn vào đây" value="Trường đại học Nông Lâm, tp.HCM" readonly>
-                          </div>
+                          <form id="editProfileForm" action="<c:url value='/profile?action=edit' />" method="post">
+                              <!-- Username and Name -->
+                              <div class="mb-3">
+                                  <label for="fullname">Họ và tên:</label>
+                                  <input type="text" name="fullname" id="fullname" class="form-control" value="<%=user.getFullName()%>" readonly>
+                              </div>
 
-                          <!-- Email -->
-                          <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ Email: <%=user.getEmail()%></label>
-                            <input type="email" class="form-control" id="inputEmailAddress" placeholder="Nhập địa chỉ email của bạn vào đây" value="<%=user.getEmail()%>" readonly required>
-                          </div>
-                          <!-- Phone Number and Birthday -->
-                          <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Số điện thoại: <%=user.getPhone()%></label>
-                                <input type="tel" class="form-control" id="inputPhone" placeholder="Nhập số điện thoại của bạn vào đây" value="<%=user.getPhone()%>" readonly required>                                        </div>
-                            <div class="col-md-6">
-                                <label for="ngaysinh">Ngày sinh</label>
-                                <input type="date" name="ngaysinh" id="ngaysinh" class="form-control" value="2000-11-20" readonly>
-                            </div>
-                          </div>        
-                          <!-- Existing "Edit Info" and new "Change Password" button -->
-                          <div class="d-flex justify-content-end mb-3">
-                            <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
-                            <!-- Button to open modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" href="/change-password">
-                            Đổi mật khẩu
-                             </button>
-                          </div>
-                        </form>   
+                              <!-- Gender -->
+                              <div class="mb-3">
+                                  <label>Giới tính:</label>
+                                  <select name="gender" class="form-control" disabled>
+                                      <option value="MALE" <%= "MALE".equalsIgnoreCase(String.valueOf(user.getGender())) ? "selected" : "" %>>Nam</option>
+                                      <option value="FEMALE" <%= "FEMALE".equalsIgnoreCase(String.valueOf(user.getGender())) ? "selected" : "" %>>Nữ</option>
+                                      <option value="OTHER" <%= "OTHER".equalsIgnoreCase(String.valueOf(user.getGender())) ? "selected" : "" %>>Khác</option>
+                                  </select>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label for="inputLocation">Địa chỉ giao hàng:</label>
+                                  <select name="address" id="inputLocation" class="form-control" disabled>
+                                      <% if (addresss != null) { %>
+                                      <% for (AddressModel addr : addresss) { %>
+                                      <option value="<%= addr.getId() %>" <%= addr.getIsDefault() ? "selected" : "" %>>
+                                          <%= addr.getNote() + ", " + addr.getWard() + ", " + addr.getDistrict() + ", " + addr.getCity() %>
+                                      </option>
+                                      <% } %>
+                                      <% } %>
+                                  </select>
+                              </div>
+
+
+
+                              <!-- Email -->
+                              <div class="mb-3">
+                                  <label for="inputEmailAddress">Địa chỉ Email:</label>
+                                  <input type="email" name="email" class="form-control" id="inputEmailAddress" value="<%=user.getEmail()%>" readonly>
+                              </div>
+
+                              <!-- Phone Number and Birthday -->
+                              <div class="row gx-3 mb-3">
+                                  <div class="col-md-6">
+                                      <label for="inputPhone">Số điện thoại:</label>
+                                      <input type="tel" name="phone" class="form-control" id="inputPhone" value="<%=user.getPhone()%>" readonly>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <label for="ngaysinh">Ngày sinh:</label>
+                                      <input type="date" name="dob" id="ngaysinh" class="form-control" value="<%=user.getDateOfBirth()%>" readonly>
+                                  </div>
+                              </div>
+                              <%
+                                  String successMessage = (String) session.getAttribute("successMessage");
+                                  String errorMessage = (String) session.getAttribute("errorMessage");
+                                  session.removeAttribute("successMessage");
+                                  session.removeAttribute("errorMessage");
+                              %>
+
+                              <% if (successMessage != null) { %>
+                              <div class="alert alert-success"><%= successMessage %></div>
+                              <% } %>
+
+                              <% if (errorMessage != null) { %>
+                              <div class="alert alert-danger"><%= errorMessage %></div>
+                              <% } %>
+
+                              <!-- Buttons -->
+                              <div class="d-flex justify-content-end mb-3">
+                                  <button id="editButton" class="btn btn-primary me-2" type="button">Chỉnh sửa thông tin</button>
+                                  <button id="saveButton" class="btn btn-success me-2" type="submit" style="display: none;">Lưu</button>
+                                  <button id="cancelButton" class="btn btn-danger" type="button" style="display: none;">Hủy</button>
+                                  <a href="<c:url value='/change-password' />" class="btn btn-primary">Đổi mật khẩu</a>
+
+                              </div>
+                          </form>
+                          <!-- Button để mở modal -->
+                          <button class="btn btn-primary" id="addAddressButton">Thêm địa chỉ mới</button>
+
                       </div>
                     </div>
                 </div>
@@ -186,10 +211,39 @@ To change this template use File | Settings | File Templates.
           </div>
         </div>
       </div>
+
       <!-- end content -->
       <!-- Footer Wrapper End -->
       <%@include file="component/footer.jsp"%>
 
+      <!-- Modal thêm địa chỉ -->
+      <div id="addAddressModal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Thêm địa chỉ mới</h2>
+              <form id="addAddressForm">
+                  <label for="note">Ghi chú (Số nhà, đường):</label>
+                  <input type="text" id="note" name="note" required>
+
+                  <label for="ward">Phường/Xã:</label>
+                  <input type="text" id="ward" name="ward" required>
+
+                  <label for="district">Quận/Huyện:</label>
+                  <input type="text" id="district" name="district" required>
+
+                  <label for="city">Thành phố/Tỉnh:</label>
+                  <input type="text" id="city" name="city" required>
+
+                  <label>
+                      <input type="hidden" name="setDefault" value="false"> <!-- Giá trị mặc định -->
+                      <input type="checkbox" id="setDefault" name="setDefault" value="true"> Đặt làm địa chỉ mặc định
+                  </label>
+
+
+                  <button type="submit" class="btn btn-success">Lưu địa chỉ</button>
+              </form>
+          </div>
+      </div>
 
       <script src="../static/js/jquery_min.js"></script>
       <script src="../static/js/wow.js"></script>
@@ -205,52 +259,66 @@ To change this template use File | Settings | File Templates.
       <script src="../static/js/jquery.inview.min.js"></script>
       <script src="../static/js/custom.js"></script>
       <script>
-          document.getElementById('editButton').addEventListener('click', function() {
-              const usernameInput = document.getElementById('username');
-              const lastnameInput = document.getElementById('lastname');
-              const locationInput = document.getElementById('inputLocation');
-              const emailInput = document.getElementById('inputEmailAddress');
-              const phoneInput = document.getElementById('inputPhone');
-              const birthdayInput = document.getElementById('ngaysinh');
-              const genderInputs = document.getElementsByName('gender'); // Radio buttons for gender
+          document.getElementById('editButton').addEventListener('click', function () {
+              let inputs = document.querySelectorAll('#editProfileForm input, #editProfileForm select');
+              inputs.forEach(input => input.removeAttribute('readonly'));
+              document.querySelector("select[name='gender']").disabled = false;
+              document.querySelector("select[name='address']").disabled = false;
 
-              const isReadonly = usernameInput.readOnly;
-
-              if (isReadonly) {
-                  // Enable editing
-                  editButton.textContent = "Lưu thông tin"; // Change button text to 'Save'
-                  usernameInput.readOnly = false;
-                  lastnameInput.readOnly = false;
-                  locationInput.readOnly = false;
-                  emailInput.readOnly = false;
-                  phoneInput.readOnly = false;
-                  birthdayInput.readOnly = false;
-
-                  // Enable gender radio buttons
-                  genderInputs.forEach((radio) => {
-                      radio.disabled = false;
-                  });
-
-              } else {
-                  // Save changes
-                  usernameInput.readOnly = true;
-                  lastnameInput.readOnly = true;
-                  locationInput.readOnly = true;
-                  emailInput.readOnly = true;
-                  phoneInput.readOnly = true;
-                  birthdayInput.readOnly = true;
-                  editButton.textContent = "Chỉnh sửa thông tin"; // Change button text back to 'Edit'
-
-                  // Disable gender radio buttons
-                  genderInputs.forEach((radio) => {
-                      radio.disabled = true;
-                  });
-
-                  // You can add logic to save the updated values here
-                  console.log("Selected gender:", document.querySelector('input[name="gender"]:checked').value);
-              }
+              // Hiển thị nút "Lưu" và "Hủy"
+              document.getElementById('saveButton').style.display = "inline-block";
+              document.getElementById('cancelButton').style.display = "inline-block";
+              this.style.display = "none"; // Ẩn nút "Chỉnh sửa"
           });
 
+          document.getElementById('cancelButton').addEventListener('click', function () {
+              location.reload(); // Reload trang để hủy chỉnh sửa
+          });
+          // Mở modal khi bấm "Thêm địa chỉ mới"
+          document.getElementById('addAddressButton').addEventListener('click', function() {
+              document.getElementById('addAddressModal').style.display = 'block';
+          });
+
+          // Đóng modal khi bấm "x"
+          document.querySelector('.close').addEventListener('click', function() {
+              document.getElementById('addAddressModal').style.display = 'none';
+          });
+
+          // Gửi dữ liệu khi submit form
+          document.getElementById('addAddressForm').addEventListener('submit', function(event) {
+              event.preventDefault(); // Ngăn chặn reload trang
+
+              let formData = new FormData(this);
+
+              // Kiểm tra trạng thái của checkbox và cập nhật giá trị
+              formData.set("setDefault", document.getElementById("setDefault").checked ? "true" : "false");
+
+              fetch('/profile?action=addAddress', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded' // Đảm bảo server nhận đúng kiểu dữ liệu
+                  },
+                  body: new URLSearchParams(formData).toString()
+              })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          alert('Đã thêm địa chỉ thành công!');
+                          location.reload(); // Tải lại trang để cập nhật danh sách địa chỉ
+                      } else {
+                          alert(`Lỗi: ${data.message}`);
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Lỗi:', error);
+                      alert('Có lỗi xảy ra, vui lòng thử lại!');
+                  });
+          });
+
+
+
       </script>
+
+
     </body>
 </html>

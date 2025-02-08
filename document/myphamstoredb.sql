@@ -11,6 +11,7 @@ CREATE TABLE `user` (
                         `date_of_birth` date NOT NULL,
                         `gender` ENUM ('MALE', 'FEMALE', 'OTHER') NOT NULL,
                         `avatar` longtext,
+                        `avatar` longtext,
                         `status` ENUM ('NONE', 'ACTIVE', 'INACTIVE') not null,
                         `last_login` datetime,
                         `created_at` datetime DEFAULT (now()),
@@ -131,8 +132,6 @@ CREATE TABLE `order_details` (
 CREATE TABLE `slide` (
                          `id` int PRIMARY KEY AUTO_INCREMENT,
                          `image` longtext NOT NULL,
-                         `url` varchar(500) NOT NULL,
-                         `is_available` BOOLEAN NOT NULL DEFAULT TRUE,
                          `created_at` datetime DEFAULT (now()),
                          `updated_at` datetime DEFAULT (now())
 );

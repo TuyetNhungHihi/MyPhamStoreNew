@@ -7,7 +7,6 @@ import vn.edu.hcmuaf.fit.myphamstore.dao.ICategoryDAO;
 import vn.edu.hcmuaf.fit.myphamstore.model.CategoryModel;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

@@ -13,6 +13,4 @@ import vn.edu.hcmuaf.fit.myphamstore.common.ContactStatus;
 public class SlideModel {
     private Long id;
     private String image;
-    private String url;
-    private Boolean isAvailable;
 }
