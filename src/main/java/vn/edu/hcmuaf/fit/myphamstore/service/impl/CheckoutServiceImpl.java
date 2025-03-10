@@ -22,6 +22,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
 @ApplicationScoped
@@ -141,8 +143,15 @@ public class CheckoutServiceImpl implements ICheckoutService {
         // lấy user từ session
         UserModel user = (UserModel) session.getAttribute("user");
         //gửi email thông báo đơn hàng
+
+        // Sử dụng ExecutorService để gửi email bất đồng bộ
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(() -> {
+            SendEmail.notifyOrderToUser(user.getEmail(), order, listCartDisplay, address);
+        });
+        executorService.shutdown(); // Đóng ExecutorService sau khi gửi
         order.setId(orderId);
-        SendEmail.notifyOrderToUser(user.getEmail(), order, listCartDisplay, address);
+
 
         response.sendRedirect("/trang-chu");
     }
