@@ -17,6 +17,7 @@ import vn.edu.hcmuaf.fit.myphamstore.dao.IOtpDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IRoleDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
 import vn.edu.hcmuaf.fit.myphamstore.dao.daoimpl.UserDAOImp;
+import vn.edu.hcmuaf.fit.myphamstore.exception.UserNotActiveException;
 import vn.edu.hcmuaf.fit.myphamstore.model.AddressModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.ProductModel;
 import vn.edu.hcmuaf.fit.myphamstore.model.RoleModel;
@@ -86,24 +87,38 @@ public class UserServiceImpl implements IUserService {
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        boolean isAuthenticated = this.checkLogin(email.trim(), password.trim());
-        if (isAuthenticated) {
-            UserModel user = this.findUserByEmail(email);
-            if (user != null) {
-                if(user.getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase(RoleType.ADMIN))){
-                    request.getSession().setAttribute("user", user);
-                    response.sendRedirect(request.getContextPath() + "/admin");
-                }else{
-                    request.getSession().setAttribute("user", user);
-                    response.sendRedirect(request.getContextPath() + "/trang-chu");
-                }
 
+        if (email == null || password == null || email.trim().isEmpty() || password.trim().isEmpty()) {
+            request.setAttribute("message", "Vui lòng nhập email và mật khẩu!");
+            request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
+            return;
+        }
+
+        email = email.trim();
+        password = password.trim();
+
+        try {
+            boolean isAuthenticated = this.checkLogin(email, password);
+            if (isAuthenticated) {
+                UserModel user = this.findUserByEmail(email); // Gọi thêm phương thức này
+                if (user != null) {
+                    request.getSession().setAttribute("user", user);
+                    if (user.getRoles() != null && user.getRoles().stream().anyMatch(r -> r.getName().equalsIgnoreCase (RoleType.ADMIN))) {
+                        response.sendRedirect(request.getContextPath() + "/admin");
+                    } else {
+                        response.sendRedirect(request.getContextPath() + "/trang-chu");
+                    }
+                }
             } else {
-                request.setAttribute("message", "Sai email hoặc mật khẩu");
+                request.setAttribute("message", "Sai email hoặc mật khẩu!");
                 request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
             }
-        } else {
-            request.setAttribute("message", "Sai email hoặc mật khẩu");
+        } catch (UserNotActiveException e) {
+            request.setAttribute("message", e.getMessage());
+            request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("message", "Đã xảy ra lỗi, vui lòng thử lại sau!");
             request.getRequestDispatcher("/frontend/login.jsp").forward(request, response);
         }
     }
@@ -160,7 +175,7 @@ public class UserServiceImpl implements IUserService {
                 .dateOfBirth(dateOfBirth)
                 .email(email)
                 .phone(phone)
-                .status(UserStatus.INACTIVE)
+                .status(UserStatus.NONE)
                 .password(password.trim())
                 .avatar(null).build();
         Long savedUserId = userDAO.save(user);
