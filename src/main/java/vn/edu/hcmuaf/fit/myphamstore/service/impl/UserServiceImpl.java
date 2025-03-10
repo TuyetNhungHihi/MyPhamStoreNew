@@ -29,6 +29,9 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -166,7 +169,14 @@ public class UserServiceImpl implements IUserService {
         }
         String otp = otpDAO.generateOtp();
         otpDAO.saveOtp(email, otp);
-        SendEmail.sendEmail(email, otp);
+        // Sử dụng ExecutorService để gửi email bất đồng bộ
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        String finalEmail = email;
+        executorService.submit(() -> {
+            SendEmail.sendEmail(finalEmail, otp);
+        });
+        executorService.shutdown(); // Đóng ExecutorService sau khi gửi
+
         request.setAttribute("message", "Đăng ký thành công, Vui lòng kiểm tra email để kích hoạt tài khoản");
         request.getRequestDispatcher("/frontend/register.jsp").forward(request, response);
     }
