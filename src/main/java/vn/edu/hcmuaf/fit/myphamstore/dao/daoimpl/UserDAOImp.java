@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.myphamstore.common.*;
 import vn.edu.hcmuaf.fit.myphamstore.dao.IUserDAO;
+import vn.edu.hcmuaf.fit.myphamstore.exception.UserNotActiveException;
 import vn.edu.hcmuaf.fit.myphamstore.model.UserModel;
 
 import java.sql.*;
@@ -147,25 +148,41 @@ public class UserDAOImp implements IUserDAO {
 
     @Override
     public boolean checkLogin(String email, String password) {
-        String sql = "SELECT password FROM user WHERE email = :email AND status != 'NONE'";
+        String sql = "SELECT password, status FROM user WHERE email = :email"; // Chỉ lấy cột cần thiết
         try {
             return JDBIConnector.getJdbi().withHandle(handle -> {
-                String hashedPassword = handle.createQuery(sql)
+                UserModel user = handle.createQuery(sql)
                         .bind("email", email)
-                        .mapTo(String.class)
-                        .findOne()
+                        .mapToBean(UserModel.class)
+                        .findOne() // Dùng findOne() thay vì one()
                         .orElse(null);
+                log.info(user.toString());
+                // Kiểm tra xem user có tồn tại không
+                if (user == null) {
+                    return false; // Email không tồn tại
+                }
 
-                System.out.println("Email: " + email);
-                System.out.println("Hashed password from DB: " + hashedPassword);
+                // Kiểm tra trạng thái tài khoản
+                if (user.getStatus() == null || user.getStatus() == UserStatus.NONE) {
+                    throw new UserNotActiveException("Vui lòng kiểm tra email và xác nhận tài khoản!");
+                }
+                // Kiểm tra trạng thái tài khoản
+                if (user.getStatus() == null || user.getStatus() == UserStatus.INACTIVE) {
+                    throw new UserNotActiveException("Tài khoản của bạn đã bị khóa !");
+                }
 
-                boolean result = hashedPassword != null && PasswordUtils.verifyPassword(password, hashedPassword);
-                System.out.println("Password verification result: " + result);
-                return result;
+                // Kiểm tra mật khẩu
+                if (user.getPassword() == null) {
+                    return false; // Mật khẩu không hợp lệ
+                }
+
+                return PasswordUtils.verifyPassword(password, user.getPassword());
             });
+        } catch (UserNotActiveException e) {
+            throw e; // Ném lại ngoại lệ để xử lý ở tầng trên
         } catch (Exception e) {
-            e.printStackTrace(); // Log lỗi ra console
-            return false;
+            e.printStackTrace(); // Nên thay bằng logging framework
+            return false; // Xử lý lỗi chung
         }
     }
 
