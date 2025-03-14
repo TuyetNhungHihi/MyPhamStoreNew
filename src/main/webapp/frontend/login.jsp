@@ -75,6 +75,11 @@
         </div>
 
         <div class="row">
+          <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+          <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+        </div>
+
+        <div class="row">
           <p>
             Bạn quên mật khẩu?
             <a style="color: #337ab7" href="<%= request.getContextPath() %>/forgot-password ">"Quên mật khẩu</a>
